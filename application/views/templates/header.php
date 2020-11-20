@@ -45,58 +45,53 @@
    <ul class="sidebar-menu do-nicescrol">
       <li class="sidebar-header">MAIN NAVIGATION</li>
       <li>
-        <a href="index.html">
+      <a href="<?php echo site_url('index.php/pages/index');?>">
           <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
         </a>
       </li>
 
       <li>
-        <a href="icons.html">
-          <i class="zmdi zmdi-invert-colors"></i> <span>UI Icons</span>
+        <a href="<?php echo site_url('index.php/pages/showtime');?>">
+        <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
         </a>
       </li>
 
       <li>
-        <a href="forms.html">
-          <i class="zmdi zmdi-format-list-bulleted"></i> <span>Forms</span>
+        <a href="<?php echo site_url('index.php/pages/movies');?>">
+          <i class="zmdi zmdi-play-circle"></i> <span>Movies</span>
         </a>
       </li>
 
       <li>
-        <a href="tables.html">
-          <i class="zmdi zmdi-grid"></i> <span>Tables</span>
+      <a href="<?php echo site_url('index.php/pages/cinemas');?>">
+          <i class="zmdi zmdi zmdi-home"></i> <span>Cinemas</span>
         </a>
       </li>
 
       <li>
-        <a href="calendar.html">
-          <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
-          <small class="badge float-right badge-light">New</small>
+      <a href="<?php echo site_url('index.php/pages/Ratings');?>">
+          <i class="zmdi zmdi-sort-amount-asc"></i> <span>Ratings</span>
         </a>
       </li>
 
       <li>
-        <a href="profile.html">
-          <i class="zmdi zmdi-face"></i> <span>Profile</span>
+      <a href="<?php echo site_url('index.php/pages/geners');?>">
+          <i class="zmdi zmdi-grid"></i> <span>Geners</span>
         </a>
       </li>
 
       <li>
-        <a href="login.html" target="_blank">
-          <i class="zmdi zmdi-lock"></i> <span>Login</span>
+      <a href="<?php echo site_url('index.php/pages/users');?>">
+      <i class="zmdi zmdi-account-box"></i> <span>Users</span>
         </a>
       </li>
 
        <li>
-        <a href="register.html" target="_blank">
-          <i class="zmdi zmdi-account-circle"></i> <span>Registration</span>
+       <a href="<?php echo site_url('index.php/pages/bookings');?>">
+       <i class="zmdi zmdi-assignment"></i></i> <span>Bookings</span>
         </a>
       </li>
 
-      <li class="sidebar-header">LABELS</li>
-      <li><a href="javaScript:void();"><i class="zmdi zmdi-coffee text-danger"></i> <span>Important</span></a></li>
-      <li><a href="javaScript:void();"><i class="zmdi zmdi-chart-donut text-success"></i> <span>Warning</span></a></li>
-      <li><a href="javaScript:void();"><i class="zmdi zmdi-share text-info"></i> <span>Information</span></a></li>
 
     </ul>
    
@@ -113,8 +108,8 @@
      </a>
     </li>
     <li class="nav-item">
-      <form class="search-bar">
-        <input type="text" class="form-control" placeholder="Enter keywords">
+      <form class="search-bar" method="POST">
+        <input type="text" class="form-control" name="Search" placeholder="Enter keywords">
          <a href="javascript:void();"><i class="icon-magnifier"></i></a>
       </form>
     </li>
