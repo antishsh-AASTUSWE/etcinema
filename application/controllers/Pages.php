@@ -2,23 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pages extends CI_Controller {
+	public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('dashbord_model');
+    }
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function view($page = 'dashboard')
+	public function index($page = 'dashboard')
 {
         if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
         {
@@ -32,4 +22,73 @@ class Pages extends CI_Controller {
         $this->load->view('pages/'.$page, $data);
         $this->load->view('templates/footer', $data);
 }
+
+public function showtime()
+{
+        if ( ! file_exists(APPPATH.'views/pages/showtime.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+		if(isset($_POST['Search'])){
+
+            $data= array(
+                'Search'=>$this->input->post('Search'));
+         $query = $this->db->like('show_id', $data['Search'])
+                ->or_like('mov_id', $data['Search'])
+                ->or_like('cinema_id',  $data['Search'])
+                ->or_like('show_date',  $data['Search'])
+                ->or_like('show_time',  $data['Search'])
+                ->or_like('Price',  $data['Search'])
+                  ->get('showtime');
+
+        $data['showtime'] = $query->result();
+
+        $query = $this->db->get("movie");  
+        $data['movies'] = $query->result();
+
+        $query = $this->db->get("cinema");  
+        $data['cinema'] = $query->result();
+
+        
+            
+		$this->load->view('templates/header');
+        $this->load->view('pages/showtime.php',$data);
+        $this->load->view('templates/footer');
+    
+    
+           }
+           else{
+        $query = $this->db->get("movie");  
+        $data['movies'] = $query->result();
+
+        $query = $this->db->get("cinema");  
+        $data['cinema'] = $query->result();
+
+        $query = $this->db->get("showtime");  
+        $data['showtime'] = $query->result();
+        
+
+        $this->load->view('templates/header');
+        $this->load->view('pages/showtime.php',$data);
+        $this->load->view('templates/footer');
+}
+}
+public function add_showtime(){
+	$this->form_validation->set_rules('movie', 'movie', 'required');
+	$this->form_validation->set_rules('cinema', 'cinema', 'required');
+	$this->form_validation->set_rules('date', 'date','required');
+	$this->form_validation->set_rules('time', 'time','required');
+	$this->form_validation->set_rules('price', 'price','required');
+
+	if($this->form_validation->run() === FALSE)
+	{
+		$this->showtime();
+	}else{
+		
+		$this->dashbord_model->add_showtime();
+		$this->showtime();
+	}
+}
+
 }
