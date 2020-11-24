@@ -34,15 +34,21 @@ public function showtime()
 
             $data= array(
                 'Search'=>$this->input->post('Search'));
-         $query = $this->db->like('show_id', $data['Search'])
-                ->or_like('mov_id', $data['Search'])
-                ->or_like('cinema_id',  $data['Search'])
-                ->or_like('show_date',  $data['Search'])
-                ->or_like('show_time',  $data['Search'])
-                ->or_like('Price',  $data['Search'])
-                  ->get('showtime');
-
+ 
+		$this->db->select('*');
+		$this->db->from('showtime');
+		$this->db->join('movie', 'showtime.mov_id=movie.movie_id');
+		$this->db->join('cinema', 'showtime.cinema_id=cinema.cinema_id');
+		$this->db->like('show_id', $data['Search'])
+		->or_like('mov_name', $data['Search'])
+		->or_like('cinema_name',  $data['Search'])
+		->or_like('show_date',  $data['Search'])
+		->or_like('show_time',  $data['Search'])
+		->or_like('Price',  $data['Search']);
+		$this->db->order_by('show_id', 'ASC');
+		$query = $this->db->get();
         $data['showtime'] = $query->result();
+
 
         $query = $this->db->get("movie");  
         $data['movies'] = $query->result();
@@ -65,7 +71,15 @@ public function showtime()
         $query = $this->db->get("cinema");  
         $data['cinema'] = $query->result();
 
-        $query = $this->db->get("showtime");  
+
+		$this->db->select('*');
+		$this->db->from('showtime');
+		$this->db->join('movie', 'showtime.mov_id=movie.movie_id');
+		$this->db->join('cinema', 'showtime.cinema_id=cinema.cinema_id');
+		$this->db->order_by('show_id', 'ASC');
+		$query = $this->db->get();
+
+        
         $data['showtime'] = $query->result();
         
 
@@ -89,6 +103,46 @@ public function add_showtime(){
 		$this->dashbord_model->add_showtime();
 		$this->showtime();
 	}
+}
+
+public function delete_showtime($test){
+        
+	$str = $test;
+
+
+	$this->db->delete('showtime', array('show_id' => $str)); 
+	
+	$this->showtime();
+}
+public function edit_showtime($test){
+        
+	$str = $test;
+
+		$this->db->select('*');
+		$this->db->from('showtime');
+		$this->db->join('movie','showtime.mov_id=movie.movie_id');
+		$this->db->join('cinema','showtime.cinema_id=cinema.cinema_id');
+		$this->db->where('show_id', $str);
+		$query = $this->db->get();
+	$data['records'] = $query->result_array();
+	
+	$query = $this->db->get("movie");  
+	$data['movies'] = $query->result();
+
+	$query = $this->db->get("cinema");  
+	$data['cinema'] = $query->result();
+
+		$this->db->select('*');
+		$this->db->from('showtime');
+		$this->db->join('movie', 'showtime.mov_id=movie.movie_id');
+		$this->db->join('cinema', 'showtime.cinema_id=cinema.cinema_id');
+		$this->db->order_by('show_id', 'ASC');
+		$query = $this->db->get();
+   		$data['showtime'] = $query->result();
+
+		$this->load->view('templates/header');
+        $this->load->view('pages/showtime.php',$data);
+        $this->load->view('templates/footer');
 }
 
 }

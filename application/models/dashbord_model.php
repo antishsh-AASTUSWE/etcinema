@@ -41,35 +41,49 @@ class dashbord_model extends CI_Model{
 	  }
       
       public function add_showtime(){ 
-$data1=array(
-    'mov_id'=>$this->input->post('movie'),
-            'cinema_id'=>$this->input->post('cinema')
-);
-        
-             $select = $this->db->select('movie_id')->where('mov_name', $data1['mov_id'])->
-             get('movie');
+        $data1=array(
+            'mov_id'=>$this->input->post('movie'),
+                    'cinema_id'=>$this->input->post('cinema')
+        );
+        $id=array('show_id'=>$this->input->post('show_id'));
                 
-             foreach ($select->result() as $m_row)
-                {
-                    $select2 = $this->db->select('cinema_id')->where('cinema_name', $data1['cinema_id'])->
-                     get('cinema');
-
-                     foreach ($select2->result() as $c_row)
-                {
-                    $data = array(
-            
-                        'show_date' => $this->input->post('date'),
-                        'show_time' => $this->input->post('time'),
-                        'Price' => $this->input->post('price'),
-                        'mov_id'=>$m_row->movie_id,
-                        'cinema_id'=>$c_row->cinema_id
-                         );
+                     $select = $this->db->select('movie_id')->where('mov_name', $data1['mov_id'])->
+                     get('movie');
                         
-                        return $this->db->insert('showtime',$data);
-                }
-               
+                     foreach ($select->result() as $m_row)
+                        {
+                            $select2 = $this->db->select('cinema_id')->where('cinema_name', $data1['cinema_id'])->
+                             get('cinema');
+        
+                             foreach ($select2->result() as $c_row)
+                        {
+                            $data = array(
+                    
+                                'show_date' => $this->input->post('date'),
+                                'show_time' => $this->input->post('time'),
+                                'Price' => $this->input->post('price'),
+                                'mov_id'=>$m_row->movie_id,
+                                'cinema_id'=>$c_row->cinema_id
+                                 );
+                                
+                               
+                        }
+                
+        $query = $this->db->get_where('showtime', array('show_id' => $id['show_id']));
+
+        if(empty($query->row_array()))
+        {
+			/* insert */
+            return $this->db->insert('showtime',$data);
+        }
+        else
+        {
+			$this->db->where('show_id', $id['show_id']);
+			return $this->db->update('showtime', $data);
+		}
+    }
               
-             }
+             
             }
              
              
