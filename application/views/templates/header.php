@@ -8,8 +8,8 @@
   <meta name="author" content=""/>
   <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
   <!-- loader-->
-  <link href="<?php echo base_url()?>assets/css/pace.min.css" rel="stylesheet"/>
-  <script src="<?php echo base_url()?>assets/js/pace.min.js"></script>
+  <!-- <link href="<?php echo base_url()?>assets/css/pace.min.css" rel="stylesheet"/>
+  <script src="<?php echo base_url()?>assets/js/pace.min.js"></script> -->
   <!--favicon-->
   <link rel="icon" href="<?php echo base_url()?>assets/images/favicon.ico" type="image/x-icon">
   <!-- Vector CSS -->
@@ -45,49 +45,49 @@
    <ul class="sidebar-menu do-nicescrol">
       <li class="sidebar-header">MAIN NAVIGATION</li>
       <li>
-      <a href="<?php echo site_url('index.php/pages/index');?>">
+      <a href="<?php echo base_url()?>dashboard">
           <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo site_url('index.php/pages/showtime');?>">
+        <a href="<?php echo base_url()?>showtime">
         <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo site_url('index.php/pages/movies');?>">
+        <a href="<?php echo base_url()?>movies">
           <i class="zmdi zmdi-play-circle"></i> <span>Movies</span>
         </a>
       </li>
 
       <li>
-      <a href="<?php echo site_url('index.php/pages/cinemas');?>">
-          <i class="zmdi zmdi zmdi-home"></i> <span>Cinemas</span>
+      <a href="<?php echo base_url()?>cinema">
+          <i class="zmdi zmdi zmdi-home"></i> <span>Cinema</span>
         </a>
       </li>
 
       <li>
-      <a href="<?php echo site_url('index.php/pages/Ratings');?>">
+      <a href="<?php echo base_url()?>Rating">
           <i class="zmdi zmdi-sort-amount-asc"></i> <span>Ratings</span>
         </a>
       </li>
 
       <li>
-      <a href="<?php echo site_url('index.php/pages/geners');?>">
+      <a href="<?php echo base_url()?>gener">
           <i class="zmdi zmdi-grid"></i> <span>Geners</span>
         </a>
       </li>
 
       <li>
-      <a href="<?php echo site_url('index.php/pages/users');?>">
+      <a href="<?php echo base_url()?>user">
       <i class="zmdi zmdi-account-box"></i> <span>Users</span>
         </a>
       </li>
 
        <li>
-       <a href="<?php echo site_url('index.php/pages/bookings');?>">
+       <a href="<?php echo base_url()?>booking">
        <i class="zmdi zmdi-assignment"></i></i> <span>Bookings</span>
         </a>
       </li>

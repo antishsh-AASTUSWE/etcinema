@@ -6,101 +6,44 @@
 <i class="zmdi zmdi-plus-circle"></i> <span>Add Movie</span>
 </button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-
-      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-            </div>
-
 
             
 </div>
  
-
-<?php if(isset($showtime)){?>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Showtime's</h5>
-			  <div class="table-responsive">
-               <table class="table table-sm">
-                <thead>
-                  <tr>
-                  <th scope="col">ID</th>
-      <th scope="col">Movie Title</th>
-      <th scope="col">Movie Poster</th>
-      <th scope="col">Movie Rating</th>
-      <th scope="col">trailor</th>
-      <th scope="col">Movie Gener</th>
-      <th scope="col">Movie Plot</th>
-      <th scope="col">running_time</th>
-      <th scope="col">realse_date</th>
-      <th scope="col">language</th>
-      <th scope="col">staring</th>
-      <th scope="col">subtitle</th>
-                  </tr>
-                </thead>
-                <?php 
-            
- echo "<tbody>";
-      foreach( $movie as $r) { 
-
-       
-               echo "<tr>"; 
-               echo "<td>".$r->movie_id."</td>"; 
-               echo "<td>".$r->mov_name."</td>";
-               echo "<td>".$r->mov_poster."</td>"; 
-               echo "<td>".$r->mov_ratting."</td>";
-               echo "<td>".$r->mov_trailor."</td>";
-               echo "<td>".$r->mov_gener."</td>"; 
-               echo "<td>".$r->mov_plot."</td>"; 
-               echo "<td>".$r->mov_running_time."</td>";
-               echo "<td>".$r->mov_realse_date."</td>"; 
-               echo "<td>".$r->mov_language."</td>";
-               echo "<td>".$r->mov_starring."</td>"; 
-               echo "<td>".$r->mov_subtitle."</td>";?>
-               
-               <td>
-                 
-               <a href="<?php echo site_url('index.php/pages/delete_movie/').$r->show_id;?>">
-                   <i class="zmdi zmdi-delete zmdi-hc-lg"></i></a>
-               </td>
-               <td>
-                   <a href="<?php echo site_url('index.php/pages/edit_movie/').$r->show_id;?>">
-                   <i class="zmdi zmdi-edit zmdi-hc-lg"></i></a>
-           
-                   
-                  
-                </td>
-               <?php echo "<tr>"; 
-         
-   echo " </tbody>";
-}
-?>
-</table>
-<?php } ?>
-              
+<div class="card">
+           <div class="card-body">
+           <div class="card-title">Round Vertical Form</div>
+           <hr>
+            <form>
+           <div class="form-group">
+            <label for="input-6">Name</label>
+            <input type="text" class="form-control form-control-rounded" id="input-6" placeholder="Enter Your Name">
+           </div>
+           <div class="form-group">
+            <label for="input-7">Email</label>
+            <input type="text" class="form-control form-control-rounded" id="input-7" placeholder="Enter Your Email Address">
+           </div>
+           <div class="form-group">
+            <label for="input-8">Mobile</label>
+            <input type="text" class="form-control form-control-rounded" id="input-8" placeholder="Enter Your Mobile Number">
+           </div>
+           <div class="form-group">
+            <label for="input-9">Password</label>
+            <input type="text" class="form-control form-control-rounded" id="input-9" placeholder="Enter Password">
+           </div>
+           <div class="form-group">
+            <label for="input-10">Confirm Password</label>
+            <input type="text" class="form-control form-control-rounded" id="input-10" placeholder="Confirm Password">
+           </div>
+           <div class="form-group py-2">
+             <div class="icheck-material-white">
+            <input type="checkbox" id="user-checkbox2" checked=""/>
+            <label for="user-checkbox2">I Agree Terms & Conditions</label>
             </div>
-            </div>
+           </div>
+           <div class="form-group">
+            <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Register</button>
           </div>
-
-
-
-          <!--  Modal ADD Movie-->
+          </form>
+         </div>
+         </div>
