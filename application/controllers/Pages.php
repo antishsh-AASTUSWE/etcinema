@@ -547,7 +547,7 @@ public function users(){
 	$data['user'] = $query->result();
 	
 	$this->load->view('templates/header');
-	$this->load->view('Pages/rating',$data);
+	$this->load->view('Pages/user',$data);
 	$this->load->view('templates/footer');
 
    }
@@ -556,6 +556,7 @@ public function add_user(){
 	$this->form_validation->set_rules('id', 'user_id', 'required');
 	$this->form_validation->set_rules('name', 'name', 'required');
 	$this->form_validation->set_rules('email', 'email','required');
+	$this->form_validation->set_rules('phone', 'phone','required');
 	$this->form_validation->set_rules('date_of_birth', 'date','required');
 	$this->form_validation->set_rules('password', 'pasword','required');
 
@@ -565,9 +566,9 @@ public function add_user(){
 	$data['user'] = $query->result();
 	
 	$this->load->view('templates/header');
-	$this->load->view('Pages/rating',$data);
+	$this->load->view('Pages/user',$data);
 	$this->load->view('templates/footer');
-	
+
 	}else{
 		
 		$this->dashbord_model->add_user();
@@ -581,7 +582,12 @@ public function edit_user($test){
 	$query = $this->db->get_where('user',array('user_id' => $str));
 	$data['records'] = $query->result_array();
 	
-	$this->load->view('dashbord/add_users',$data);
+	$query = $this->db->get("user");  
+	$data['user'] = $query->result();
+	
+	$this->load->view('templates/header');
+	$this->load->view('Pages/user',$data);
+	$this->load->view('templates/footer');
 }
 
 public function delete_user($test){
