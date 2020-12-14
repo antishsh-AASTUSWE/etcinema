@@ -1,24 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pages extends CI_Controller
+class Create extends CI_Controller
 {
 
-	public function view($page = 'dashboard', $error='')
-	{
-		if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
-			// Whoops, we don't have a page for that!
-			show_404();
-		}
-		
-		$data['gener'] = $this->dashbord_model->get_gener();
-		$data['rating'] = $this->dashbord_model->get_retting();
-		$data['title'] = ucfirst($page); // Capitalize the first letter
-		
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/' . $page, $data);
-		$this->load->view('templates/footer', $data);
-	}
+	
 
 
 	//Add Movie function
@@ -26,7 +12,9 @@ class Pages extends CI_Controller
 	public function add_movie()
 	{
 
-
+		if (!file_exists(APPPATH . 'views/pages/add_movie.php')) {
+            show_404();
+        }
 
 		$this->form_validation->set_rules('title', 'title', 'required');
 
@@ -59,10 +47,11 @@ class Pages extends CI_Controller
 
 			$this->load->library('upload', $config);
 			if (!$this->upload->do_upload()) {
-				$error = array('error' => $this->upload->display_errors());
-				$post_image = 'noimage.jpg';
+				//$error = array('error' => $this->upload->display_errors());
+				//$post_image = 'noimage.jpg';
+				print_r($this->upload->do_upload());
 				$this->load->view('templates/header');
-				$this->load->view('pages/add_movie', $error);
+				$this->load->view('pages/add_movie');
 				$this->load->view('templates/footer');
 			} else {
 				$data = array('upload_data' => $this->upload->data());
@@ -70,6 +59,7 @@ class Pages extends CI_Controller
 			}
 
 			$this->dashbord_model->add_movie($post_image);
+			
 		}
 	}
 }

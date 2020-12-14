@@ -3,6 +3,7 @@
     <div class="card-body">
       <div class="card-title">Add Movie</div>
       <hr>
+    
       <?php echo validation_errors(); ?>
       <?php echo form_open_multipart('pages/add_movies'); ?>
       <div class="form-group">

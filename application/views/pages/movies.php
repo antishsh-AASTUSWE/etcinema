@@ -2,9 +2,9 @@
             <div class="card-body">
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<a href="<?php echo base_url() ?>add_movie" class="btn btn-primary">
 <i class="zmdi zmdi-plus-circle"></i> <span>Add Movie</span>
-</button>
+</a>
 
 
             
