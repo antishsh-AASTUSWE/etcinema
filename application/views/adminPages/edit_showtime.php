@@ -1,10 +1,13 @@
 <?php if(isset($records)){ ?>
+  
 
 <div class="card">
         <div class="card-body">
           <h5 class="card-title">Edit Showtime</h5>
           <div class="table-responsive">
-          <?php echo form_open("index.php/pages/update_showtime/{$r['showtime_id']}")?>
+          <?php foreach( $records as $rt) { ?>
+          <?php echo form_open("index.php/admin/update_showtime/{$rt['show_id']}")?>
+          <?php }?>
           <?php if ($message = $this->session->flashdata('message')): ?>
 			<div class="row">
 				<div class="col-md-6">
@@ -32,7 +35,7 @@
                 <div class="form-group">
                 <?php foreach( $records as $r) { ?>
                   <input type="text" class="form-control" id="formGroupExampleInput" 
-                   name="show_id" readonly value="<?php echo $r['showtime_id'];?>"  placeholder="id">
+                   name="show_id" readonly value="<?php echo $r['show_id'];?>"  placeholder="id">
                   </div>
                 </td>
               <td>

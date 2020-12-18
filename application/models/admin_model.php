@@ -326,7 +326,14 @@ public function check_cinema($cinema)
      return $this->db->insert('showtime', $data);
 }
 public function getShowtimeRecord($show_id){
-        $query = $this->db->get_where('showtime',array('show_id' => $show_id));
+    $this->db->select('*');
+    $this->db->from('showtime');
+    $this->db->join('movie','showtime.mov_id=movie.movie_id');
+    $this->db->join('cinema','showtime.cinema_id=cinema.cinema_id');
+    $this->db->where('show_id', $show_id);
+    $query = $this->db->get();
+
+       
 		return $data['records'] = $query->result_array();
 }
 public function update_showtime($show_id){
@@ -460,9 +467,39 @@ public function check_movie($mov_name)
 
     public function insertBooking(){
         $data= array(
-            'rating'=>$this->input->post('rating'),
-            'description'=>$this->input->post('description')
-      );
+            'ticket'=>$this->input->post('description'),
+            'status'=>$this->input->post('description')
+        );
+      
+      
+      $data1=array(
+        'showtime'=>$this->input->post('showtime'),
+        'user'=>$this->input->post('user'),
+        'ticket'=>$this->input->post('ticket')
+    );
+          
+                 $select = $this->db->select('movie_id')->where('mov_name', $data1['mov_id'])->
+                 get('movie');
+                    
+                 foreach ($select->result() as $m_row)
+                    {
+                        $select2 = $this->db->select('cinema_id')->where('cinema_name', $data1['cinema_id'])->
+                         get('cinema');
+    
+                         foreach ($select2->result() as $c_row)
+                    {
+                        $data = array(
+                
+                            'show_date' => $this->input->post('date'),
+                            'show_time' => $this->input->post('time'),
+                            'Price' => $this->input->post('price'),
+                            'mov_id'=>$m_row->movie_id,
+                            'cinema_id'=>$c_row->cinema_id
+                             );
+                            
+                           
+                    }
+                }
       
      return $this->db->insert('booking_info', $data);
 }
@@ -485,4 +522,8 @@ public function update_booking($booking_id){
         return $this->db->delete('booking_info', array('booking_id' => $booking)); 
          
      }
+     public function get_seat(){
+        $query = $this->db->get("seat");  
+        return $data['seat'] = $query->result();
+    }
 }

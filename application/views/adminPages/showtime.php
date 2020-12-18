@@ -5,12 +5,22 @@
                   <br>
                   <br>
             </div>
-          </div>
+          </div> 
        <?php if(isset($showtime)){?>
           <div class="card">
             <div class="card-body">
             
               <h5 class="card-title">Showtime's</h5>
+              <?php if ($message = $this->session->flashdata('message')): ?>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="alert alert-success alert-dismissble">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<?php echo $message; ?>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?> 
 			  <div class="table-responsive">
                <table class="table table-sm">
                 <thead>

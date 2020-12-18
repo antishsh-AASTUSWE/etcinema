@@ -511,7 +511,7 @@ public function create_user()
 	public function add_showtime(){
 
 		$data['cinema'] =$this->admin_model->get_cinema();
-		//$data['movie'] =$this->admin_model->get_movie();
+		$data['movies'] =$this->admin_model->get_movie();
 			
 					$this->load->view('templates/header');
 					$this->load->view('adminPages/add_showtime',$data);
@@ -545,17 +545,21 @@ public function create_user()
 		public function edit_showtime($show_id)
 		{
 			
-			$records = $this->admin_model->getShowtimeRecord($show_id);
+			$data['records'] = $this->admin_model->getShowtimeRecord($show_id);
+			$data['cinema'] =$this->admin_model->get_cinema();
+		$data['movies'] =$this->admin_model->get_movie();
 		
 			$this->load->view('templates/header');
-			$this->load->view('adminPages/edit_showtime',['records' => $records]);
+			$this->load->view('adminPages/edit_showtime',$data);
 			$this->load->view('templates/footer');
 		}
 		public function update_showtime($show_id)
 		{
-			$this->form_validation->set_rules('cinema_name', 'cinema', 'required|callback_check_cinema');
-			$this->form_validation->set_rules('id', 'id');
-	
+	$this->form_validation->set_rules('movie', 'movie', 'required');
+	$this->form_validation->set_rules('cinema', 'cinema', 'required');
+	$this->form_validation->set_rules('date', 'date','required');
+	$this->form_validation->set_rules('time', 'time','required');
+    $this->form_validation->set_rules('price', 'price','required');
 		if($this->form_validation->run() === FALSE)
 		{
 		$this->edit_showtime($show_id);
@@ -740,21 +744,22 @@ public function create_user()
 	}
 	public function add_booking(){
 
-		//$data['cinema'] =$this->admin_model->get_cinema();
-		//$data['movie'] =$this->admin_model->get_movie();
+		$data['showtime'] =$this->admin_model->get_showtime();
+		$data['user'] =$this->admin_model->get_users();
+		$data['seat'] =$this->admin_model->get_seat();
 			
 					$this->load->view('templates/header');
-					$this->load->view('adminPages/add_booking');
+					$this->load->view('adminPages/add_booking',$data);
 					$this->load->view('templates/footer');
 					
 	}
 	public function create_booking()
 		{
-			$this->form_validation->set_rules('movie', 'movie', 'required');
-			$this->form_validation->set_rules('cinema', 'cinema', 'required');
-			$this->form_validation->set_rules('date', 'date','required');
-			$this->form_validation->set_rules('time', 'time','required');
-			$this->form_validation->set_rules('price', 'price','required');
+			$this->form_validation->set_rules('showtime', 'showtime', 'required');
+			$this->form_validation->set_rules('user', 'user', 'required');
+			$this->form_validation->set_rules('seat', 'seat','required');
+			$this->form_validation->set_rules('ticket', 'Tickets','required');
+			$this->form_validation->set_rules('status', 'Status','required');
 			
 		if($this->form_validation->run() === FALSE)
 		
@@ -783,9 +788,12 @@ public function create_user()
 		}
 		public function update_booking($booking_id)
 		{
-			$this->form_validation->set_rules('cinema_name', 'cinema', 'required|callback_check_cinema');
-			$this->form_validation->set_rules('id', 'id');
-	
+			$this->form_validation->set_rules('movie', 'movie', 'required');
+			$this->form_validation->set_rules('cinema', 'cinema', 'required');
+			$this->form_validation->set_rules('date', 'date','required');
+			$this->form_validation->set_rules('time', 'time','required');
+			$this->form_validation->set_rules('price', 'price','required');
+
 		if($this->form_validation->run() === FALSE)
 		{
 		$this->edit_booking($booking_id);

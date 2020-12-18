@@ -24,7 +24,7 @@
 <option disabled selected value>Please Choose Showtime</option>
     
     <?php foreach( $showtime as $y) { ?>
-     <?php echo "<option>".$y->mov_id."&nbsp;".$y->cinema_id."&nbsp;".$y->show_date.
+     <?php echo "<option>".$y->mov_name."&nbsp;"."At Cinema"."&nbsp;".$y->cinema_name."&nbsp;".$y->show_date.
      "&nbsp;".$y->show_time."&nbsp;".$y->Price."</option>";}} ?>
   </select>
   <div class="text-danger">
@@ -40,7 +40,7 @@
     
 <option disabled selected value>Please Choose User</option>
     
-    <?php foreach( $User as $y) { ?>
+    <?php foreach( $user as $y) { ?>
      <?php echo "<option>".$y->name."</option>";}} ?>
   </select>
   <div class="text-danger">
@@ -56,8 +56,8 @@
     
 <option disabled selected value>Please Choose Seat</option>
     
-    <?php foreach( $Seat as $y) { ?>
-     <?php echo "<option>".$y->seat_id."</option>";}} ?>
+    <?php foreach( $seat as $s) { ?>
+     <?php echo "<option>".$s->seat_id."</option>";}} ?>
   </select>
   <div class="text-danger">
   <?php echo form_error('seat'); ?>
@@ -68,7 +68,7 @@
     <label for="formGroupExampleInput">Ticket</label>
     <input type="text" class="form-control" id="formGroupExampleInput"  name="ticket"  placeholder="Ticket">
     <div class="text-danger">
-    <?php echo form_error('Ticket'); ?>
+    <?php echo form_error('ticket'); ?>
     </div>   
 </div> 
 <div class="form-group">
