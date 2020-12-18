@@ -45,49 +45,49 @@
    <ul class="sidebar-menu do-nicescrol">
       <li class="sidebar-header">MAIN NAVIGATION</li>
       <li>
-      <a href="<?php echo site_url('index.php/pages/index');?>">
+      <a href="<?php echo site_url('index.php/admin/index');?>">
           <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo site_url('index.php/pages/showtime');?>">
+        <a href="<?php echo site_url('index.php/admin/showtime');?>">
         <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo site_url('index.php/pages/movies');?>">
+        <a href="<?php echo site_url('index.php/admin/movies');?>">
           <i class="zmdi zmdi-play-circle"></i> <span>Movies</span>
         </a>
       </li>
 
       <li>
-      <a href="<?php echo site_url('index.php/pages/cinemas');?>">
+      <a href="<?php echo site_url('index.php/admin/cinemas');?>">
           <i class="zmdi zmdi zmdi-home"></i> <span>Cinemas</span>
         </a>
       </li>
 
       <li>
-      <a href="<?php echo site_url('index.php/pages/Ratings');?>">
+      <a href="<?php echo site_url('index.php/admin/Ratings');?>">
           <i class="zmdi zmdi-sort-amount-asc"></i> <span>Ratings</span>
         </a>
       </li>
 
       <li>
-      <a href="<?php echo site_url('index.php/pages/geners');?>">
+      <a href="<?php echo site_url('index.php/admin/geners');?>">
           <i class="zmdi zmdi-grid"></i> <span>Geners</span>
         </a>
       </li>
 
       <li>
-      <a href="<?php echo site_url('index.php/pages/users');?>">
+      <a href="<?php echo site_url('index.php/admin/users');?>">
       <i class="zmdi zmdi-account-box"></i> <span>Users</span>
         </a>
       </li>
 
        <li>
-       <a href="<?php echo site_url('index.php/pages/bookings');?>">
+       <a href="<?php echo site_url('index.php/admin/bookings');?>">
        <i class="zmdi zmdi-assignment"></i></i> <span>Bookings</span>
         </a>
       </li>
