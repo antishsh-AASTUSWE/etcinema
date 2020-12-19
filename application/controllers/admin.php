@@ -654,7 +654,9 @@ public function create_user()
 				$uploads_dir=FCPATH.'\images';
 				
 				move_uploaded_file($tname,$uploads_dir.'/'.$poster);
-				$path=$uploads_dir.$poster;
+				$path=$uploads_dir.$poster; 
+
+				
 				$this->load->model('admin_model'); 
 
 				if ($this->admin_model->insertMovie($path)) {
@@ -662,8 +664,8 @@ public function create_user()
 				}
 				return redirect('admin/add_movie');
 				 
-			}
-		}
+			}}
+		
 		
 		public function edit_movie($movie_id)
 		{
