@@ -376,11 +376,16 @@ public function update_showtime($show_id){
         $data= array(
 			'Search'=>$this->input->post('Search'));
 
-			$query = $this->db->like('rating_id', $data['Search'])
-            ->or_like('rating', $data['Search'])
-            ->or_like('description',  $data['Search'])
-              ->get('ratings');
-
+			$query = $this->db->like('movie_id', $data['Search'])
+            ->or_like('mov_name', $data['Search'])
+            ->or_like('mov_gener',  $data['Search'])
+            ->or_like('mov_realse_date',  $data['Search'])
+            ->or_like('mov_language',  $data['Search'])
+            ->or_like('mov_starring',  $data['Search'])
+            ->or_like('mov_subtitle',  $data['Search'])
+            ->or_like('mov_ratting',  $data['Search'])
+              ->get('movie');
+                
 		  return $data['movie'] = $query->result();
     }
     public function get_movie(){
@@ -388,44 +393,86 @@ public function update_showtime($show_id){
         return $data['movie'] = $query->result();
     }
 
-    public function insertMovie(){
-        $data = array(
-            'mov_name' => $this->input->post('name'),
-            'mov_poster' => $this->input->post('poster'),
-            'mov_ratting' => $this->input->post('rating'),
-            'mov_trailor' => $this->input->post('trailor'),
-            'mov_gener' => $this->input->post('gener'),
-            'mov_plot' => $this->input->post('plot'),
-            'mov_running_time' => $this->input->post('running_time'),
-            'mov_realse_date' => $this->input->post('realse_date'),
-            'mov_language' => $this->input->post('language'),
-
-            'mov_starring' => $this->input->post('staring'),
-            'mov_subtitle' => $this->input->post('subtitle')         
-             );
+    public function insertMovie($poster){
+        
 			
-      
+             $data1=array(
+                'mov_ratting'=>$this->input->post('rating'),
+                'mov_gener'=>$this->input->post('gener')
+            );
+                       
+                         $select = $this->db->select('rating_id')->where('rating', $data1['mov_ratting'])->
+                         get('ratings');
+                            
+                         foreach ($select->result() as $m_row)
+                            {
+                                $select2 = $this->db->select('gener_id')->where('gener', $data1['mov_gener'])->
+                                 get('geners');
+            
+                                 foreach ($select2->result() as $c_row)
+                            {
+
+                                     $data = array(
+                                        'mov_name' => $this->input->post('name'),
+                                        'mov_poster' => $poster,
+                                       'mov_ratting' => $m_row->rating_id,
+                                        'mov_trailor' => $this->input->post('trailor'),
+                                        'mov_gener' => $c_row->gener_id,
+                                        'mov_plot' => $this->input->post('plot'),
+                                        'mov_running_time' => $this->input->post('running_time'),
+                                        'mov_realse_date' => $this->input->post('realse_date'),
+                                        'mov_language' => $this->input->post('language'),
+                            
+                                        'mov_starring' => $this->input->post('staring'),
+                                        'mov_subtitle' => $this->input->post('subtitle')         
+                                         );
+                                    
+                                   
+                            }
+                        }
      return $this->db->insert('movie', $data);
 }
 public function getMovieRecord($movie_id){
         $query = $this->db->get_where('ratings',array('rating_id' => $movie_id));
 		return $data['records'] = $query->result_array();
 }
-public function update_movie($movie_id){
-    $data = array(
-        'mov_name' => $this->input->post('name'),
-        'mov_poster' => $this->input->post('poster'),
-        'mov_ratting' => $this->input->post('rating'),
-        'mov_trailor' => $this->input->post('trailor'),
-        'mov_gener' => $this->input->post('gener'),
-        'mov_plot' => $this->input->post('plot'),
-        'mov_running_time' => $this->input->post('running_time'),
-        'mov_realse_date' => $this->input->post('realse_date'),
-        'mov_language' => $this->input->post('language'),
+public function update_movie($movie_id,$poster){
+    
+			
+    $data1=array(
+        'mov_ratting'=>$this->input->post('rating'),
+        'mov_gener'=>$this->input->post('gener')
+    );
+               
+                 $select = $this->db->select('rating_id')->where('rating', $data1['mov_ratting'])->
+                 get('ratings');
+                    
+                 foreach ($select->result() as $m_row)
+                    {
+                        $select2 = $this->db->select('gener_id')->where('gener', $data1['mov_gener'])->
+                         get('geners');
+    
+                         foreach ($select2->result() as $c_row)
+                    {
 
-        'mov_starring' => $this->input->post('staring'),
-        'mov_subtitle' => $this->input->post('subtitle')         
-         );
+                             $data = array(
+                                'mov_name' => $this->input->post('name'),
+                                'mov_poster' => $poster,
+                               'mov_ratting' => $m_row->rating_id,
+                                'mov_trailor' => $this->input->post('trailor'),
+                                'mov_gener' => $c_row->gener_id,
+                                'mov_plot' => $this->input->post('plot'),
+                                'mov_running_time' => $this->input->post('running_time'),
+                                'mov_realse_date' => $this->input->post('realse_date'),
+                                'mov_language' => $this->input->post('language'),
+                    
+                                'mov_starring' => $this->input->post('staring'),
+                                'mov_subtitle' => $this->input->post('subtitle')         
+                                 );
+                            
+                           
+                    }
+                }
         
   
   return $this->db->where('movie_id', $movie_id)->update('movie', $data);
@@ -467,41 +514,18 @@ public function check_movie($mov_name)
 
     public function insertBooking(){
         $data= array(
-            'ticket'=>$this->input->post('description'),
-            'status'=>$this->input->post('description')
-        );
-      
-      
-      $data1=array(
-        'showtime'=>$this->input->post('showtime'),
-        'user'=>$this->input->post('user'),
-        'ticket'=>$this->input->post('ticket')
+            'show_id'=>$this->input->post('showtime'),
+            'Status'=>$this->input->post('status'),
+            'seat_id'=>$this->input->post('seat'),
+            'user_id'=>$this->input->post('user'),
+            'Tickets'=>$this->input->post('ticket')
     );
-          
-                 $select = $this->db->select('movie_id')->where('mov_name', $data1['mov_id'])->
-                 get('movie');
-                    
-                 foreach ($select->result() as $m_row)
-                    {
-                        $select2 = $this->db->select('cinema_id')->where('cinema_name', $data1['cinema_id'])->
-                         get('cinema');
-    
-                         foreach ($select2->result() as $c_row)
-                    {
-                        $data = array(
-                
-                            'show_date' => $this->input->post('date'),
-                            'show_time' => $this->input->post('time'),
-                            'Price' => $this->input->post('price'),
-                            'mov_id'=>$m_row->movie_id,
-                            'cinema_id'=>$c_row->cinema_id
-                             );
-                            
-                           
-                    }
-                }
+
+                 return $this->db->insert('booking_info',$data);
+
+
       
-     return $this->db->insert('booking_info', $data);
+    
 }
 public function getBookingRecord($booking_id){
         $query = $this->db->get_where('booking_info',array('booking_id' => $booking_id));

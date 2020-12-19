@@ -49,7 +49,7 @@
                echo "<tr>"; 
                echo "<td>".$r->movie_id."</td>"; 
                echo "<td>".$r->mov_name."</td>";
-               echo "<td>".$r->mov_poster."</td>"; 
+               echo "<td><img src=".$r->mov_poster." alt='$r->mov_poster' width='10' height='10'></td>"; 
                echo "<td>".$r->mov_ratting."</td>";
                echo "<td>".$r->mov_trailor."</td>";
                echo "<td>".$r->mov_gener."</td>"; 
@@ -62,11 +62,11 @@
                
                <td>
                  
-               <a href="<?php echo site_url('index.php/admin/deleteMovie/').$r->show_id;?>">
+               <a href="<?php echo site_url('index.php/admin/deleteMovie/').$r->movie_id;?>">
                    <i class="zmdi zmdi-delete zmdi-hc-lg"></i></a>
                </td>
                <td>
-                   <a href="<?php echo site_url('index.php/admin/edit_movie/').$r->show_id;?>">
+                   <a href="<?php echo site_url('index.php/admin/edit_movie/').$r->movie_id;?>">
                    <i class="zmdi zmdi-edit zmdi-hc-lg"></i></a>
            
                    

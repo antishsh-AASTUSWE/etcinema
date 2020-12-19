@@ -1,7 +1,14 @@
 <div class="card">
             <div class="card-body">
               <h5 class="card-title">Add Booking</h5>
-
+              <?php if(isset($show_id)){ 
+foreach( $show_id as $y) {
+                echo $y->show_date;
+              }
+            }
+?>
+              
+              
 <?php echo form_open('index.php/admin/create_booking')?>
 <?php if ($message = $this->session->flashdata('message')): ?>
 			<div class="row">

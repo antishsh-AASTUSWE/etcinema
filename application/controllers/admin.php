@@ -624,8 +624,8 @@ public function create_user()
 	}
 	public function create_movie()
 		{
-			$this->form_validation->set_rules('name', 'Name', 'required|callback_check_movie');
-			$this->form_validation->set_rules('poster', 'poster', 'required');
+			$this->form_validation->set_rules('name', 'Movie Title', 'required|callback_check_movie');
+			//$this->form_validation->set_rules('poster', 'poster', 'required');
 			$this->form_validation->set_rules('rating', 'rating', 'required');
 			$this->form_validation->set_rules('trailor', 'trailor', 'required');
 			$this->form_validation->set_rules('gener', 'gener', 'required');
@@ -636,6 +636,11 @@ public function create_user()
 			$this->form_validation->set_rules('staring', 'staring', 'required');
 			$this->form_validation->set_rules('subtitle', 'subtitle', 'required');
 			$this->form_validation->set_rules('id', 'id');
+
+			if (empty($_FILES['poster']['name']))
+			{
+  			$this->form_validation->set_rules('poster', 'poster', 'required');
+			}
 	
 		if($this->form_validation->run() === FALSE)
 		
@@ -643,17 +648,23 @@ public function create_user()
 		$this->add_movie();
 	
 		}else{
-			
-				
-				$this->load->model('admin_model');
 	
-				if ($this->admin_model->insertMovie()) {
+				$poster=rand(1000,10000)."-".$_FILES["poster"]["name"];
+				$tname=$_FILES["poster"]["tmp_name"];
+				$uploads_dir=FCPATH.'\images';
+				
+				move_uploaded_file($tname,$uploads_dir.'/'.$poster);
+				$path=$uploads_dir.$poster;
+				$this->load->model('admin_model'); 
+
+				if ($this->admin_model->insertMovie($path)) {
 					$this->session->set_flashdata('message', 'Movie Added Successfully');
 				}
 				return redirect('admin/add_movie');
 				 
 			}
 		}
+		
 		public function edit_movie($movie_id)
 		{
 			
@@ -666,7 +677,7 @@ public function create_user()
 		public function update_movie($movie_id)
 		{
 			$this->form_validation->set_rules('name', 'Name', 'required');
-			$this->form_validation->set_rules('poster', 'poster', 'required');
+			//$this->form_validation->set_rules('poster', 'poster', 'required');
 			$this->form_validation->set_rules('rating', 'rating', 'required');
 			$this->form_validation->set_rules('trailor', 'trailor', 'required');
 			$this->form_validation->set_rules('gener', 'gener', 'required');
@@ -677,6 +688,11 @@ public function create_user()
 			$this->form_validation->set_rules('staring', 'staring', 'required');
 			$this->form_validation->set_rules('subtitle', 'subtitle', 'required');
 			$this->form_validation->set_rules('id', 'id');
+			if (empty($_FILES['poster']['name']))
+			{
+  			$this->form_validation->set_rules('poster', 'poster', 'required');
+			}
+	
 		
 	
 		if($this->form_validation->run() === FALSE)
@@ -684,11 +700,15 @@ public function create_user()
 		$this->edit_movie($movie_id);
 	
 		}else{
-			
+				$poster=rand(1000,10000)."-".$_FILES["poster"]["name"];
+				$tname=$_FILES["poster"]["tmp_name"];
+				$uploads_dir=FCPATH.'/images';
+				move_uploaded_file($tname,$uploads_dir.'/'.$poster);
+				$this->load->model('admin_model'); 
 				
 				$this->load->model('admin_model');
 	
-				if ($this->admin_model->update_movie($movie_id)) {
+				if ($this->admin_model->update_movie($movie_id,$poster)) {
 					$this->session->set_flashdata('message', 'Movie Updated Successfully');
 				}
 				return redirect('admin/movies');
@@ -772,6 +792,7 @@ public function create_user()
 	
 				if ($this->admin_model->insertBooking()) {
 					$this->session->set_flashdata('message', 'booking Added Successfully');
+					
 				}
 				return redirect('admin/add_booking');
 				 

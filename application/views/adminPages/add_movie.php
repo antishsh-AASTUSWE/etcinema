@@ -2,7 +2,7 @@
             <div class="card-body">
               <h5 class="card-title">Add Movie</h5>
 
-<?php echo form_open('index.php/admin/create_movie')?>
+<?php echo form_open_multipart('index.php/admin/create_movie')?>
 <?php if ($message = $this->session->flashdata('message')): ?>
 			<div class="row">
 				<div class="col-md-6">
@@ -19,14 +19,14 @@
     <label for="formGroupExampleInput">Movie Title</label>
     <input type="text" class="form-control" id="formGroupExampleInput" name="name"  placeholder="Movie Title">
     <div class="text-danger">
-    <?php echo form_error('mov_name'); ?>
+    <?php echo form_error('name'); ?>
     </div>
 </div>
   <div class="form-group">
     <label for="formGroupExampleInput2">Staring</label>
     <input type="text" class="form-control" id="formGroupExampleInput2" name="staring" placeholder="Staring">
     <div class="text-danger">
-    <?php echo form_error('mov_starring'); ?>
+    <?php echo form_error('staring'); ?>
     </div>
 </div>
   <div class="form-group">
