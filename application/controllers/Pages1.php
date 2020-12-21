@@ -23,7 +23,7 @@ class Pages extends CI_Controller {
         $this->load->view('templates/footer', $data);
 }
 
-/* public function showtime()
+ public function showtime()
 {
         if ( ! file_exists(APPPATH.'views/pages/showtime.php'))
         {
@@ -600,6 +600,6 @@ public function delete_user($test){
 	$this->db->delete('user', array('user_id' => $str)); 
 	
 	$this->users();
-} */
+}
 }
 

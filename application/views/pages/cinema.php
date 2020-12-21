@@ -1,106 +1,54 @@
-<?php if(isset($records)){ ?>
 <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Edit Cinema</h5>
+  <div class="card-body">
 
-    <?php foreach( $records as $r) { ?>
-      
-<?php echo form_open('index.php/Pages/add_cinema')?>
+    <h5 class="card-title">Add Cinema</h5>
+    <?php echo validation_errors(); ?>
+    <?php echo form_open('pages/add_cinema') ?>
 
-<form>
-<div class="form-group">
-    <label for="formGroupExampleInput">ID</label>
-    <input type="text" class="form-control" id="formGroupExampleInput"  name="id" readonly value="<?php echo $r['cinema_id'];?>"  placeholder="id">
-    <div class="text-danger">
-    <?php echo form_error('id'); ?>
-    </div> 
-  <div class="form-group">
-    <label for="formGroupExampleInput">cinema</label>
-    <input type="text" class="form-control" id="formGroupExampleInput"  name="cinema_name" value="<?php echo $r['cinema_name'];?>"  placeholder="cinema">
-    <div class="text-danger">
-    <?php echo form_error('cinema_name'); ?>
-    </div> 
+    <div class="row mt-3">
+      <div class="col-lg-6">
+        <div class="form-group">
+
+          <input type="text" class="form-control form-control-rounded" name="cinema_name" id="input-8" placeholder="Enter Cinema Name Here">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Add Cinema</button>
+        </div>
+      </div>
+    </div>
+
+    </form>
+
+
+  </div>
 </div>
 
-  
-<div class="form-group">
-<input type="submit" value='save'>
- 
-</div>
-
-
-</form>
-</div>
-</div>
-  <?php }} else{?>
-      
 <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Add Cinema</h5>
+  <div class="card-body">
+    <h5 class="card-title">Striped Table</h5>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Cinema Id</th>
+            <th scope="col">Cinema Name</th>
+            <th scope="col">Edit/Delete</th>
 
-<?php echo form_open('index.php/Pages/add_cinema')?>
-<form>
-  <div class="form-group">
-    <label for="formGroupExampleInput">cinema</label>
-    <input type="text" class="form-control" id="formGroupExampleInput"  name="cinema_name"  placeholder="cinema name">
-    <div class="text-danger">
-    <?php echo form_error('cinema_name'); ?>
-    </div>   
-</div> 
-<div class="form-group">
-<input type="submit" value='save'>
-</div>
-</form>
- 
-             
-</div>
-</div>
-  <?php }?>
- <?php if(isset($cinema)){?>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Cinema</h5>
-			  <div class="table-responsive">
-               <table class="table table-sm">
-                <thead>
-                  <tr>
-                  <th scope="col">ID</th>
-      <th scope="col">Cinema Name</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-                  </tr>
-                </thead>
-                <?php 
-            
- echo "<tbody>";
-      foreach( $cinema as $r) { 
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($cinema as $c) : ?>
+            <tr>
+              <td><?= $c['cinema_id']; ?></td>
+              <td><?= $c['cinema_name']; ?></td>
+              <td><a href="<?php echo base_url(); ?>pages/edit_cinema/<?= $c['cinema_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>pages/delete_cinema/<?= $c['cinema_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
 
-       
-             
-               echo "<tr>"; 
-               echo "<td>".$r->cinema_id."</td>"; 
-               echo "<td>".$r->cinema_name."</td>";?>
-               
-               <td>
-                 
-               <a href="<?php echo site_url('index.php/pages/delete_cinema/').$r->cinema_id;?>">
-                   <i class="zmdi zmdi-delete zmdi-hc-lg"></i></a>
-               </td>
-               <td>
-                   <a href="<?php echo site_url('index.php/pages/edit_cinema/').$r->cinema_id;?>">
-                   <i class="zmdi zmdi-edit zmdi-hc-lg"></i></a>
-           
-                   
-                  
-                </td>
-               <?php echo "<tr>"; 
-         
-   echo " </tbody>";
-}
-?>
-</table>
-<?php } ?>
-              
-            </div>
-            </div>
-          </div>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
