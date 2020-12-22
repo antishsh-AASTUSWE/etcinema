@@ -10,7 +10,7 @@ class Pages extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-
+		$data['user'] = $this->dashbord_model->get_user();
 		$data['gener'] = $this->dashbord_model->get_gener();
 		$data['rating'] = $this->dashbord_model->get_rating();
 		$data['cinema']	= $this->dashbord_model->get_cinema();
@@ -21,7 +21,7 @@ class Pages extends CI_Controller
 		$this->load->view('templates/footer', $data);
 	}
 
-	
+
 
 	//Add Movie function
 
@@ -130,7 +130,7 @@ class Pages extends CI_Controller
 	{
 		$this->dashbord_model->delete_cinema($id);
 		redirect('cinema');
-	}//end of delete cinema
+	} //end of delete cinema
 	//check cinema name existst
 	public function check_cinema_exists($cinema)
 	{
@@ -263,7 +263,7 @@ class Pages extends CI_Controller
 	{
 		$this->dashbord_model->delete_gener($id);
 		redirect('gener');
-	}//end of delete cinema
+	} //end of delete cinema
 	//check gener existes function
 	public function check_gener_exists($gener)
 	{
@@ -274,5 +274,53 @@ class Pages extends CI_Controller
 		} else {
 			return false;
 		}
-	}//end of check gener exists 
+	} //end of check gener exists 
+
+	//add user function
+	public function Register()
+	{
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+		$this->form_validation->set_rules('username', 'Username', 'required|callback_check_username_exists');
+		$this->form_validation->set_rules('password', 'password', 'required');
+		$this->form_validation->set_rules('password2', 'Confirm password', 'matches[password]');
+		$this->form_validation->set_rules('role', 'Role', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+
+		if ($this->form_validation->run() === false) {
+			$this->load->view('templates/header');
+			$this->load->view('pages/add_user');
+			$this->load->view('templates/footer');
+		} else {
+			$enc_password = md5($this->input->post('password')) ;
+			$this->dashbord_model->register($enc_password);
+
+			$this->session->set_flashdata('user_registerd', 'User is registerd and can login');
+
+			redirect('users');
+		}
+	} //end of add user
+
+	//check user name existes
+	public function check_username_exists($username)
+	{
+		$this->form_validation->set_message('check_username_exists','That user name is taken. please choose a different one');
+		if ($this->dashbord_model->check_username_exists($username)) {
+			return true;
+		}else{
+			return false;
+		}
+	}//end of check username exists
+
+	//check user name existes
+	public function check_email_exists($email)
+	{
+		$this->form_validation->set_message('check_email_exists','That email is taken. please use a different one');
+		if ($this->dashbord_model->check_email_exists($email)) {
+			return true;
+		}else{
+			return false;
+		}
+	}//end of check username exists
+
 }

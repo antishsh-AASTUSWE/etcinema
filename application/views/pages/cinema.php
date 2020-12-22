@@ -27,7 +27,7 @@
 
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Striped Table</h5>
+    <h5 class="card-title">Cinema List</h5>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>

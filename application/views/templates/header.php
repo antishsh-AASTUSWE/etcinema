@@ -86,7 +86,7 @@
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>user">
+          <a href="<?php echo base_url() ?>users">
             <i class="zmdi zmdi-account-box"></i> <span>Users</span>
           </a>
         </li>
@@ -173,3 +173,9 @@
 
     <div class="content-wrapper">
       <div class="container-fluid">
+
+        <div class="container">
+          <?php if ($this->session->flashdata('user_registerd')) : ?>
+            <?php echo'<p class"alert alert-success">' . $this->session->flashdata('user_registerd') . '</p>'; ?>
+          <?php endif; ?>
+        </div>

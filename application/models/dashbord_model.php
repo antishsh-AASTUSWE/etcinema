@@ -187,5 +187,57 @@ class dashbord_model extends CI_Model
             return false;
         }
     } //end of check gener exists
+    
+    //user register function
+    public function register($enc_password)
+    {
+        $data = array(
+            'name' => $this->input->post('name'),
+            'email' => $this->input->post('email'),
+            'username' => $this->input->post('username'),
+            'password' => $enc_password,
+            'role' => $this->input->post('role'),
+            'status' => $this->input->post('status')
+        );
 
+        return $this->db->insert('user', $data);
+    }//end of user register
+
+    //Get gener Function
+    public function get_user($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('user');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('user', array('user_id' => $id));
+        return $query->row_array();
+    } //end of gett gener
+
+    //check_username_exists() function
+    public function check_username_exists($username)
+    {
+        $query= $this->db->get_where('user', array('username' => $username));
+
+        if (empty($query->row_array())) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }//end of checkusername exist
+
+    //check_email_exists() function
+    public function check_email_exists($email)
+    {
+        $query= $this->db->get_where('user', array('email' => $email));
+
+        if (empty($query->row_array())) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }//end of check email exist
 }
+
