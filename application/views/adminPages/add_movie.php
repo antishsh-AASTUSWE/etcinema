@@ -4,7 +4,7 @@
     <hr>
 
     <?php echo validation_errors(); ?>
-    <?php echo form_open_multipart('pages/add_movies'); ?>
+    <?php echo form_open_multipart('admin/add_movies'); ?>
     <div class="form-group">
       <label for="input-6">Title</label>
       <input type="text" class="form-control form-control" name="title" id="input-6" placeholder="Enter Movie Title">

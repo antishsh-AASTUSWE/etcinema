@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class dashbord_model extends CI_Model
+class admin_model extends CI_Model
 {
 
 
@@ -239,5 +239,124 @@ class dashbord_model extends CI_Model
         }
         
     }//end of check email exist
+
+    //search rating function
+    public function search_rating()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('rating_id', $data['Search'])
+            ->or_like('rating', $data['Search'])
+            ->or_like('description',  $data['Search'])
+            ->get('ratings');
+
+        return $data['rating'] = $query->result();
+    }//end of search rating
+
+    //serch user function
+    public function search_users()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('user_id', $data['Search'])
+            ->or_like('name', $data['Search'])
+            ->or_like('email', $data['Search'])
+            ->or_like('username', $data['Search'])
+            ->or_like('role',  $data['Search'])
+            ->get('user');
+
+        return $data['user'] = $query->result();
+    }//end of search user
+
+    //search booking function
+    public function search_booking()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('rating_id', $data['Search'])
+            ->or_like('rating', $data['Search'])
+            ->or_like('description',  $data['Search'])
+            ->get('booking_info');
+
+        return $data['rating'] = $query->result();
+    }//end of search user function
+
+    //searche gener function
+    public function search_gener()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('gener_id', $data['Search'])
+            ->or_like('gener', $data['Search'])
+            ->get('geners');
+
+
+        return $data['gener'] = $query->result();
+    }//end of search gener
+
+    //search cinema function
+    public function search_cinema()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('cinema_id', $data['Search'])
+            ->or_like('cinema_name', $data['Search'])
+            ->get('cinema');
+
+        return $data['cinema'] = $query->result();
+    }//end of search cinema
+
+    //search showtime function
+    public function search_showtime()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie', 'showtime.mov_id=movie.movie_id');
+        $this->db->join('cinema', 'showtime.cinema_id=cinema.cinema_id');
+        $this->db->like('show_id', $data['Search'])
+            ->or_like('mov_name', $data['Search'])
+            ->or_like('cinema_name',  $data['Search'])
+            ->or_like('show_date',  $data['Search'])
+            ->or_like('show_time',  $data['Search'])
+            ->or_like('Price',  $data['Search']);
+        $this->db->order_by('show_id', 'ASC');
+        $query = $this->db->get();
+
+        return $data['showtime'] = $query->result();
+    }//end of search showtime
+
+    //search movie function
+    public function search_movie()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('movie_id', $data['Search'])
+            ->or_like('mov_name', $data['Search'])
+            ->or_like('mov_gener',  $data['Search'])
+            ->or_like('mov_realse_date',  $data['Search'])
+            ->or_like('mov_language',  $data['Search'])
+            ->or_like('mov_starring',  $data['Search'])
+            ->or_like('mov_subtitle',  $data['Search'])
+            ->or_like('mov_ratting',  $data['Search'])
+            ->get('movie');
+
+        return $data['movie'] = $query->result();
+    }//end of search movie
 }
 

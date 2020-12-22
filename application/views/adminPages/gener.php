@@ -2,7 +2,7 @@
   <div class="card-body">
     <h5 class="card-title">Add Gener</h5>
 
-    <?php echo form_open('Pages/add_gener') ?>
+    <?php echo form_open('admin/add_gener') ?>
     <div class="row mt-3">
       <div class="col-lg-6">
         <div class="form-group">
@@ -41,7 +41,7 @@
             <tr>
               <td><?= $g['gener_id']; ?></td>
               <td><?= $g['gener']; ?></td>
-              <td><a href="<?php echo base_url(); ?>pages/edit_gener/<?= $g['gener_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>pages/delete_gener/<?= $g['gener_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
+              <td><a href="<?php echo base_url(); ?>admin/edit_gener/<?= $g['gener_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_gener/<?= $g['gener_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
 
             </tr>
           <?php endforeach; ?>

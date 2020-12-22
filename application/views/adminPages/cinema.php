@@ -3,7 +3,7 @@
 
     <h5 class="card-title">Add Cinema</h5>
     <?php echo validation_errors(); ?>
-    <?php echo form_open('pages/add_cinema') ?>
+    <?php echo form_open('admin/add_cinema') ?>
 
     <div class="row mt-3">
       <div class="col-lg-6">
@@ -43,7 +43,7 @@
             <tr>
               <td><?= $c['cinema_id']; ?></td>
               <td><?= $c['cinema_name']; ?></td>
-              <td><a href="<?php echo base_url(); ?>pages/edit_cinema/<?= $c['cinema_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>pages/delete_cinema/<?= $c['cinema_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
+              <td><a href="<?php echo base_url(); ?>admin/edit_cinema/<?= $c['cinema_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_cinema/<?= $c['cinema_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
 
             </tr>
           <?php endforeach; ?>

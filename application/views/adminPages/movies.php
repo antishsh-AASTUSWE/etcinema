@@ -2,7 +2,7 @@
   <div class="card-body">
 
     <!-- Button trigger modal -->
-    <a href="<?php echo base_url() ?>add_movie" class="btn btn-primary">
+    <a href="<?php echo base_url() ?>admin/add_movie" class="btn btn-primary">
       <i class="zmdi zmdi-plus-circle"></i> <span>Add Movie</span>
     </a>
   </div>

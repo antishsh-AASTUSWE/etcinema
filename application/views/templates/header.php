@@ -52,49 +52,49 @@
       <ul class="sidebar-menu do-nicescrol">
         <li class="sidebar-header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url() ?>dashboard">
+          <a href="<?php echo base_url() ?>admin/dashboard">
             <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>showtime">
+          <a href="<?php echo base_url() ?>admin/showtimes">
             <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>movies">
+          <a href="<?php echo base_url() ?>admin/movies">
             <i class="zmdi zmdi-play-circle"></i> <span>Movies</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>cinema">
+          <a href="<?php echo base_url() ?>admin/cinemas">
             <i class="zmdi zmdi zmdi-home"></i> <span>Cinema</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>Rating">
+          <a href="<?php echo base_url() ?>admin/Ratings">
             <i class="zmdi zmdi-sort-amount-asc"></i> <span>Ratings</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>gener">
+          <a href="<?php echo base_url() ?>admin/geners">
             <i class="zmdi zmdi-grid"></i> <span>Geners</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>users">
+          <a href="<?php echo base_url() ?>admin/users">
             <i class="zmdi zmdi-account-box"></i> <span>Users</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>booking">
+          <a href="<?php echo base_url() ?>admin/bookings">
             <i class="zmdi zmdi-assignment"></i></i> <span>Bookings</span>
           </a>
         </li>

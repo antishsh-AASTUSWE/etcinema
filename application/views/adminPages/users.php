@@ -2,7 +2,7 @@
   <div class="card-body">
 
     <!-- Button trigger modal -->
-    <a href="<?php echo base_url() ?>add_user" class="btn btn-primary">
+    <a href="<?php echo base_url() ?>admin/add_user" class="btn btn-primary">
       <i class="zmdi zmdi-plus-circle"></i> <span>Add users</span>
     </a>
   </div>
@@ -29,7 +29,7 @@
               <td><?= $u['name']; ?></td>
               <td><?= $u['role']; ?></td>
               <td><?= $u['status']; ?></td>
-              <td><a href="<?php echo base_url(); ?>pages/edit_user/<?= $u['user_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>pages/delete_user/<?= $u['user_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
+              <td><a href="<?php echo base_url(); ?>admin/edit_user/<?= $u['user_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_user/<?= $u['user_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
 
             </tr>
           <?php endforeach; ?>
