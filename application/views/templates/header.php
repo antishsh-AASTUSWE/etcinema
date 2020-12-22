@@ -28,7 +28,9 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/foopicker.css">
   <!-- Custom Style-->
   <link href="<?php echo base_url() ?>assets/css/app-style.css" rel="stylesheet" />
-
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/dataTables/dataTables.css" />
+ 
+ 
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foopicker.js"></script>
 
 

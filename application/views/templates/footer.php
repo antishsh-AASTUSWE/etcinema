@@ -22,20 +22,26 @@
 <!--End footer-->
 
 
-
+<script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>assets/DataTables/datatables.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#table_id").DataTable();
+        });
+    </script>
 </div>
 <!--End wrapper-->
 <!--foo date picker-->
 <script type="text/javascript">
-var foopicker = new FooPicker({
-    id: 'datepicker',
-    dateFormat: 'yyyy/MM/dd'
-});
-var foopicker2 = new FooPicker({
-    id: 'datepicker2',
-    dateFormat: 'yyyy/MM/dd'
-});
-    </script>
+    var foopicker = new FooPicker({
+        id: 'datepicker',
+        dateFormat: 'yyyy/MM/dd'
+    });
+    var foopicker2 = new FooPicker({
+        id: 'datepicker2',
+        dateFormat: 'yyyy/MM/dd'
+    });
+</script>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
@@ -57,8 +63,12 @@ var foopicker2 = new FooPicker({
 
 <script src="<?php echo base_url() ?>assets/plugins/Chart.js/Chart.min.js"></script>
 
+
 <!-- Index js -->
 <script src="<?php echo base_url() ?>assets/js/index.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/DataTables/datatables.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/DataTables/jquery.dataTables.min.js"></script>
+
 
 
 </body>
