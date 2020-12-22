@@ -18,7 +18,7 @@ class Admin extends CI_Controller
     public function showtime()
     {
 
-        if (!file_exists(APPPATH . 'views/adminshowtime.php')) {
+        if (!file_exists(APPPATH . 'views/adminpages/showtime.php')) {
             // Whoops, we don't have a page for that!
             show_404();
         }
@@ -398,7 +398,7 @@ class Admin extends CI_Controller
             $user = $this->admin_model->search_users();
 
             $this->load->view('templates/header');
-            $this->load->view('adminpages/user', ['user' => $user]);
+            $this->load->view('adminpages/users', ['user' => $user]);
             $this->load->view('templates/footer');
         } else {
             $this->load->model('admin_model');

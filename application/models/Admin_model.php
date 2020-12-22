@@ -252,7 +252,7 @@ class admin_model extends CI_Model
             ->or_like('description',  $data['Search'])
             ->get('ratings');
 
-        return $data['rating'] = $query->result();
+        return $query->result_array();
     }//end of search rating
 
     //serch user function
@@ -269,7 +269,7 @@ class admin_model extends CI_Model
             ->or_like('role',  $data['Search'])
             ->get('user');
 
-        return $data['user'] = $query->result();
+        return $query->result_array();
     }//end of search user
 
     //search booking function
@@ -284,7 +284,7 @@ class admin_model extends CI_Model
             ->or_like('description',  $data['Search'])
             ->get('booking_info');
 
-        return $data['rating'] = $query->result();
+        return $query->result_array();
     }//end of search user function
 
     //searche gener function
@@ -299,7 +299,7 @@ class admin_model extends CI_Model
             ->get('geners');
 
 
-        return $data['gener'] = $query->result();
+        return $query->result_array();
     }//end of search gener
 
     //search cinema function
@@ -313,7 +313,7 @@ class admin_model extends CI_Model
             ->or_like('cinema_name', $data['Search'])
             ->get('cinema');
 
-        return $data['cinema'] = $query->result();
+        return $query->result_array();
     }//end of search cinema
 
     //search showtime function
@@ -336,7 +336,7 @@ class admin_model extends CI_Model
         $this->db->order_by('show_id', 'ASC');
         $query = $this->db->get();
 
-        return $data['showtime'] = $query->result();
+        return $query->result_array();
     }//end of search showtime
 
     //search movie function
@@ -356,7 +356,7 @@ class admin_model extends CI_Model
             ->or_like('mov_ratting',  $data['Search'])
             ->get('movie');
 
-        return $data['movie'] = $query->result();
+        return $query->result_array();
     }//end of search movie
 }
 

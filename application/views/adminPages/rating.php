@@ -45,10 +45,10 @@
         <tbody>
           <?php foreach ($rating as $r) : ?>
             <tr>
-              <td><?= $r->rating_id; ?></td>
-              <td><?= $r->rating ?></td>
-              <td><?= word_limiter($r->description, 6); ?></td>
-              <td><a href="<?php echo base_url(); ?>admin/edit_rating/<?= $r->rating_id ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_rating/<?= $r->rating_id ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
+              <td><?= $r['rating_id']; ?></td>
+              <td><?= $r['rating'] ?></td>
+              <td><?= word_limiter($r['description'], 6); ?></td>
+              <td><a href="<?php echo base_url(); ?>admin/edit_rating/<?= $r['rating_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_rating/<?= $r['rating_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
 
             </tr>
           <?php endforeach; ?>

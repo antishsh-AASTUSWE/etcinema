@@ -29,8 +29,8 @@
   <!-- Custom Style-->
   <link href="<?php echo base_url() ?>assets/css/app-style.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/dataTables/dataTables.css" />
- 
- 
+
+
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foopicker.js"></script>
 
 
@@ -58,7 +58,7 @@
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>admin/showtimes">
+          <a href="<?php echo base_url() ?>admin/showtime">
             <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
           </a>
         </li>
@@ -178,6 +178,6 @@
 
         <div class="container">
           <?php if ($this->session->flashdata('user_registerd')) : ?>
-            <?php echo'<p class"alert alert-success">' . $this->session->flashdata('user_registerd') . '</p>'; ?>
+            <?php echo '<p class"alert alert-success">' . $this->session->flashdata('user_registerd') . '</p>'; ?>
           <?php endif; ?>
         </div>
