@@ -79,7 +79,47 @@ public function check_Password($password)
             return false;
         }
     }
-    
+    public function sendOTP($phone,$otp){
+
+		$message_body = "One Time Password for EtCinima login authentication is:<br/><br/>" . $otp;
+        $messageFrom='0942205164';
+        $data= array(
+            'content'=>$message_body,
+            'messageto'=>$phone,
+            'messagefrom'=>'0942205164'
+          );
+      
+     return $result=$this->db->insert('messageout', $data);
+			
+    }
+    public function otp_expiry($otp){
+        $data= array(
+            'otp'=>$otp,
+            'is_expired'=>'0',
+            'create_at'=>'date("Y-m-d H:i:s")'
+          );
+      
+     return $data=$this->db->insert('otp_expiry', $data);
+    }
+    public function otp_verification(){
+        $data= array(
+            'otp'=>$this->input->post('otp'));
+            $query = $this->db->get_where('otp_expiry',
+            array('otp' => $data['otp']),
+            array('is_expired' => '!=1 AND NOW() <= DATE_ADD(create_at, INTERVAL 24 HOUR)'));
+
+            return $data = $query->result_array();
+        
+    }
+    public function otp_update(){
+        $data= array(
+            'is_expired'=>'1');
+
+            $query=$this->db->where('otp', $data['otp'])->update('otp_expiry', $data);
+
+			return $data = $query->result_array();
+        
+    }
     public function check_phone($phone)
     {
         $query = $this->db->get_where('user', array('phone_no' => $phone));
@@ -393,7 +433,7 @@ public function update_showtime($show_id){
         return $data['movie'] = $query->result();
     }
 
-    public function insertMovie($poster){
+    public function insertMovie($post_image){
         
 			
              $data1=array(
@@ -414,7 +454,7 @@ public function update_showtime($show_id){
 
                                      $data = array(
                                         'mov_name' => $this->input->post('name'),
-                                        'mov_poster' => $poster,
+                                        'mov_poster' => $post_image,
                                        'mov_ratting' => $m_row->rating_id,
                                         'mov_trailor' => $this->input->post('trailor'),
                                         'mov_gener' => $c_row->gener_id,
@@ -509,7 +549,7 @@ public function check_movie($mov_name)
     }
     public function get_booking(){
         $query = $this->db->get("booking_info");  
-        return $data['rating'] = $query->result();
+        return $data['booking'] = $query->result();
     }
 
     public function insertBooking(){
@@ -549,5 +589,17 @@ public function update_booking($booking_id){
      public function get_seat(){
         $query = $this->db->get("seat");  
         return $data['seat'] = $query->result();
+    }
+    public function dashbord(){
+        $this->db->get("booking_info");  
+        $this->db->order_by('booking_id', 'ASC');
+        $query = $this->db->get("booking_info");
+        
+
+        $this->db->get("user");  
+        $this->db->order_by('user_id', 'ASC');
+        $query = $this->db->get("user");  
+        $data['recent_booking'] = $query->result();
+        
     }
 }

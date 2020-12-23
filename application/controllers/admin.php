@@ -14,7 +14,9 @@ class admin extends CI_Controller {
         {
                 // Whoops, we don't have a page for that!
                 show_404();
-        }
+		}
+		
+		$user = $this->admin_model->dashbord();
 
         $this->load->view('templates/header');
         $this->load->view('adminPages/dashboard');
@@ -73,7 +75,9 @@ public function create_user()
 			$this->load->model('admin_model');
 
 			if ($this->admin_model->insertUsers()) {
-				$this->session->set_flashdata('message', 'User Added Successfully');
+				$phone= $this->input->post('phone');
+				$this->sendOtp($phone);
+				//$this->session->set_flashdata('message', 'User Added Successfully');
 			}
 			return redirect('admin/add_user');
 			 
@@ -109,8 +113,10 @@ public function create_user()
 		
 			
 			$this->load->model('admin_model');
-
+			$phone= $this->input->post('phone');
+	
 			if ($this->admin_model->update_user($user_id)) {
+				$this->sendOtp($phone);
 				$this->session->set_flashdata('message', 'User Updated Successfully');
 			}
 			return redirect('admin/users');
@@ -147,13 +153,44 @@ public function create_user()
 	public function check_phone($phone)
 	{
 		$this->form_validation->set_message('check_phone', 'please use differnt phone this is used before');
-
+		
 		if($this->admin_model->check_phone($phone))
 		{
 			return true;
 		}else{
 			return false; 
 		}
+	}
+	public function sendOtp($phone){
+		if(!empty($phone)) {
+			// generate OTP
+			$otp = rand(100000,999999);
+			$mail_status = $this->admin_model->sendOTP($phone,$otp);
+			
+			if($mail_status == 1) {
+				if($this->admin_model->otp_expiry($otp)){
+
+				$this->load->view('templates/header');
+				$this->load->view('adminPages/otp');
+				$this->load->view('templates/footer');
+				}
+				}
+		}
+		
+		
+	}
+	public function otp_verification(){
+		
+
+	 if(!empty($_POST["submit_otp"])) {
+		$result = $this->admin_model->otp_verification();
+
+		if(!empty($result)) {
+			$this->admin_model->otp_update();
+		} else {
+			$error_message = "Invalid OTP!";
+		}	
+	} 
 	}
 	public function deleteUser($user_id)
 	{
@@ -649,17 +686,29 @@ public function create_user()
 	
 		}else{
 	
-				$poster=rand(1000,10000)."-".$_FILES["poster"]["name"];
-				$tname=$_FILES["poster"]["tmp_name"];
-				$uploads_dir=FCPATH.'\images';
 				
-				move_uploaded_file($tname,$uploads_dir.'/'.$poster);
-				$path=$uploads_dir.$poster; 
+            $config['upload_path'] = './assets/poster';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size'] = '2048';
+            $config['max_width'] = '5000';
+            $config['max_height'] = '5000';
 
-				
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('poster')) {
+                $error = array('error' => $this->upload->display_errors());
+                //$post_image = 'noimage.jpg';
+                $this->load->view('templates/header');
+                $this->load->view('adminpages/add_movie', $error);
+                $this->load->view('templates/footer');
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+                $post_image = $_FILES['poster']['name'];
+            }
+
+            
 				$this->load->model('admin_model'); 
 
-				if ($this->admin_model->insertMovie($path)) {
+				if ($this->admin_model->insertMovie($post_image)) {
 					$this->session->set_flashdata('message', 'Movie Added Successfully');
 				}
 				return redirect('admin/add_movie');
@@ -845,4 +894,5 @@ public function create_user()
 			return redirect('admin/bookings');
 		}
 	}
+	
 }

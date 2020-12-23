@@ -73,7 +73,7 @@
                             <canvas id="chart1"></canvas>
                         </div>
                     </div>
-
+ 
                     <div class="row m-0 row-group text-center border-top border-light-3">
                         <div class="col-12 col-lg-4">
                             <div class="p-3">

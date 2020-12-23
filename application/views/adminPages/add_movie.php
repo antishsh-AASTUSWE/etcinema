@@ -56,7 +56,7 @@
     <?php if(isset($rating)){ 
  ?>
     <select name="rating" class="form-control">
-      
+       
 <option disabled selected value>Please Choose Rating</option>
       
       <?php foreach( $rating as $y) { ?>

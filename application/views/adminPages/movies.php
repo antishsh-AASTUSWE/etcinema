@@ -49,7 +49,7 @@
                echo "<tr>"; 
                echo "<td>".$r->movie_id."</td>"; 
                echo "<td>".$r->mov_name."</td>";
-               echo "<td><img src=".$r->mov_poster." alt='$r->mov_poster' width='10' height='10'></td>"; 
+               echo "<td><img src=".site_url('assets/poster/').$r->mov_poster." alt='$r->mov_poster' width='100' height='100'></td>"; 
                echo "<td>".$r->mov_ratting."</td>";
                echo "<td>".$r->mov_trailor."</td>";
                echo "<td>".$r->mov_gener."</td>"; 
