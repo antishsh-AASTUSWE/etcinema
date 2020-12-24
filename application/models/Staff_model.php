@@ -113,4 +113,86 @@ public function get_gener(){
         return $this->db->where('movie_id',$id)->update('movie', $data);
         
     }
+    public function search_showtime(){
+        $data= array(
+			'Search'=>$this->input->post('Search'));
+
+            $this->db->select('*');
+            $this->db->from('showtime');
+            $this->db->join('movie', 'showtime.mov_id=movie.movie_id');
+            $this->db->join('cinema', 'showtime.cinema_id=cinema.cinema_id');
+            $this->db->like('show_id', $data['Search'])
+            ->or_like('mov_name', $data['Search'])
+            ->or_like('cinema_name',  $data['Search'])
+            ->or_like('show_date',  $data['Search'])
+            ->or_like('show_time',  $data['Search']);
+            $this->db->order_by('show_id', 'ASC');
+            $query = $this->db->get();
+                
+		  return $query->result_array();
+    }
+    public function get_showtime(){
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie','movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema','cinema.cinema_id=showtime.cinema_id');
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    public function getShowRecord($id){
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie','showtime.mov_id=movie.movie_id');
+        $this->db->join('cinema','showtime.cinema_id=cinema.cinema_id');
+        $this->db->where('show_id', $id);
+        $query = $this->db->get();
+    
+           
+            return $query->result_array();
+    }
+    public function add_showtime()
+    {
+
+        $data = array(
+        'show_date' => $this->input->post('date'),
+        'show_time' => $this->input->post('time'),
+        'mov_id'=>$this->input->post('movie'),
+        'cinema_id'=>$this->input->post('cinema'),
+        );
+
+
+        return $this->db->insert('showtime', $data);
+    }
+    public function update_showtime($id)
+    {
+
+        $data = array(
+        'show_date' => $this->input->post('date'),
+        'show_time' => $this->input->post('time'),
+        'mov_id'=>$this->input->post('movie'),
+        'cinema_id'=>$this->input->post('cinema'),
+        );
+
+        return $this->db->where('show_id',$id)->update('showtime', $data);
+        
+    }
+    public function deleteShowtime($id){
+
+	    $this->db->where('show_id', $id);
+        $this->db->delete('showtime');
+        return true;
+    
+     
+ }
+    
+    public function get_cinema(){
+
+        $this->db->select('*');
+        $this->db->from('cinema');
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    
 }

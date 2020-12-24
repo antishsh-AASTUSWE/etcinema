@@ -184,5 +184,106 @@ class Staff extends CI_Controller
         $this->staff_model->deleteMovie($id);
         redirect('staff/movies');
     }
-    
+    public function showtime()
+    {
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/staffpages/showtime.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        if(isset($_POST['Search'])){
+			$this->load->model('staff_model');
+            $data['showtime'] = $this->staff_model->search_showtime();
+            $data['cinema'] =$this->admin_model->get_cinema();
+		    $data['movie'] =$this->admin_model->get_movie();
+			
+            $this->load->view('stafftemplates/header');
+            $this->load->view('staffpages/showtime',$data);
+            $this->load->view('stafftemplates/footer');
+			}
+			
+	   else{
+			$this->load->model('staff_model');
+            $data['showtime'] = $this->staff_model->get_showtime();
+            $data['cinema'] =$this->admin_model->get_cinema();
+		    $data['movie'] =$this->admin_model->get_movie();
+			
+            $this->load->view('stafftemplates/header');
+            $this->load->view('staffpages/showtime',$data);
+            $this->load->view('stafftemplates/footer');
+	   }
+        
+    }
+    public function add_showtime()
+    {
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+        $this->form_validation->set_rules('movie', 'movie', 'required');
+        $this->form_validation->set_rules('cinema', 'cinema', 'required');
+        $this->form_validation->set_rules('date', 'date','required');
+        $this->form_validation->set_rules('time', 'time','required');
+        
+
+
+        if ($this->form_validation->run() === FALSE) {
+
+            $this->showtime();
+        } else {
+
+            $this->load->model('staff_model');
+            $this->staff_model->add_showtime();
+            redirect('staff/showtime');
+        }
+    } 
+    public function edit_showtime($id)
+    {
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+        $this->load->model('staff_model');
+        $data['records'] = $this->staff_model->getShowRecord($id);
+
+        if (empty($data['records'])) {
+            show_404();
+        }
+        $data['cinema'] =$this->admin_model->get_cinema();
+        $data['movie'] =$this->admin_model->get_movie();
+        
+        $this->load->view('stafftemplates/header', $data);
+        $this->load->view('staffpages/edit_showtime', $data);
+        $this->load->view('stafftemplates/footer');
+    }
+    public function update_showtime($id)
+    {
+
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+        $this->form_validation->set_rules('movie', 'movie', 'required');
+        $this->form_validation->set_rules('cinema', 'cinema', 'required');
+        $this->form_validation->set_rules('date', 'date','required');
+        $this->form_validation->set_rules('time', 'time','required');
+        
+        if ($this->form_validation->run() === FALSE) {
+            $this->edit_showtime($id);
+        } else {
+
+            
+            $this->load->model('staff_model');
+            $this->staff_model->update_showtime($id);
+            redirect('staff/showtime');
+        }
+    } 
+    public function delete_showtime($id)
+    {
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+        $this->load->model('staff_model');
+        $this->staff_model->deleteShowtime($id);
+        redirect('staff/showtime');
+    }
 }
