@@ -51,6 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 //$route['admin/add_cinema'] = 'admin/add_cinema';
-$route['default_controller'] = 'admin';
+$route['default_controller'] = 'Staff';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

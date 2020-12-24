@@ -357,4 +357,8 @@ class admin_model extends CI_Model
 
         return $query->result_array();
     } //end of search movie
+    public function get_movie(){
+        $query = $this->db->get("movie");  
+        return $query->result_array();
+    }
 }
