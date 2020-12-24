@@ -1,5 +1,5 @@
 <!--start overlay-->
-<div class="overlay toggle-menu"></div>
+<!-- <div class="overlay toggle-menu"></div> -->
 <!--end overlay-->
 
 </div>
@@ -21,66 +21,54 @@
 </footer>
 <!--End footer-->
 
-<!--start color switcher-->
-<div class="right-sidebar">
-    <div class="switcher-icon">
-        <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-    </div>
-    <div class="right-sidebar-content">
 
-        <p class="mb-0">Gaussion Texture</p>
-        <hr>
-
-        <ul class="switcher">
-            <li id="theme1"></li>
-            <li id="theme2"></li>
-            <li id="theme3"></li>
-            <li id="theme4"></li>
-            <li id="theme5"></li>
-            <li id="theme6"></li>
-        </ul>
-
-        <p class="mb-0">Gradient Background</p>
-        <hr>
-
-        <ul class="switcher">
-            <li id="theme7"></li>
-            <li id="theme8"></li>
-            <li id="theme9"></li>
-            <li id="theme10"></li>
-            <li id="theme11"></li>
-            <li id="theme12"></li>
-            <li id="theme13"></li>
-            <li id="theme14"></li>
-            <li id="theme15"></li>
-        </ul>
-
-    </div>
-</div>
-<!--end color switcher-->
-
+<script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>assets/DataTables/datatables.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#table_id").DataTable();
+        });
+    </script>
 </div>
 <!--End wrapper-->
+<!--foo date picker-->
+<script type="text/javascript">
+    var foopicker = new FooPicker({
+        id: 'datepicker',
+        dateFormat: 'yyyy/MM/dd'
+    });
+    var foopicker2 = new FooPicker({
+        id: 'datepicker2',
+        dateFormat: 'yyyy/MM/dd'
+    });
+</script>
+
 
 <!-- Bootstrap core JavaScript-->
-<script src="<?php echo base_url()?>assets/js/jquery.min.js"></script>
-<script src="<?php echo base_url()?>assets/js/popper.min.js"></script>
-<script src="<?php echo base_url()?>assets/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
+
+<script src="<?php echo base_url() ?>assets/js/popper.min.js"></script>
+<script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script>
 
 <!-- simplebar js -->
-<script src="<?php echo base_url()?>assets/plugins/simplebar/js/simplebar.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/simplebar/js/simplebar.js"></script>
 <!-- sidebar-menu js -->
-<script src="<?php echo base_url()?>assets/js/sidebar-menu.js"></script>
+<script src="<?php echo base_url() ?>assets/js/sidebar-menu.js"></script>
 <!-- loader scripts -->
-<script src="<?php echo base_url()?>assets/js/jquery.loading-indicator.js"></script>
+<script src="<?php echo base_url() ?>assets/js/jquery.loading-indicator.js"></script>
 <!-- Custom scripts -->
-<script src="<?php echo base_url()?>assets/js/app-script.js"></script>
+<script src="<?php echo base_url() ?>assets/js/app-script.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foopicker.js"></script>
 <!-- Chart js -->
 
-<script src="<?php echo base_url()?>assets/plugins/Chart.js/Chart.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/Chart.js/Chart.min.js"></script>
+
 
 <!-- Index js -->
-<script src="<?php echo base_url()?>assets/js/index.js"></script>
+<script src="<?php echo base_url() ?>assets/js/index.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/DataTables/datatables.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/DataTables/jquery.dataTables.min.js"></script>
+
 
 
 </body>
