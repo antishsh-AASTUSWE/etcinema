@@ -4,7 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class admin_model extends CI_Model
 {
 
-
+    
+    //add movie function
     public function add_movie($post_image)
     {
 
@@ -105,7 +106,7 @@ class admin_model extends CI_Model
         $this->db->where('cinema_id', $id);
         $this->db->delete('cinema');
         return true;
-    }//end of delete cinema
+    } //end of delete cinema
     //add rating function
     public function add_rating()
     {
@@ -175,7 +176,7 @@ class admin_model extends CI_Model
         $this->db->where('gener_id', $id);
         $this->db->delete('geners');
         return true;
-    }//end of delete gener
+    } //end of delete gener
     //check gener existes function
     public function check_gener_exists($gener)
     {
@@ -187,7 +188,7 @@ class admin_model extends CI_Model
             return false;
         }
     } //end of check gener exists
-    
+
     //user register function
     public function register($enc_password)
     {
@@ -201,7 +202,7 @@ class admin_model extends CI_Model
         );
 
         return $this->db->insert('user', $data);
-    }//end of user register
+    } //end of user register
 
     //Get gener Function
     public function get_user($id = false)
@@ -217,28 +218,26 @@ class admin_model extends CI_Model
     //check_username_exists() function
     public function check_username_exists($username)
     {
-        $query= $this->db->get_where('user', array('username' => $username));
+        $query = $this->db->get_where('user', array('username' => $username));
 
         if (empty($query->row_array())) {
             return true;
         } else {
             return false;
         }
-        
-    }//end of checkusername exist
+    } //end of checkusername exist
 
     //check_email_exists() function
     public function check_email_exists($email)
     {
-        $query= $this->db->get_where('user', array('email' => $email));
+        $query = $this->db->get_where('user', array('email' => $email));
 
         if (empty($query->row_array())) {
             return true;
         } else {
             return false;
         }
-        
-    }//end of check email exist
+    } //end of check email exist
 
     //search rating function
     public function search_rating()
@@ -253,7 +252,7 @@ class admin_model extends CI_Model
             ->get('ratings');
 
         return $query->result_array();
-    }//end of search rating
+    } //end of search rating
 
     //serch user function
     public function search_users()
@@ -270,7 +269,7 @@ class admin_model extends CI_Model
             ->get('user');
 
         return $query->result_array();
-    }//end of search user
+    } //end of search user
 
     //search booking function
     public function search_booking()
@@ -285,7 +284,7 @@ class admin_model extends CI_Model
             ->get('booking_info');
 
         return $query->result_array();
-    }//end of search user function
+    } //end of search user function
 
     //searche gener function
     public function search_gener()
@@ -300,7 +299,7 @@ class admin_model extends CI_Model
 
 
         return $query->result_array();
-    }//end of search gener
+    } //end of search gener
 
     //search cinema function
     public function search_cinema()
@@ -314,7 +313,7 @@ class admin_model extends CI_Model
             ->get('cinema');
 
         return $query->result_array();
-    }//end of search cinema
+    } //end of search cinema
 
     //search showtime function
     public function search_showtime()
@@ -337,7 +336,7 @@ class admin_model extends CI_Model
         $query = $this->db->get();
 
         return $query->result_array();
-    }//end of search showtime
+    } //end of search showtime
 
     //search movie function
     public function search_movie()
@@ -357,6 +356,5 @@ class admin_model extends CI_Model
             ->get('movie');
 
         return $query->result_array();
-    }//end of search movie
+    } //end of search movie
 }
-
