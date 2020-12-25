@@ -4,7 +4,7 @@
   <div class="card-body">
 
     <h5 class="card-title">Edit Showtime</h5>
-    <?php echo validation_errors(); ?>
+    
     <?php echo form_open("staff/update_showtime/{$r['show_id']}")?>
 
     

@@ -58,7 +58,7 @@
       <ul class="sidebar-menu do-nicescrol">
         <li class="sidebar-header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url() ?>staff/dashboard">
+          <a href="<?php echo base_url() ?>staff/index">
             <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
@@ -71,40 +71,29 @@
 
         <li>
           <a href="<?php echo base_url() ?>staff/movies">
-            <i class="zmdi zmdi-play-circle"></i> <span>Movies</span>
+            <i class="zmdi zmdi-movie"></i> <span>Movies</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/cinemas">
-            <i class="zmdi zmdi zmdi-home"></i> <span>Cinema</span>
+          <a href="<?php echo base_url() ?>staff/customer">
+            <i class="zmdi zmdi zmdi-account"></i> <span>Customer</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/Ratings">
-            <i class="zmdi zmdi-sort-amount-asc"></i> <span>Ratings</span>
+          <a href="<?php echo base_url() ?>staff/seat">
+            <i class="zmdi zmdi-seat"></i> <span>Seat</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/geners">
-            <i class="zmdi zmdi-grid"></i> <span>Geners</span>
+          <a href="<?php echo base_url() ?>staff/advert">
+            <i class="zmdi zmdi-notifications-active"></i> <span>Advert</span>
           </a>
         </li>
 
-        <li>
-          <a href="<?php echo base_url() ?>staff/users">
-            <i class="zmdi zmdi-account-box"></i> <span>Users</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() ?>staff/bookings">
-            <i class="zmdi zmdi-assignment"></i></i> <span>Bookings</span>
-          </a>
-        </li>
-
+        
 
       </ul>
 

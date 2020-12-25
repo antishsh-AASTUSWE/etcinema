@@ -21,9 +21,15 @@ class Staff extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
+        $this->load->model('staff_model');
+        $data['countMovie'] = $this->staff_model->countMovie();
+        $data['countCustomer'] = $this->staff_model->countCustomer();
+        $data['nextMovies'] = $this->staff_model->nextMovies();
+        $data['newCustomer'] = $this->staff_model->newCustomer();
+         
         $this->load->view('stafftemplates/header');
-        $this->load->view('staffpages/dashboard');
-        $this->load->view('stafftemplates/footer');
+        $this->load->view('staffpages/dashboard',$data);
+        $this->load->view('stafftemplates/footer',$data);
     }
     public function movies()
     {
@@ -286,4 +292,147 @@ class Staff extends CI_Controller
         $this->staff_model->deleteShowtime($id);
         redirect('staff/showtime');
     }
+    public function customer()
+    {
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/staffpages/customer.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        if(isset($_POST['Search'])){
+			$this->load->model('staff_model');
+            $data['customer'] = $this->staff_model->search_customer();
+            
+            $this->load->view('stafftemplates/header');
+            $this->load->view('staffpages/customer',$data);
+            $this->load->view('stafftemplates/footer');
+			}
+			
+	   else{
+			$this->load->model('staff_model');
+            $data['customer'] = $this->staff_model->get_customer();
+           
+            $this->load->view('stafftemplates/header');
+            $this->load->view('staffpages/customer',$data);
+            $this->load->view('stafftemplates/footer');
+	   }
+        
+    }
+    public function add_customer()
+    {
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+    $this->form_validation->set_rules('fname', 'First Name', 'required');
+    $this->form_validation->set_rules('lname', 'Last Name', 'required');
+	$this->form_validation->set_rules('email', 'Email','required|callback_check_email');
+	$this->form_validation->set_rules('phone', 'Phone Number','required|callback_check_phone');
+	$this->form_validation->set_rules('date_of_birth', 'Date of Birth','required');
+	$this->form_validation->set_rules('password', 'pasword','required');
+	$this->form_validation->set_rules('password2', 'confirm pasword','required|matches[password]');
+
+        
+
+
+        if ($this->form_validation->run() === FALSE) {
+
+            $this->load->view('stafftemplates/header');
+            $this->load->view('staffpages/add_customer');
+            $this->load->view('stafftemplates/footer');
+        } else {
+
+            $this->load->model('staff_model');
+            $this->staff_model->add_customer();
+            redirect('staff/customer');
+        }
+    } 
+    public function edit_customer($id)
+    {
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+        $this->load->model('staff_model');
+        $data['records'] = $this->staff_model->getCustomerRecord($id);
+
+        if (empty($data['records'])) {
+            show_404();
+        }
+        
+        $this->load->view('stafftemplates/header', $data);
+        $this->load->view('staffpages/edit_customer', $data);
+        $this->load->view('stafftemplates/footer');
+    }
+    public function update_customer($id)
+    {
+
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+        $this->form_validation->set_rules('fname', 'First Name', 'required');
+    $this->form_validation->set_rules('lname', 'Last Name', 'required');
+	$this->form_validation->set_rules('email', 'Email','required');
+	$this->form_validation->set_rules('phone', 'Phone Number','required');
+	$this->form_validation->set_rules('date_of_birth', 'Date of Birth','required');
+	$this->form_validation->set_rules('password', 'Old pasword','required|callback_check_Password');
+	$this->form_validation->set_rules('new_password', 'New pasword','required');
+	$this->form_validation->set_rules('password2', 'confirm pasword','required|matches[new_password]');
+        
+        if ($this->form_validation->run() === FALSE) {
+            $this->edit_customer($id);
+        } else {
+
+            
+            $this->load->model('staff_model');
+            $this->staff_model->update_customer($id);
+            redirect('staff/customer');
+        }
+    } 
+    public function delete_customer($id)
+    {
+        if ($this->session->userdata('role') !== 'staff') {
+            redirect('login/authenticate_login');
+        }
+        $this->load->model('staff_model');
+        $this->staff_model->deleteCustomer($id);
+        redirect('staff/customer');
+    }
+    public function check_Password($password)
+	{
+		$this->form_validation->set_message('check_Password', 'the password is incorect please try agin');
+
+		$password= sha1($this->input->post('password'));
+        $this->load->model('staff_model');
+		if($this->staff_model->check_Password($password))
+		{
+			return true; 
+		}else{
+			return false; 
+		}
+	}
+	public function check_email($email)
+	{
+		$this->form_validation->set_message('check_email', 'That email is taken. please choose a difrent one');
+		
+        $this->load->model('staff_model');
+		if($this->staff_model->check_email($email))
+		{
+			return true;
+		}else{
+			return false; 
+		}
+	}
+	
+	public function check_phone($phone)
+	{
+		$this->form_validation->set_message('check_phone', 'please use differnt phone this is used before');
+		$this->load->model('staff_model');
+		if($this->staff_model->check_phone($phone))
+		{
+			return true;
+		}else{
+			return false; 
+		}
+	}
 }

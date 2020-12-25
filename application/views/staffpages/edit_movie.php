@@ -10,14 +10,14 @@
     <?php echo form_open("staff/update_movie/{$r['movie_id']}")?>
     <div class="form-group">
       <label for="input-6">Title</label>
-      <input type="text" class="form-control form-control" value="<?php echo $r['mov_name'];?>" name="title" id="input-6" placeholder="Enter Movie Title">
+      <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_name'];?>" name="title" id="input-6" placeholder="Enter Movie Title">
       <div class="text-danger">
     <?php echo form_error('title'); ?>
     </div> 
     </div>
     <div class="form-group">
       <label for="input-6">Movie Plot</label>
-      <input type="text" class="form-control form-control" value="<?php echo $r['mov_plot'];?>" name="plot" id="input-6" placeholder="Enter Movie Plot">
+      <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_plot'];?>" name="plot" id="input-6" placeholder="Enter Movie Plot">
       <div class="text-danger">
     <?php echo form_error('plot'); ?>
     </div> 
@@ -25,14 +25,14 @@
 
     <div class="form-group">
       <label for="exampleInputEmail1">Running Time</label>
-      <input type="text" class="form-control" value="<?php echo $r['mov_running_time'];?>" name="runningtime">
+      <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_running_time'];?>" name="runningtime">
       <div class="text-danger">
     <?php echo form_error('runningtime'); ?>
     </div> 
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Released Date</label>
-      <input type="text" class="form-control"  value="<?php echo $r['mov_realse_date'];?>" name="realsedate" id="datepicker">
+      <input type="text" class="form-control form-control-rounded"  value="<?php echo $r['mov_realse_date'];?>" name="realsedate" id="datepicker">
       <div class="text-danger">
     <?php echo form_error('realsedate'); ?>
     </div> 
@@ -40,28 +40,28 @@
 
     <div class="form-group">
       <label for="exampleInputEmail1">Tailer</label>
-      <input type="text" class="form-control" value="<?php echo $r['mov_trailor'];?>" name="trailor">
+      <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_trailor'];?>" name="trailor">
       <div class="text-danger">
     <?php echo form_error('trailor'); ?>
     </div> 
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Staring</label>
-      <input type="text" class="form-control" value="<?php echo $r['mov_starring'];?>" name="staring">
+      <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_starring'];?>" name="staring">
       <div class="text-danger">
     <?php echo form_error('staring'); ?>
     </div> 
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Language</label>
-      <input type="text" class="form-control" value="<?php echo $r['mov_language'];?>" name="language">
+      <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_language'];?>" name="language">
       <div class="text-danger">
     <?php echo form_error('language'); ?>
     </div> 
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Subtitle</label>
-      <input type="text" class="form-control" value="<?php echo $r['mov_subtitle'];?>" name="subtitle">
+      <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_subtitle'];?>" name="subtitle">
       <div class="text-danger">
     <?php echo form_error('subtitle'); ?>
     </div> 

@@ -185,6 +185,122 @@ public function get_gener(){
     
      
  }
+ public function search_customer(){
+    $data= array(
+        'Search'=>$this->input->post('Search'));
+
+        $this->db->select('*');
+        $this->db->from('customer');
+        $this->db->like('cust_id', $data['Search'])
+        ->or_like('first_name', $data['Search'])
+        ->or_like('last_name',  $data['Search'])
+        ->or_like('DBO',  $data['Search'])
+        ->or_like('phone_no',  $data['Search'])
+        ->or_like('Email',  $data['Search']);
+        $this->db->order_by('cust_id', 'ASC');
+        $query = $this->db->get();
+            
+      return $query->result_array();
+}
+public function get_customer(){
+    $this->db->select('*');
+    $this->db->from('customer');
+    
+    $query = $this->db->get();
+    
+    return $query->result_array();
+}
+public function getCustomerRecord($id){
+    $this->db->select('*');
+    $this->db->from('customer');
+    
+    $this->db->where('cust_id', $id);
+    $query = $this->db->get();
+
+       
+        return $query->result_array();
+}
+public function add_customer()
+{
+    $data= array(
+        'first_name'=>$this->input->post('fname'), 
+        'last_name'=>$this->input->post('lname'),             
+        'email'=>$this->input->post('email'),
+        'phone_no'=>$this->input->post('phone'),
+        'DBO'=>$this->input->post('date_of_birth'),
+                   
+  );
+  
+  $data['password'] = sha1($this->input->post('password'));
+
+
+    return $this->db->insert('customer', $data);
+}
+public function update_customer($id)
+{
+
+    $data= array(
+        'first_name'=>$this->input->post('fname'), 
+        'last_name'=>$this->input->post('lname'),             
+        'email'=>$this->input->post('email'),
+        'phone_no'=>$this->input->post('phone'),
+        'DBO'=>$this->input->post('date_of_birth'),
+                   
+  );
+  
+  $data['password'] = sha1($this->input->post('new_password'));
+
+    return $this->db->where('cust_id',$id)->update('customer', $data);
+    
+}
+public function deleteCustomer($id){
+
+    $this->db->where('cust_id', $id);
+    $this->db->delete('customer');
+    return true;
+
+ 
+}
+
+public function check_Password($password)
+    {
+        $query = $this->db->get_where('customer', array('password' => $password));
+
+        if(empty($query->row_array()))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public function check_email($email)
+    {
+        $query = $this->db->get_where('customer', array('email' => $email));
+
+        if(empty($query->row_array()))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public function check_phone($phone)
+    {
+        $query = $this->db->get_where('customer', array('phone_no' => $phone));
+
+        if(empty($query->row_array()))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
     public function get_cinema(){
 
@@ -194,5 +310,49 @@ public function get_gener(){
         
         return $query->result_array();
     }
+    public function countMovie(){
+
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->where('show_date', date('y-m-d'));
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+    public function countCustomer(){
+
+        $this->db->select('*');
+        $this->db->from('customer');
+        $this->db->like('joined_date', date('y-m-d'));
+        //$this->db->where('joined_date', date('y-m-d'));
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+    public function nextMovies(){
+
+        $this->db->limit(5);
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie','showtime.mov_id=movie.movie_id');
+        $this->db->join('cinema','showtime.cinema_id=cinema.cinema_id');
+        $this->db->where('show_date', date('y-m-d'));
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function newCustomer(){
+
+        $this->db->limit(5);
+        $this->db->select('*');
+        $this->db->from('customer');
+        $this->db->like('joined_date', date('y-m-d'));
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
     
 }
+

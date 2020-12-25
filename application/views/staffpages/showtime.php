@@ -77,7 +77,7 @@
           </table>
           <div class="col-lg-6">
         <div class="form-group">
-          <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Add Cinema</button>
+          <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Add Showtime</button>
         </div>
       </div>
     </form>
