@@ -24,7 +24,7 @@
             </div>
             <ul class="social-icons">
                 <li>
-                    <a href="#0">
+                    <a href="#0" class="text-center">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </li>

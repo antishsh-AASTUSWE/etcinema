@@ -1465,8 +1465,8 @@ input[type="submit"] {
     right: 0;
     left: 0;
     top: 80px;
-    -webkit-mask-image: url(../../assets/images/footer/footer-shape.png);
-    mask-image: url(../../assets/images/footer/footer-shape.png);
+    -webkit-mask-image: url(../../publicassets/images/footer/footer-shape.png);
+    mask-image: url(../../publicassets/images/footer/footer-shape.png);
     -webkit-mask-position: top center;
     mask-position: top center;
     -webkit-mask-repeat: no-repeat;
@@ -9526,3 +9526,5 @@ aside {
 
 
 /*# sourceMappingURL=main.css.map */
+
+bliv
