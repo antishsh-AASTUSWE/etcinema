@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="<?php echo base_url() ?>publicassets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>publicassets/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>publicassets/css/all.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>publicassets/css/animate.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>publicassets/css/flaticon.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>publicassets/css/magnific-popup.css">
@@ -60,14 +61,14 @@
                         <a href="<?php echo base_url() ?>publicpages" class="active">Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/movie_grid">movies</a>
+                        <a href="<?php echo base_url() ?>publicpages/movie">movies</a>
                     </li>
                     <li>
-                        <a href="about.html">About Us</a>
+                        <a href="<?php echo base_url() ?>publicpages/about">About Us</a>
                     </li>
 
                     <li>
-                        <a href="contact.html">contact</a>
+                        <a href="<?php echo base_url() ?>publicpages/contact">contact</a>
                     </li>
                     <li class="header-button pr-0">
                         <a href="sign-in.html">Sign In</a>

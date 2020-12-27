@@ -90,6 +90,7 @@
 <script src="<?php echo base_url() ?>publicassets/js/odometer.min.js"></script>
 <script src="<?php echo base_url() ?>publicassets/js/viewport.jquery.js"></script>
 <script src="<?php echo base_url() ?>publicassets/js/nice-select.js"></script>
+<script src="<?php echo base_url() ?>publicassets/js/all.js"></script>
 <script src="<?php echo base_url() ?>publicassets/js/main.js"></script>
 </body>
 
