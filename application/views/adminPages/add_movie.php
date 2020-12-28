@@ -4,7 +4,7 @@
     <hr>
 
     <?php echo validation_errors(); ?>
-    <?php echo form_open_multipart('admin/add_movies'); ?>
+    <?php echo form_open_multipart('admin/add_movie'); ?>
     <div class="form-group">
       <label for="input-6">Title</label>
       <input type="text" class="form-control form-control" name="title" id="input-6" placeholder="Enter Movie Title">
@@ -87,8 +87,8 @@
     </div> 
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Subtitle</label>
-      <input type="text" class="form-control" name="subtitle">
+      <label for="exampleInput">synopsis</label>
+      <textarea name="mov_synopsis" class="form-control"  ></textarea>
       <div class="text-danger">
     <?php echo form_error('subtitle'); ?>
     </div> 

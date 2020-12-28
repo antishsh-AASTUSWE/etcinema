@@ -80,6 +80,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         }
     } //end of movies
+
     //Add Movie function
     public function add_movie()
     {
@@ -98,7 +99,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('realsedate', 'realsedate', 'required');
         $this->form_validation->set_rules('language', 'language', 'required');
         $this->form_validation->set_rules('staring', 'staring', 'required');
-        $this->form_validation->set_rules('subtitle', 'subtitle', 'required');
+        $this->form_validation->set_rules('mov_synopsis', 'Movie Synopsis', 'required');
 
 
 
@@ -230,6 +231,7 @@ class Admin extends CI_Controller
             return false;
         }
     } //end of check cinema exists
+
     //geners function
     public function geners()
     {
@@ -242,10 +244,10 @@ class Admin extends CI_Controller
         }
         if (isset($_POST['Search'])) {
             $this->load->model('admin_model');
-            $gener = $this->admin_model->search_gener();
+            $data['gener'] = $this->admin_model->search_gener();
 
             $this->load->view('templates/header');
-            $this->load->view('adminpages/gener', ['gener' => $gener]);
+            $this->load->view('adminpages/gener', $data);
             $this->load->view('templates/footer');
         } else {
             $this->load->model('admin_model');
@@ -256,6 +258,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         }
     } //end of geners
+    
     //add gener function
 
     public function add_gener()

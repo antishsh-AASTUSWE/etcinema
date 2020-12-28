@@ -37,7 +37,7 @@
             <tr>
               <td><?= $m['movie_id']; ?></td>
               <td><?= $m['mov_name']; ?></td>
-              <td><img src="./.assets/poster/<?= $m['mov_poster']; ?>." alt='<?= $m['mov_poster']; ?>' 
+              <td><img src="<?php echo base_url();?>/assets/poster/<?= $m['mov_poster']; ?>." alt='<?= $m['mov_poster']; ?>' 
               width='100' height='100'></td>
               <td><?= $m['rating']; ?></td>
               <td><?= $m['mov_trailor']; ?></td>

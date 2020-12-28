@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class admin_model extends CI_Model
 {
 
-    
+
     //add movie function
     public function add_movie($post_image)
     {
@@ -21,7 +21,7 @@ class admin_model extends CI_Model
             'mov_language' => $this->input->post('language'),
 
             'mov_starring' => $this->input->post('staring'),
-            'mov_subtitle' => $this->input->post('subtitle')
+            'mov_synopsis' => $this->input->post('mov_synopsis')
         );
 
 
@@ -357,8 +357,13 @@ class admin_model extends CI_Model
 
         return $query->result_array();
     } //end of search movie
-    public function get_movie(){
-        $query = $this->db->get("movie");  
-        return $query->result_array();
+    public function get_movie($id = false)
+    {
+        if ($id === false) {
+            $query = $this->db->get("movie");
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('movie', array('movie_id' => $id));
+        return $query->row_array();
     }
 }

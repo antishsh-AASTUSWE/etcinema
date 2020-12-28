@@ -1,29 +1,29 @@
 <!-- ==========Banner-Section========== -->
-<section class="details-banner bg_img" data-background="<?php echo base_url() ?>publicassets/images/banner/banner03.jpg">
+<section class="details-banner bg_img" data-background="<?php echo base_url() ?>assets/poster/<?= $movie_detail['mov_poster']; ?>">
     <div class="container">
         <div class="details-banner-wrapper">
             <div class="details-banner-thumb">
-                <img src="<?php echo base_url() ?>publicassets/images/movie/venus.jpg" alt="movie">
-                <a href="https://www.youtube.com/embed/KGeBMAgc46E" class="video-popup">
+                <img src="<?php echo base_url() ?>assets/poster/<?= $movie_detail['mov_poster']; ?>" alt="movie">
+                <a href="<?php echo $movie_detail['mov_trailor']; ?>" class="video-popup">
                     <img src="<?php echo base_url() ?>publicassets/images/movie/video-button.png" alt="movie">
                 </a>
             </div>
             <div class="details-banner-content offset-lg-3">
-                <h3 class="title">Venus</h3>
+                <h3 class="title"><?php echo $movie_detail['mov_name']; ?></h3>
                 <div class="tags">
                     <a href="#0">English</a>
                     <a href="#0">Hindi</a>
                     <a href="#0">Telegu</a>
                     <a href="#0">Tamil</a>
                 </div>
-                <a href="#0" class="button">horror</a>
+                <a href="#0" class="button"><?php echo $movie_detail['mov_gener']; ?></a>
                 <div class="social-and-duration">
                     <div class="duration-area">
                         <div class="item">
-                            <i class="fas fa-calendar-alt"></i><span>06 Dec, 2020</span>
+                            <i class="fas fa-calendar-alt"></i><span><?php echo $movie_detail['mov_realse_date']; ?></span>
                         </div>
                         <div class="item">
-                            <i class="far fa-clock"></i><span>2 hrs 50 mins</span>
+                            <i class="far fa-clock"></i><span><?php echo $movie_detail['mov_running_time']; ?></span>
                         </div>
                     </div>
                     <ul class="social-share">
@@ -169,39 +169,6 @@
             </div>
             <div class="col-lg-9 mb-50">
                 <div class="movie-details">
-                    <h3 class="title">photos</h3>
-                    <div class="details-photos owl-carousel">
-                        <div class="thumb">
-                            <a href="<?php echo base_url() ?>publicassets/images/movie/movie-details01.jpg" class="img-pop">
-                                <img src="<?php echo base_url() ?>publicassets/images/movie/movie-details01.jpg" alt="movie">
-                            </a>
-                        </div>
-                        <div class="thumb">
-                            <a href="<?php echo base_url() ?>publicassets/images/movie/movie-details02.jpg" class="img-pop">
-                                <img src="<?php echo base_url() ?>publicassets/images/movie/movie-details02.jpg" alt="movie">
-                            </a>
-                        </div>
-                        <div class="thumb">
-                            <a href="<?php echo base_url() ?>publicassets/images/movie/movie-details03.jpg" class="img-pop">
-                                <img src="<?php echo base_url() ?>publicassets/images/movie/movie-details03.jpg" alt="movie">
-                            </a>
-                        </div>
-                        <div class="thumb">
-                            <a href="<?php echo base_url() ?>publicassets/images/movie/movie-details01.jpg" class="img-pop">
-                                <img src="<?php echo base_url() ?>publicassets/images/movie/movie-details01.jpg" alt="movie">
-                            </a>
-                        </div>
-                        <div class="thumb">
-                            <a href="<?php echo base_url() ?>publicassets/images/movie/movie-details02.jpg" class="img-pop">
-                                <img src="<?php echo base_url() ?>publicassets/images/movie/movie-details02.jpg" alt="movie">
-                            </a>
-                        </div>
-                        <div class="thumb">
-                            <a href="<?php echo base_url() ?>publicassets/images/movie/movie-details03.jpg" class="img-pop">
-                                <img src="<?php echo base_url() ?>publicassets/images/movie/movie-details03.jpg" alt="movie">
-                            </a>
-                        </div>
-                    </div>
                     <div class="tab summery-review">
                         <ul class="tab-menu">
                             <li class="active">
@@ -215,7 +182,7 @@
                             <div class="tab-item active">
                                 <div class="item">
                                     <h5 class="sub-title">Synopsis</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula eros sit amet est tincidunt aliquet. Fusce laoreet ligula ac ultrices eleifend. Donec hendrerit fringilla odio, ut feugiat mi convallis nec. Fusce elit ex, blandit vitae mattis sit amet, iaculis ac elit. Ut diam mauris, viverra sit amet dictum vel, aliquam ac quam. Ut mi nisl, fringilla sit amet erat et, convallis porttitor ligula. Sed auctor, orci id luctus venenatis, dui dolor euismod risus, et pharetra orci lectus quis sapien. Duis blandit ipsum ac consectetur scelerisque. </p>
+                                    <p><span><?php echo $movie_detail['mov_synopsis']; ?></p>
                                 </div>
                                 <div class="item">
                                     <div class="header">

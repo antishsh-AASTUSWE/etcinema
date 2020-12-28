@@ -58,17 +58,17 @@
                 </div>
                 <ul class="menu">
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages" class="active">Home</a>
+                        <a href="<?php echo base_url() ?>publicpages" <?php if($this->uri->segment(2) === null ){echo'class="active"';} ?>>Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/movie">movies</a>
+                        <a href="<?php echo base_url() ?>publicpages/movie"<?php if($this->uri->segment(2) === 'movie'  ){echo'class="active"';} ?>>movies</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/about">About Us</a>
+                        <a href="<?php echo base_url() ?>publicpages/about"<?php if($this->uri->segment(2) === 'about'  ){echo'class="active"';} ?>>About Us</a>
                     </li>
 
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/contact">contact</a>
+                        <a href="<?php echo base_url() ?>publicpages/contact"<?php if($this->uri->segment(2) === 'contact'  ){echo'class="active"';} ?>>contact</a>
                     </li>
                     <li class="header-button pr-0">
                         <a href="sign-in.html">Sign In</a>
@@ -85,4 +85,5 @@
             </div>
         </div>
     </header>
+    
     <!-- ==========Header-Section========== -->

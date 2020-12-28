@@ -27,8 +27,11 @@ class Publicpages extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-		$this->load->view('publictemplates/header');
-		$this->load->view('publicpages/home');
+		$data['title'] = 'home';
+		$data['movie'] = $this->public_model->get_movie();
+		$data['cinema'] = $this->public_model->get_cinema();
+		$this->load->view('publictemplates/header', $data);
+		$this->load->view('publicpages/home', $data);
 		$this->load->view('publictemplates/footer');
 	} //end of index
 
@@ -39,7 +42,8 @@ class Publicpages extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-		$this->load->view('publictemplates/header');
+		$data['title'] = 'about';
+		$this->load->view('publictemplates/header', $data);
 		$this->load->view('publicpages/about');
 		$this->load->view('publictemplates/footer');
 	} //end of about
@@ -51,7 +55,8 @@ class Publicpages extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-		$this->load->view('publictemplates/header');
+		$data['title'] = 'contact';
+		$this->load->view('publictemplates/header', $data);
 		$this->load->view('publicpages/contact');
 		$this->load->view('publictemplates/footer');
 	} //end of contact
@@ -69,14 +74,19 @@ class Publicpages extends CI_Controller
 	} //end of movie checkout
 
 	//movie details function
-	public function movie_details()
+	public function movie_details($id)
 	{
 		if (!file_exists(APPPATH . 'views/publicpages/movie_details.php')) {
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
+		$data['movie_detail'] = $this->public_model->get_movie($id);
+		if (empty($data['movie_detail'])) {
+			show_404();
+		}
+
 		$this->load->view('publictemplates/header');
-		$this->load->view('publicpages/home');
+		$this->load->view('publicpages/movie_details', $data);
 		$this->load->view('publictemplates/footer');
 	} //end of movie detailes
 
@@ -87,8 +97,10 @@ class Publicpages extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-		$this->load->view('publictemplates/header');
-		$this->load->view('publicpages/movie');
+		$data['title'] = 'movie';
+		$data['movie'] = $this->public_model->get_movie();
+		$this->load->view('publictemplates/header', $data);
+		$this->load->view('publicpages/movie', $data);
 		$this->load->view('publictemplates/footer');
 	} //end of movie
 
