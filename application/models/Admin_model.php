@@ -75,7 +75,7 @@ class admin_model extends CI_Model
         }
         $query = $this->db->get_where('ratings', array('rating_id' => $id));
         return $query->row_array();
-    }
+    }//end og get ratting
 
 
     //Get Cinema Function

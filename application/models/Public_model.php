@@ -15,8 +15,11 @@ class Public_model extends CI_Model
         return $result;
     }
     //get movie function
-    public function get_movie($id = false)
+    public function get_movie($id = false, $limit = false, $offset = false)
     {
+        if ($limit) {
+            $this->db->limit($limit, $offset);
+        }
         if ($id === false) {
             $query = $this->db->get("movie");
             return $query->result_array();
@@ -34,4 +37,27 @@ class Public_model extends CI_Model
         $query = $this->db->get_where('movie', array('movie_id' => $id));
         return $query->row_array();
     } //end of gett cinema
+    //Get gener Function
+    public function get_gener($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('geners');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('geners', array('gener_id' => $id));
+        return $query->row_array();
+    } //end of gett gener
+
+
+    //Get Ratting function
+
+    public function get_rating($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('ratings');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('ratings', array('rating_id' => $id));
+        return $query->row_array();
+    } //end og get ratting
 }

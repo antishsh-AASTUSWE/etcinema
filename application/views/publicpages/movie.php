@@ -213,37 +213,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="widget-1 widget-check">
-                    <div class="widget-header">
-                        <h5 class="m-title">Filter By</h5> <a href="#0" class="clear-check">Clear All</a>
-                    </div>
-                    <div class="widget-1-body">
-                        <h6 class="subtitle">Language</h6>
-                        <div class="check-area">
-                            <div class="form-group">
-                                <input type="checkbox" name="lang" id="lang1"><label for="lang1">Tamil</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="lang" id="lang2"><label for="lang2">Telegu</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="lang" id="lang3"><label for="lang3">Hindi</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="lang" id="lang4"><label for="lang4">English</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="lang" id="lang5"><label for="lang5">Multiple Language</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="lang" id="lang6"><label for="lang6">Gujrati</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="lang" id="lang7"><label for="lang7">Bangla</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="widget-1 widget-check">
                     <div class="widget-1-body">
                         <h6 class="subtitle">experience</h6>
@@ -451,15 +421,11 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="pagination-area text-center">
-                        <a href="#0"><i class="fas fa-angle-double-left"></i><span>Prev</span></a>
-                        <a href="#0">1</a>
-                        <a href="#0">2</a>
-                        <a href="#0" class="active">3</a>
-                        <a href="#0">4</a>
-                        <a href="#0">5</a>
-                        <a href="#0"><span>Next</span><i class="fas fa-angle-double-right"></i></a>
+                    <?php echo $this->pagination->create_links(); ?>  
                     </div>
+                
                 </div>
             </div>
         </div>
