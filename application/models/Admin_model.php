@@ -366,4 +366,16 @@ class admin_model extends CI_Model
         $query = $this->db->get_where('movie', array('movie_id' => $id));
         return $query->row_array();
     }
+     
+    //get show time
+    public function get_showtime(){
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie','movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema','cinema.cinema_id=showtime.cinema_id');
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }//end of show time
+    
 }

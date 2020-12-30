@@ -95,7 +95,7 @@
                     <p><a href="#0">Rate It</a></p>
                 </div>
             </div>
-            <a href="#0" class="custom-button">book tickets</a>
+            <a href="<?php echo base_url(); ?>publicpages/movie_ticket_plan/<?= $movie_detail['movie_id'] ?>" class="custom-button">book tickets</a>
         </div>
     </div>
 </section>

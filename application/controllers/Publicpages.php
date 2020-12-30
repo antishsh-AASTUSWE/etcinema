@@ -138,6 +138,10 @@ class Publicpages extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
+		$data['movie_detail'] = $this->public_model->get_movie($id);
+		if (empty($data['movie_detail'])) {
+			show_404();
+		}
 		$this->load->view('publictemplates/header');
 		$this->load->view('publicpages/movie_ticket_plan');
 		$this->load->view('publictemplates/footer');

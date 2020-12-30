@@ -38,18 +38,18 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
-            $showtime = $this->admin_model->search_showtime();
+            
+            $data['showtime'] = $this->admin_model->search_showtime();
 
             $this->load->view('templates/header');
-            $this->load->view('adminshowtime', ['showtime' => $showtime]);
+            $this->load->view('adminpages/showtime', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
-            $showtime = $this->admin_model->get_showtime();
+            
+            $data['showtime'] = $this->admin_model->get_showtime();
 
             $this->load->view('templates/header');
-            $this->load->view('adminshowtime', ['showtime' => $showtime]);
+            $this->load->view('adminpages/showtime', $data);
             $this->load->view('templates/footer');
         }
     } //end of show time
@@ -66,17 +66,17 @@ class Admin extends CI_Controller
         }
         if (isset($_POST['Search'])) {
             $this->load->model('admin_model');
-            $movie = $this->admin_model->search_movie();
+            $data['movie'] = $this->admin_model->search_movie();
 
             $this->load->view('templates/header');
-            $this->load->view('adminmovies', ['movie' => $movie]);
+            $this->load->view('adminpages/movies', $data);
             $this->load->view('templates/footer');
         } else {
             $this->load->model('admin_model');
-            $movie = $this->admin_model->get_movie();
+            $data['movie'] = $this->admin_model->get_movie();
 
             $this->load->view('templates/header');
-            $this->load->view('adminmovies', ['movie' => $movie]);
+            $this->load->view('adminpages/movies',$data);
             $this->load->view('templates/footer');
         }
     } //end of movies
