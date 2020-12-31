@@ -3,10 +3,32 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class admin_model extends CI_Model
 {
+<<<<<<< HEAD
     public function search_rating()
+=======
+
+
+    //add movie function
+    public function add_movie($post_image)
+>>>>>>> 62f719b6c2bb4aeaa683a900c063b5c67ab22f6b
     {
         $data = array(
+<<<<<<< HEAD
             'Search' => $this->input->post('Search')
+=======
+            'mov_name' => $this->input->post('title'),
+            'mov_poster' => $post_image,
+            'mov_ratting' => $this->input->post('rating_id'),
+            'mov_trailor' => $this->input->post('trailor'),
+            'mov_gener' => $this->input->post('gener_id'),
+            'mov_plot' => $this->input->post('plot'),
+            'mov_running_time' => $this->input->post('runningtime'),
+            'mov_realse_date' => $this->input->post('realsedate'),
+            'mov_language' => $this->input->post('language'),
+
+            'mov_starring' => $this->input->post('staring'),
+            'mov_synopsis' => $this->input->post('mov_synopsis')
+>>>>>>> 62f719b6c2bb4aeaa683a900c063b5c67ab22f6b
         );
 
         $query = $this->db->like('rating_id', $data['Search'])
@@ -619,6 +641,7 @@ public function search_gener()
         }
         public function countUser(){
 
+<<<<<<< HEAD
             $this->db->select('*');
             $this->db->from('user');
            // $this->db->like('created_at', date('y-m-d'));
@@ -638,4 +661,17 @@ public function search_gener()
             return $query->num_rows();
         }
         
+=======
+        return $query->result_array();
+    } //end of search movie
+    public function get_movie($id = false)
+    {
+        if ($id === false) {
+            $query = $this->db->get("movie");
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('movie', array('movie_id' => $id));
+        return $query->row_array();
+    }
+>>>>>>> 62f719b6c2bb4aeaa683a900c063b5c67ab22f6b
 }

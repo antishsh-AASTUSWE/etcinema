@@ -230,11 +230,45 @@ class Admin extends CI_Controller
                 redirect('login/authenticate_login');
             }
             $this->load->model('admin_model');
+<<<<<<< HEAD
             $data['records'] = $this->admin_model->getMovieRecord($id);
     
             if (empty($data['records'])) {
                 show_404();
             }
+=======
+            $movie = $this->admin_model->get_movie();
+
+            $this->load->view('templates/header');
+            $this->load->view('adminmovies', ['movie' => $movie]);
+            $this->load->view('templates/footer');
+        }
+    } //end of movies
+
+    //Add Movie function
+    public function add_movie()
+    {
+
+        if ($this->session->userdata('role') !== 'admin') {
+            redirect('login/authenticate_login');
+        }
+
+        $this->form_validation->set_rules('title', 'title', 'required');
+
+        $this->form_validation->set_rules('rating_id', 'rating id', 'required');
+        $this->form_validation->set_rules('trailor', 'trailor', 'required');
+        $this->form_validation->set_rules('gener_id', 'gener id', 'required');
+        $this->form_validation->set_rules('plot', 'plot', 'required');
+        $this->form_validation->set_rules('runningtime', 'runningtime', 'required');
+        $this->form_validation->set_rules('realsedate', 'realsedate', 'required');
+        $this->form_validation->set_rules('language', 'language', 'required');
+        $this->form_validation->set_rules('staring', 'staring', 'required');
+        $this->form_validation->set_rules('mov_synopsis', 'Movie Synopsis', 'required');
+
+
+
+        if ($this->form_validation->run() === FALSE) {
+>>>>>>> 62f719b6c2bb4aeaa683a900c063b5c67ab22f6b
             $data['gener'] = $this->admin_model->get_gener();
             $data['rating'] = $this->admin_model->get_rating();
     
@@ -427,10 +461,10 @@ class Admin extends CI_Controller
         }
         if (isset($_POST['Search'])) {
             $this->load->model('admin_model');
-            $gener = $this->admin_model->search_gener();
+            $data['gener'] = $this->admin_model->search_gener();
 
             $this->load->view('templates/header');
-            $this->load->view('adminpages/gener', ['gener' => $gener]);
+            $this->load->view('adminpages/gener', $data);
             $this->load->view('templates/footer');
         } else {
             $this->load->model('admin_model');
@@ -441,8 +475,12 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         }
     } //end of geners
+<<<<<<< HEAD
 
 
+=======
+    
+>>>>>>> 62f719b6c2bb4aeaa683a900c063b5c67ab22f6b
     //add gener function
 
     public function add_gener()

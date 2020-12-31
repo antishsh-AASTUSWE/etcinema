@@ -3,7 +3,11 @@
     <div class="card-title">Add Movie</div>
     <hr>
 
+<<<<<<< HEAD
    
+=======
+    <?php echo validation_errors(); ?>
+>>>>>>> 62f719b6c2bb4aeaa683a900c063b5c67ab22f6b
     <?php echo form_open_multipart('admin/add_movie'); ?>
     <div class="form-group">
       <label for="input-6">Title</label>
@@ -87,8 +91,8 @@
     </div> 
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Subtitle</label>
-      <input type="text" class="form-control" name="subtitle">
+      <label for="exampleInput">synopsis</label>
+      <textarea name="mov_synopsis" class="form-control"  ></textarea>
       <div class="text-danger">
     <?php echo form_error('subtitle'); ?>
     </div> 
