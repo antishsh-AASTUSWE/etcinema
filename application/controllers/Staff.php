@@ -459,10 +459,35 @@ class Staff extends CI_Controller
             show_404();
         }
         $this->load->model('staff_model');
-        $data['row']=$this->staff_model->getSeatRow();
-        $data['col']=$this->staff_model->getSeatCol();
+       
+        $this->load->view('templates/header');
+        $this->load->view('staffpages/seat');
+        $this->load->view('templates/footer');
+    }
+    public function addSeat(){
+        
+       
+            $this->load->model('staff_model');
+            $this->staff_model->addSeat();
+            redirect('staff/seatLayout');
+      
+      
+    }
+    public function seatLayout(){
+        $this->load->model('staff_model');
+        $data['seat']=$this->staff_model->seatLayout();
         $this->load->view('templates/header');
         $this->load->view('staffpages/seat',$data);
         $this->load->view('templates/footer');
     }
+    public function addseatLayout(){
+        
+        $this->load->model('staff_model');
+       
+
+        $this->staff_model->addseatLayout();
+        redirect('staff/seatLayout');
+  
+  
+}
 }
