@@ -43,8 +43,13 @@
 </script>
 
 
+<!--seat js-->
+
+
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/Chart.js/Chart.min.js"></script>
+<script src="<?php echo base_url() ?>assets/js/seatJs.js"></script>
 
 <script src="<?php echo base_url() ?>assets/js/popper.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script>
@@ -61,7 +66,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foopicker.js"></script>
 <!-- Chart js -->
 
-<script src="<?php echo base_url() ?>assets/plugins/Chart.js/Chart.min.js"></script>
+
 
 
 <!-- Index js -->

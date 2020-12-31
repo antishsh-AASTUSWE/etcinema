@@ -353,6 +353,26 @@ public function check_Password($password)
 
         return $query->result_array();
     }
+    public function getSeatRow(){
+        $this->db->distinct();
+        $this->db->select('row');
+        $this->db->from('seat');
+       
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+    public function getSeatCol(){
+        $this->db->select('col');
+        $this->db->from('seat');
+       
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+		
     
 }
 

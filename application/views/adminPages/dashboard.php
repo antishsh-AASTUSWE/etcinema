@@ -5,13 +5,17 @@
         <div class="card mt-3">
             <div class="card-content">
                 <div class="row row-group m-0">
-                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="col-12 col-lg-6 col-xl-3 border-light">
                         <div class="card-body">
-                            <h5 class="text-white mb-0">9526 <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
+                        <?Php if(isset($totalBooking)){
+                             ?>
+                            <h5 class="text-white mb-0"><?php echo $totalBooking?><span class="float-right">
+                            <i class="fa fa-file-o fa-2x" aria-hidden="true"></i></span></h5>
+                            <?php }?>
                             <div class="progress my-3" style="height:3px;">
                                 <div class="progress-bar" style="width:55%"></div>
                             </div>
-                            <p class="mb-0 text-white small-font">Total Orders <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                            <p class="mb-0 text-white small-font">Total Bookings</p>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-xl-3 border-light">
@@ -25,20 +29,28 @@
                     </div>
                     <div class="col-12 col-lg-6 col-xl-3 border-light">
                         <div class="card-body">
-                            <h5 class="text-white mb-0">6200 <span class="float-right"><i class="fa fa-eye"></i></span></h5>
+                        <?Php if(isset($countCustomer)){
+                             ?>
+                            <h5 class="text-white mb-0"><?php echo $countCustomer?><span class="float-right">
+                            <i class="fa fa-user-o fa-2x" aria-hidden="true"></i></span></h5>
+                            <?php }?>
                             <div class="progress my-3" style="height:3px;">
                                 <div class="progress-bar" style="width:55%"></div>
                             </div>
-                            <p class="mb-0 text-white small-font">Visitors <span class="float-right">+5.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                            <p class="mb-0 text-white small-font">Customer Registerd today</p>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-xl-3 border-light">
                         <div class="card-body">
-                            <h5 class="text-white mb-0">5630 <span class="float-right"><i class="fa fa-envira"></i></span></h5>
+                        <?Php if(isset($countUser)){
+                             ?>
+                            <h5 class="text-white mb-0"><?php echo $countUser?><span class="float-right">
+                            <i class="fa fa-user-o fa-2x" aria-hidden="true"></i></span></h5>
+                            <?php }?>
                             <div class="progress my-3" style="height:3px;">
                                 <div class="progress-bar" style="width:55%"></div>
                             </div>
-                            <p class="mb-0 text-white small-font">Messages <span class="float-right">+2.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                            <p class="mb-0 text-white small-font">Total Users</p>
                         </div>
                     </div>
                 </div>
@@ -49,20 +61,7 @@
             <div class="col-12 col-lg-8 col-xl-8">
                 <div class="card">
                     <div class="card-header">Site Traffic
-                        <div class="card-action">
-                            <div class="dropdown">
-                                <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-                                    <i class="icon-options"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:void();">Action</a>
-                                    <a class="dropdown-item" href="javascript:void();">Another action</a>
-                                    <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void();">Separated link</a>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="card-body">
                         <ul class="list-inline">
@@ -125,17 +124,17 @@
                         <table class="table align-items-center">
                             <tbody>
                                 <tr>
-                                    <td><i class="fa fa-circle text-white mr-2"></i> Direct</td>
+                                    <td><i class="fa fa-circle text-white mr-2"></i> Cbe Birr</td>
                                     <td>$5856</td>
                                     <td>+55%</td>
                                 </tr>
                                 <tr>
-                                    <td><i class="fa fa-circle text-light-1 mr-2"></i>Affiliate</td>
+                                    <td><i class="fa fa-circle text-light-1 mr-2"></i>Amole Walet</td>
                                     <td>$2602</td>
                                     <td>+25%</td>
                                 </tr>
                                 <tr>
-                                    <td><i class="fa fa-circle text-light-2 mr-2"></i>E-mail</td>
+                                    <td><i class="fa fa-circle text-light-2 mr-2"></i>Hello cash</td>
                                     <td>$1802</td>
                                     <td>+15%</td>
                                 </tr>
@@ -143,7 +142,7 @@
                                     <td><i class="fa fa-circle text-light-3 mr-2"></i>Other</td>
                                     <td>$1105</td>
                                     <td>+5%</td>
-                                </tr>
+                                </tr> 
                             </tbody>
                         </table>
                     </div>
@@ -156,114 +155,57 @@
             <div class="col-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">Recent Order Tables
-                        <div class="card-action">
-                            <div class="dropdown">
-                                <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-                                    <i class="icon-options"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:void();">Action</a>
-                                    <a class="dropdown-item" href="javascript:void();">Another action</a>
-                                    <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void();">Separated link</a>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush table-borderless">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Photo</th>
-                                    <th>Product ID</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
-                                    <th>Shipping</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Iphone 5</td>
-                                    <td><img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"></td>
-                                    <td>#9405822</td>
-                                    <td>$ 1250.00</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <div class="progress shadow" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 90%"></div>
-                                        </div>
-                                    </td>
-                                </tr>
+                        
+<?php if(isset($booking)){ ?>
 
-                                <tr>
-                                    <td>Earphone GL</td>
-                                    <td><img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"></td>
-                                    <td>#9405820</td>
-                                    <td>$ 1500.00</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <div class="progress shadow" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 60%"></div>
-                                        </div>
-                                    </td>
-                                </tr>
+ 
+      <table class="table table-striped" id="mydatatable">
+        <thead>
+          <tr>
+      <th scope="col">ID</th>
+      <th scope="col">User name</th>
+      <th scope="col">Movie</th>
+      <th scope="col">Date</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Joined Date</th>
+      <th scope="col">Edit/Delete</th>
+     
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($booking as $b) : ?>
+            <tr>
+              <td><?= $b['cust_id']; ?></td>
+              <td><?= $b['first_name']; ?></td>
+              <td><?= $b['last_name']; ?></td>
+              <td><?= $b['email']; ?></td>
+              <td><?= $b['phone_no']; ?></td>
+              <td><?= $b['DBO']; ?></td>
+              <td><?= $b['joined_date']; ?></td>
+             
+               
+              <td><a href="<?php echo base_url(); ?>admin/bookingView/<?= $b['cust_id'] ?>"
+               class="btn btn-light btn-round px-5">View</a>
+               <a href="<?php echo base_url(); ?>admin/PDF/<?= $b['cust_id'] ?>"
+                class="btn btn-light btn-round px-5 ml-1">view in PDF</a></td>
 
-                                <tr>
-                                    <td>HD Hand Camera</td>
-                                    <td><img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"></td>
-                                    <td>#9405830</td>
-                                    <td>$ 1400.00</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <div class="progress shadow" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 70%"></div>
-                                        </div>
-                                    </td>
-                                </tr>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+   
+          <?php }else { ?>
+              <div class="card">
+              <div class="card-body">
+             NO Data found!
+              </div>
+          </div>
+        <?php  }?>
 
-                                <tr>
-                                    <td>Clasic Shoes</td>
-                                    <td><img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"></td>
-                                    <td>#9405825</td>
-                                    <td>$ 1200.00</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <div class="progress shadow" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 100%"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Hand Watch</td>
-                                    <td><img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"></td>
-                                    <td>#9405840</td>
-                                    <td>$ 1800.00</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <div class="progress shadow" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 40%"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Clasic Shoes</td>
-                                    <td><img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"></td>
-                                    <td>#9405825</td>
-                                    <td>$ 1200.00</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <div class="progress shadow" style="height: 3px;">
-                                            <div class="progress-bar" role="progressbar" style="width: 100%"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

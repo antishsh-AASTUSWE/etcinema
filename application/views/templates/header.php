@@ -30,6 +30,9 @@
   <link href="<?php echo base_url() ?>assets/css/app-style.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/dataTables/dataTables.css" />
 
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/seat.css" />
+ 
+
 
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foopicker.js"></script>
 
@@ -46,11 +49,12 @@
 
   <!-- Start wrapper-->
   <div id="wrapper">
-
-    <!--Start sidebar-wrapper-->
-    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+  <?php if ($this->session->userdata('role') =='admin') {
+?>
+ <!--admin templet-->
+<div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
-        <a href="index.html">
+      <a href="<?php echo base_url() ?>admin/index">
           <img src="<?php echo base_url() ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
           <h5 class="logo-text">Dashtreme Admin</h5>
         </a>
@@ -58,7 +62,7 @@
       <ul class="sidebar-menu do-nicescrol">
         <li class="sidebar-header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url() ?>admin/dashboard">
+          <a href="<?php echo base_url() ?>admin/index">
             <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
@@ -98,19 +102,83 @@
             <i class="zmdi zmdi-account-box"></i> <span>Users</span>
           </a>
         </li>
-
+        <li>
+          <a href="<?php echo base_url() ?>admin/customer">
+            <i class="zmdi zmdi zmdi-account"></i> <span>Customer</span>
+          </a>
+        </li>
         <li>
           <a href="<?php echo base_url() ?>admin/bookings">
             <i class="zmdi zmdi-assignment"></i></i> <span>Bookings</span>
           </a>
         </li>
-
+        <li>
+          <a href="<?php echo base_url() ?>admin/reports">
+          <i class="zmdi zmdi-file-text"></i></i> <span>Reports</span>
+          </a>
+        </li>
 
       </ul>
 
     </div>
-    <!--End sidebar-wrapper-->
+<?php  
+} elseif ($this->session->userdata('role') =='staff') {?>
+ <!--staff templet-->
+ <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+      <div class="brand-logo">
+      <a href="<?php echo base_url() ?>staff/index">
+          <img src="<?php echo base_url() ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+          <h5 class="logo-text">Dashtreme Admin</h5>
+        </a>
+      </div>
+      <ul class="sidebar-menu do-nicescrol">
+        <li class="sidebar-header">MAIN NAVIGATION</li>
+        <li>
+          <a href="<?php echo base_url() ?>staff/index">
+            <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
 
+        <li>
+          <a href="<?php echo base_url() ?>staff/showtime">
+            <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="<?php echo base_url() ?>staff/movies">
+            <i class="zmdi zmdi-movie"></i> <span>Movies</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="<?php echo base_url() ?>staff/customer">
+            <i class="zmdi zmdi zmdi-account"></i> <span>Customer</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="<?php echo base_url() ?>staff/seat">
+            <i class="zmdi zmdi-seat"></i> <span>Seat</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="<?php echo base_url() ?>staff/advert">
+            <i class="zmdi zmdi-notifications-active"></i> <span>Advert</span>
+          </a>
+        </li>
+
+        
+
+      </ul>
+
+    </div>
+<?php } ?>
+    <!--Start sidebar-wrapper-->
+    
+    <!--End sidebar-wrapper-->
+    
 
     <header class="topbar-nav">
       <nav class="navbar navbar-expand fixed-top">

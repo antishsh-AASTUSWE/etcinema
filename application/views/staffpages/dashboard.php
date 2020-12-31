@@ -62,7 +62,7 @@
                         <div class="card-action">
                         </div>
                     </div>
-                    <div class="card-body">
+                  <div class="card-body">
                     <?Php if(isset($nextMovies)){
                         foreach ($nextMovies as $m) {
                              ?>
