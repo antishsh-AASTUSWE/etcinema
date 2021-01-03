@@ -120,30 +120,36 @@ class Publicpages extends CI_Controller
 	} //end of movie
 
 	//movie seat plan function
-	public function movie_seat_plan()
+	public function movie_seat_plan($id)
 	{
 		if (!file_exists(APPPATH . 'views/publicpages/movie_seat_plan.php')) {
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
+		$data['showtime'] = $this->public_model->get_showtime($id);
 		$this->load->view('publictemplates/header');
-		$this->load->view('publicpages/movie_seat_plan');
+		$this->load->view('publicpages/movie_seat_plan', $data);
 		$this->load->view('publictemplates/footer');
 	} //end of movie seat plan function
 
 	//movie ticket plan function
-	public function movie_ticket_plan()
+	public function movie_ticket_plan($id)
 	{
 		if (!file_exists(APPPATH . 'views/publicpages/movie_ticket_plan.php')) {
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
 		$data['movie_detail'] = $this->public_model->get_movie($id);
+		$data['showtime_detail'] = $this->public_model->get_showtime_bymovieid($id);
+
+		if (empty($data['movie_detail'])) {
+			show_404();
+		}
 		if (empty($data['movie_detail'])) {
 			show_404();
 		}
 		$this->load->view('publictemplates/header');
-		$this->load->view('publicpages/movie_ticket_plan');
+		$this->load->view('publicpages/movie_ticket_plan', $data	);
 		$this->load->view('publictemplates/footer');
 	} //end of movie ticket plan
 }
