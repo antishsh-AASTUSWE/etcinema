@@ -71,10 +71,10 @@
                         <a href="<?php echo base_url() ?>publicpages/contact"<?php if($this->uri->segment(2) === 'contact'  ){echo'class="active"';} ?>>contact</a>
                     </li>
                     <li class="header-button pr-0">
-                        <a href="sign-in.html">Sign In</a>
+                        <a href="<?php echo base_url() ?>login/customer_signin">Sign In</a>
                     </li>
                     <li class="header-button pr-0">
-                        <a href="sign-up.html">join us</a>
+                        <a href="<?php echo base_url() ?>login/customer_signup">join us</a>
                     </li>
                 </ul>
                 <div class="header-bar d-lg-none">

@@ -74,4 +74,34 @@ class Login extends CI_Controller
 
 		redirect('login/authenticate_login');
 	}
+
+	//customer login function
+	public function customer_signin()
+	{
+		if (!file_exists(APPPATH . 'views/publicpages/sign_in.php')) {
+			// Whoops, we don't have a page for that!
+			show_404();
+		}
+
+
+
+			$this->load->view('logintemplates/publicheader');
+			$this->load->view('publicpages/sign_in');
+			$this->load->view('logintemplates/public_login_footer');
+	}//end of customer sign_in
+
+	//customer sign up function
+	public function customer_signup()
+	{
+		if (!file_exists(APPPATH . 'views/publicpages/sign_up.php')) {
+			// Whoops, we don't have a page for that!
+			show_404();
+		}
+
+
+
+			$this->load->view('logintemplates/publicheader');
+			$this->load->view('publicpages/sign_up');
+			$this->load->view('logintemplates/public_login_footer');
+	}//end of customer sign_in
 }
