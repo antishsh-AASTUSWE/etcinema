@@ -1,0 +1,5 @@
+client id
+588500391576-pd6da051ppo1s3mp7jdpo5r6ci9tmgkp.apps.googleusercontent.com
+
+client secreet
+oIEC4qoh1bUhbYdZs0-zYHGF
