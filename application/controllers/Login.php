@@ -82,14 +82,58 @@ class Login extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
+		include_once APPPATH . 'libraries/vendor/autoload.php';
+		$google_client = new Google_client();
+		$google_client->setClientid('588500391576-pd6da051ppo1s3mp7jdpo5r6ci9tmgkp.apps.googleusercontent.com');
+		$google_client->setClientSecret('oIEC4qoh1bUhbYdZs0-zYHGF');
 
+		$google_client->setRedirectUri('http://localhost:8888/etcinema/login/customer_signin');
+		$google_client->addScope('email');
+		$google_client->addScope('profile');
 
+		if (isset($_GET["code"])) {
+			$token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+			if (!isset($token["error"])) {
+				$google_client->setAccessToken($token['access_token']);
+				$this->session->userdata('access_token', $token['access_token']);
+				$google_service = new Google_Service_Oauth2($google_client);
+				$data = $google_service->userinfo->get();
+				$current_datetime = date('Y-m-d H:i:s');
+				if ($this->login_model->is_already_register($data['id'])) {
+					//update data function
+					$user_data = array(
+						'first_name' => $data['given_name'],
+						'last_name' => $data['family_name'],
+						'Email_address' => $data['email'],
+						'profile_picture' => $data['picture'],
+						'updated_at' => $current_datetime
+					);
+					$this->login_model->update_user_data($user_data, $data['id']);
+				} else {
+					//insert data
+					$user_data = array(
+						'login_oauth_uid' => $data['id'],
+						'first_name' => $data['given_name'],
+						'last_name' => $data['family_name'],
+						'Email_address' => $data['email'],
+						'profile_picture' => $data['picture'],
 
-			$this->load->view('logintemplates/publicheader');
-			$this->load->view('publicpages/sign_in');
-			$this->load->view('logintemplates/public_login_footer');
-	}//end of customer sign_in
+					);
+					$this->login_model->insert_user_data($user_data);
+				}
+				$this->session->userdata('user_data', $user_data);
+			}
+		}
+		if (!$this->session->userdata('access_token')) {
+			$login_button = $google_client->createAuthUrl();
+		}
 
+		$data['login'] = $login_button;
+		$this->load->view('logintemplates/publicheader');
+		$this->load->view('publicpages/sign_in', $data);
+		$this->load->view('logintemplates/public_login_footer');
+	} //end of customer sign_in
+	
 	//customer sign up function
 	public function customer_signup()
 	{
@@ -100,8 +144,16 @@ class Login extends CI_Controller
 
 
 
-			$this->load->view('logintemplates/publicheader');
-			$this->load->view('publicpages/sign_up');
-			$this->load->view('logintemplates/public_login_footer');
-	}//end of customer sign_in
+		$this->load->view('logintemplates/publicheader');
+		$this->load->view('publicpages/sign_up');
+		$this->load->view('logintemplates/public_login_footer');
+	} //end of customer sign_in
+
+	//customer log output
+	public function customer_logout()
+	{
+		$this->session->unset_userdata('access_token');
+		$this->session->unset_userdata('user_data');
+		redirect('login/customer_signin');
+	}
 }

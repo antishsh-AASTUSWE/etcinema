@@ -43,7 +43,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#0">
+                            <a href="<?php echo $login; ?>">
                                 <i class="fab fa-google"></i>
                             </a>
                         </li>
