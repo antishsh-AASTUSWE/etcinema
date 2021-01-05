@@ -126,14 +126,16 @@ class Login extends CI_Controller
 		}
 		if (!$this->session->userdata('access_token')) {
 			$login_button = $google_client->createAuthUrl();
+			$data['login'] = $login_button;
+			$this->load->view('logintemplates/publicheader');
+			$this->load->view('publicpages/sign_in', $data);
+			$this->load->view('logintemplates/public_login_footer');
 		}
-
-		$data['login'] = $login_button;
 		$this->load->view('logintemplates/publicheader');
-		$this->load->view('publicpages/sign_in', $data);
-		$this->load->view('logintemplates/public_login_footer');
+			$this->load->view('publicpages/sign_in');
+			$this->load->view('logintemplates/public_login_footer');
 	} //end of customer sign_in
-	
+
 	//customer sign up function
 	public function customer_signup()
 	{
