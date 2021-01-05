@@ -15,7 +15,7 @@
 <footer class="footer">
     <div class="container">
         <div class="text-center">
-            Copyright © 2018 Dashtreme Admin
+        &copy;<?php echo date("Y"); ?>
         </div>
     </div>
 </footer>

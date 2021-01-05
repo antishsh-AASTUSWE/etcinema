@@ -53,7 +53,7 @@
         <div class="footer-bottom">
             <div class="footer-bottom-area">
                 <div class="left">
-                    <p>Copyright © 2020.All Rights Reserved By <a href="#0">Boleto </a></p>
+                    <p>&copy;<?php echo date("Y"); ?>.All Rights Reserved By <a href="<?php echo base_url() ?>publicpages">Etcinema </a></p>
                 </div>
                 <ul class="links">
                     <li>
