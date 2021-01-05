@@ -1,11 +1,11 @@
 <!-- ==========Banner-Section========== -->
-<section class="details-banner hero-area bg_img seat-plan-banner" data-background="<?php echo base_url() ?>publicassets/images/banner/banner04.jpg">
+<section class="details-banner hero-area bg_img seat-plan-banner" data-background="<?php echo base_url() ?>assets/poster/<?= $showtime['mov_poster']; ?>">
     <div class="container">
         <div class="details-banner-wrapper">
             <div class="details-banner-content style-two">
-                <h3 class="title">Venus</h3>
+                <h3 class="title"><?= $showtime['mov_name']; ?> </h3>
                 <div class="tags">
-                    <a href="#0">City Walk</a>
+                    <a href="#0"> <?= $showtime['cinema_name']; ?> </a>
                     <a href="#0">English - 2D</a>
                 </div>
             </div>
@@ -19,18 +19,15 @@
     <div class="container">
         <div class="page-title-area">
             <div class="item md-order-1">
-                <a href="movie-ticket-plan.html" class="custom-button back-button">
+                <a href="<?php echo base_url(); ?>publicpages/movie_ticket_plan/<?= $showtime['movie_id'] ?>" class="custom-button back-button">
                     <i class="flaticon-double-right-arrows-angles"></i>back
                 </a>
+
             </div>
             <div class="item date-item">
-                <span class="date">MON, SEP 09 2020</span>
-                <select class="select-bar">
-                    <option value="sc1">09:40</option>
-                    <option value="sc2">13:45</option>
-                    <option value="sc3">15:45</option>
-                    <option value="sc4">19:50</option>
-                </select>
+                <span class="date "><?= $showtime['show_date']; ?></span>
+                <span class="date "><?= $showtime['show_time']; ?></span>
+
             </div>
             <div class="item">
                 <h5 class="title">05:00</h5>
