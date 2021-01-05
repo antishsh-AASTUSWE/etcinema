@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Etcinema Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+  <title>Etcinema Admin</title>
   <!-- loader-->
   <!-- <link href="<?php echo base_url() ?>assets/css/pace.min.css" rel="stylesheet"/>
   <script src="<?php echo base_url() ?>assets/js/pace.min.js"></script> -->
@@ -50,7 +50,7 @@
   <!--Start sidebar-wrapper-->
   <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
     <div class="brand-logo">
-      <a href="index.html">
+      <a href="<?php echo base_url() ?>admin">
         <img src="<?php echo base_url() ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
         <h5 class="logo-text">Etcinema Admin</h5>
       </a>
