@@ -60,6 +60,7 @@ class Public_model extends CI_Model
         $query = $this->db->get_where('ratings', array('rating_id' => $id));
         return $query->row_array();
     } //end og get ratting
+    
     //get showtime by movie id function
     public function get_showtime_bymovieid($id = false)
     {
