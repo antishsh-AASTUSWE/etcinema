@@ -52,7 +52,7 @@
         <div class="container">
             <div class="header-wrapper">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="<?php echo base_url() ?>publicpages">
                         <img src="<?php echo base_url() ?>publicassets/images/logo/logo.png" alt="logo">
                     </a>
                 </div>

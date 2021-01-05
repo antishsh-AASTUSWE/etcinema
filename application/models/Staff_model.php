@@ -353,6 +353,25 @@ public function check_Password($password)
 
         return $query->result_array();
     }
+    public function addSeat(){
+        
+        $data= array(
+            'col'=>$this->input->post('col'), 
+            'row'=>$this->input->post('row'),             
+                                 
+      );
+      return $this->db->insert('seat', $data);
+       
+    }
+    public function seatLayout(){
+
+        $this->db->select('*');
+        $this->db->from('seat');
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+		
     
 }
 

@@ -3,7 +3,11 @@
     <div class="card-title">Add Movie</div>
     <hr>
 
+<<<<<<< HEAD
+   
+=======
     <?php echo validation_errors(); ?>
+>>>>>>> 62f719b6c2bb4aeaa683a900c063b5c67ab22f6b
     <?php echo form_open_multipart('admin/add_movie'); ?>
     <div class="form-group">
       <label for="input-6">Title</label>
@@ -16,7 +20,7 @@
       <label for="input-6">Movie Plot</label>
       <input type="text" class="form-control form-control" name="plot" id="input-6" placeholder="Enter Movie Plot">
       <div class="text-danger">
-    <?php echo form_error('mov_plot'); ?>
+    <?php echo form_error('plot'); ?>
     </div> 
     </div>
 
@@ -54,7 +58,7 @@
       <label for="exampleInputEmail1">Running Time</label>
       <input type="text" class="form-control" name="runningtime">
       <div class="text-danger">
-    <?php echo form_error('runnungtime'); ?>
+    <?php echo form_error('runningtime'); ?>
     </div> 
     </div>
     <div class="form-group">

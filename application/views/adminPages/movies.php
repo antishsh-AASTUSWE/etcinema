@@ -1,46 +1,62 @@
+
 <div class="card">
   <div class="card-body">
-
-    <!-- Button trigger modal -->
-    <a href="<?php echo base_url() ?>admin/add_movie" class="btn btn-primary">
-      <i class="zmdi zmdi-plus-circle"></i> <span>Add Movie</span>
-    </a>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-plus"></i> <a href="<?php echo base_url() ?>admin/add_movie">Add Movie</a></button>
+        </div>
+      </div>
   </div>
 </div>
 <div class="card">
+
   <div class="card-body">
-    <div class="card-title">Round Vertical Form</div>
-    <hr>
-    <form>
-      <div class="form-group">
-        <label for="input-6">Name</label>
-        <input type="text" class="form-control form-control-rounded" id="input-6" placeholder="Enter Your Name">
-      </div>
-      <div class="form-group">
-        <label for="input-7">Email</label>
-        <input type="text" class="form-control form-control-rounded" id="input-7" placeholder="Enter Your Email Address">
-      </div>
-      <div class="form-group">
-        <label for="input-8">Mobile</label>
-        <input type="text" class="form-control form-control-rounded" id="input-8" placeholder="Enter Your Mobile Number">
-      </div>
-      <div class="form-group">
-        <label for="input-9">Password</label>
-        <input type="text" class="form-control form-control-rounded" id="input-9" placeholder="Enter Password">
-      </div>
-      <div class="form-group">
-        <label for="input-10">Confirm Password</label>
-        <input type="text" class="form-control form-control-rounded" id="input-10" placeholder="Confirm Password">
-      </div>
-      <div class="form-group py-2">
-        <div class="icheck-material-white">
-          <input type="checkbox" id="user-checkbox2" checked="" />
-          <label for="user-checkbox2">I Agree Terms & Conditions</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Register</button>
-      </div>
-    </form>
+    <h5 class="card-title">Movie List</h5>
+    <div class="table-responsive">
+      <table class="table table-striped" id="mydatatable">
+        <thead>
+          <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Movie Title</th>
+      <th scope="col">Movie Poster</th>
+      <th scope="col">Movie Rating</th>
+      <th scope="col">trailor</th>
+      <th scope="col">Movie Gener</th>
+      <th scope="col">Movie Plot</th>
+      <th scope="col">running time</th>
+      <th scope="col">realse date</th>
+      <th scope="col">language</th>
+      <th scope="col">staring</th>
+      <th scope="col">subtitle</th>
+      <th scope="col">Edit/Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($movie as $m) : ?>
+            <tr>
+              <td><?= $m['movie_id']; ?></td>
+              <td><?= $m['mov_name']; ?></td>
+              <td><img src="./.assets/poster/<?= $m['mov_poster']; ?>." alt='<?= $m['mov_poster']; ?>' 
+              width='100' height='100'></td>
+              <td><?= $m['rating']; ?></td>
+              <td><?= $m['mov_trailor']; ?></td>
+              <td><?= $m['gener']; ?></td>
+              <td><?= word_limiter($m['mov_plot'],6); ?></td>
+              <td><?= $m['mov_running_time']; ?></td>
+              <td><?= $m['mov_realse_date']; ?></td>
+              <td><?= $m['mov_language']; ?></td>
+              <td><?= $m['mov_starring']; ?></td>
+              <td><?= $m['mov_subtitle']; ?></td>
+
+             
+               
+              <td><a href="<?php echo base_url(); ?>admin/edit_movie/<?= $m['movie_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_movie/<?= $m['movie_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
+
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

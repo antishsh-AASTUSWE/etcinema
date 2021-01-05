@@ -3,69 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class admin_model extends CI_Model
 {
-
-
-    //add movie function
-    public function add_movie($post_image)
-    {
-
-        $data = array(
-            'mov_name' => $this->input->post('title'),
-            'mov_poster' => $post_image,
-            'mov_ratting' => $this->input->post('rating_id'),
-            'mov_trailor' => $this->input->post('trailor'),
-            'mov_gener' => $this->input->post('gener_id'),
-            'mov_plot' => $this->input->post('plot'),
-            'mov_running_time' => $this->input->post('runningtime'),
-            'mov_realse_date' => $this->input->post('realsedate'),
-            'mov_language' => $this->input->post('language'),
-
-            'mov_starring' => $this->input->post('staring'),
-            'mov_synopsis' => $this->input->post('mov_synopsis')
-        );
-
-
-        return $this->db->insert('movie', $data);
-    } //end of add movie
-
-    //add cinema function
-    public function add_cinema()
+    public function search_rating()
     {
         $data = array(
-            'cinema_name' => $this->input->post('cinema_name')
-
+            'Search' => $this->input->post('Search')
         );
 
-        return $this->db->insert('cinema', $data);
-    } //end of add cinema
+        $query = $this->db->like('rating_id', $data['Search'])
+            ->or_like('rating', $data['Search'])
+            ->or_like('description',  $data['Search'])
+            ->get('ratings');
 
-    //check cinema exist function
-
-    public function check_cinema_exists($cinema)
-    {
-        $query = $this->db->get_where('cinema', array('cinema_name' => $cinema));
-
-        if (empty($query->row_array())) {
-            return true;
-        } else {
-            return false;
-        }
-    } //end of check cinema
-
-
-    //Get gener Function
-    public function get_gener($id = false)
-    {
-        if ($id === false) {
-            $query =  $this->db->get('geners');
-            return $query->result_array();
-        }
-        $query = $this->db->get_where('geners', array('gener_id' => $id));
-        return $query->row_array();
-    } //end of gett gener
-
-
-    //Get Ratting function
+        return $query->result_array();
+    } //end of search rating
 
     public function get_rating($id = false)
     {
@@ -75,39 +25,7 @@ class admin_model extends CI_Model
         }
         $query = $this->db->get_where('ratings', array('rating_id' => $id));
         return $query->row_array();
-    }//end og get ratting
-
-
-    //Get Cinema Function
-    public function get_cinema($id = false)
-    {
-        if ($id === false) {
-            $query =  $this->db->get('cinema');
-            return $query->result_array();
-        }
-        $query = $this->db->get_where('cinema', array('cinema_id' => $id));
-        return $query->row_array();
-    } //end of gett cinema
-
-    //update cinema function
-    public function update_cinema()
-    {
-        $data = array(
-
-            'cinema_name' => $this->input->post('cinema_name')
-        );
-        $this->db->where('cinema_id', $this->input->post('id'));
-        return $this->db->update('cinema', $data);
-    } //end of update cinema
-
-    //delete cinema
-    public function delete_cinema($id)
-    {
-        $this->db->where('cinema_id', $id);
-        $this->db->delete('cinema');
-        return true;
-    } //end of delete cinema
-    //add rating function
+    }
     public function add_rating()
     {
 
@@ -149,7 +67,282 @@ class admin_model extends CI_Model
         }
     } //end of check rating exists
 
-    //add gener function
+
+     //search cinema function
+    public function search_cinema()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('cinema_id', $data['Search'])
+            ->or_like('cinema_name', $data['Search'])
+            ->get('cinema');
+
+        return $query->result_array();
+    } //end of search cinema
+    
+    //GET cinema function
+    public function get_cinema($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('cinema');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('cinema', array('cinema_id' => $id));
+        return $query->row_array();
+    } //end of gett cinema
+
+    //add cinema function
+    public function add_cinema()
+    {
+        $data = array(
+            'cinema_name' => $this->input->post('cinema_name')
+
+        );
+
+        return $this->db->insert('cinema', $data);
+    } //end of add cinema
+
+     //update cinema function
+    public function update_cinema()
+    {
+        $data = array(
+
+            'cinema_name' => $this->input->post('cinema_name')
+        );
+        $this->db->where('cinema_id', $this->input->post('id'));
+        return $this->db->update('cinema', $data);
+    } //end of update cinema
+
+        //delete cinema
+    public function delete_cinema($id)
+    {
+        $this->db->where('cinema_id', $id);
+        $this->db->delete('cinema');
+        return true;
+    } //end of delete cinema
+
+    //check cinema exist function
+
+    public function check_cinema_exists($cinema)
+    {
+        $query = $this->db->get_where('cinema', array('cinema_name' => $cinema));
+
+        if (empty($query->row_array())) {
+            return true;
+        } else {
+            return false;
+        }
+    } //end of check cinema
+    
+    public function search_showtime(){
+        $data= array(
+			'Search'=>$this->input->post('Search'));
+
+            $this->db->select('*');
+            $this->db->from('showtime');
+            $this->db->join('movie', 'showtime.mov_id=movie.movie_id');
+            $this->db->join('cinema', 'showtime.cinema_id=cinema.cinema_id');
+            $this->db->like('show_id', $data['Search'])
+            ->or_like('mov_name', $data['Search'])
+            ->or_like('cinema_name',  $data['Search'])
+            ->or_like('show_date',  $data['Search'])
+            ->or_like('show_time',  $data['Search']);
+            $this->db->order_by('show_id', 'ASC');
+            $query = $this->db->get();
+                
+		  return $query->result_array();
+    }
+    public function get_showtime(){
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie','movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema','cinema.cinema_id=showtime.cinema_id');
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    public function getShowRecord($id){
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie','showtime.mov_id=movie.movie_id');
+        $this->db->join('cinema','showtime.cinema_id=cinema.cinema_id');
+        $this->db->where('show_id', $id);
+        $query = $this->db->get();
+    
+           
+            return $query->result_array();
+    }
+    public function add_showtime()
+    {
+
+        $data = array(
+        'show_date' => $this->input->post('date'),
+        'show_time' => $this->input->post('time'),
+        'mov_id'=>$this->input->post('movie'),
+        'cinema_id'=>$this->input->post('cinema'),
+        );
+
+
+        return $this->db->insert('showtime', $data);
+    }
+    public function update_showtime($id)
+    {
+
+        $data = array(
+        'show_date' => $this->input->post('date'),
+        'show_time' => $this->input->post('time'),
+        'mov_id'=>$this->input->post('movie'),
+        'cinema_id'=>$this->input->post('cinema'),
+        );
+
+        return $this->db->where('show_id',$id)->update('showtime', $data);
+        
+    }
+    public function deleteShowtime($id){
+
+	    $this->db->where('show_id', $id);
+        $this->db->delete('showtime');
+        return true;  
+     
+ }
+  
+    
+ public function search_movie(){
+    $data= array(
+        'Search'=>$this->input->post('Search'));
+
+        $query = $this->db->like('movie_id', $data['Search'])
+        ->or_like('mov_name', $data['Search'])
+        ->or_like('mov_gener',  $data['Search'])
+        ->or_like('mov_realse_date',  $data['Search'])
+        ->or_like('mov_language',  $data['Search'])
+        ->or_like('mov_starring',  $data['Search'])
+        ->or_like('mov_subtitle',  $data['Search'])
+        ->or_like('mov_ratting',  $data['Search'])
+        ->join('geners','movie.mov_gener=geners.gener_id')
+        ->join('ratings','movie.mov_ratting=ratings.rating_id')
+           ->get('movie');
+            
+      return $query->result_array();
+}
+public function get_movie(){
+
+    $this->db->select('*');
+    $this->db->from('movie');
+    $this->db->join('geners','movie.mov_gener=geners.gener_id');
+    $this->db->join('ratings','movie.mov_ratting=ratings.rating_id');
+    $query = $this->db->get();
+    
+    return $query->result_array();
+}
+
+public function add_movie($post_image)
+{
+
+    $data = array(
+        'mov_name' => $this->input->post('title'),
+        'mov_poster' => $post_image,
+        'mov_ratting' => $this->input->post('rating_id'),
+        'mov_trailor' => $this->input->post('trailor'),
+        'mov_gener' => $this->input->post('gener_id'),
+        'mov_plot' => $this->input->post('plot'),
+        'mov_running_time' => $this->input->post('runningtime'),
+        'mov_realse_date' => $this->input->post('realsedate'),
+        'mov_language' => $this->input->post('language'),
+
+        'mov_starring' => $this->input->post('staring'),
+        'mov_subtitle' => $this->input->post('subtitle')
+    );
+
+
+    return $this->db->insert('movie', $data);
+}
+
+public function getMovieRecord($id){
+    $this->db->select('*');
+    $this->db->from('movie');
+    $this->db->join('geners','movie.mov_gener=geners.gener_id');
+    $this->db->join('ratings','movie.mov_ratting=ratings.rating_id');
+    $this->db->where('movie_id',$id);
+    //$query = $this->db->get_where('movie',array('movie_id' => $id));
+    $query = $this->db->get();
+    return $query->result_array();
+}
+public function update_movie($post_image,$id)
+    {
+
+        $data = array(
+            'mov_name' => $this->input->post('title'),
+            'mov_poster' => $post_image,
+            'mov_ratting' => $this->input->post('rating_id'),
+            'mov_trailor' => $this->input->post('trailor'),
+            'mov_gener' => $this->input->post('gener_id'),
+            'mov_plot' => $this->input->post('plot'),
+            'mov_running_time' => $this->input->post('runningtime'),
+            'mov_realse_date' => $this->input->post('realsedate'),
+            'mov_language' => $this->input->post('language'),
+
+            'mov_starring' => $this->input->post('staring'),
+            'mov_subtitle' => $this->input->post('subtitle')
+        );
+
+        return $this->db->where('movie_id',$id)->update('movie', $data);
+        
+    }
+public function deleteMovie($id){
+
+    $this->db->where('movie_id', $id);
+    $this->db->delete('movie');
+    return true;
+
+ 
+}
+public function check_movie_exists($movie)
+{
+    $query = $this->db->get_where('movie', array('mov_name' => $movie));
+
+    if (empty($query->row_array())) {
+        return true;
+    } else {
+        return false;
+    }
+} //end of check cinema
+  
+   
+    
+
+
+
+
+
+
+
+
+public function search_gener()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('gener_id', $data['Search'])
+            ->or_like('gener', $data['Search'])
+            ->get('geners');
+
+        return $query->result_array();
+    } //end of search user
+
+    public function get_gener($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('geners');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('geners', array('gener_id' => $id));
+        return $query->row_array();
+    } //end of gett gener
+
     public function add_gener()
     {
         $data = array(
@@ -188,8 +381,24 @@ class admin_model extends CI_Model
             return false;
         }
     } //end of check gener exists
+    
 
-    //user register function
+    public function search_users()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('user_id', $data['Search'])
+            ->or_like('name', $data['Search'])
+            ->or_like('email', $data['Search'])
+            ->or_like('username', $data['Search'])
+            ->or_like('role',  $data['Search'])
+            ->get('user');
+
+        return $query->result_array();
+    } //end of search user
+
     public function register($enc_password)
     {
         $data = array(
@@ -215,6 +424,38 @@ class admin_model extends CI_Model
         return $query->row_array();
     } //end of gett gener
 
+    public function update_user()
+    {
+        $enc_password=$this->input->post('password');
+        $data = array(
+            'name' => $this->input->post('name'),
+            'email' => $this->input->post('email'),
+            'username' => $this->input->post('username'),
+            'password' => $enc_password,
+            'role' => $this->input->post('role'),
+            'status' => $this->input->post('status')
+        );
+
+        $this->db->where('user_id', $this->input->post('id'));
+        return $this->db->update('user', $data);
+    } 
+    public function deleteUser($id)
+    {
+        $this->db->where('user_id', $id);
+        $this->db->delete('user');
+        return true;
+    }
+    public function check_password_exists($password)
+    {
+        $query = $this->db->get_where('user', array('password' => $password));
+
+        if (empty($query->row_array())) {
+            return true;
+        } else {
+            return false;
+        }
+    } //end of checkusername exist
+
     //check_username_exists() function
     public function check_username_exists($username)
     {
@@ -239,143 +480,162 @@ class admin_model extends CI_Model
         }
     } //end of check email exist
 
-    //search rating function
-    public function search_rating()
-    {
-        $data = array(
-            'Search' => $this->input->post('Search')
-        );
+    public function search_booking(){
+        $data= array(
+            'Search'=>$this->input->post('Search'));
+            //booking_id	show_id	user_id	seat_id
 
-        $query = $this->db->like('rating_id', $data['Search'])
-            ->or_like('rating', $data['Search'])
-            ->or_like('description',  $data['Search'])
-            ->get('ratings');
-
-        return $query->result_array();
-    } //end of search rating
-
-    //serch user function
-    public function search_users()
-    {
-        $data = array(
-            'Search' => $this->input->post('Search')
-        );
-
-        $query = $this->db->like('user_id', $data['Search'])
-            ->or_like('name', $data['Search'])
-            ->or_like('email', $data['Search'])
-            ->or_like('username', $data['Search'])
-            ->or_like('role',  $data['Search'])
-            ->get('user');
-
-        return $query->result_array();
-    } //end of search user
-
-    //search booking function
-    public function search_booking()
-    {
-        $data = array(
-            'Search' => $this->input->post('Search')
-        );
-
-        $query = $this->db->like('rating_id', $data['Search'])
-            ->or_like('rating', $data['Search'])
-            ->or_like('description',  $data['Search'])
-            ->get('booking_info');
-
-        return $query->result_array();
-    } //end of search user function
-
-    //searche gener function
-    public function search_gener()
-    {
-        $data = array(
-            'Search' => $this->input->post('Search')
-        );
-
-        $query = $this->db->like('gener_id', $data['Search'])
-            ->or_like('gener', $data['Search'])
-            ->get('geners');
-
-
-        return $query->result_array();
-    } //end of search gener
-
-    //search cinema function
-    public function search_cinema()
-    {
-        $data = array(
-            'Search' => $this->input->post('Search')
-        );
-
-        $query = $this->db->like('cinema_id', $data['Search'])
-            ->or_like('cinema_name', $data['Search'])
-            ->get('cinema');
-
-        return $query->result_array();
-    } //end of search cinema
-
-    //search showtime function
-    public function search_showtime()
-    {
-        $data = array(
-            'Search' => $this->input->post('Search')
-        );
-
-        $this->db->select('*');
-        $this->db->from('showtime');
-        $this->db->join('movie', 'showtime.mov_id=movie.movie_id');
-        $this->db->join('cinema', 'showtime.cinema_id=cinema.cinema_id');
-        $this->db->like('show_id', $data['Search'])
-            ->or_like('mov_name', $data['Search'])
-            ->or_like('cinema_name',  $data['Search'])
-            ->or_like('show_date',  $data['Search'])
-            ->or_like('show_time',  $data['Search'])
-            ->or_like('Price',  $data['Search']);
-        $this->db->order_by('show_id', 'ASC');
-        $query = $this->db->get();
-
-        return $query->result_array();
-    } //end of search showtime
-
-    //search movie function
-    public function search_movie()
-    {
-        $data = array(
-            'Search' => $this->input->post('Search')
-        );
-
-        $query = $this->db->like('movie_id', $data['Search'])
-            ->or_like('mov_name', $data['Search'])
-            ->or_like('mov_gener',  $data['Search'])
-            ->or_like('mov_realse_date',  $data['Search'])
-            ->or_like('mov_language',  $data['Search'])
-            ->or_like('mov_starring',  $data['Search'])
-            ->or_like('mov_subtitle',  $data['Search'])
-            ->or_like('mov_ratting',  $data['Search'])
-            ->get('movie');
-
-        return $query->result_array();
-    } //end of search movie
-    public function get_movie($id = false)
-    {
-        if ($id === false) {
-            $query = $this->db->get("movie");
-            return $query->result_array();
-        }
-        $query = $this->db->get_where('movie', array('movie_id' => $id));
-        return $query->row_array();
+            $this->db->select('*');
+            $this->db->from('bookinf_info');
+            $this->db->join('customer', 'customer.cust_id=bookinf_info.user_id');
+            $this->db->join('showtime', 'showtime.show_id=bookinf_info.show_id');
+            $this->db->like('booking_id', $data['Search'])
+            ->or_like('show_id', $data['Search'])
+            ->or_like('user_id',  $data['Search'])
+            ->or_like('seat_id',  $data['Search']);
+            $this->db->order_by('booking_id', 'ASC');
+            $query = $this->db->get();
+                
+          return $query->result_array();
     }
-     
-    //get show time
-    public function get_showtime(){
+    public function get_booking(){
         $this->db->select('*');
-        $this->db->from('showtime');
-        $this->db->join('movie','movie.movie_id=showtime.mov_id');
-        $this->db->join('cinema','cinema.cinema_id=showtime.cinema_id');
+        $this->db->from('bookinf_info');
+        $this->db->join('customer', 'customer.cust_id=bookinf_info.user_id');
+        $this->db->join('showtime', 'showtime.show_id=bookinf_info.show_id');
+        
         $query = $this->db->get();
         
         return $query->result_array();
-    }//end of show time
+    }
+    public function get_customer(){
+        $this->db->select('*');
+        $this->db->from('customer');
+        
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    public function getCustomerRecord($id){
+        $this->db->select('*');
+        $this->db->from('customer');
+        
+        $this->db->where('cust_id', $id);
+        $query = $this->db->get();
     
+           
+            return $query->result_array();
+    }
+    public function add_customer()
+    {
+        $data= array(
+            'first_name'=>$this->input->post('fname'), 
+            'last_name'=>$this->input->post('lname'),             
+            'email'=>$this->input->post('email'),
+            'phone_no'=>$this->input->post('phone'),
+            'DBO'=>$this->input->post('date_of_birth'),
+                       
+      );
+      
+      $data['password'] = sha1($this->input->post('password'));
+    
+    
+        return $this->db->insert('customer', $data);
+    }
+    public function update_customer($id)
+    {
+    
+        $data= array(
+            'first_name'=>$this->input->post('fname'), 
+            'last_name'=>$this->input->post('lname'),             
+            'email'=>$this->input->post('email'),
+            'phone_no'=>$this->input->post('phone'),
+            'DBO'=>$this->input->post('date_of_birth'),
+                       
+      );
+      
+      $data['password'] = sha1($this->input->post('new_password'));
+    
+        return $this->db->where('cust_id',$id)->update('customer', $data);
+        
+    }
+    public function deleteCustomer($id){
+    
+        $this->db->where('cust_id', $id);
+        $this->db->delete('customer');
+        return true;
+    
+     
+    }
+    
+    public function check_Password($password)
+        {
+            $query = $this->db->get_where('customer', array('password' => $password));
+    
+            if(empty($query->row_array()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public function check_email($email)
+        {
+            $query = $this->db->get_where('customer', array('email' => $email));
+    
+            if(empty($query->row_array()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public function check_phone($phone)
+        {
+            $query = $this->db->get_where('customer', array('phone_no' => $phone));
+    
+            if(empty($query->row_array()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public function countCustomer(){
+
+            $this->db->select('*');
+            $this->db->from('customer');
+            $this->db->like('joined_date', date('y-m-d'));
+            //$this->db->where('joined_date', date('y-m-d'));
+            $query = $this->db->get();
+    
+            return $query->num_rows();
+        }
+        public function countUser(){
+
+            $this->db->select('*');
+            $this->db->from('user');
+           // $this->db->like('created_at', date('y-m-d'));
+            //$this->db->where('joined_date', date('y-m-d'));
+            $query = $this->db->get();
+    
+            return $query->num_rows();
+        }
+        public function totalBooking(){
+
+            $this->db->select('*');
+            $this->db->from('bookinf_info');
+           // $this->db->like('created_at', date('y-m-d'));
+            //$this->db->where('joined_date', date('y-m-d'));
+            $query = $this->db->get();
+    
+            return $query->num_rows();
+        }
+        
 }
