@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashtreme Admin -</title>
+    <title>Etcinema Admin -</title>
 
     <!--favicon-->
     <link rel="icon" href="<?php echo base_url() ?>assets/images/favicon.ico" type="image/x-icon">
@@ -23,5 +23,3 @@
 </head>
 
 <body class="bg-theme bg-theme8">
-
-    

@@ -19,7 +19,7 @@
 
     <link rel="shortcut icon" href="<?php echo base_url() ?>publicassets/images/favicon.png" type="image/x-icon">
 
-    <title>Boleto - Online Ticket Booking Website HTML Template</title>
+    <title>Etcinema - Online Ticket Booking Website HTML Template</title>
 
 
 </head>

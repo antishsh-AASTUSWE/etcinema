@@ -15,7 +15,7 @@
 <footer class="footer">
     <div class="container">
         <div class="text-center">
-            Copyright © 2018 Dashtreme Admin
+            Copyright © 2018 Etcinema Admin
         </div>
     </div>
 </footer>
@@ -23,11 +23,11 @@
 
 
 <script type="text/javascript" charset="utf8" src="<?php echo base_url() ?>assets/DataTables/datatables.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#table_id").DataTable();
-        });
-    </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#table_id").DataTable();
+    });
+</script>
 </div>
 <!--End wrapper-->
 <!--foo date picker-->

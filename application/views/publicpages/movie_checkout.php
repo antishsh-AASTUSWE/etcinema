@@ -48,7 +48,7 @@
             <div class="col-lg-8">
                 <div class="checkout-widget d-flex flex-wrap align-items-center justify-cotent-between">
                     <div class="title-area">
-                        <h5 class="title">Already a Boleto Member?</h5>
+                        <h5 class="title">Already a Etcinema Member?</h5>
                         <p>Sign in to earn points and make booking easier!</p>
                     </div>
                     <a href="#0" class="sign-in-area">
@@ -130,7 +130,7 @@
                             <input id="card5" type="checkbox" checked>
                             <label for="card5">
                                 <span class="title">QuickPay</span>
-                                <span class="info">Save this card information to my Boleto account and make faster payments.</span>
+                                <span class="info">Save this card information to my Etcinema account and make faster payments.</span>
                             </label>
                         </div>
                         <div class="form-group">
