@@ -23,7 +23,7 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
-    <title>Boleto - Online Ticket Booking Website HTML Template</title>
+    <title>Etcinema - Online Ticket Booking Website HTML Template</title>
 
 
 </head>
@@ -58,17 +58,25 @@
                 </div>
                 <ul class="menu">
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages" <?php if($this->uri->segment(2) === null ){echo'class="active"';} ?>>Home</a>
+                        <a href="<?php echo base_url() ?>publicpages" <?php if ($this->uri->segment(2) === null) {
+                                                                            echo 'class="active"';
+                                                                        } ?>>Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/movie"<?php if($this->uri->segment(2) === 'movie'  ){echo'class="active"';} ?>>movies</a>
+                        <a href="<?php echo base_url() ?>publicpages/movie" <?php if ($this->uri->segment(2) === 'movie') {
+                                                                                echo 'class="active"';
+                                                                            } ?>>movies</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/about"<?php if($this->uri->segment(2) === 'about'  ){echo'class="active"';} ?>>About Us</a>
+                        <a href="<?php echo base_url() ?>publicpages/about" <?php if ($this->uri->segment(2) === 'about') {
+                                                                                echo 'class="active"';
+                                                                            } ?>>About Us</a>
                     </li>
 
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/contact"<?php if($this->uri->segment(2) === 'contact'  ){echo'class="active"';} ?>>contact</a>
+                        <a href="<?php echo base_url() ?>publicpages/contact" <?php if ($this->uri->segment(2) === 'contact') {
+                                                                                    echo 'class="active"';
+                                                                                } ?>>contact</a>
                     </li>
                     <li class="header-button pr-0">
                         <a href="<?php echo base_url() ?>login/customer_signin">Sign In</a>
@@ -85,5 +93,5 @@
             </div>
         </div>
     </header>
-    
+
     <!-- ==========Header-Section========== -->

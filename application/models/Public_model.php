@@ -31,10 +31,10 @@ class Public_model extends CI_Model
     public function get_cinema($id = false)
     {
         if ($id === false) {
-            $query =  $this->db->get('movie');
+            $query =  $this->db->get('cinema');
             return $query->result_array();
         }
-        $query = $this->db->get_where('movie', array('movie_id' => $id));
+        $query = $this->db->get_where('cinema', array('cinema_id' => $id));
         return $query->row_array();
     } //end of gett cinema
     //Get gener Function

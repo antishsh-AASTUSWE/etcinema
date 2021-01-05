@@ -4,7 +4,7 @@
         <div class="container">
             <div class="newslater-container bg_img" data-background="<?php echo base_url() ?>publicassets/images/newslater/newslater-bg01.jpg">
                 <div class="newslater-wrapper">
-                    <h5 class="cate">subscribe to Boleto </h5>
+                    <h5 class="cate">subscribe to Etcinema </h5>
                     <h3 class="title">to get exclusive benifits</h3>
                     <form class="newslater-form">
                         <input type="text" placeholder="Your Email Address">
@@ -19,7 +19,7 @@
         <div class="footer-top">
             <div class="logo">
                 <a href="index-1.html">
-                    <img src="<?php echo base_url() ?>publicassets/images/footer/footer-logo.png" alt="footer">
+                    <img src="<?php echo base_url() ?>publicassets/images/footer/logo.png" alt="footer">
                 </a>
             </div>
             <ul class="social-icons">
@@ -53,7 +53,7 @@
         <div class="footer-bottom">
             <div class="footer-bottom-area">
                 <div class="left">
-                    <p>Copyright © 2020.All Rights Reserved By <a href="#0">Boleto </a></p>
+                    <p>Copyright © 2020.All Rights Reserved By <a href="#0">Etcinema </a></p>
                 </div>
                 <ul class="links">
                     <li>

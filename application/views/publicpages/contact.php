@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="info-content">
                                     <h6 class="title">Email</h6>
-                                    <a href="Mailto:info@gmail.com">info@Boleto .com</a>
+                                    <a href="Mailto:info@gmail.com">info@Etcinema .com</a>
                                 </div>
                             </div>
                         </div>
