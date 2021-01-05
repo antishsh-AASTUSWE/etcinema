@@ -60,4 +60,43 @@ class Public_model extends CI_Model
         $query = $this->db->get_where('ratings', array('rating_id' => $id));
         return $query->row_array();
     } //end og get ratting
+    //get showtime by movie id function
+    public function get_showtime_bymovieid($id = false)
+    {
+        if ($id === false) {
+            $this->db->select('*');
+            $this->db->from('showtime');
+            $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+            $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+        $this->db->where('mov_id', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    } //end of get showtime by movie id
+
+    //get showtime  function
+    public function get_showtime($id = false)
+    {
+        if ($id === false) {
+            $this->db->select('*');
+            $this->db->from('showtime');
+            $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+            $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+        $this->db->where('show_id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    } //end of get showtime 
 }
