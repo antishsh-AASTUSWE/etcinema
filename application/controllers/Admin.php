@@ -65,14 +65,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['movie'] = $this->admin_model->search_movie();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/movies', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $data['movie'] = $this->admin_model->get_movie();
 
             $this->load->view('templates/header');
@@ -145,14 +145,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $cinema = $this->admin_model->search_cinema();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/cinema', ['cinema' => $cinema]);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $cinema = $this->admin_model->get_cinema();
 
             $this->load->view('templates/header');
@@ -243,14 +243,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['gener'] = $this->admin_model->search_gener();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/gener', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $gener = $this->admin_model->get_gener();
 
             $this->load->view('templates/header');
@@ -347,14 +347,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['rating'] = $this->admin_model->search_rating();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/rating', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $data['rating'] = $this->admin_model->get_rating();
 
             $this->load->view('templates/header');
@@ -451,14 +451,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['user'] = $this->admin_model->search_users();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/users', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $data['user'] = $this->admin_model->get_user();
 
             $this->load->view('templates/header');
@@ -533,14 +533,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $booking = $this->admin_model->search_booking();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/booking', ['booking' => $booking]);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $booking = $this->admin_model->get_booking();
 
             $this->load->view('templates/header');
