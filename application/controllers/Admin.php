@@ -21,7 +21,7 @@ class Admin extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-        $this->load->model('admin_model');
+        
 
 
         $data['totalBooking'] = $this->admin_model->totalBooking();
@@ -45,14 +45,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+
             $data['rating'] = $this->admin_model->search_rating();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/rating', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $data['rating'] = $this->admin_model->get_rating();
 
             $this->load->view('templates/header');
@@ -149,14 +149,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['movie'] = $this->admin_model->search_movie();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/movies', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $data['movie'] = $this->admin_model->get_movie();
 
             $this->load->view('templates/header');
@@ -188,7 +188,7 @@ class Admin extends CI_Controller
 
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->model('admin_model');
+            
             $data['gener'] = $this->admin_model->get_gener();
             $data['rating'] = $this->admin_model->get_rating();
 
@@ -214,7 +214,7 @@ class Admin extends CI_Controller
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
             }
-            $this->load->model('admin_model');
+            
             $this->admin_model->add_movie($post_image);
             redirect('admin/movies');
         }
@@ -225,7 +225,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('admin_model');
+        
         $data['records'] = $this->admin_model->getMovieRecord($id);
 
         if (empty($data['records'])) {
@@ -280,7 +280,7 @@ class Admin extends CI_Controller
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
             }
-            $this->load->model('admin_model');
+            
             $this->admin_model->update_movie($post_image, $id);
             redirect('admin/movies');
         }
@@ -290,7 +290,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('admin_model');
+        
         $this->admin_model->deleteMovie($id);
         redirect('admin/movies');
     }
@@ -321,14 +321,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $cinema = $this->admin_model->search_cinema();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/cinema', ['cinema' => $cinema]);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $cinema = $this->admin_model->get_cinema();
 
             $this->load->view('templates/header');
@@ -422,14 +422,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['gener'] = $this->admin_model->search_gener();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/gener', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $gener = $this->admin_model->get_gener();
 
             $this->load->view('templates/header');
@@ -528,7 +528,7 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['showtime'] = $this->admin_model->search_showtime();
             $data['cinema'] = $this->admin_model->get_cinema();
             $data['movie'] = $this->admin_model->get_movie();
@@ -537,7 +537,7 @@ class Admin extends CI_Controller
             $this->load->view('adminpages/showtime', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $data['showtime'] = $this->admin_model->get_showtime();
             $data['cinema'] = $this->admin_model->get_cinema();
             $data['movie'] = $this->admin_model->get_movie();
@@ -564,7 +564,7 @@ class Admin extends CI_Controller
             $this->showtime();
         } else {
 
-            $this->load->model('admin_model');
+            
             $this->admin_model->add_showtime();
             redirect('admin/showtime');
         }
@@ -574,7 +574,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('admin_model');
+        
         $data['records'] = $this->admin_model->getShowRecord($id);
 
         if (empty($data['records'])) {
@@ -603,7 +603,7 @@ class Admin extends CI_Controller
         } else {
 
 
-            $this->load->model('admin_model');
+            
             $this->admin_model->update_showtime($id);
             redirect('admin/showtime');
         }
@@ -613,7 +613,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('admin_model');
+        
         $this->admin_model->deleteShowtime($id);
         redirect('admin/showtime');
     }
@@ -629,14 +629,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['user'] = $this->admin_model->search_users();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/users', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $data['user'] = $this->admin_model->get_user();
 
             $this->load->view('templates/header');
@@ -710,7 +710,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('admin_model');
+        
         $this->admin_model->deleteUser($id);
         redirect('admin/users');
     }
@@ -766,14 +766,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['booking'] = $this->admin_model->search_booking();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/booking', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $data['booking'] = $this->admin_model->get_booking();
 
             $this->load->view('templates/header');
@@ -791,14 +791,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            $this->load->model('admin_model');
+            
             $data['customer'] = $this->admin_model->search_customer();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/customer', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->load->model('admin_model');
+            
             $data['customer'] = $this->admin_model->get_customer();
 
             $this->load->view('templates/header');
@@ -829,7 +829,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         } else {
 
-            $this->load->model('admin_model');
+            
             $this->admin_model->add_customer();
             redirect('admin/customer');
         }
@@ -839,7 +839,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('admin_model');
+        
         $data['records'] = $this->admin_model->getCustomerRecord($id);
 
         if (empty($data['records'])) {
@@ -870,7 +870,7 @@ class Admin extends CI_Controller
         } else {
 
 
-            $this->load->model('admin_model');
+            
             $this->admin_model->update_customer($id);
             redirect('admin/customer');
         }
@@ -880,7 +880,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('admin_model');
+        
         $this->admin_model->deleteCustomer($id);
         redirect('admin/customer');
     }
@@ -889,7 +889,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_message('check_Password', 'the password is incorect please try agin');
 
         $password = sha1($this->input->post('password'));
-        $this->load->model('admin_model');
+        
         if ($this->admin_model->check_Password($password)) {
             return true;
         } else {
@@ -900,7 +900,7 @@ class Admin extends CI_Controller
     {
         $this->form_validation->set_message('check_email', 'That email is taken. please choose a difrent one');
 
-        $this->load->model('admin_model');
+        
         if ($this->admin_model->check_email($email)) {
             return true;
         } else {
@@ -911,7 +911,7 @@ class Admin extends CI_Controller
     public function check_phone($phone)
     {
         $this->form_validation->set_message('check_phone', 'please use differnt phone this is used before');
-        $this->load->model('admin_model');
+        
         if ($this->admin_model->check_phone($phone)) {
             return true;
         } else {

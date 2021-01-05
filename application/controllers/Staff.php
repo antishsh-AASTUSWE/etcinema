@@ -21,7 +21,7 @@ class Staff extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-        $this->load->model('staff_model');
+        
         $data['countMovie'] = $this->staff_model->countMovie();
         $data['countCustomer'] = $this->staff_model->countCustomer();
         $data['nextMovies'] = $this->staff_model->nextMovies();
@@ -41,7 +41,7 @@ class Staff extends CI_Controller
             show_404();
         }
         if(isset($_POST['Search'])){
-			$this->load->model('staff_model');
+			
 			$data['movie'] = $this->staff_model->search_movie();
 			
             $this->load->view('templates/header');
@@ -50,7 +50,7 @@ class Staff extends CI_Controller
 			}
 			
 	   else{
-			$this->load->model('staff_model');
+			
 			$data['movie'] = $this->staff_model->get_movie();
 			
             $this->load->view('templates/header');
@@ -84,7 +84,7 @@ class Staff extends CI_Controller
 
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->model('staff_model');
+            
             $data['gener'] = $this->staff_model->get_gener();
             $data['rating'] = $this->staff_model->get_rating();
 
@@ -110,7 +110,7 @@ class Staff extends CI_Controller
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
             }
-            $this->load->model('staff_model');
+            
             $this->staff_model->add_movie($post_image);
             redirect('staff/movies');
         } 
@@ -121,7 +121,7 @@ class Staff extends CI_Controller
         if ($this->session->userdata('role') !== 'staff') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('staff_model');
+        
         $data['records'] = $this->staff_model->getMovieRecord($id);
 
         if (empty($data['records'])) {
@@ -176,7 +176,7 @@ class Staff extends CI_Controller
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
             }
-            $this->load->model('staff_model');
+            
             $this->staff_model->update_movie($post_image,$id);
             redirect('staff/movies');
         }
@@ -186,7 +186,7 @@ class Staff extends CI_Controller
         if ($this->session->userdata('role') !== 'staff') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('staff_model');
+        
         $this->staff_model->deleteMovie($id);
         redirect('staff/movies');
     }
@@ -200,7 +200,7 @@ class Staff extends CI_Controller
             show_404();
         }
         if(isset($_POST['Search'])){
-			$this->load->model('staff_model');
+			
             $data['showtime'] = $this->staff_model->search_showtime();
             $data['cinema'] =$this->admin_model->get_cinema();
 		    $data['movie'] =$this->admin_model->get_movie();
@@ -211,7 +211,7 @@ class Staff extends CI_Controller
 			}
 			
 	   else{
-			$this->load->model('staff_model');
+			
             $data['showtime'] = $this->staff_model->get_showtime();
             $data['cinema'] =$this->admin_model->get_cinema();
 		    $data['movie'] =$this->admin_model->get_movie();
@@ -239,7 +239,7 @@ class Staff extends CI_Controller
             $this->showtime();
         } else {
 
-            $this->load->model('staff_model');
+            
             $this->staff_model->add_showtime();
             redirect('staff/showtime');
         }
@@ -249,7 +249,7 @@ class Staff extends CI_Controller
         if ($this->session->userdata('role') !== 'staff') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('staff_model');
+        
         $data['records'] = $this->staff_model->getShowRecord($id);
 
         if (empty($data['records'])) {
@@ -278,7 +278,7 @@ class Staff extends CI_Controller
         } else {
 
             
-            $this->load->model('staff_model');
+            
             $this->staff_model->update_showtime($id);
             redirect('staff/showtime');
         }
@@ -288,7 +288,7 @@ class Staff extends CI_Controller
         if ($this->session->userdata('role') !== 'staff') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('staff_model');
+        
         $this->staff_model->deleteShowtime($id);
         redirect('staff/showtime');
     }
@@ -302,7 +302,7 @@ class Staff extends CI_Controller
             show_404();
         }
         if(isset($_POST['Search'])){
-			$this->load->model('staff_model');
+			
             $data['customer'] = $this->staff_model->search_customer();
             
             $this->load->view('templates/header');
@@ -311,7 +311,7 @@ class Staff extends CI_Controller
 			}
 			
 	   else{
-			$this->load->model('staff_model');
+			
             $data['customer'] = $this->staff_model->get_customer();
            
             $this->load->view('templates/header');
@@ -343,7 +343,7 @@ class Staff extends CI_Controller
             $this->load->view('templates/footer');
         } else {
 
-            $this->load->model('staff_model');
+            
             $this->staff_model->add_customer();
             redirect('staff/customer');
         }
@@ -353,7 +353,7 @@ class Staff extends CI_Controller
         if ($this->session->userdata('role') !== 'staff') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('staff_model');
+        
         $data['records'] = $this->staff_model->getCustomerRecord($id);
 
         if (empty($data['records'])) {
@@ -384,7 +384,7 @@ class Staff extends CI_Controller
         } else {
 
             
-            $this->load->model('staff_model');
+            
             $this->staff_model->update_customer($id);
             redirect('staff/customer');
         }
@@ -394,7 +394,7 @@ class Staff extends CI_Controller
         if ($this->session->userdata('role') !== 'staff') {
             redirect('login/authenticate_login');
         }
-        $this->load->model('staff_model');
+        
         $this->staff_model->deleteCustomer($id);
         redirect('staff/customer');
     }
@@ -403,7 +403,7 @@ class Staff extends CI_Controller
 		$this->form_validation->set_message('check_Password', 'the password is incorect please try agin');
 
 		$password= sha1($this->input->post('password'));
-        $this->load->model('staff_model');
+        
 		if($this->staff_model->check_Password($password))
 		{
 			return true; 
@@ -415,7 +415,7 @@ class Staff extends CI_Controller
 	{
 		$this->form_validation->set_message('check_email', 'That email is taken. please choose a difrent one');
 		
-        $this->load->model('staff_model');
+        
 		if($this->staff_model->check_email($email))
 		{
 			return true;
@@ -427,7 +427,7 @@ class Staff extends CI_Controller
 	public function check_phone($phone)
 	{
 		$this->form_validation->set_message('check_phone', 'please use differnt phone this is used before');
-		$this->load->model('staff_model');
+		
 		if($this->staff_model->check_phone($phone))
 		{
 			return true;
@@ -458,7 +458,7 @@ class Staff extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-        $this->load->model('staff_model');
+        
        
         $this->load->view('templates/header');
         $this->load->view('staffpages/seat');
@@ -467,14 +467,14 @@ class Staff extends CI_Controller
     public function addSeat(){
         
        
-            $this->load->model('staff_model');
+            
             $this->staff_model->addSeat();
             redirect('staff/seatLayout');
       
       
     }
     public function seatLayout(){
-        $this->load->model('staff_model');
+        
         $data['seat']=$this->staff_model->seatLayout();
         $this->load->view('templates/header');
         $this->load->view('staffpages/seat',$data);
@@ -482,7 +482,7 @@ class Staff extends CI_Controller
     }
     public function addseatLayout(){
         
-        $this->load->model('staff_model');
+        
        
 
         $this->staff_model->addseatLayout();
