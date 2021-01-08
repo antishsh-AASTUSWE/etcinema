@@ -1,39 +1,36 @@
 
-<?php if(isset($customer)){ ?>
+<?php if(isset($booking)){ ?>
 <div class="card">
 
   <div class="card-body">
-    <h5 class="card-title">Customer List</h5>
+    <h5 class="card-title">Booked Movies</h5>
     <div class="table-responsive">
       <table class="table table-striped" id="mydatatable">
         <thead>
           <tr>
       <th scope="col">ID</th>
-      <th scope="col">Firsr Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Date of Birth</th>
-      <th scope="col">Joined Date</th>
-      <th scope="col">Edit/Delete</th>
+      <th scope="col">User</th>
+      <th scope="col">Movie</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Cinema</th>
+      
      
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($customer as $c) : ?>
+          <?php foreach ($booking as $c) : ?>
             <tr>
-              <td><?= $c['cust_id']; ?></td>
-              <td><?= $c['first_name']; ?></td>
-              <td><?= $c['last_name']; ?></td>
-              <td><?= $c['email']; ?></td>
-              <td><?= $c['phone_no']; ?></td>
-              <td><?= $c['DBO']; ?></td>
-              <td><?= $c['joined_date']; ?></td>
+              <td><?= $c['booking_id']; ?></td>
+              <td><?= $c['username']; ?></td>
+              <td><?= $c['mov_name']; ?></td>
+              <td><?= $c['show_date']; ?></td>
+              <td><?= $c['show_time']; ?></td>
+              <td><?= $c['cinema_name']; ?></td>
+             
              
                
-              <td><a href="<?php echo base_url(); ?>admin/edit_customer/<?= $c['cust_id'] ?>"
-               class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_customer/<?= $c['cust_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
-
+              
             </tr>
           <?php endforeach; ?>
         </tbody>

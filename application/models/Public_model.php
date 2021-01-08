@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Public_model extends CI_Model
 {
-
+ 
     //login user function
     public function login($username, $password)
     {
@@ -100,4 +100,41 @@ class Public_model extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     } //end of get showtime 
+    public function search_movie()
+    {
+        $data = array(
+            'Search' => $this->input->post('search'),
+            'cinema' => $this->input->post('cinema'),
+            'date' => $this->input->post('date'),
+            'gener' => $this->input->post('gener')
+        );
+        $this->db->select('*');
+        $this->db->from('showtime');
+        $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+        $this->db->join('geners','movie.mov_gener=geners.gener_id');
+        $this->db->join('ratings','movie.mov_ratting=ratings.rating_id');
+        $this->db->like('mov_name', $data['Search']);
+        $this->db->like('show_date', $data['date']);
+        $this->db->like('gener', $data['gener']);
+        $this->db->like('cinema_name', $data['cinema']);
+        $query = $this->db->get();
+
+     /*    $query = $this->db->like('mov_name', $data['Search'])
+        ->join('geners','movie.mov_gener=geners.gener_id')
+        ->join('ratings','movie.mov_ratting=ratings.rating_id')
+           ->get('movie'); */
+            
+        return $query->result_array();
+    }
+    public function book_movie(){
+        
+        $data = array(
+            'user_id' => $this->input->post('user'),
+            'show_id' => $this->input->post('show'),
+            'seat_id' => $this->input->post('seat')
+        );
+      return $this->db->insert('bookinf_info', $data);
+       
+    }
 }

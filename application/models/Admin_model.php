@@ -503,8 +503,11 @@ public function search_gener()
     public function get_booking(){
         $this->db->select('*');
         $this->db->from('bookinf_info');
-        $this->db->join('customer', 'customer.cust_id=bookinf_info.user_id');
+        $this->db->join('user', 'user.user_id=bookinf_info.user_id');
         $this->db->join('showtime', 'showtime.show_id=bookinf_info.show_id');
+        $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+        $this->db->join('seat', 'seat.seat_id=bookinf_info.seat_id');
         
         $query = $this->db->get();
         

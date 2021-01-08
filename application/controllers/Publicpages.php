@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Publicpages extends CI_Controller
-{
+{ 
 
 	/**
 	 * Index Page for this controller.
@@ -28,7 +28,8 @@ class Publicpages extends CI_Controller
 			show_404();
 		}
 		$data['title'] = 'home';
-		$data['movie'] = $this->public_model->get_movie();
+		$data['movie'] = $this->public_model->get_showtime();
+		//$data['movie'] = $this->public_model->get_movie();
 		$data['cinema'] = $this->public_model->get_cinema();
 		$this->load->view('publictemplates/header', $data);
 		$this->load->view('publicpages/home', $data);
@@ -62,15 +63,23 @@ class Publicpages extends CI_Controller
 	} //end of contact
 
 	//movie checkout function
-	public function movie_checkout()
+	public function movie_checkout($id)
 	{
 		if (!file_exists(APPPATH . 'views/publicpages/movie_checkout.php')) {
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-		$this->load->view('publictemplates/header');
-		$this->load->view('publicpages/movie_checkout');
-		$this->load->view('publictemplates/footer');
+		if(isset($_POST)){
+			$data['seat']=$this->input->post('seat');
+			$data['showtime'] = $this->public_model->get_showtime($id);
+			
+			$this->load->view('publictemplates/header');
+			$this->load->view('publicpages/movie_checkout',$data);
+			$this->load->view('publictemplates/footer');
+	
+		   }else{
+			show_404(); 
+		   }
 	} //end of movie checkout
 
 	//movie details function
@@ -112,6 +121,7 @@ class Publicpages extends CI_Controller
 
 		$this->pagination->initialize($config);
 		$data['title'] = 'movie';
+		$data['cinema'] = $this->public_model->get_cinema();
 		$data['movie'] = $this->public_model->get_movie(false, $config['per_page'], $offset);
 		$data['gener'] = $this->public_model->get_gener();
 		$this->load->view('publictemplates/header', $data);
@@ -152,4 +162,39 @@ class Publicpages extends CI_Controller
 		$this->load->view('publicpages/movie_ticket_plan', $data	);
 		$this->load->view('publictemplates/footer');
 	} //end of movie ticket plan
+	public function search_movie($offset = 0){
+	
+		if (isset($_POST)) {
+
+
+		$config['base_url'] = base_url() . 'publicpages/movie';
+		$config['total_rows'] = $this->db->count_all('movie');
+		$config['per_page'] = 6;
+		$config['uri_segment'] = 3;
+		$config['first_link'] = false;
+		$config['last_link'] = false;
+		$config['next_link'] = 'Next';
+		$config['prev_link'] = 'Prev';
+		$config['cur_tag_open'] = '<a class="active" href="#">';
+        $config['cur_tag_close'] = '</a>';
+		$config['attributes'] = array('class' => 'pagination-area');
+
+
+		$this->pagination->initialize($config);
+		$data['title'] = 'Search Results';
+		
+		$data['movie'] = $this->public_model->search_movie(false, $config['per_page'], $offset);
+
+			$data['gener'] = $this->public_model->get_gener();
+			//$data['movie'] = $this->public_model->search_movie();
+			$data['cinema'] = $this->public_model->get_cinema();
+			$this->load->view('publictemplates/header', $data);
+			$this->load->view('publicpages/movie', $data);
+			$this->load->view('publictemplates/footer');
+				
+			} 
+	}
+	public function movie_book(){
+		$this->public_model->book_movie();	
+	}
 }

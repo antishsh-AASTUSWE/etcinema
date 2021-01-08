@@ -23,7 +23,7 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
-    <title>Etcinema - Online Ticket Booking Website HTML Template</title>
+    <title>Etcinema - Online Ticket Booking Website</title>
 
 
 </head>

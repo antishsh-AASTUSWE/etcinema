@@ -29,172 +29,46 @@
                             </div>
                             <span>movie</span>
                         </li>
-                        <li>
-                            <div class="tab-thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/ticket-tab02.png" alt="ticket">
-                            </div>
-                            <span>events</span>
-                        </li>
-                        <li>
-                            <div class="tab-thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/ticket-tab03.png" alt="ticket">
-                            </div>
-                            <span>sports</span>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
             <div class="tab-area">
                 <div class="tab-item active">
-                    <form class="ticket-search-form">
-                        <div class="form-group large">
-                            <input type="text" placeholder="Search fo Movies">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div class="form-group">
+                
+                    <form class="ticket-search-form" action="search_movie" method="post">
+                    <div class="form-group">
                             <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/city.png" alt="ticket">
+                                <img src="<?php echo base_url() ?>publicassets/images/ticket/cinema.png" alt="ticket">
                             </div>
-                            <span class="type">city</span>
-                            <select class="select-bar">
-                                <option value="london">London</option>
-                                <option value="dhaka">dhaka</option>
-                                <option value="rosario">rosario</option>
-                                <option value="madrid">madrid</option>
-                                <option value="koltaka">kolkata</option>
-                                <option value="rome">rome</option>
-                                <option value="khoksa">khoksa</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/date.png" alt="ticket">
-                            </div>
-                            <span class="type">date</span>
-                            <select class="select-bar">
-                                <option value="26-12-19">23/10/2020</option>
-                                <option value="26-12-19">24/10/2020</option>
-                                <option value="26-12-19">25/10/2020</option>
-                                <option value="26-12-19">26/10/2020</option>
+                            <span class="type">Select Cinema</span>
+                            <select class="select-bar" name="cinema">
+
+                                <?php foreach ($cinema as $c) : ?>
+
+                                    <option value="<?= $c['cinema_name']; ?>"><?= $c['cinema_name']; ?></option>
+
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <div class="thumb">
                                 <img src="<?php echo base_url() ?>publicassets/images/ticket/cinema.png" alt="ticket">
                             </div>
-                            <span class="type">cinema</span>
-                            <select class="select-bar">
-                                <option value="Awaken">Awaken</option>
-                                <option value="dhaka">dhaka</option>
-                                <option value="rosario">rosario</option>
-                                <option value="madrid">madrid</option>
-                                <option value="koltaka">kolkata</option>
-                                <option value="rome">rome</option>
-                                <option value="khoksa">khoksa</option>
-                            </select>
+                            <span class="type">Select Date</span>
+                            <input type="date" name="date" placeholder="Search fo Movies">
                         </div>
-                    </form>
-                </div>
-                <div class="tab-item">
-                    <form class="ticket-search-form">
+                        
                         <div class="form-group large">
-                            <input type="text" placeholder="Search fo Events">
+                            <input type="text" name="search" placeholder="Search fo Movies">
                             <button type="submit"><i class="fas fa-search"></i></button>
                         </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/city.png" alt="ticket">
-                            </div>
-                            <span class="type">city</span>
-                            <select class="select-bar">
-                                <option value="london">London</option>
-                                <option value="dhaka">dhaka</option>
-                                <option value="rosario">rosario</option>
-                                <option value="madrid">madrid</option>
-                                <option value="koltaka">kolkata</option>
-                                <option value="rome">rome</option>
-                                <option value="khoksa">khoksa</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/date.png" alt="ticket">
-                            </div>
-                            <span class="type">date</span>
-                            <select class="select-bar">
-                                <option value="26-12-19">23/10/2020</option>
-                                <option value="26-12-19">24/10/2020</option>
-                                <option value="26-12-19">25/10/2020</option>
-                                <option value="26-12-19">26/10/2020</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/cinema.png" alt="ticket">
-                            </div>
-                            <span class="type">event</span>
-                            <select class="select-bar">
-                                <option value="angular">angular</option>
-                                <option value="startup">startup</option>
-                                <option value="rosario">rosario</option>
-                                <option value="madrid">madrid</option>
-                                <option value="koltaka">kolkata</option>
-                                <option value="Last-First">Last-First</option>
-                                <option value="wish">wish</option>
-                            </select>
-                        </div>
+                        
+                        
+
                     </form>
                 </div>
-                <div class="tab-item">
-                    <form class="ticket-search-form">
-                        <div class="form-group large">
-                            <input type="text" placeholder="Search fo Sports">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/city.png" alt="ticket">
-                            </div>
-                            <span class="type">city</span>
-                            <select class="select-bar">
-                                <option value="london">London</option>
-                                <option value="dhaka">dhaka</option>
-                                <option value="rosario">rosario</option>
-                                <option value="madrid">madrid</option>
-                                <option value="koltaka">kolkata</option>
-                                <option value="rome">rome</option>
-                                <option value="khoksa">khoksa</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/date.png" alt="ticket">
-                            </div>
-                            <span class="type">date</span>
-                            <select class="select-bar">
-                                <option value="26-12-19">23/10/2020</option>
-                                <option value="26-12-19">24/10/2020</option>
-                                <option value="26-12-19">25/10/2020</option>
-                                <option value="26-12-19">26/10/2020</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/ticket/cinema.png" alt="ticket">
-                            </div>
-                            <span class="type">sports</span>
-                            <select class="select-bar">
-                                <option value="football">football</option>
-                                <option value="cricket">cricket</option>
-                                <option value="cabadi">cabadi</option>
-                                <option value="madrid">madrid</option>
-                                <option value="gadon">gadon</option>
-                                <option value="rome">rome</option>
-                                <option value="khoksa">khoksa</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
+
             </div>
         </div>
     </div>
@@ -214,60 +88,23 @@
                     </div>
                 </div>
 
-                <div class="widget-1 widget-check">
-                    <div class="widget-1-body">
-                        <h6 class="subtitle">experience</h6>
-                        <div class="check-area">
-                            <div class="form-group">
-                                <input type="checkbox" name="mode" id="mode1"><label for="mode1">2d</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="mode" id="mode2"><label for="mode2">3d</label>
-                            </div>
-                        </div>
-                        <div class="add-check-area">
-                            <a href="#0">view more <i class="plus"></i></a>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="widget-1 widget-check">
                     <div class="widget-1-body">
                         <h6 class="subtitle">genre</h6>
                         <div class="check-area">
+                        <form action="search_movie" method="post">
+                        <?php foreach ($gener as $g) : ?>
+                            
                             <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre1"><label for="genre1">thriller</label>
+                                <input type="checkbox" name="genre" id="genre1" onchange="this.form.submit()">
+                                <label for="genre1"><?= $g['gener']; ?></label>
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre2"><label for="genre2">horror</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre3"><label for="genre3">drama</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre4"><label for="genre4">romance</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre5"><label for="genre5">action</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre6"><label for="genre6">comedy</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre7"><label for="genre7">romantic</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre8"><label for="genre8">animation</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre9"><label for="genre9">sci-fi</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre10"><label for="genre10">adventure</label>
-                            </div>
+                            
+                        <?php endforeach; ?>
+                        </form>
                         </div>
-                        <div class="add-check-area">
-                            <a href="#0">view more <i class="plus"></i></a>
-                        </div>
+
                     </div>
                 </div>
                 <div class="widget-1 widget-banner">
@@ -297,12 +134,14 @@
                                 </div>
                                 <div class="item">
                                     <span class="show">Sort By :</span>
-                                    <select class="select-bar">
+                                    <form action="search_movie" method="post">
+                                    <select class="select-bar" name="movie_group">
                                         <option value="showing">now showing</option>
                                         <option value="exclusive">exclusive</option>
                                         <option value="trending">trending</option>
                                         <option value="most-view">most view</option>
                                     </select>
+                                    </form>
                                 </div>
                             </div>
                             <ul class="grid-button tab-menu">

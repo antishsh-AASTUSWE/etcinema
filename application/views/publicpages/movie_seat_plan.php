@@ -133,13 +133,11 @@
                                     <li class="single-seat">
                                         <img src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f7</span>
+                                    <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f8</span>
+                                    <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
                                     </li>
                                     <li class="single-seat">
                                         <img src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
@@ -154,17 +152,14 @@
                             </li>
                             <li class="front-seat">
                                 <ul>
-                                    <li class="single-seat seat-free">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f9</span>
+                                <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f10</span>
+                                    <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f11</span>
+                                    <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
                                     </li>
                                     <li class="single-seat">
                                         <img src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
@@ -236,9 +231,8 @@
                                     <li class="single-seat">
                                         <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-booked.png" alt="seat">
-                                        <span class="sit-num">D7 D8</span>
+                                    <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
                                     <li class="single-seat">
                                         <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
@@ -286,9 +280,8 @@
                             </li>
                             <li class="front-seat">
                                 <ul>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-free.png" alt="seat">
-                                        <span class="sit-num">f11 f12</span>
+                                <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
                                     <li class="single-seat">
                                         <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
@@ -316,9 +309,8 @@
                                     <li class="single-seat">
                                         <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-free.png" alt="seat">
-                                        <span class="sit-num">b7 b8</span>
+                                    <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
                                     <li class="single-seat">
                                         <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
@@ -343,41 +335,41 @@
                         <ul class="seat--area">
                             <li class="front-seat">
                                 <ul>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-free.png" alt="seat">
-                                        <span class="sit-num">a1 a2</span>
+                                <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-free.png" alt="seat">
-                                        <span class="sit-num">a3 a4</span>
+                                    <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
                                 </ul>
                             </li>
                             <li class="front-seat">
                                 <ul>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-free.png" alt="seat">
-                                        <span class="sit-num">a5 a6</span>
+                                <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-free.png" alt="seat">
-                                        <span class="sit-num">a7 a8</span>
+                                    <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-free.png" alt="seat">
-                                        <span class="sit-num">a9 a10</span>
+                                    <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
                                 </ul>
                             </li>
                             <li class="front-seat">
                                 <ul>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-free.png" alt="seat">
-                                        <span class="sit-num">a11</span>
+                                <li class="single-seat">
+                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
                                     </li>
-                                    <li class="single-seat seat-free-two">
-                                        <img src="<?php echo base_url() ?>publicassets/images/movie/seat02-free.png" alt="seat">
-                                        <span class="sit-num">a12</span>
+                                    
+                                    <li class="single-seat">
+                                       
+                                    <label class='checkbox'>
+                                        <input type="checkbox" name="cheek" hidden id='a' value="1" onclick="myFunction()">
+                                        <img  id="img1" style="display:block" src="<?php echo base_url() ?>publicassets/images/movie/seat02.png" alt="seat">
+                                        <img  id="img2" style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat02-booked.png" alt="seat">
+                                    </label>
+                                        
                                     </li>
                                 </ul>
                             </li>
@@ -387,21 +379,61 @@
                 </ul>
             </div>
         </div>
+<?php echo validation_errors(); ?>
+
+<?php echo form_open("publicpages/movie_checkout/{$showtime['show_id']}")?>
+   
         <div class="proceed-book bg_img" data-background="<?php echo base_url() ?>publicassets/images/movie/movie-bg-proceed.jpg">
             <div class="proceed-to-book">
                 <div class="book-item">
                     <span>You have Choosed Seat</span>
-                    <h3 class="title">d9, d10</h3>
+
+                        <h3 class="title"> 
+                            <input type="text" name="seat" id="text" readonly>
+                            </h3>
+
                 </div>
                 <div class="book-item">
-                    <span>total price</span>
-                    <h3 class="title">$150</h3>
+                    <span></span>
+                    <input type="text" hidden name="price"  value="<?= $showtime['show_id']; ?>">
+                    
                 </div>
                 <div class="book-item">
-                    <a href="<?php echo base_url() ?>publicpages/movie_checkout" class="custom-button">proceed</a>
+                <input type="submit" >
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+</form>
 <!-- ==========Movie-Section========== -->
+
+<script>
+    function myFunction() {
+
+        var checkBox = document.getElementById("a");
+        if (checkBox.checked == true){
+            document.getElementById("text").value=
+        document.getElementById("a").value;
+        } else {
+    document.getElementById("text").value=null;
+        }
+        
+
+
+
+
+
+var img1 = document.getElementById("img1");
+var img2 = document.getElementById("img2");
+if (checkBox.checked == true){
+  img2.style.display = "block";
+  img1.style.display = "none";
+} else {
+    img1.style.display = "block";
+    img2.style.display = "none";
+}
+}
+</script>
+</script>

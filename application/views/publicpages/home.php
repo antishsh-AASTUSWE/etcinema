@@ -3,16 +3,16 @@
     <div class="banner-bg bg_img bg-fixed" data-background="<?php echo base_url() ?>publicassets/images/banner/banner01.jpg"></div>
     <div class="container">
         <div class="banner-content">
-            <h1 class="title  cd-headline clip"><span class="d-block">book your</span> tickets for
+            <h1 class="title  cd-headline clip"><span class="d-block">book your</span> movie
                 <span class="color-theme cd-words-wrapper p-0 m-0">
-                    <b class="is-visible">Movie</b>
-                    <b>Event</b>
-                    <b>Sport</b>
+                    <b class="is-visible">tickets</b>
+                    <b>anywhere</b>
+                    <b>anytime</b>
                 </span>
             </h1>
-            <p>Safe, secure, reliable ticketing.Your ticket to live entertainment!</p>
+            <p>Safe, secure, reliable ticketing.</p>
         </div>
-    </div>
+    </div> 
 </section>
 <!-- ==========Banner-Section========== -->
 
@@ -43,17 +43,14 @@
             </div>
             <div class="tab-area">
                 <div class="tab-item active">
-                    <form class="ticket-search-form">
-                        <div class="form-group large">
-                            <input type="text" placeholder="Search fo Movies">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div class="form-group">
+                
+                    <form class="ticket-search-form" action="publicpages/search_movie" method="post">
+                    <div class="form-group">
                             <div class="thumb">
                                 <img src="<?php echo base_url() ?>publicassets/images/ticket/cinema.png" alt="ticket">
                             </div>
-                            <span class="type">cinema</span>
-                            <select class="select-bar">
+                            <span class="type">Select Cinema</span>
+                            <select class="select-bar" name="cinema">
 
                                 <?php foreach ($cinema as $c) : ?>
 
@@ -62,18 +59,12 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <!-- <div class="form-group">
-                            <div class="thumb">
-                                <img src="<?//php echo base_url() ?>publicassets/images/ticket/date.png" alt="ticket">
-                            </div>
-                            <span class="type">date</span>
-                            <select class="select-bar">
-                                <option value="26-12-19">23/10/2019</option>
-                                <option value="26-12-19">24/10/2019</option>
-                                <option value="26-12-19">25/10/2019</option>
-                                <option value="26-12-19">26/10/2019</option>
-                            </select>
-                        </div> -->
+                        <div class="form-group large">
+                            <input type="text" name="search" placeholder="Search fo Movies">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                        
+                        
 
                     </form>
                 </div>

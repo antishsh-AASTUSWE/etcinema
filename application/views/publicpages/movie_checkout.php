@@ -8,7 +8,7 @@
                     <a href="#0">City Walk</a>
                     <a href="#0">English - 2D</a>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </section>
@@ -142,43 +142,45 @@
                     </p>
                 </div>
             </div>
+            
             <div class="col-lg-4">
+            
                 <div class="booking-summery bg-one">
                     <h4 class="title">booking summery</h4>
                     <ul>
                         <li>
-                            <h6 class="subtitle">Venus</h6>
-                            <span class="info">English-2d</span>
+                            <h6 class="subtitle"><?= $showtime['mov_name'] ?></h6>
+                            <span class="info"><?= $showtime['mov_language'] ?></span>
                         </li>
                         <li>
-                            <h6 class="subtitle"><span>City Walk</span><span>02</span></h6>
-                            <div class="info"><span>10 SEP TUE, 11:00 PM</span> <span>Tickets</span></div>
+                            <h6 class="subtitle"><span><?= $showtime['cinema_name'] ?></span></h6>
+                            <div class="info"><span><?= $showtime['show_date'] ?></span> <span><?= $showtime['show_time'] ?></span></div>
                         </li>
                         <li>
-                            <h6 class="subtitle mb-0"><span>Tickets Price</span><span>$150</span></h6>
+                            <h6 class="subtitle mb-0"><span>Tickets Price</span><span><?= $showtime['price'] ?></span></h6>
                         </li>
                     </ul>
-                    <ul class="side-shape">
-                        <li>
-                            <h6 class="subtitle"><span>combos</span><span>$57</span></h6>
-                            <span class="info"><span>2 Nachos Combo</span></span>
-                        </li>
-                        <li>
-                            <h6 class="subtitle"><span>food & bevarage</span></h6>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <span class="info"><span>price</span><span>$207</span></span>
-                            <span class="info"><span>vat</span><span>$15</span></span>
-                        </li>
-                    </ul>
+                    
+ 
+                    
+                   
+                   
                 </div>
+                <?php echo form_open("publicpages/movie_book")?>
+                <input type="text" hidden name="show" value="<?= $showtime['show_id'] ?>"> 
+                    <input type="text" hidden name="user" value="<?php echo $this->session->userdata('user_id'); ?>"> 
+                    <?php
+                    if(isset($seat)){ ?>
+                                    <input type="text" hidden name="seat" value="<?php echo $seat; ?>"> 
+                   <?php }?>
                 <div class="proceed-area  text-center">
                     <h6 class="subtitle"><span>Amount Payable</span><span>$222</span></h6>
-                    <a href="#0" class="custom-button back-button">proceed</a>
+                    <input type="submit" class="custom-button" value="proceed" >
+                   
                 </div>
+                <form>
             </div>
+            
         </div>
     </div>
 </div>
