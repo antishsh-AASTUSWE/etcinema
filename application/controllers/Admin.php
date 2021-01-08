@@ -23,7 +23,7 @@ class Admin extends CI_Controller
             show_404();
         }
         
-        $data['chart_data'] = $this->admin_model->dashbord_chart();
+       // $data['chart_data'] = $this->admin_model->dashbord_chart();
         $data['totalBooking'] = $this->admin_model->totalBooking();
         $data['countCustomer'] = $this->admin_model->countCustomer();
         $data['countUser'] = $this->admin_model->countUser();
