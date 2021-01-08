@@ -159,6 +159,7 @@ public function get_gener(){
         'show_time' => $this->input->post('time'),
         'mov_id'=>$this->input->post('movie'),
         'cinema_id'=>$this->input->post('cinema'),
+        'price'=>$this->input->post('price'),
         );
 
 
@@ -172,6 +173,7 @@ public function get_gener(){
         'show_time' => $this->input->post('time'),
         'mov_id'=>$this->input->post('movie'),
         'cinema_id'=>$this->input->post('cinema'),
+        'price'=>$this->input->post('price'),
         );
 
         return $this->db->where('show_id',$id)->update('showtime', $data);
@@ -363,14 +365,7 @@ public function check_Password($password)
       return $this->db->insert('seat', $data);
        
     }
-    public function seatLayout(){
-
-        $this->db->select('*');
-        $this->db->from('seat');
-        $query = $this->db->get();
-
-        return $query->result_array();
-    }
+    
 		
     
 }

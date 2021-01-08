@@ -13,6 +13,7 @@
             <th scope="col">Cinema</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
+            <th scope="col">Price</th>
           </tr>
         </thead>
         <tbody>
@@ -69,6 +70,15 @@
               <input class="form-control" name="time" type="time" value="08:00 am" id="example-time-input">
               <div class="text-danger">
                 <?php echo form_error('time'); ?>
+              </div>
+            </div>
+          </td>
+          <td>
+
+            <div class="form-group">
+              <input class="form-control" name="price" type="text" placeholder="50$" id="example-time-input">
+              <div class="text-danger">
+                <?php echo form_error('price'); ?>
               </div>
             </div>
           </td>

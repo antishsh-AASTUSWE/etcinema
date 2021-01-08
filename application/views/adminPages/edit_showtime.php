@@ -55,6 +55,13 @@
 <?php echo form_error('time'); ?>
 </div> 
 </div>
+<div class="form-group">
+<label for="input-6">Price</label>
+  <input class="form-control" name="price" type="text" value="<?php echo $r['price']; ?>" id="example-time-input">
+  <div class="text-danger">
+<?php echo form_error('price'); ?>
+</div> 
+</div>
 
       <div class="col-lg-6">
         <div class="form-group">

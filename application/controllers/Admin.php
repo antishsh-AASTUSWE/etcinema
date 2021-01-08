@@ -4,12 +4,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Admin extends CI_Controller
 {
 
-    public function __construct()
+    public function __construct() 
     {
         parent::__construct();
         if ($this->session->userdata('logged_in') !== TRUE) {
             redirect('login/authenticate_login');
         }
+        $this->load->library('pdf');
     }
     //index function
     public function index()
@@ -22,8 +23,7 @@ class Admin extends CI_Controller
             show_404();
         }
         
-
-
+        $data['chart_data'] = $this->admin_model->dashbord_chart();
         $data['totalBooking'] = $this->admin_model->totalBooking();
         $data['countCustomer'] = $this->admin_model->countCustomer();
         $data['countUser'] = $this->admin_model->countUser();
@@ -138,7 +138,7 @@ class Admin extends CI_Controller
         }
     } //end of check rating exists function
 
-
+ 
     public function movies()
     {
         if ($this->session->userdata('role') !== 'admin') {
@@ -369,7 +369,7 @@ class Admin extends CI_Controller
 
         if (empty($data['items'])) {
             show_404();
-        }
+        } 
 
         $data['title'] = 'Edit Cinema';
 
@@ -558,6 +558,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('cinema', 'cinema', 'required');
         $this->form_validation->set_rules('date', 'date', 'required');
         $this->form_validation->set_rules('time', 'time', 'required');
+        $this->form_validation->set_rules('price', 'price', 'required');
 
 
 
@@ -599,6 +600,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('cinema', 'cinema', 'required');
         $this->form_validation->set_rules('date', 'date', 'required');
         $this->form_validation->set_rules('time', 'time', 'required');
+        $this->form_validation->set_rules('price', 'price', 'required');
 
         if ($this->form_validation->run() === FALSE) {
             $this->edit_showtime($id);
@@ -921,4 +923,170 @@ class Admin extends CI_Controller
             return false;
         }
     }
+    public function reports(){
+        if ($this->session->userdata('role') !== 'admin') {
+            redirect('login/authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/adminpages/report.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        $this->load->view('templates/header');
+        $this->load->view('adminpages/report');
+        $this->load->view('templates/footer');
+    }
+   
+    public function showtime_report()
+    {
+        if ($this->session->userdata('role') !== 'admin') {
+            redirect('login/authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/adminpages/showtime_report.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        if(isset($_POST['Search'])){
+			$this->load->model('admin_model');
+            $data['showtime'] = $this->admin_model->search_showtime();
+            
+            $this->load->view('templates/header');
+            $this->load->view('adminpages/showtime_report',$data);
+            $this->load->view('templates/footer');
+			}
+			
+	   else{
+			$this->load->model('admin_model');
+            $data['showtime'] = $this->admin_model->get_showtime();
+           
+            $this->load->view('templates/header');
+            $this->load->view('adminpages/showtime_report',$data);
+            $this->load->view('templates/footer');
+	   }
+        
+    }
+    public function showtime_pdfdetails()
+	{
+		
+            $date=date('y-m-d');
+			//$showtime_id = $this->uri->segment(3);
+			$html_content = '<h3 align="center">Showtime</h3>';
+			$html_content .= $this->admin_model->fetch_showtime_details();
+			$this->pdf->loadHtml($html_content);
+			$this->pdf->render();
+			$this->pdf->stream("".$date.".pdf", array("Attachment"=>0));
+		
+	}
+    public function daily_showtime()
+    {
+        if ($this->session->userdata('role') !== 'admin') {
+            redirect('login/authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/adminpages/showtime_report.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        
+			$this->load->model('admin_model');
+            $data['daily'] = $this->admin_model->daily_showtime();
+           
+            $this->load->view('templates/header');
+            $this->load->view('adminpages/showtime_report',$data);
+            $this->load->view('templates/footer');
+	  
+    }
+    
+	public function daily_showtime_pdfdetails()
+	{
+            $date=date('y-m-d');
+			//$showtime_id = $this->uri->segment(3);
+			$html_content = '<h3 align="center">Todays Showtime</h3>';
+			$html_content .= $this->admin_model->fetch_daily_showtime_details();
+			$this->pdf->loadHtml($html_content);
+			$this->pdf->render();
+			$this->pdf->stream("".$date.".pdf", array("Attachment"=>0));
+		
+	}
+    
+    public function weekly_showtime()
+    {
+        if ($this->session->userdata('role') !== 'admin') {
+            redirect('login/authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/adminpages/showtime_report.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        
+			$this->load->model('admin_model');
+            $data['weekly'] = $this->admin_model->weekly_showtime();
+           
+            $this->load->view('templates/header');
+            $this->load->view('adminpages/showtime_report',$data);
+            $this->load->view('templates/footer');
+	  
+    }
+    
+	public function weekly_showtime_pdfdetails()
+	{
+            $date=date('y-m-d');
+			//$showtime_id = $this->uri->segment(3);
+			$html_content = '<h3 align="center">Weekly Showtime</h3>';
+			$html_content .= $this->admin_model->fetch_weekly_showtime_details();
+			$this->pdf->loadHtml($html_content);
+			$this->pdf->render();
+			$this->pdf->stream("".$date.".pdf", array("Attachment"=>0));
+		
+	}
+     
+    public function monthly_showtime()
+    {
+        if ($this->session->userdata('role') !== 'admin') {
+            redirect('login/authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/adminpages/showtime_report.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        
+			$this->load->model('admin_model');
+            $data['monthly'] = $this->admin_model->monthly_showtime();
+           
+            $this->load->view('templates/header');
+            $this->load->view('adminpages/showtime_report',$data);
+            $this->load->view('templates/footer');
+	  
+    }
+    
+	public function monthly_showtime_pdfdetails()
+	{
+            $date=date('y-m-d');
+			//$showtime_id = $this->uri->segment(3);
+			$html_content = '<h3 align="center">monthly Showtime</h3>';
+			$html_content .= $this->admin_model->fetch_monthly_showtime_details();
+			$this->pdf->loadHtml($html_content);
+			$this->pdf->render();
+			$this->pdf->stream("".$date.".pdf", array("Attachment"=>0));
+		
+	}
+    public function bar_chart() {
+   
+        $query =  $this->db->query("SELECT COUNT(user_id) as count,
+        MONTHNAME(created_at) as month_name FROM user
+        WHERE YEAR(created_at) = '" . date('Y') . "'
+
+        GROUP BY YEAR(created_at),MONTH(created_at)"); 
+   
+        $record = $query->result();
+        $data = [];
+   
+        foreach($record as $row) {
+              $data['label'][] = $row->month_name;
+              $data['data'][] = (int) $row->count;
+        }
+        $data['chart_data'] = json_encode($data);
+       
+        $this->load->view('templates/header');
+            $this->load->view('adminpages/bar_chart',$data);
+            $this->load->view('templates/footer');
+      }
 }

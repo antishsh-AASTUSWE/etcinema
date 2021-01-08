@@ -70,7 +70,7 @@
 
 
 <!-- Index js -->
-<script src="<?php echo base_url() ?>assets/js/index.js"></script>
+
 <script type="text/javascript" src="<?php echo base_url() ?>assets/DataTables/datatables.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>assets/DataTables/jquery.dataTables.min.js"></script>
 

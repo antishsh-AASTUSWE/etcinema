@@ -13,7 +13,7 @@ class admin_model extends CI_Model
             ->or_like('rating', $data['Search'])
             ->or_like('description',  $data['Search'])
             ->get('ratings');
-
+ 
         return $query->result_array();
     } //end of search rating
 
@@ -182,6 +182,7 @@ class admin_model extends CI_Model
         'show_time' => $this->input->post('time'),
         'mov_id'=>$this->input->post('movie'),
         'cinema_id'=>$this->input->post('cinema'),
+        'price'=>$this->input->post('price'),
         );
 
 
@@ -195,6 +196,7 @@ class admin_model extends CI_Model
         'show_time' => $this->input->post('time'),
         'mov_id'=>$this->input->post('movie'),
         'cinema_id'=>$this->input->post('cinema'),
+        'price'=>$this->input->post('price'),
         );
 
         return $this->db->where('show_id',$id)->update('showtime', $data);
@@ -211,7 +213,7 @@ class admin_model extends CI_Model
     
  public function search_movie(){
     $data= array(
-        'Search'=>$this->input->post('Search'));
+        'Search'=>$this->input->post('Search')); 
 
         $query = $this->db->like('movie_id', $data['Search'])
         ->or_like('mov_name', $data['Search'])
@@ -638,4 +640,196 @@ public function search_gener()
             return $query->num_rows();
         }
         
+        function fetch_showtime_details()
+	{
+        $this->db->select('*');
+        $this->db->join('movie','showtime.mov_id=movie.movie_id');
+        $this->db->join('cinema','showtime.cinema_id=cinema.cinema_id');
+        $data = $this->db->get('showtime');
+        
+		$output = '<table width="100%" cellspacing="5" cellpadding="5">';
+		foreach($data->result() as $row)
+		{
+			$output .= '
+            <tr>
+		<td width="25%"><img src="'.base_url().'assets/poster/'.$row->mov_poster.'" /></td>
+				<td width="75%">
+					<p><b>Movie : </b>'.$row->mov_name.'</p>
+					<p><b>Cinema : </b>'.$row->cinema_name.'</p>
+					<p><b>Date : </b>'.$row->show_date.'</p>
+					<p><b>Time : </b>'.$row->show_time.'</p>
+
+				</td>
+			</tr>
+            ';
+            	
+
+		}
+		$output .= '
+		<tr>
+			<td colspan="2" align="center"><a href="'.base_url().'admin/showtime_report" class="btn btn-primary">Back</a></td>
+		</tr>
+		';
+		$output .= '</table>';
+		return $output;
+    }
+
+    public function daily_showtime(){
+        
+        $this->db->where('show_date', date('y-m-d'));
+        $this->db->join('movie','showtime.mov_id=movie.movie_id');
+        $this->db->join('cinema','showtime.cinema_id=cinema.cinema_id');
+        $query =$this->db->get('showtime');
+        
+        
+        return $query->result_array();
+    }
+    function fetch_daily_showtime_details()
+	{
+        $this->db->where('show_date', date('y-m-d'));
+        $this->db->join('movie','showtime.mov_id=movie.movie_id');
+        $this->db->join('cinema','showtime.cinema_id=cinema.cinema_id');
+        $data = $this->db->get('showtime');
+        
+		$output = '<table width="100%" cellspacing="5" cellpadding="5">';
+		foreach($data->result() as $row)
+		{
+			$output .= '
+            <tr>
+		<td width="25%"><img src="'.base_url().'assets/poster/'.$row->mov_poster.'" /></td>
+				<td width="75%">
+					<p><b>Movie : </b>'.$row->mov_name.'</p>
+					<p><b>Cinema : </b>'.$row->cinema_name.'</p>
+					<p><b>Date : </b>'.$row->show_date.'</p>
+					<p><b>Time : </b>'.$row->show_time.'</p>
+
+				</td>
+			</tr>
+            ';
+            	
+
+		}
+		$output .= '
+		<tr>
+			<td colspan="2" align="center"><a href="'.base_url().'admin/showtime_report" class="btn btn-primary">Back</a></td>
+		</tr>
+		';
+		$output .= '</table>';
+		return $output;
+    }
+
+    public function weekly_showtime(){
+  
+        $query = $this->db->query("SELECT *
+        FROM showtime 
+        join movie ON movie.movie_id=showtime.mov_id
+        join cinema ON cinema.cinema_id=showtime.cinema_id
+        WHERE YEARWEEK(show_date) = YEARWEEK(NOW()) ORDER BY `show_date` DESC ");
+
+        
+        return $query->result_array();
+    }
+    function fetch_weekly_showtime_details()
+	{
+        $data = $this->db->query("SELECT *
+        FROM showtime 
+        join movie ON movie.movie_id=showtime.mov_id
+        join cinema ON cinema.cinema_id=showtime.cinema_id
+        WHERE YEARWEEK(show_date) = YEARWEEK(NOW()) ORDER BY `show_date` DESC ");
+
+        
+        
+		$output = '<table width="100%" cellspacing="5" cellpadding="5">';
+		foreach($data->result() as $row)
+		{
+			$output .= '
+            <tr>
+		<td width="25%"><img src="'.base_url().'assets/poster/'.$row->mov_poster.'" /></td>
+				<td width="75%">
+					<p><b>Movie : </b>'.$row->mov_name.'</p>
+					<p><b>Cinema : </b>'.$row->cinema_name.'</p>
+					<p><b>Date : </b>'.$row->show_date.'</p>
+					<p><b>Time : </b>'.$row->show_time.'</p>
+
+				</td>
+			</tr>
+            ';
+            	
+
+		}
+		$output .= '
+		<tr>
+			<td colspan="2" align="center"><a href="'.base_url().'admin/showtime_report" class="btn btn-primary">Back</a></td>
+		</tr>
+		';
+		$output .= '</table>';
+		return $output;
+    }
+    public function monthly_showtime(){
+  
+        $query = $this->db->query("SELECT *
+        FROM showtime 
+        join movie ON movie.movie_id=showtime.mov_id
+        join cinema ON cinema.cinema_id=showtime.cinema_id
+        WHERE MONTH(show_date) = MONTH(NOW()) ORDER BY `show_date` DESC ");
+
+        
+        return $query->result_array();
+    }
+    function fetch_monthly_showtime_details()
+	{
+        $data = $this->db->query("SELECT *
+        FROM showtime 
+        join movie ON movie.movie_id=showtime.mov_id
+        join cinema ON cinema.cinema_id=showtime.cinema_id
+        WHERE MONTH(show_date) = MONTH(NOW()) ORDER BY `show_date` DESC ");
+
+        
+        
+		$output = '<table width="100%" cellspacing="5" cellpadding="5">';
+		foreach($data->result() as $row)
+		{
+			$output .= '
+            <tr>
+		<td width="25%"><img src="'.base_url().'assets/poster/'.$row->mov_poster.'" /></td>
+				<td width="75%">
+					<p><b>Movie : </b>'.$row->mov_name.'</p>
+					<p><b>Cinema : </b>'.$row->cinema_name.'</p>
+					<p><b>Date : </b>'.$row->show_date.'</p>
+					<p><b>Time : </b>'.$row->show_time.'</p>
+
+				</td>
+			</tr>
+            ';
+            	
+
+		}
+		$output .= '
+		<tr>
+			<td colspan="2" align="center"><a href="'.base_url().'admin/showtime_report" class="btn btn-primary">Back</a></td>
+		</tr>
+		';
+		$output .= '</table>';
+		return $output;
+    }
+public function dashbord_chart(){
+    /* $query = $this->db->query("SELECT COUNT(user_id) as count,
+        YEARWEEK(created_at) as month_name FROM user
+        WHERE YEARWEEK(created_at) = YEARWEEK(NOW()) ORDER BY `created_at` DESC ");
+ */
+    $query =  $this->db->query("SELECT COUNT(user_id) as count,
+        MONTHNAME(created_at) as month_name FROM user
+        WHERE YEAR(created_at) = '" . date('Y') . "'
+
+        GROUP BY YEAR(created_at),MONTH(created_at)"); 
+   
+        $record = $query->result();
+        $data = [];
+   
+        foreach($record as $row) {
+              $data['label'][] = $row->month_name;
+              $data['data'][] = (int) $row->count;
+        }
+        return json_encode($data);
+    }
 }

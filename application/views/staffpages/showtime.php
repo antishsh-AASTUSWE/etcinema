@@ -14,6 +14,7 @@
             <th scope="col">Cinema</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
+            <th scope="col">Price</th>
             </tr>
             </thead>
             <tbody>
@@ -72,7 +73,15 @@
 </div> 
 </div>
               </td>
-              
+              <td>
+
+              <div class="form-group">
+  <input class="form-control" name="price" type="text" placeholder="50$" id="example-time-input">
+  <div class="text-danger">
+<?php echo form_error('price'); ?>
+</div> 
+</div>
+              </td>
             </tbody>
           </table>
           <div class="col-lg-6">

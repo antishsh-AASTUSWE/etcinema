@@ -231,6 +231,7 @@ class Staff extends CI_Controller
         $this->form_validation->set_rules('cinema', 'cinema', 'required');
         $this->form_validation->set_rules('date', 'date','required');
         $this->form_validation->set_rules('time', 'time','required');
+        $this->form_validation->set_rules('price', 'price','required');
         
 
 
@@ -272,6 +273,7 @@ class Staff extends CI_Controller
         $this->form_validation->set_rules('cinema', 'cinema', 'required');
         $this->form_validation->set_rules('date', 'date','required');
         $this->form_validation->set_rules('time', 'time','required');
+        $this->form_validation->set_rules('price', 'price','required');
         
         if ($this->form_validation->run() === FALSE) {
             $this->edit_showtime($id);
@@ -469,25 +471,9 @@ class Staff extends CI_Controller
        
             
             $this->staff_model->addSeat();
-            redirect('staff/seatLayout');
+            redirect('staff/seat');
       
       
     }
-    public function seatLayout(){
-        
-        $data['seat']=$this->staff_model->seatLayout();
-        $this->load->view('templates/header');
-        $this->load->view('staffpages/seat',$data);
-        $this->load->view('templates/footer');
-    }
-    public function addseatLayout(){
-        
-        
-       
-
-        $this->staff_model->addseatLayout();
-        redirect('staff/seatLayout');
-  
-  
-}
+    
 }
