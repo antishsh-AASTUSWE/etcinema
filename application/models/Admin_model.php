@@ -255,7 +255,7 @@ public function add_movie($post_image)
         'mov_language' => $this->input->post('language'),
 
         'mov_starring' => $this->input->post('staring'),
-        'mov_subtitle' => $this->input->post('subtitle')
+        'mov_synopsis' => $this->input->post('mov_synopsis')
     );
 
 

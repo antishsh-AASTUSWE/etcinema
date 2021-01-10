@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Admin extends CI_Controller
 {
 
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
         if ($this->session->userdata('logged_in') !== TRUE) {
@@ -22,8 +22,8 @@ class Admin extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-        
-       // $data['chart_data'] = $this->admin_model->dashbord_chart();
+
+        // $data['chart_data'] = $this->admin_model->dashbord_chart();
         $data['totalBooking'] = $this->admin_model->totalBooking();
         $data['countCustomer'] = $this->admin_model->countCustomer();
         $data['countUser'] = $this->admin_model->countUser();
@@ -52,7 +52,7 @@ class Admin extends CI_Controller
             $this->load->view('adminpages/rating', $data);
             $this->load->view('templates/footer');
         } else {
-            
+
             $data['rating'] = $this->admin_model->get_rating();
 
             $this->load->view('templates/header');
@@ -138,7 +138,7 @@ class Admin extends CI_Controller
         }
     } //end of check rating exists function
 
- 
+
     public function movies()
     {
         if ($this->session->userdata('role') !== 'admin') {
@@ -149,14 +149,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            
+
             $data['movie'] = $this->admin_model->search_movie();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/movies', $data);
             $this->load->view('templates/footer');
         } else {
-            
+
             $data['movie'] = $this->admin_model->get_movie();
 
             $this->load->view('templates/header');
@@ -164,6 +164,8 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         }
     }
+
+    
     public function add_movie()
     {
 
@@ -171,7 +173,7 @@ class Admin extends CI_Controller
             redirect('login/authenticate_login');
         }
 
-        $this->form_validation->set_rules('title', 'title', 'required||callback_check_movie_exists');
+        $this->form_validation->set_rules('title', 'Title', 'required|callback_check_movie_exists');
 
         $this->form_validation->set_rules('rating_id', 'rating id', 'required');
         $this->form_validation->set_rules('trailor', 'trailor', 'required');
@@ -181,14 +183,14 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('realsedate', 'realsedate', 'required');
         $this->form_validation->set_rules('language', 'language', 'required');
         $this->form_validation->set_rules('staring', 'staring', 'required');
-        $this->form_validation->set_rules('subtitle', 'subtitle', 'required');
+        $this->form_validation->set_rules('mov_synopsis', 'SYNOPSIS', 'required');
         if (empty($_FILES['userfile']['name'])) {
             $this->form_validation->set_rules('userfile', 'Poster', 'required');
         }
 
 
         if ($this->form_validation->run() === FALSE) {
-            
+
             $data['gener'] = $this->admin_model->get_gener();
             $data['rating'] = $this->admin_model->get_rating();
 
@@ -197,7 +199,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
 
-            $config['upload_path'] = './assets/poster';
+            $config['upload_path'] = './assets/poster/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['max_size'] = '2048';
             $config['max_width'] = '5000';
@@ -213,19 +215,35 @@ class Admin extends CI_Controller
             } else {
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
+                $this->image_resize('./assets/poster/'.$post_image, 255);
             }
-            
+
             $this->admin_model->add_movie($post_image);
             redirect('admin/movies');
         }
     }
+
+    //resize image resize functions
+    public function image_resize($source, $width)
+    {
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $source;
+        $config['maintain_ratio'] = TRUE;
+        $config['width']         = $width;
+        
+
+        $this->load->library('image_lib', $config);
+
+        $this->image_lib->resize();
+        $this->image_lib->clear();
+    }//end of image resis
 
     public function edit_movie($id)
     {
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        
+
         $data['records'] = $this->admin_model->getMovieRecord($id);
 
         if (empty($data['records'])) {
@@ -280,7 +298,7 @@ class Admin extends CI_Controller
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
             }
-            
+
             $this->admin_model->update_movie($post_image, $id);
             redirect('admin/movies');
         }
@@ -290,7 +308,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        
+
         $this->admin_model->deleteMovie($id);
         redirect('admin/movies');
     }
@@ -308,8 +326,6 @@ class Admin extends CI_Controller
         }
     } //end of check rating exists function
 
-
-
     //cinemas function
     public function cinemas()
     {
@@ -321,14 +337,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            
+
             $cinema = $this->admin_model->search_cinema();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/cinema', ['cinema' => $cinema]);
             $this->load->view('templates/footer');
         } else {
-            
+
             $cinema = $this->admin_model->get_cinema();
 
             $this->load->view('templates/header');
@@ -369,7 +385,7 @@ class Admin extends CI_Controller
 
         if (empty($data['items'])) {
             show_404();
-        } 
+        }
 
         $data['title'] = 'Edit Cinema';
 
@@ -422,14 +438,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            
+
             $data['gener'] = $this->admin_model->search_gener();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/gener', $data);
             $this->load->view('templates/footer');
         } else {
-            
+
             $gener = $this->admin_model->get_gener();
 
             $this->load->view('templates/header');
@@ -438,9 +454,7 @@ class Admin extends CI_Controller
         }
     } //end of geners
 
-
     //add gener function
-
     public function add_gener()
     {
         if ($this->session->userdata('role') !== 'admin') {
@@ -515,8 +529,6 @@ class Admin extends CI_Controller
         }
     } //end of check gener exists 
 
-
-
     //showtime function
     public function showtime()
     {
@@ -528,7 +540,7 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            
+
             $data['rating'] = $this->admin_model->search_rating();
             $data['showtime'] = $this->admin_model->search_showtime();
             $data['cinema'] = $this->admin_model->get_cinema();
@@ -538,7 +550,7 @@ class Admin extends CI_Controller
             $this->load->view('adminpages/showtime', $data);
             $this->load->view('templates/footer');
         } else {
-            
+
             $data['rating'] = $this->admin_model->get_rating();
             $data['showtime'] = $this->admin_model->get_showtime();
             $data['cinema'] = $this->admin_model->get_cinema();
@@ -567,7 +579,7 @@ class Admin extends CI_Controller
             $this->showtime();
         } else {
 
-            
+
             $this->admin_model->add_showtime();
             redirect('admin/showtime');
         }
@@ -577,7 +589,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        
+
         $data['records'] = $this->admin_model->getShowRecord($id);
 
         if (empty($data['records'])) {
@@ -607,7 +619,7 @@ class Admin extends CI_Controller
         } else {
 
 
-            
+
             $this->admin_model->update_showtime($id);
             redirect('admin/showtime');
         }
@@ -617,7 +629,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        
+
         $this->admin_model->deleteShowtime($id);
         redirect('admin/showtime');
     }
@@ -633,14 +645,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            
+
             $data['user'] = $this->admin_model->search_users();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/users', $data);
             $this->load->view('templates/footer');
         } else {
-            
+
             $data['user'] = $this->admin_model->get_user();
 
             $this->load->view('templates/header');
@@ -714,7 +726,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        
+
         $this->admin_model->deleteUser($id);
         redirect('admin/users');
     }
@@ -770,14 +782,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            
+
             $data['booking'] = $this->admin_model->search_booking();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/booking', $data);
             $this->load->view('templates/footer');
         } else {
-            
+
             $data['booking'] = $this->admin_model->get_booking();
 
             $this->load->view('templates/header');
@@ -795,14 +807,14 @@ class Admin extends CI_Controller
             show_404();
         }
         if (isset($_POST['Search'])) {
-            
+
             $data['customer'] = $this->admin_model->search_customer();
 
             $this->load->view('templates/header');
             $this->load->view('adminpages/customer', $data);
             $this->load->view('templates/footer');
         } else {
-            
+
             $data['booking'] = $this->admin_model->get_booking();
             $data['customer'] = $this->admin_model->get_customer();
 
@@ -834,7 +846,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         } else {
 
-            
+
             $this->admin_model->add_customer();
             redirect('admin/customer');
         }
@@ -844,7 +856,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        
+
         $data['records'] = $this->admin_model->getCustomerRecord($id);
 
         if (empty($data['records'])) {
@@ -875,7 +887,7 @@ class Admin extends CI_Controller
         } else {
 
 
-            
+
             $this->admin_model->update_customer($id);
             redirect('admin/customer');
         }
@@ -885,7 +897,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
-        
+
         $this->admin_model->deleteCustomer($id);
         redirect('admin/customer');
     }
@@ -894,7 +906,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_message('check_Password', 'the password is incorect please try agin');
 
         $password = sha1($this->input->post('password'));
-        
+
         if ($this->admin_model->check_Password($password)) {
             return true;
         } else {
@@ -905,7 +917,7 @@ class Admin extends CI_Controller
     {
         $this->form_validation->set_message('check_email', 'That email is taken. please choose a difrent one');
 
-        
+
         if ($this->admin_model->check_email($email)) {
             return true;
         } else {
@@ -916,14 +928,15 @@ class Admin extends CI_Controller
     public function check_phone($phone)
     {
         $this->form_validation->set_message('check_phone', 'please use differnt phone this is used before');
-        
+
         if ($this->admin_model->check_phone($phone)) {
             return true;
         } else {
             return false;
         }
     }
-    public function reports(){
+    public function reports()
+    {
         if ($this->session->userdata('role') !== 'admin') {
             redirect('login/authenticate_login');
         }
@@ -935,7 +948,7 @@ class Admin extends CI_Controller
         $this->load->view('adminpages/report');
         $this->load->view('templates/footer');
     }
-   
+
     public function showtime_report()
     {
         if ($this->session->userdata('role') !== 'admin') {
@@ -945,37 +958,33 @@ class Admin extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-        if(isset($_POST['Search'])){
-			$this->load->model('admin_model');
+        if (isset($_POST['Search'])) {
+            $this->load->model('admin_model');
             $data['showtime'] = $this->admin_model->search_showtime();
-            
+
             $this->load->view('templates/header');
-            $this->load->view('adminpages/showtime_report',$data);
+            $this->load->view('adminpages/showtime_report', $data);
             $this->load->view('templates/footer');
-			}
-			
-	   else{
-			$this->load->model('admin_model');
+        } else {
+            $this->load->model('admin_model');
             $data['showtime'] = $this->admin_model->get_showtime();
-           
+
             $this->load->view('templates/header');
-            $this->load->view('adminpages/showtime_report',$data);
+            $this->load->view('adminpages/showtime_report', $data);
             $this->load->view('templates/footer');
-	   }
-        
+        }
     }
     public function showtime_pdfdetails()
-	{
-		
-            $date=date('y-m-d');
-			//$showtime_id = $this->uri->segment(3);
-			$html_content = '<h3 align="center">Showtime</h3>';
-			$html_content .= $this->admin_model->fetch_showtime_details();
-			$this->pdf->loadHtml($html_content);
-			$this->pdf->render();
-			$this->pdf->stream("".$date.".pdf", array("Attachment"=>0));
-		
-	}
+    {
+
+        $date = date('y-m-d');
+        //$showtime_id = $this->uri->segment(3);
+        $html_content = '<h3 align="center">Showtime</h3>';
+        $html_content .= $this->admin_model->fetch_showtime_details();
+        $this->pdf->loadHtml($html_content);
+        $this->pdf->render();
+        $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
+    }
     public function daily_showtime()
     {
         if ($this->session->userdata('role') !== 'admin') {
@@ -985,28 +994,26 @@ class Admin extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-        
-			$this->load->model('admin_model');
-            $data['daily'] = $this->admin_model->daily_showtime();
-           
-            $this->load->view('templates/header');
-            $this->load->view('adminpages/showtime_report',$data);
-            $this->load->view('templates/footer');
-	  
+
+        $this->load->model('admin_model');
+        $data['daily'] = $this->admin_model->daily_showtime();
+
+        $this->load->view('templates/header');
+        $this->load->view('adminpages/showtime_report', $data);
+        $this->load->view('templates/footer');
     }
-    
-	public function daily_showtime_pdfdetails()
-	{
-            $date=date('y-m-d');
-			//$showtime_id = $this->uri->segment(3);
-			$html_content = '<h3 align="center">Todays Showtime</h3>';
-			$html_content .= $this->admin_model->fetch_daily_showtime_details();
-			$this->pdf->loadHtml($html_content);
-			$this->pdf->render();
-			$this->pdf->stream("".$date.".pdf", array("Attachment"=>0));
-		
-	}
-    
+
+    public function daily_showtime_pdfdetails()
+    {
+        $date = date('y-m-d');
+        //$showtime_id = $this->uri->segment(3);
+        $html_content = '<h3 align="center">Todays Showtime</h3>';
+        $html_content .= $this->admin_model->fetch_daily_showtime_details();
+        $this->pdf->loadHtml($html_content);
+        $this->pdf->render();
+        $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
+    }
+
     public function weekly_showtime()
     {
         if ($this->session->userdata('role') !== 'admin') {
@@ -1016,28 +1023,26 @@ class Admin extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-        
-			$this->load->model('admin_model');
-            $data['weekly'] = $this->admin_model->weekly_showtime();
-           
-            $this->load->view('templates/header');
-            $this->load->view('adminpages/showtime_report',$data);
-            $this->load->view('templates/footer');
-	  
+
+        $this->load->model('admin_model');
+        $data['weekly'] = $this->admin_model->weekly_showtime();
+
+        $this->load->view('templates/header');
+        $this->load->view('adminpages/showtime_report', $data);
+        $this->load->view('templates/footer');
     }
-    
-	public function weekly_showtime_pdfdetails()
-	{
-            $date=date('y-m-d');
-			//$showtime_id = $this->uri->segment(3);
-			$html_content = '<h3 align="center">Weekly Showtime</h3>';
-			$html_content .= $this->admin_model->fetch_weekly_showtime_details();
-			$this->pdf->loadHtml($html_content);
-			$this->pdf->render();
-			$this->pdf->stream("".$date.".pdf", array("Attachment"=>0));
-		
-	}
-     
+
+    public function weekly_showtime_pdfdetails()
+    {
+        $date = date('y-m-d');
+        //$showtime_id = $this->uri->segment(3);
+        $html_content = '<h3 align="center">Weekly Showtime</h3>';
+        $html_content .= $this->admin_model->fetch_weekly_showtime_details();
+        $this->pdf->loadHtml($html_content);
+        $this->pdf->render();
+        $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
+    }
+
     public function monthly_showtime()
     {
         if ($this->session->userdata('role') !== 'admin') {
@@ -1047,46 +1052,45 @@ class Admin extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-        
-			$this->load->model('admin_model');
-            $data['monthly'] = $this->admin_model->monthly_showtime();
-           
-            $this->load->view('templates/header');
-            $this->load->view('adminpages/showtime_report',$data);
-            $this->load->view('templates/footer');
-	  
+
+        $this->load->model('admin_model');
+        $data['monthly'] = $this->admin_model->monthly_showtime();
+
+        $this->load->view('templates/header');
+        $this->load->view('adminpages/showtime_report', $data);
+        $this->load->view('templates/footer');
     }
-    
-	public function monthly_showtime_pdfdetails()
-	{
-            $date=date('y-m-d');
-			//$showtime_id = $this->uri->segment(3);
-			$html_content = '<h3 align="center">monthly Showtime</h3>';
-			$html_content .= $this->admin_model->fetch_monthly_showtime_details();
-			$this->pdf->loadHtml($html_content);
-			$this->pdf->render();
-			$this->pdf->stream("".$date.".pdf", array("Attachment"=>0));
-		
-	}
-    public function bar_chart() {
-   
+
+    public function monthly_showtime_pdfdetails()
+    {
+        $date = date('y-m-d');
+        //$showtime_id = $this->uri->segment(3);
+        $html_content = '<h3 align="center">monthly Showtime</h3>';
+        $html_content .= $this->admin_model->fetch_monthly_showtime_details();
+        $this->pdf->loadHtml($html_content);
+        $this->pdf->render();
+        $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
+    }
+    public function bar_chart()
+    {
+
         $query =  $this->db->query("SELECT COUNT(user_id) as count,
         MONTHNAME(created_at) as month_name FROM user
         WHERE YEAR(created_at) = '" . date('Y') . "'
 
-        GROUP BY YEAR(created_at),MONTH(created_at)"); 
-   
+        GROUP BY YEAR(created_at),MONTH(created_at)");
+
         $record = $query->result();
         $data = [];
-   
-        foreach($record as $row) {
-              $data['label'][] = $row->month_name;
-              $data['data'][] = (int) $row->count;
+
+        foreach ($record as $row) {
+            $data['label'][] = $row->month_name;
+            $data['data'][] = (int) $row->count;
         }
         $data['chart_data'] = json_encode($data);
-       
+
         $this->load->view('templates/header');
-            $this->load->view('adminpages/bar_chart',$data);
-            $this->load->view('templates/footer');
-      }
+        $this->load->view('adminpages/bar_chart', $data);
+        $this->load->view('templates/footer');
+    }
 }
