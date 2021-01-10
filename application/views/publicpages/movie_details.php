@@ -184,119 +184,24 @@
                                     <h5 class="sub-title">Synopsis</h5>
                                     <p><span><?php echo $movie_detail['mov_synopsis']; ?></p>
                                 </div>
+                                
                                 <div class="item">
                                     <div class="header">
-                                        <h5 class="sub-title">cast</h5>
-                                        <div class="navigation">
-                                            <div class="cast-prev"><i class="flaticon-double-right-arrows-angles"></i></div>
-                                            <div class="cast-next"><i class="flaticon-double-right-arrows-angles"></i></div>
-                                        </div>
+                                        <h5 class="sub-title">Add Comment</h5>
                                     </div>
-                                    <div class="casting-slider owl-carousel">
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="<?php echo base_url() ?>publicassets/images/cast/cast01.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">Bill Hader</a></h6>
-                                                <span class="cate">actor</span>
-                                                <p>As Richie Tozier</p>
-                                            </div>
+                                    <form class="contact-form" id="contact_form_submit">
+                                        <div class="form-group">
+                                            <label for="subject">Title <span>*</span></label>
+                                            <input type="text" placeholder="Enter Your Subject" name="title" id="title" required>
                                         </div>
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="<?php echo base_url() ?>publicassets/images/cast/cast02.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">nora hardy</a></h6>
-                                                <span class="cate">actor</span>
-                                                <p>As raven</p>
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="message">Comment <span>*</span></label>
+                                            <textarea name="message" id="message" placeholder="Enter Your Message" required></textarea>
                                         </div>
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="<?php echo base_url() ?>publicassets/images/cast/cast03.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">alvin peters</a></h6>
-                                                <span class="cate">actor</span>
-                                                <p>As magneto</p>
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Send Message">
                                         </div>
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="<?php echo base_url() ?>publicassets/images/cast/cast04.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">josh potter</a></h6>
-                                                <span class="cate">actor</span>
-                                                <p>As quicksilver</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="header">
-                                        <h5 class="sub-title">crew</h5>
-                                        <div class="navigation">
-                                            <div class="cast-prev-2"><i class="flaticon-double-right-arrows-angles"></i></div>
-                                            <div class="cast-next-2"><i class="flaticon-double-right-arrows-angles"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="casting-slider-two owl-carousel">
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="<?php echo base_url() ?>publicassets/images/cast/cast05.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">pete warren</a></h6>
-                                                <span class="cate">actor</span>
-                                            </div>
-                                        </div>
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="<?php echo base_url() ?>publicassets/images/cast/cast06.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">howard bass</a></h6>
-                                                <span class="cate">executive producer</span>
-                                            </div>
-                                        </div>
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="<?php echo base_url() ?>publicassets/images/cast/cast07.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">naomi smith</a></h6>
-                                                <span class="cate">producer</span>
-                                            </div>
-                                        </div>
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="<?php echo base_url() ?>publicassets/images/cast/cast08.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">tom martinez</a></h6>
-                                                <span class="cate">producer</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="tab-item">

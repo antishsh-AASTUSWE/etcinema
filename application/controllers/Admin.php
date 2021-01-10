@@ -273,7 +273,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('realsedate', 'realse date', 'required');
         $this->form_validation->set_rules('language', 'language', 'required');
         $this->form_validation->set_rules('staring', 'staring', 'required');
-        $this->form_validation->set_rules('subtitle', 'subtitle', 'required');
+        $this->form_validation->set_rules('mov_synopsis', 'Synopsis', 'required');
 
 
 

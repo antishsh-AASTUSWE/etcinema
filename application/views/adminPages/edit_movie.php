@@ -60,8 +60,8 @@
     </div> 
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Subtitle</label>
-      <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_subtitle'];?>" name="subtitle">
+      <label for="exampleInputEmail1">Synopsis</label>
+      <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_synopsis'];?>" name="synopsis">
       <div class="text-danger">
     <?php echo form_error('subtitle'); ?>
     </div> 
@@ -82,10 +82,10 @@
         
 <option disabled selected value><?php echo $r['gener'];?></option>
         <?php
-        if(isset($gener)){
+        
         foreach ($gener as $g) {
           echo "<option value='$g[gener_id]'>$g[gener] </option>";
-        }}
+        }
         ?>
       </select>
       <div class="text-danger">
@@ -98,10 +98,10 @@
         
       <option disabled selected value><?php echo $r['rating'];?></option>
         <?php
-        if(isset($rating)){
+        
         foreach ($rating as $r) {
           echo "<option value='$r[rating_id]'>$r[rating]</option>";
-        }}
+        }
         ?>
       </select>
       <div class="text-danger">
