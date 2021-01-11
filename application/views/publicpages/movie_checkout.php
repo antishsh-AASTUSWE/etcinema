@@ -144,10 +144,12 @@
                     $t = $row['col'] * $row['row'];
                 }
 
-                for ($i = 11; $i < $t; $i++) {
-                    if (isset($_POST['seat' . $i])) {
+                for ($i = 1; $i < $row['row']; $i++) {
+                    for ($j = 1; $j < $row['col']; $j++) {
+                    if (isset($_POST["seat" . $i.''.$j])) {
                 ?>
-                        <input type="text" hidden name="<?= 'seat' . $i ?>" value="<?= $i ?>">
+                
+                        <input type="text" hidden name="<?= "seat" . $i.''.$j ?>" value="<?= $i.''.$j ?>">
                 
                 <input type="text" hidden name="show_id" value="<?= $showtime['show_id'] ?>">
                 <input type="text" hidden name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
@@ -157,7 +159,7 @@
 
 
                 <?php }
-                } ?>
+                }} ?>
 
                 
                 
