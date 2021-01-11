@@ -71,7 +71,7 @@
 
                                                         <input type="checkbox" name=<?= 'seat' . $i . $j; ?> hidden id=<?= $i . $j; ?> value='ch.<?= $i . $j; ?>' onclick="myFunction(this.id)">
                                                         <img id=<?= '1img' . $i . $j; ?> style="display:block" src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
-                                                        <img id=<?= '2img' . $i . $j; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
+                                                        <img id=<?= '2img' . $i . $j; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01-booked.png" alt="seat">
                                                     </label>
 
                                                 </li>
@@ -113,8 +113,7 @@
                                                     ?> <label class='checkbox'>
 
                                                             <input type="checkbox" name=<?= 'seat' . $se; ?> hidden disabled id=<?= $se; ?> value='ch.<?= $se; ?>' onclick="myFunction(this.id)">
-                                                            <img id=<?= '1img' . $se; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
-                                                            <img id=<?= '2img' . $se; ?> style="display:block" src="<?php echo base_url() ?>publicassets/images/movie/seat01-booked.png" alt="seat">
+                                                            <img id=<?= '2img' . $se; ?> style="display:block" src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
                                                         </label>
 
 
@@ -126,7 +125,7 @@
 
                                                             <input type="checkbox" name=<?= 'seat' . $se; ?> hidden id=<?= $se; ?> value='ch.<?= $se; ?>' onclick="myFunction(this.id)">
                                                             <img id=<?= '1img' . $se; ?> style="display:block" src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
-                                                            <img id=<?= '2img' . $se; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
+                                                            <img id=<?= '2img' . $se; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01-booked.png" alt="seat">
                                                         </label>
 
 
@@ -165,7 +164,7 @@
                     </h3>
 
                 </div>
-                <div class="book-item" >
+                <div class="book-item">
                     <span><img class="mx-auto" src="<?php echo base_url() ?>publicassets/images/movie/seat01-booked.png" alt="seat"></span>
                     <h3 class="title" id="demo">
                         <p>Booked</p>
