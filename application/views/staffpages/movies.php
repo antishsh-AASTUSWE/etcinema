@@ -27,7 +27,7 @@
       <th scope="col">realse date</th>
       <th scope="col">language</th>
       <th scope="col">staring</th>
-      <th scope="col">subtitle</th>
+      <th scope="col">synopsis</th>
       <th scope="col">Edit/Delete</th>
 
           </tr>
@@ -47,7 +47,7 @@
               <td><?= $m['mov_realse_date']; ?></td>
               <td><?= $m['mov_language']; ?></td>
               <td><?= $m['mov_starring']; ?></td>
-              <td><?= $m['mov_subtitle']; ?></td>
+              <td><?=word_limiter($m['mov_synopsis'], 6) ; ?></td>
 
              
                

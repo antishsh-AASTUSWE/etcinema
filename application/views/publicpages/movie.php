@@ -100,7 +100,6 @@
                                 <input type="checkbox" name="genre" id="genre1" onchange="this.form.submit()">
                                 <label for="genre1"><?= $g['gener']; ?></label>
                             </div>
-                            
                         <?php endforeach; ?>
                         </form>
                         </div>

@@ -56,7 +56,7 @@ class Publicpages extends CI_Controller
 		if(isset($_POST)){
 			$data['seat']=$this->input->post('seat');
 			$data['showtime'] = $this->public_model->get_showtime($id);
-			
+			$data['row'] = $this->public_model->get_seatRow();
 			$this->load->view('publictemplates/header');
 			$this->load->view('publicpages/movie_checkout',$data);
 			$this->load->view('publictemplates/footer');
@@ -121,8 +121,11 @@ class Publicpages extends CI_Controller
 			show_404();
 		}
 		$data['showtime'] = $this->public_model->get_showtime($id);
+		$data['seat'] = $this->public_model->get_seat($id);
+		$data['seatrow'] = $this->public_model->get_seatRow();
+		
 		$this->load->view('publictemplates/header');
-		$this->load->view('publicpages/movie_seat_plan', $data);
+		$this->load->view('publicpages/seat', $data);
 		$this->load->view('publictemplates/footer');
 	} //end of movie seat plan function
 
@@ -179,6 +182,32 @@ class Publicpages extends CI_Controller
 			} 
 	}
 	public function movie_book(){
-		$this->public_model->book_movie();	
+
+		
+		$this->public_model->reserve_seat();	
+		$this->public_model->book();	
+		$this->index();
 	}
+
+
+	public function test($id){
+		$row = $this->public_model->get_seatRow();
+		if (isset($row))
+{
+	$t=0;
+        $t=$row['col']*$row['row'];       
+}
+		
+		for($i=11; $i<$t; $i++){
+		$this->form_validation->set_rules('seat'.$i, 'seat'.$i,'required');
+		}
+        if ($this->form_validation->run() === FALSE) {
+			echo validation_errors(); 
+        } else {
+
+			$this->movie();
+		}
+	
+}
+	
 }
