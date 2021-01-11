@@ -175,15 +175,17 @@ class Public_model extends CI_Model
             $t = $row['col'] * $row['row'];
         }
 
-        for ($i = 11; $i < $t; $i++) {
-            if (isset($_POST['seat' . $i])) {
+        for ($i = 1; $i < $row['row']; $i++) {
+            for ($j = 1; $j < $row['col']; $j++) {
+                
+            if (isset($_POST["seat" . $i.''.$j])) {
                 $data = array(
-                    'seat' => $this->input->post('seat' . $i),
+                    'seat' => $this->input->post("seat" . $i.''.$j),
                     'show_id' => $this->input->post('show_id'),
                 );
 
                 $this->db->insert('seat_booked', $data);
-            }
+              }  }
         }
         //return $this->db->insert('seat_booked', $data);
 
