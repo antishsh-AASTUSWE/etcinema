@@ -198,10 +198,11 @@ class Publicpages extends CI_Controller
 			} 
 	}
 	public function movie_book(){
-		$this->public_model->book_movie();
-			
-		//$this->public_model->booking_send();	
-		//$this->index();
+
+		
+		$this->public_model->reserve_seat();	
+		$this->public_model->book();	
+		$this->index();
 	}
 
 

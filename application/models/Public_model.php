@@ -4,10 +4,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Public_model extends CI_Model
 {
- 
+
     //login user function
     public function login($username, $password)
-    { 
+    {
         $this->db->where('username', $username);
         $this->db->where('password', $password);
 
@@ -60,7 +60,7 @@ class Public_model extends CI_Model
         $query = $this->db->get_where('ratings', array('rating_id' => $id));
         return $query->row_array();
     } //end og get ratting
-    
+
     //get showtime by movie id function
     public function get_showtime_bymovieid($id = false)
     {
@@ -112,31 +112,30 @@ class Public_model extends CI_Model
         $this->db->from('showtime');
         $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
         $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
-        $this->db->join('geners','movie.mov_gener=geners.gener_id');
-        $this->db->join('ratings','movie.mov_ratting=ratings.rating_id');
+        $this->db->join('geners', 'movie.mov_gener=geners.gener_id');
+        $this->db->join('ratings', 'movie.mov_ratting=ratings.rating_id');
         $this->db->like('mov_name', $data['Search']);
         $this->db->like('show_date', $data['date']);
         $this->db->like('gener', $data['gener']);
         $this->db->like('cinema_name', $data['cinema']);
         $query = $this->db->get();
 
-     /*    $query = $this->db->like('mov_name', $data['Search'])
+        /*    $query = $this->db->like('mov_name', $data['Search'])
         ->join('geners','movie.mov_gener=geners.gener_id')
         ->join('ratings','movie.mov_ratting=ratings.rating_id')
            ->get('movie'); */
-            
+
         return $query->result_array();
     }
-    
-    public function get_seat()
+
+    public function get_seat($id)
     {
-       
-            $query =  $this->db->get('seat_booked');
-            return $query->result_array();
-       
+        $query = $this->db->get_where('seat_booked', array('show_id' => $id));
+        //$query =  $this->db->get('seat_booked');
+        return $query->result_array();
     } //end og get ratting
     public function get_seatRow($id = false)
-    { 
+    {
         if ($id === false) {
             $query =  $this->db->get('seat');
             return $query->row_array();
@@ -144,54 +143,64 @@ class Public_model extends CI_Model
         $query = $this->db->get_where('seat', array('seat_id' => $id));
         return $query->row_array();
     } //end og get ratting
-    
-    public function booking_send(){
+
+    public function booking_send()
+    {
 
         $query = $this->db->get_where('bookinf_info', array('user_id' => $this->session->userdata('user_id')));
 
-            foreach ($query->result() as $row)
-            {
-           $booking_id=$row->booking_id;
-            }
-            $query2 = $this->db->get_where('user', array('user_id' => $this->session->userdata('user_id')));
+        foreach ($query->result() as $row) {
+            $booking_id = $row->booking_id;
+        }
+        $query2 = $this->db->get_where('user', array('user_id' => $this->session->userdata('user_id')));
 
-            foreach ($query2->result() as $row)
-            {
-           $MessageTo=$row->phone;
-            }
+        foreach ($query2->result() as $row) {
+            $MessageTo = $row->phone;
+        }
 
-        $content="Dear ".$this->session->userdata('username')." your ETCINEMA booking code is--- 
-        ".$booking_id;
+        $content = "Dear " . $this->session->userdata('username') . " your ETCINEMA booking code is--- 
+        " . $booking_id;
         $data = array(
             'content' => $content,
             'MessageTo' => $MessageTo,
             'MessageFrom' => '0942205164'
         );
-      return $this->db->insert('messageout', $data);
-       
+        return $this->db->insert('messageout', $data);
     }
-    public function book_movie(){
+    public function reserve_seat()
+    {
         $row = $this->public_model->get_seatRow();
-		if (isset($row))
-{
-	$t=0;
-        $t=$row['col']*$row['row'];       
-}
-		
-		for($i=11; $i<$t; $i++){
-            if (isset($_POST['seat' . $i])){
-            $data = array(
-                'seat' => $this->input->post('seat'.$i),
-            );
-            $this->db->insert('seat_booked', $data);
-		}
-    }
-           // $this->form_validation->set_rules('seat'.$i, 'seat'.$i,'required');
-            
+        if (isset($row)) {
+            $t = 0;
+            $t = $row['col'] * $row['row'];
+        }
 
-        
-      //return $this->db->insert('seat_booked', $data);
-       
+        for ($i = 11; $i < $t; $i++) {
+            if (isset($_POST['seat' . $i])) {
+                $data = array(
+                    'seat' => $this->input->post('seat' . $i),
+                    'show_id' => $this->input->post('show_id'),
+                );
+
+                $this->db->insert('seat_booked', $data);
+            }
+        }
+        //return $this->db->insert('seat_booked', $data);
+
     }
-    
+    public function book()
+    {
+        
+        $data = array(
+            'seats' =>  $this->input->post('seats'),
+            'user_id' => $this->input->post('user_id'),
+            'price' => $this->input->post('price'),
+            'show_id' => $this->input->post('show_id'),
+            
+        );
+
+        $this->db->insert('booking_info', $data);
+        //return $this->db->insert('seat_booked', $data);
+
+    }
 }
