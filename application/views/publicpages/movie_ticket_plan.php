@@ -19,10 +19,8 @@
             <div class="details-banner-content">
                 <h3 class="title"><?= $movie_detail['mov_name']; ?></h3>
                 <div class="tags">
-                    <a href="#0">English</a>
-                    <a href="#0">Hindi</a>
-                    <a href="#0">Telegu</a>
-                    <a href="#0">Tamil</a>
+                    <a href="#0"><?= $movie_detail['mov_language']; ?></a>
+                    
                 </div>
             </div>
         </div>

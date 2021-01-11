@@ -11,10 +11,8 @@
             <div class="details-banner-content offset-lg-3">
                 <h3 class="title"><?php echo $movie_detail['mov_name']; ?></h3>
                 <div class="tags">
-                    <a href="#0">English</a>
-                    <a href="#0">Hindi</a>
-                    <a href="#0">Telegu</a>
-                    <a href="#0">Tamil</a>
+                    <a href="#0"><?php echo $movie_detail['mov_language']; ?></a>
+                    
                 </div>
                 <a href="#0" class="button"><?php echo $movie_detail['mov_gener']; ?></a>
                 <div class="social-and-duration">

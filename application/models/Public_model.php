@@ -7,7 +7,7 @@ class Public_model extends CI_Model
  
     //login user function
     public function login($username, $password)
-    {
+    { 
         $this->db->where('username', $username);
         $this->db->where('password', $password);
 
@@ -137,4 +137,47 @@ class Public_model extends CI_Model
       return $this->db->insert('bookinf_info', $data);
        
     }
+    public function get_seat()
+    {
+       
+            $query =  $this->db->get('seat_booked');
+            return $query->result_array();
+       
+    } //end og get ratting
+    public function get_seatRow($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('seat');
+            return $query->row_array();
+        }
+        $query = $this->db->get_where('seat', array('seat_id' => $id));
+        return $query->row_array();
+    } //end og get ratting
+    
+    public function booking_send(){
+
+        $query = $this->db->get_where('bookinf_info', array('user_id' => $this->session->userdata('user_id')));
+
+            foreach ($query->result() as $row)
+            {
+           $booking_id=$row->booking_id;
+            }
+            $query2 = $this->db->get_where('user', array('user_id' => $this->session->userdata('user_id')));
+
+            foreach ($query2->result() as $row)
+            {
+           $MessageTo=$row->phone;
+            }
+
+        $content="Dear ".$this->session->userdata('username')." your ETCINEMA booking code is--- 
+        ".$booking_id;
+        $data = array(
+            'content' => $content,
+            'MessageTo' => $MessageTo,
+            'MessageFrom' => '0942205164'
+        );
+      return $this->db->insert('messageout', $data);
+       
+    }
+    
 }
