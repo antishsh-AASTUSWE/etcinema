@@ -66,7 +66,7 @@
                                     <li class="single-seat">
                                         <img src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
                                     </li>
-                                </ul>
+                                 </ul>
                             </li>
                             <li class="front-seat">
                                 <ul>

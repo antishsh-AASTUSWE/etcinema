@@ -71,7 +71,7 @@
 
                                                         <input type="checkbox" name=<?= 'seat' . $i . $j; ?> hidden id=<?= $i . $j; ?> value='ch.<?= $i . $j; ?>' onclick="myFunction(this.id)">
                                                         <img id=<?= '1img' . $i . $j; ?> style="display:block" src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
-                                                        <img id=<?= '2img' . $i . $j; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
+                                                        <img id=<?= '2img' . $i . $j; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01-booked.png" alt="seat">
                                                     </label>
 
                                                 </li>
@@ -87,9 +87,14 @@
                         $t = 0;
                         $seats = [];
                         $t = $seatrow['col'] * $seatrow['row'];
-                        for ($i = 11; $i < $t; $i++) {
-                            $seats[$i] = "0";
+
+
+                        for ($i = 1; $i < $seatrow['row']; $i++) {
+                            for ($j = 1; $j < $seatrow['col']; $j++) {
+                        $set=(int)$i.''.$j;
+                            $seats[$set] = "0";
                         }
+                    }
 
                         foreach ($seat as $row) {
                             $pnr = $row['seat'];
@@ -113,8 +118,8 @@
                                                     ?> <label class='checkbox'>
 
                                                             <input type="checkbox" name=<?= 'seat' . $se; ?> hidden disabled id=<?= $se; ?> value='ch.<?= $se; ?>' onclick="myFunction(this.id)">
-                                                            <img id=<?= '1img' . $se; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
-                                                            <img id=<?= '2img' . $se; ?> style="display:block" src="<?php echo base_url() ?>publicassets/images/movie/seat01-booked.png" alt="seat">
+                                                            <img id=<?= '1img' . $se; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
+                                                            <img id=<?= '2img' . $se; ?> style="display:block" src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
                                                         </label>
 
 
@@ -126,7 +131,7 @@
 
                                                             <input type="checkbox" name=<?= 'seat' . $se; ?> hidden id=<?= $se; ?> value='ch.<?= $se; ?>' onclick="myFunction(this.id)">
                                                             <img id=<?= '1img' . $se; ?> style="display:block" src="<?php echo base_url() ?>publicassets/images/movie/seat01.png" alt="seat">
-                                                            <img id=<?= '2img' . $se; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat">
+                                                            <img id=<?= '2img' . $se; ?> style="display:none" src="<?php echo base_url() ?>publicassets/images/movie/seat01-booked.png" alt="seat">
                                                         </label>
 
 
@@ -158,20 +163,21 @@
                         <p>Free</p>
                     </h3>
                 </div>
-                <div class="book-item">
-                    <span><img src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat"></span>
+                <div class="book-item" >
+                    <span><img class="mx-auto" src="<?php echo base_url() ?>publicassets/images/movie/seat01-booked.png" alt="seat"></span>
                     <h3 class="title" id="demo">
                         <p>Selected</p>
                     </h3>
 
                 </div>
-                <div class="book-item" >
-                    <span><img class="mx-auto" src="<?php echo base_url() ?>publicassets/images/movie/seat01-booked.png" alt="seat"></span>
+                <div class="book-item">
+                    <span><img src="<?php echo base_url() ?>publicassets/images/movie/seat01-free.png" alt="seat"></span>
                     <h3 class="title" id="demo">
-                        <p>Booked</p>
+                        <p>booked</p>
                     </h3>
 
                 </div>
+                
                 <div class="book-item">
                     <span></span>
                     <input type="text" hidden name="price" value="<?= $showtime['show_id']; ?>">
