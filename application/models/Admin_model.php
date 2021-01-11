@@ -488,9 +488,9 @@ public function search_gener()
             //booking_id	show_id	user_id	seat_id
 
             $this->db->select('*');
-            $this->db->from('bookinf_info');
-            $this->db->join('customer', 'customer.cust_id=bookinf_info.user_id');
-            $this->db->join('showtime', 'showtime.show_id=bookinf_info.show_id');
+            $this->db->from('booking_info');
+            $this->db->join('customer', 'customer.cust_id=booking_info.user_id');
+            $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
             $this->db->like('booking_id', $data['Search'])
             ->or_like('show_id', $data['Search'])
             ->or_like('user_id',  $data['Search'])
@@ -502,12 +502,12 @@ public function search_gener()
     }
     public function get_booking(){
         $this->db->select('*');
-        $this->db->from('bookinf_info');
-        $this->db->join('user', 'user.user_id=bookinf_info.user_id');
-        $this->db->join('showtime', 'showtime.show_id=bookinf_info.show_id');
+        $this->db->from('booking_info');
+        $this->db->join('user', 'user.user_id=booking_info.user_id');
+        $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
         $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
         $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
-        $this->db->join('seat', 'seat.seat_id=bookinf_info.seat_id');
+        $this->db->join('seat', 'seat.seat_id=booking_info.seat_id');
         
         $query = $this->db->get();
         
@@ -635,7 +635,7 @@ public function search_gener()
         public function totalBooking(){
 
             $this->db->select('*');
-            $this->db->from('bookinf_info');
+            $this->db->from('booking_info');
            // $this->db->like('created_at', date('y-m-d'));
             //$this->db->where('joined_date', date('y-m-d'));
             $query = $this->db->get();
