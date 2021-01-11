@@ -7,29 +7,64 @@
                     <span class="cate">welcome</span>
                     <h2 class="title">to Etcinema </h2>
                 </div>
-                <form class="account-form">
+                <?php echo form_open('login/customer_signup'); ?>
+                <div class="account-form">
+                    <div class="form-group">
+                        <label for="firstname">First Name<span>*</span></label>
+                        <input type="text" name="first_name" placeholder="Enter Your First Name" id="firstname">
+                        <div class="text-danger">
+                            <?php echo form_error('first_name'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email1">Last Name<span>*</span></label>
+                        <input type="text" name="last_name" placeholder="Enter Your Last Name" id="lastname">
+                        <div class="text-danger">
+                            <?php echo form_error('last_name'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">User Name<span>*</span></label>
+                        <input type="text" name="username" placeholder="Enter Your Username" id="username">
+                        <div class="text-danger">
+                            <?php echo form_error('username'); ?>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="email1">Email<span>*</span></label>
-                        <input type="text" placeholder="Enter Your Email" id="email1" required>
+                        <input type="text" name="email" placeholder="Enter Your Email" id="email1">
+                        <div class="text-danger">
+                            <?php echo form_error('email'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email1">Phone<span>*</span></label>
+                        <input type="text" name="phone" placeholder="Enter Your Phone" id="phone">
+                        <div class="text-danger">
+                            <?php echo form_error('phone'); ?>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="pass1">Password<span>*</span></label>
-                        <input type="password" placeholder="Password" id="pass1" required>
+                        <input type="password" name="password" placeholder="Password" id="pass1">
+                        <div class="text-danger">
+                            <?php echo form_error('password'); ?>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="pass2">Confirm Password<span>*</span></label>
-                        <input type="password" placeholder="Password" id="pass2" required>
-                    </div>
-                    <div class="form-group checkgroup">
-                        <input type="checkbox" id="bal" required checked>
-                        <label for="bal">I agree to the <a href="#0">Terms, Privacy Policy</a> and <a href="#0">Fees</a></label>
+                        <input type="password" name="password2" placeholder="Password" id="pass2">
+                        <div class="text-danger">
+                            <?php echo form_error('password2'); ?>
+                        </div>
                     </div>
                     <div class="form-group text-center">
                         <input type="submit" value="Sign Up">
                     </div>
+                </div>
                 </form>
                 <div class="option">
-                    Already have an account? <a href="sign-in.html">Login</a>
+                    Already have an account? <a href="<?php echo base_url()?>login/customer_signin">Login</a>
                 </div>
                 <div class="or"><span>Or</span></div>
                 <ul class="social-icons">

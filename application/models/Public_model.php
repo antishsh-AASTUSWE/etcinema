@@ -205,4 +205,6 @@ class Public_model extends CI_Model
         //return $this->db->insert('seat_booked', $data);
 
     }
+
+    
 }

@@ -93,7 +93,7 @@
                             
                         </li>
                     <?php endforeach; ?>
-                    <?= $shd['show_id'] ?>
+                    
                 </ul>
 
             </div>
