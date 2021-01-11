@@ -115,14 +115,16 @@
                                     $t = $row['col'] * $row['row'];
                                 }
 
-                                for ($i = 11; $i < $t; $i++) {
-                                    if (isset($_POST['seat' . $i])) {
+                                for ($i = 1; $i < $row['row']; $i++) {
+                                    for ($j = 1; $j < $row['col']; $j++) {
+                                    
+                                    if (isset($_POST["seat" . $i.''.$j])) {
                                         $seat_price = count(($_POST)) ?>
 
-                                        <span><?= 'seat' . $i ?></span>
+                                        <span><?= 'seat' . $i.''.$j ?></span>
 
                                 <?php }
-                                } ?>
+                             }   } ?>
                             </div>
                         </li>
                         <li>
