@@ -127,16 +127,7 @@ class Public_model extends CI_Model
             
         return $query->result_array();
     }
-    public function book_movie(){
-        
-        $data = array(
-            'user_id' => $this->input->post('user'),
-            'show_id' => $this->input->post('show'),
-            'seat_id' => $this->input->post('seat')
-        );
-      return $this->db->insert('bookinf_info', $data);
-       
-    }
+    
     public function get_seat()
     {
        
@@ -145,7 +136,7 @@ class Public_model extends CI_Model
        
     } //end og get ratting
     public function get_seatRow($id = false)
-    {
+    { 
         if ($id === false) {
             $query =  $this->db->get('seat');
             return $query->row_array();
@@ -177,6 +168,29 @@ class Public_model extends CI_Model
             'MessageFrom' => '0942205164'
         );
       return $this->db->insert('messageout', $data);
+       
+    }
+    public function book_movie(){
+        $row = $this->public_model->get_seatRow();
+		if (isset($row))
+{
+	$t=0;
+        $t=$row['col']*$row['row'];       
+}
+		
+		for($i=11; $i<$t; $i++){
+            if (isset($_POST['seat' . $i])){
+            $data = array(
+                'seat' => $this->input->post('seat'.$i),
+            );
+            $this->db->insert('seat_booked', $data);
+		}
+    }
+           // $this->form_validation->set_rules('seat'.$i, 'seat'.$i,'required');
+            
+
+        
+      //return $this->db->insert('seat_booked', $data);
        
     }
     

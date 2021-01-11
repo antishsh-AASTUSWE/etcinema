@@ -136,12 +136,23 @@
 
                 </div>
                 <?php echo form_open("publicpages/movie_book") ?>
-                <input type="text" hidden name="show" value="<?= $showtime['show_id'] ?>">
-                <input type="text" hidden name="user" value="<?php echo $this->session->userdata('user_id'); ?>">
-                <?php
-                if (isset($seat)) { ?>
-                    <input type="text" hidden name="seat" value="<?php echo $seat; ?>">
-                <?php } ?>
+                
+                                <?php if (isset($row)) {
+                                    $t = 0;
+                                    $t = $row['col'] * $row['row'];
+                                }
+
+                                for ($i = 11; $i < $t; $i++) {
+                                    if (isset($_POST['seat' . $i])) {
+                                        ?>
+<input type="text"  name="<?= 'seat'.$i ?>" value="<?= $i ?>">
+                                        
+                                <?php }
+                                } ?>
+
+
+
+                
                 <div class="proceed-area  text-center">
                     <h6 class="subtitle"><span>Amount Payable</span><span>$222</span></h6>
                     <input type="submit" class="custom-button" value="proceed">

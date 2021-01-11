@@ -19,7 +19,7 @@ class Publicpages extends CI_Controller
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-
+ 
 	//index function
 	public function index()
 	{
@@ -200,9 +200,11 @@ class Publicpages extends CI_Controller
 	public function movie_book(){
 		$this->public_model->book_movie();
 			
-		$this->public_model->booking_send();	
-		$this->index();
+		//$this->public_model->booking_send();	
+		//$this->index();
 	}
+
+
 	public function test($id){
 		$row = $this->public_model->get_seatRow();
 		if (isset($row))
