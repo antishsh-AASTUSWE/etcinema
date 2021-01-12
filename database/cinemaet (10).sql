@@ -1,21 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 11, 2021 at 03:20 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Host: localhost:8889
+-- Generation Time: Jan 12, 2021 at 01:33 PM
+-- Server version: 5.7.30
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `cinemaet`
@@ -46,7 +39,7 @@ CREATE TABLE `booking_info` (
   `user_id` int(10) NOT NULL,
   `seats` int(10) NOT NULL,
   `price` varchar(10) NOT NULL,
-  `booked_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `booked_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(20) NOT NULL,
   `paid_bank` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -58,7 +51,13 @@ CREATE TABLE `booking_info` (
 INSERT INTO `booking_info` (`booking_id`, `show_id`, `user_id`, `seats`, `price`, `booked_date`, `status`, `paid_bank`) VALUES
 (3, 12, 5, 1, '50', '2021-01-11 13:33:04', '', ''),
 (4, 12, 5, 1, '50', '2021-01-11 13:39:18', '', ''),
-(5, 12, 5, 4, '200', '2021-01-11 13:46:20', '', '');
+(5, 12, 5, 4, '200', '2021-01-11 13:46:20', '', ''),
+(8, 5, 5, 2, '100', '2021-01-11 15:49:55', '', ''),
+(9, 3, 5, 6, '300', '2021-01-11 15:56:04', '', ''),
+(10, 3, 5, 4, '200', '2021-01-11 16:00:45', '', ''),
+(11, 11, 5, 11, '330', '2021-01-11 16:24:00', '', ''),
+(16, 11, 5, 1, '30', '2021-01-12 09:53:00', '', ''),
+(17, 12, 5, 1, '50', '2021-01-12 09:54:22', '', '');
 
 -- --------------------------------------------------------
 
@@ -84,6 +83,29 @@ INSERT INTO `cinema` (`cinema_id`, `cinema_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL,
+  `mov_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `body` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `mov_id`, `customer_id`, `title`, `body`, `created_at`) VALUES
+(6, 3, 7, 'Nice', 'i love it', '2021-01-12 12:05:50'),
+(7, 5, 7, 'Wooooo', 'This movie is awsom', '2021-01-12 12:21:52');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customer`
 --
 
@@ -91,20 +113,19 @@ CREATE TABLE `customer` (
   `cust_id` int(11) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `phone_no` varchar(15) NOT NULL,
+  `phone` varchar(15) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `DBO` date NOT NULL,
-  `joined_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `joined_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`cust_id`, `first_name`, `last_name`, `email`, `phone_no`, `password`, `DBO`, `joined_date`) VALUES
-(5, 'yeshewas', 'rawit', 'yeshewasg12@gmail.com', '0942205164', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '2020-12-25', '2020-12-25 08:46:30'),
-(6, 'antish', 'tes', 'yeshewasg13@gmail.com', '0912344645', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '2020-12-30', '2020-12-25 08:52:53');
+INSERT INTO `customer` (`cust_id`, `first_name`, `last_name`, `username`, `email`, `phone`, `password`, `joined_date`) VALUES
+(7, 'Anteneh', 'Shimelis', 'antish', 'antenehshimelis2019@gmail.com', '0916327415', '81dc9bdb52d04dc20036dbd8313ed055', '2021-01-11 23:18:31');
 
 -- --------------------------------------------------------
 
@@ -219,7 +240,7 @@ CREATE TABLE `seat` (
 --
 
 INSERT INTO `seat` (`seat_id`, `col`, `row`) VALUES
-(1, '5', '6');
+(1, '14', '6');
 
 -- --------------------------------------------------------
 
@@ -231,7 +252,7 @@ CREATE TABLE `seat_booked` (
   `id` int(11) NOT NULL,
   `show_id` int(10) NOT NULL,
   `seat` varchar(255) NOT NULL,
-  `reserved_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `reserved_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -249,7 +270,37 @@ INSERT INTO `seat_booked` (`id`, `show_id`, `seat`, `reserved_date`) VALUES
 (28, 12, '24', '2021-01-11 13:46:19'),
 (29, 12, '25', '2021-01-11 13:46:20'),
 (30, 12, '34', '2021-01-11 13:46:20'),
-(31, 12, '35', '2021-01-11 13:46:20');
+(31, 12, '35', '2021-01-11 13:46:20'),
+(32, 10, '36', '2021-01-11 15:48:56'),
+(33, 10, '46', '2021-01-11 15:48:56'),
+(34, 10, '36', '2021-01-11 15:49:29'),
+(35, 10, '46', '2021-01-11 15:49:29'),
+(36, 5, '37', '2021-01-11 15:49:55'),
+(37, 5, '47', '2021-01-11 15:49:55'),
+(38, 3, '13', '2021-01-11 15:56:04'),
+(39, 3, '34', '2021-01-11 15:56:04'),
+(40, 3, '48', '2021-01-11 15:56:04'),
+(41, 3, '35', '2021-01-11 16:00:45'),
+(42, 3, '36', '2021-01-11 16:00:45'),
+(43, 3, '45', '2021-01-11 16:00:45'),
+(44, 3, '46', '2021-01-11 16:00:45'),
+(45, 11, '35', '2021-01-11 16:24:00'),
+(46, 11, '36', '2021-01-11 16:24:00'),
+(47, 11, '37', '2021-01-11 16:24:00'),
+(48, 11, '41', '2021-01-11 16:24:00'),
+(49, 11, '42', '2021-01-11 16:24:00'),
+(50, 11, '412', '2021-01-11 16:24:00'),
+(51, 11, '413', '2021-01-11 16:24:00'),
+(52, 11, '51', '2021-01-11 16:24:00'),
+(53, 11, '52', '2021-01-11 16:24:00'),
+(54, 11, '512', '2021-01-11 16:24:00'),
+(55, 11, '513', '2021-01-11 16:24:00'),
+(56, 11, '15', '2021-01-12 09:50:20'),
+(57, 11, '14', '2021-01-12 09:51:07'),
+(58, 11, '13', '2021-01-12 09:51:47'),
+(59, 11, '211', '2021-01-12 09:52:23'),
+(60, 11, '211', '2021-01-12 09:53:00'),
+(61, 12, '15', '2021-01-12 09:54:22');
 
 -- --------------------------------------------------------
 
@@ -301,7 +352,7 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `phone` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -339,6 +390,14 @@ ALTER TABLE `booking_info`
 --
 ALTER TABLE `cinema`
   ADD PRIMARY KEY (`cinema_id`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `foreignkey` (`customer_id`),
+  ADD KEY `mov_id` (`mov_id`);
 
 --
 -- Indexes for table `customer`
@@ -415,7 +474,7 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `booking_info`
 --
 ALTER TABLE `booking_info`
-  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `cinema`
@@ -424,10 +483,16 @@ ALTER TABLE `cinema`
   MODIFY `cinema_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `geners`
@@ -463,7 +528,7 @@ ALTER TABLE `seat`
 -- AUTO_INCREMENT for table `seat_booked`
 --
 ALTER TABLE `seat_booked`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `showtime`
@@ -489,6 +554,13 @@ ALTER TABLE `booking_info`
   ADD CONSTRAINT `booking_info_ibfk_2` FOREIGN KEY (`show_id`) REFERENCES `showtime` (`show_id`);
 
 --
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`mov_id`) REFERENCES `movie` (`movie_id`),
+  ADD CONSTRAINT `foreignkey` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`cust_id`);
+
+--
 -- Constraints for table `movie`
 --
 ALTER TABLE `movie`
@@ -508,8 +580,3 @@ ALTER TABLE `showtime`
   ADD CONSTRAINT `showtime_ibfk_1` FOREIGN KEY (`cinema_id`) REFERENCES `cinema` (`cinema_id`),
   ADD CONSTRAINT `showtime_ibfk_2` FOREIGN KEY (`cinema_id`) REFERENCES `cinema` (`cinema_id`),
   ADD CONSTRAINT `showtime_ibfk_3` FOREIGN KEY (`mov_id`) REFERENCES `movie` (`movie_id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
