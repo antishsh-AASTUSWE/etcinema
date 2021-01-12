@@ -189,6 +189,24 @@ class Publicpages extends CI_Controller
 		$this->index();
 	}
 
+	//create comment function
+	public function create_comment($movie_id)
+	{
+
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('message', 'Message', 'required');
+
+		if ($this->form_validation->run() === FALSE) {
+			$data['movie_detail'] = $this->public_model->get_movie($movie_id);
+			$this->load->view('publictemplates/header');
+			$this->load->view('publicpages/movie_details', $data);
+			$this->load->view('publictemplates/footer');
+		} else {
+			$this->public_model->create_comment($movie_id);
+			redirect('publicpages/movie_details/' . $movie_id);
+		}
+	} //end of create_comment
+
 	public function test($id)
 	{
 		$row = $this->public_model->get_seatRow();

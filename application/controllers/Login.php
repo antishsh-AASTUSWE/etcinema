@@ -165,7 +165,7 @@ class Login extends CI_Controller
 				$data = $result->row_array();
 
 				$sesdata = array(
-					'user_id' => $data['user_id'],
+					'user_id' => $data['cust_id'],
 					'email' => $email,
 					'username' => $data['username'],
 					'logged_in' => TRUE
