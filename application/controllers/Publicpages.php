@@ -2,9 +2,9 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Publicpages extends CI_Controller
-{ 
+{
 
-	
+
 	public function index()
 	{
 		if (!file_exists(APPPATH . 'views/publicpages/home.php')) {
@@ -53,17 +53,16 @@ class Publicpages extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-		if(isset($_POST)){
-			$data['seat']=$this->input->post('seat');
+		if (isset($_POST)) {
+			$data['seat'] = $this->input->post('seat');
 			$data['showtime'] = $this->public_model->get_showtime($id);
 			$data['row'] = $this->public_model->get_seatRow();
 			$this->load->view('publictemplates/header');
-			$this->load->view('publicpages/movie_checkout',$data);
+			$this->load->view('publicpages/movie_checkout', $data);
 			$this->load->view('publictemplates/footer');
-	
-		   }else{
-			show_404(); 
-		   }
+		} else {
+			show_404();
+		}
 	} //end of movie checkout
 
 	//movie details function
@@ -99,7 +98,7 @@ class Publicpages extends CI_Controller
 		$config['next_link'] = 'Next';
 		$config['prev_link'] = 'Prev';
 		$config['cur_tag_open'] = '<a class="active" href="#">';
-        $config['cur_tag_close'] = '</a>';
+		$config['cur_tag_close'] = '</a>';
 		$config['attributes'] = array('class' => 'pagination-area');
 
 
@@ -123,7 +122,7 @@ class Publicpages extends CI_Controller
 		$data['showtime'] = $this->public_model->get_showtime($id);
 		$data['seat'] = $this->public_model->get_seat($id);
 		$data['seatrow'] = $this->public_model->get_seatRow();
-		
+
 		$this->load->view('publictemplates/header');
 		$this->load->view('publicpages/seat', $data);
 		$this->load->view('publictemplates/footer');
@@ -146,31 +145,32 @@ class Publicpages extends CI_Controller
 			show_404();
 		}
 		$this->load->view('publictemplates/header');
-		$this->load->view('publicpages/movie_ticket_plan', $data	);
+		$this->load->view('publicpages/movie_ticket_plan', $data);
 		$this->load->view('publictemplates/footer');
 	} //end of movie ticket plan
-	public function search_movie($offset = 0){
-	
+	public function search_movie($offset = 0)
+	{
+
 		if (isset($_POST)) {
 
 
-		$config['base_url'] = base_url() . 'publicpages/movie';
-		$config['total_rows'] = $this->db->count_all('movie');
-		$config['per_page'] = 6;
-		$config['uri_segment'] = 3;
-		$config['first_link'] = false;
-		$config['last_link'] = false;
-		$config['next_link'] = 'Next';
-		$config['prev_link'] = 'Prev';
-		$config['cur_tag_open'] = '<a class="active" href="#">';
-        $config['cur_tag_close'] = '</a>';
-		$config['attributes'] = array('class' => 'pagination-area');
+			$config['base_url'] = base_url() . 'publicpages/movie';
+			$config['total_rows'] = $this->db->count_all('movie');
+			$config['per_page'] = 6;
+			$config['uri_segment'] = 3;
+			$config['first_link'] = false;
+			$config['last_link'] = false;
+			$config['next_link'] = 'Next';
+			$config['prev_link'] = 'Prev';
+			$config['cur_tag_open'] = '<a class="active" href="#">';
+			$config['cur_tag_close'] = '</a>';
+			$config['attributes'] = array('class' => 'pagination-area');
 
 
-		$this->pagination->initialize($config);
-		$data['title'] = 'Search Results';
-		
-		$data['movie'] = $this->public_model->search_movie(false, $config['per_page'], $offset);
+			$this->pagination->initialize($config);
+			$data['title'] = 'Search Results';
+
+			$data['movie'] = $this->public_model->search_movie(false, $config['per_page'], $offset);
 
 			$data['gener'] = $this->public_model->get_gener();
 			//$data['movie'] = $this->public_model->search_movie();
@@ -178,36 +178,51 @@ class Publicpages extends CI_Controller
 			$this->load->view('publictemplates/header', $data);
 			$this->load->view('publicpages/movie', $data);
 			$this->load->view('publictemplates/footer');
-				
-			} 
+		}
 	}
-	public function movie_book(){
+	public function movie_book()
+	{
 
-		
-		$this->public_model->reserve_seat();	
-		$this->public_model->book();	
+
+		$this->public_model->reserve_seat();
+		$this->public_model->book();
 		$this->index();
 	}
 
+	//create comment function
+	public function create_comment($movie_id)
+	{
 
-	public function test($id){
-		$row = $this->public_model->get_seatRow();
-		if (isset($row))
-{
-	$t=0;
-        $t=$row['col']*$row['row'];       
-}
-		
-		for($i=11; $i<$t; $i++){
-		$this->form_validation->set_rules('seat'.$i, 'seat'.$i,'required');
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('message', 'Message', 'required');
+
+		if ($this->form_validation->run() === FALSE) {
+			$data['movie_detail'] = $this->public_model->get_movie($movie_id);
+			$this->load->view('publictemplates/header');
+			$this->load->view('publicpages/movie_details', $data);
+			$this->load->view('publictemplates/footer');
+		} else {
+			$this->public_model->create_comment($movie_id);
+			redirect('publicpages/movie_details/' . $movie_id);
 		}
-        if ($this->form_validation->run() === FALSE) {
-			echo validation_errors(); 
-        } else {
+	} //end of create_comment
+
+	public function test($id)
+	{
+		$row = $this->public_model->get_seatRow();
+		if (isset($row)) {
+			$t = 0;
+			$t = $row['col'] * $row['row'];
+		}
+
+		for ($i = 11; $i < $t; $i++) {
+			$this->form_validation->set_rules('seat' . $i, 'seat' . $i, 'required');
+		}
+		if ($this->form_validation->run() === FALSE) {
+			echo validation_errors();
+		} else {
 
 			$this->movie();
 		}
-	
-}
-	
+	}
 }

@@ -67,35 +67,35 @@
           </a>
         </li>
 
-      <li>
-        <a href="<?php echo base_url() ?>admin/showtime">
-          <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
-        </a>
-      </li>
+        <li>
+          <a href="<?php echo base_url() ?>admin/showtime">
+            <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
+          </a>
+        </li>
 
-      <li>
-        <a href="<?php echo base_url() ?>admin/movies">
-          <i class="zmdi zmdi-play-circle"></i> <span>Movies</span>
-        </a>
-      </li>
+        <li>
+          <a href="<?php echo base_url() ?>admin/movies">
+            <i class="zmdi zmdi-play-circle"></i> <span>Movies</span>
+          </a>
+        </li>
 
-      <li>
-        <a href="<?php echo base_url() ?>admin/cinemas">
-          <i class="zmdi zmdi zmdi-home"></i> <span>Cinema</span>
-        </a>
-      </li>
+        <li>
+          <a href="<?php echo base_url() ?>admin/cinemas">
+            <i class="zmdi zmdi zmdi-home"></i> <span>Cinema</span>
+          </a>
+        </li>
 
-      <li>
-        <a href="<?php echo base_url() ?>admin/Ratings">
-          <i class="zmdi zmdi-sort-amount-asc"></i> <span>Ratings</span>
-        </a>
-      </li>
+        <li>
+          <a href="<?php echo base_url() ?>admin/Ratings">
+            <i class="zmdi zmdi-sort-amount-asc"></i> <span>Ratings</span>
+          </a>
+        </li>
 
-      <li>
-        <a href="<?php echo base_url() ?>admin/geners">
-          <i class="zmdi zmdi-grid"></i> <span>Geners</span>
-        </a>
-      </li>
+        <li>
+          <a href="<?php echo base_url() ?>admin/geners">
+            <i class="zmdi zmdi-grid"></i> <span>Geners</span>
+          </a>
+        </li>
 
         <li>
           <a href="<?php echo base_url() ?>admin/users">
@@ -171,7 +171,7 @@
 
 
 
-    </ul>
+      </ul>
 
     </div>
   <?php } ?>

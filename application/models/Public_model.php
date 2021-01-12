@@ -177,32 +177,46 @@ class Public_model extends CI_Model
 
         for ($i = 1; $i < $row['row']; $i++) {
             for ($j = 1; $j < $row['col']; $j++) {
-                
-            if (isset($_POST["seat" . $i.''.$j])) {
-                $data = array(
-                    'seat' => $this->input->post("seat" . $i.''.$j),
-                    'show_id' => $this->input->post('show_id'),
-                );
 
-                $this->db->insert('seat_booked', $data);
-              }  }
+                if (isset($_POST["seat" . $i . '' . $j])) {
+                    $data = array(
+                        'seat' => $this->input->post("seat" . $i . '' . $j),
+                        'show_id' => $this->input->post('show_id'),
+                    );
+
+                    $this->db->insert('seat_booked', $data);
+                }
+            }
         }
         //return $this->db->insert('seat_booked', $data);
 
     }
     public function book()
     {
-        
+
         $data = array(
             'seats' =>  $this->input->post('seats'),
             'user_id' => $this->input->post('user_id'),
             'price' => $this->input->post('price'),
             'show_id' => $this->input->post('show_id'),
-            
+
         );
 
         $this->db->insert('booking_info', $data);
         //return $this->db->insert('seat_booked', $data);
 
+    }
+
+    //create comment functions
+    public function create_comment($movie_id)
+    {
+        $data = array(
+            'title' => $this->input->post('title'),
+            'body' => $this->input->post('message'),
+            'customer_id' => $this->session->userdata('user_id'),
+            'mov_id' => $movie_id
+        );
+
+        return $this->db->insert('comment', $data);
     }
 }

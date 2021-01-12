@@ -12,7 +12,7 @@
                 <h3 class="title"><?php echo $movie_detail['mov_name']; ?></h3>
                 <div class="tags">
                     <a href="#0"><?php echo $movie_detail['mov_language']; ?></a>
-                    
+
                 </div>
                 <a href="#0" class="button"><?php echo $movie_detail['mov_gener']; ?></a>
                 <div class="social-and-duration">
@@ -182,28 +182,36 @@
                                     <h5 class="sub-title">Synopsis</h5>
                                     <p><span><?php echo $movie_detail['mov_synopsis']; ?></p>
                                 </div>
-                                
+                            </div>
+                            <div class="tab-item">
                                 <div class="item">
                                     <div class="header">
                                         <h5 class="sub-title">Add Comment</h5>
                                     </div>
-                                    <form class="contact-form" id="contact_form_submit">
+                                    <?php echo form_open('publicpages/create_comment/' . $movie_detail['movie_id']); ?>
+                                    <div class="contact-form" id="contact_form_submit">
                                         <div class="form-group">
                                             <label for="subject">Title <span>*</span></label>
-                                            <input type="text" placeholder="Enter Your Subject" name="title" id="title" required>
+                                            <input type="text" placeholder="Enter Your Subject" name="title" id="title">
+                                            <div class="text-danger">
+                                                <?php echo form_error('title'); ?>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="message">Comment <span>*</span></label>
-                                            <textarea name="message" id="message" placeholder="Enter Your Message" required></textarea>
+                                            <textarea name="message" id="message" placeholder="Enter Your Message"></textarea>
+                                            <div class="text-danger">
+                                                <?php echo form_error('message'); ?>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" value="Send Message">
+                                            <input type="submit" value="Add Comment">
                                         </div>
+                                    </div>
                                     </form>
                                 </div>
-                            </div>
-                            <div class="tab-item">
                                 <div class="movie-review-item">
+
                                     <div class="author">
                                         <div class="thumb">
                                             <a href="#0">

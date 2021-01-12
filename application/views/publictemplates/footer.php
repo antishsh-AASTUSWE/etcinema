@@ -49,6 +49,7 @@
                     </a>
                 </li>
             </ul>
+            
         </div>
         <div class="footer-bottom">
             <div class="footer-bottom-area">
