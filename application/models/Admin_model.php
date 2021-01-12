@@ -831,8 +831,6 @@ class admin_model extends CI_Model
         ); */
         $query = $this->db->query("SELECT *, SUM(booking_info.price) as gross 
         FROM booking_info
-        
-        
         join showtime ON showtime.show_id=booking_info.show_id
         join movie ON movie.movie_id=showtime.mov_id
         where 
