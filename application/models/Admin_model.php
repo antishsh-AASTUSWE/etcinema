@@ -221,7 +221,6 @@ class admin_model extends CI_Model
         ->or_like('mov_realse_date',  $data['Search'])
         ->or_like('mov_language',  $data['Search'])
         ->or_like('mov_starring',  $data['Search'])
-        ->or_like('mov_subtitle',  $data['Search'])
         ->or_like('mov_ratting',  $data['Search'])
         ->join('geners','movie.mov_gener=geners.gener_id')
         ->join('ratings','movie.mov_ratting=ratings.rating_id')
@@ -287,7 +286,7 @@ public function update_movie($post_image,$id)
             'mov_language' => $this->input->post('language'),
 
             'mov_starring' => $this->input->post('staring'),
-            'mov_subtitle' => $this->input->post('subtitle')
+            'mov_synopsis' => $this->input->post('mov_synopsis')
         );
 
         return $this->db->where('movie_id',$id)->update('movie', $data);
@@ -489,12 +488,12 @@ public function search_gener()
 
             $this->db->select('*');
             $this->db->from('booking_info');
-            $this->db->join('customer', 'customer.cust_id=booking_info.user_id');
+            $this->db->join('user', 'user.user_id=booking_info.user_id');
             $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
             $this->db->like('booking_id', $data['Search'])
             ->or_like('show_id', $data['Search'])
             ->or_like('user_id',  $data['Search'])
-            ->or_like('seat_id',  $data['Search']);
+            ->or_like('seats',  $data['Search']);
             $this->db->order_by('booking_id', 'ASC');
             $query = $this->db->get();
                 
@@ -507,8 +506,8 @@ public function search_gener()
         $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
         $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
         $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
-        $this->db->join('seat', 'seat.seat_id=booking_info.seat_id');
-        
+        //$this->db->join('seat', 'seat.seat_id=booking_info.seat_id');
+        $this->db->order_by('booking_id', 'ASC');
         $query = $this->db->get();
         
         return $query->result_array();
@@ -641,6 +640,14 @@ public function search_gener()
             $query = $this->db->get();
     
             return $query->num_rows();
+        }
+        public function totalRevenue(){
+
+            $this->db->select_sum('price');
+            $result=$this->db->get('booking_info')->row();
+             
+    
+            return $result->price;
         }
         
         function fetch_showtime_details()
@@ -834,5 +841,63 @@ public function dashbord_chart(){
               $data['data'][] = (int) $row->count;
         }
         return json_encode($data);
+    }
+    public function box_office(){
+    /*     $query = $this->db->query("SELECT *,SUM(booking_info.price) as gross
+        FROM booking_info 
+        join showtime ON showtime.show_id=booking_info.show_id
+        join movie ON movie.movie_id=showtime.mov_id
+        
+        ORDER BY `gross` DESC "
+      
+        ); */
+        $query = $this->db->query("SELECT *, SUM(booking_info.price) as gross 
+        FROM booking_info
+        
+        
+        join showtime ON showtime.show_id=booking_info.show_id
+        join movie ON movie.movie_id=showtime.mov_id
+        where 
+        GROUP BY booking_id"
+      
+        );
+        
+        return $query->result_array();
+    }
+    function box_office_details()
+	{
+        $data = $this->db->query("SELECT *
+        FROM showtime 
+        join movie ON movie.movie_id=showtime.mov_id
+        join cinema ON cinema.cinema_id=showtime.cinema_id
+        WHERE YEARWEEK(show_date) = YEARWEEK(NOW()) ORDER BY `show_date` DESC ");
+
+        
+        
+		$output = '<table width="100%" cellspacing="5" cellpadding="5">';
+		foreach($data->result() as $row)
+		{
+			$output .= '
+            <tr>
+		<td width="25%"><img src="'.base_url().'assets/poster/'.$row->mov_poster.'" /></td>
+				<td width="75%">
+					<p><b>Movie : </b>'.$row->mov_name.'</p>
+					<p><b>Cinema : </b>'.$row->cinema_name.'</p>
+					<p><b>Date : </b>'.$row->show_date.'</p>
+					<p><b>Time : </b>'.$row->show_time.'</p>
+
+				</td>
+			</tr>
+            ';
+            	
+
+		}
+		$output .= '
+		<tr>
+			<td colspan="2" align="center"><a href="'.base_url().'admin/showtime_report" class="btn btn-primary">Back</a></td>
+		</tr>
+		';
+		$output .= '</table>';
+		return $output;
     }
 }

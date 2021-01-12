@@ -25,6 +25,7 @@ class Admin extends CI_Controller
 
         // $data['chart_data'] = $this->admin_model->dashbord_chart();
         $data['totalBooking'] = $this->admin_model->totalBooking();
+        $data['totalRevenue'] = $this->admin_model->totalRevenue();
         $data['countCustomer'] = $this->admin_model->countCustomer();
         $data['countUser'] = $this->admin_model->countUser();
         $this->load->view('templates/header');
@@ -1092,5 +1093,58 @@ class Admin extends CI_Controller
         $this->load->view('templates/header');
         $this->load->view('adminpages/bar_chart', $data);
         $this->load->view('templates/footer');
+    }
+    public function revenu_report()
+    {
+        if ($this->session->userdata('role') !== 'admin') {
+            redirect('login/authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/adminpages/revenu_report.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        if (isset($_POST['Search'])) {
+            $this->load->model('admin_model');
+            $data['showtime'] = $this->admin_model->search_showtime();
+
+            $this->load->view('templates/header');
+            $this->load->view('adminpages/revenu_report', $data);
+            $this->load->view('templates/footer');
+        } else {
+           // $this->load->model('admin_model');
+           // $data['showtime'] = $this->admin_model->get_showtime();
+
+            $this->load->view('templates/header');
+            $this->load->view('adminpages/revenu_report');
+            $this->load->view('templates/footer');
+        }
+    }
+    public function box_office()
+    {
+        if ($this->session->userdata('role') !== 'admin') {
+            redirect('login/authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/adminpages/revenu_report.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        } 
+
+        $this->load->model('admin_model');
+        $data['box_office'] = $this->admin_model->box_office();
+
+        $this->load->view('templates/header');
+        $this->load->view('adminpages/revenu_report', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function fetch_box_office_pdfdetails()
+    {
+        $date = date('y-m-d');
+        //$showtime_id = $this->uri->segment(3);
+        $html_content = '<h3 align="center">Weekly Showtime</h3>';
+        $html_content .= $this->admin_model->fetch_box_office_details();
+        $this->pdf->loadHtml($html_content);
+        $this->pdf->render();
+        $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
     }
 }
