@@ -134,7 +134,7 @@ class Login extends CI_Controller
 		$this->load->view('logintemplates/publicheader');
 		$this->load->view('publicpages/sign_in');
 		$this->load->view('logintemplates/public_login_footer');
-	}  *///end of google sign_in
+	}  */ //end of google sign_in
 
 	//customer login function
 	public function customer_signin()
@@ -223,6 +223,44 @@ class Login extends CI_Controller
 		}
 	} //end of  user register
 
+	public function change_password()
+	{
+		if (!$this->session->userdata('logged_in') == true) {
+			redirect('login/customer_signin');
+		}
+		if (!file_exists(APPPATH . 'views/publicpages/change_password.php')) {
+			// Whoops, we don't have a page for that!
+			show_404();
+		}
+		
+		$this->form_validation->set_rules('old_password', 'Old Password', 'required');
+		$this->form_validation->set_rules('new_password', 'New password', 'required');
+		$this->form_validation->set_rules('password2', 'Confirm password', 'matches[new_password]');
+		if ($this->form_validation->run() === false) {
+			$this->load->view('logintemplates/publicheader');
+			$this->load->view('publicpages/change_password');
+			$this->load->view('logintemplates/public_login_footer');
+		} else {
+			//check old password2
+			$result = $this->login_model->check_old_password($this->session->userdata('email'), md5($this->input->post('old_password')));
+			if ($result > 0 and $result === TRUE) {
+				$result = $this->login_model->update_user_data($this->session->userdata('email'));
+				if ($result > 0) {
+					$this->session->set_flashdata('sucess_msg', 'User  Password Changed');
+					$this->customer_logout();
+					redirect('login/change_signin');
+				} else {
+					$this->session->set_flashdata('error_msg', 'User  Password Not changed');
+					redirect('login/change_password');
+				}
+			} else {
+				$this->session->set_flashdata('message', 'User Old Password Not Match');
+				redirect('login/change_password');
+			}
+
+			//update password
+		}
+	}
 
 	//check user name existes
 	public function check_username_exists($username)

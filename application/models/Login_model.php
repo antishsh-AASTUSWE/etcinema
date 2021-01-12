@@ -37,17 +37,17 @@ class Login_model extends CI_Model
     }
 
     //update user data
-    public function update_user_data($data, $id)
+    /* public function update_user_data($data, $id)
     {
         $this->db->where('login_oauth_uid', $id);
         $this->db->update('etcinema_user', $data);
-    } //end of update user database
+    } */ //end of update user database
 
     //insert user database
-    public function insert_user_data($data)
+    /* public function insert_user_data($data)
     {
         $this->db->insert('etcinema_user', $data);
-    } //end of insert user database
+    } */ //end of insert user database
 
     //user register function
     public function customer_signup($enc_password)
@@ -58,12 +58,43 @@ class Login_model extends CI_Model
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
             'password' => $enc_password,
-            'phone' => $this->input->post('phone'),
+            'phone' => $this->input->post('phone')
 
         );
 
         return $this->db->insert('customer', $data);
     } //end of user register
+
+    //check old password function
+    public function check_old_password($email, $old_password)
+    {
+        $this->db->where('email', $email);
+        $this->db->where('password', $old_password);
+        $query = $this->db->get('customer');
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }//end ofcheck old_password
+
+    //update user data function
+
+    public function update_user_data($email)
+    {
+        $data = array(
+            'password' => md5($this->input->post('new_password'))
+        );
+        $this->db->where('email', $email);
+        $this->db->update('customer', $data);
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
 
     //check_username_exists() function
     public function check_username_exists($username)
