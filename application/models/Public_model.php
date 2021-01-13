@@ -230,8 +230,11 @@ class Public_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('comment');
-        $this->db->join('movie', 'comment.mov_id=movie_id');
-        $this->db->join('customer', 'comment.customer_id=customer_id');
+        $this->db->join('movie', 'comment.mov_id=movie.movie_id');
+        $this->db->join('customer', 'comment.customer_id=customer.cust_id');
+        
+        /* $this->db->join('movie', 'comment.mov_id=movie_id');
+        $this->db->join('customer', 'comment.customer_id=customer_id'); */
         $this->db->where('mov_id', $movie_id);
         $this->db->order_by('created_at', 'DESC');
         $query = $this->db->get();
