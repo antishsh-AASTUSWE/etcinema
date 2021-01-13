@@ -829,14 +829,23 @@ class admin_model extends CI_Model
         ORDER BY `gross` DESC "
       
         ); */
-        $query = $this->db->query("SELECT *, SUM(booking_info.price) as gross 
+        $query = $this->db->query("SELECT showtime.mov_id,mov_name, SUM(booking_info.price) as gross 
         FROM booking_info
         join showtime ON showtime.show_id=booking_info.show_id
         join movie ON movie.movie_id=showtime.mov_id
-        where 
-        GROUP BY booking_id"
+         
+        GROUP BY mov_id ORDER by gross DESC"
       
         );
+
+       /*  SELECT mov_id SUM(price) 
+FROM showtime
+GROUP BY mov_id; 
+
+SELECT show_id, mov_id, SUM(price) 
+FROM showtime
+GROUP BY mov_id;
+*/
         
         return $query->result_array();
     }

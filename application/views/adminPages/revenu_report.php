@@ -13,7 +13,7 @@
                                     
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                     <div class="card-body">
                     <?php echo form_open_multipart('admin/movie_report'); ?>

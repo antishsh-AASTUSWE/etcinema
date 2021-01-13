@@ -24,7 +24,6 @@
       <th scope="col">Last Name</th>
       <th scope="col">Email</th>
       <th scope="col">Phone Number</th>
-      <th scope="col">Date of Birth</th>
       <th scope="col">Joined Date</th>
       <th scope="col">Edit/Delete</th>
      
@@ -37,8 +36,8 @@
               <td><?= $c['first_name']; ?></td>
               <td><?= $c['last_name']; ?></td>
               <td><?= $c['email']; ?></td>
-              <td><?= $c['phone_no']; ?></td>
-              <td><?= $c['DBO']; ?></td>
+              <td><?= $c['phone']; ?></td>
+              
               <td><?= $c['joined_date']; ?></td>
              
                

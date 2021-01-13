@@ -250,8 +250,8 @@
   <div class="content-wrapper">
     <div class="container-fluid">
 
-      <div class="container">
+      <!-- <div class="container">
         <?php if ($this->session->flashdata('user_registerd')) : ?>
           <?php echo '<p class"alert alert-success">' . $this->session->flashdata('user_registerd') . '</p>'; ?>
         <?php endif; ?>
-      </div>
+      </div> -->
