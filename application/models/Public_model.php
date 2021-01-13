@@ -24,7 +24,12 @@ class Public_model extends CI_Model
             $query = $this->db->get("movie");
             return $query->result_array();
         }
-        $query = $this->db->get_where('movie', array('movie_id' => $id));
+        $this->db->select('*');
+        $this->db->from('movie');
+        $this->db->join('geners', 'movie.mov_gener=gener_id');
+        $this->db->join('ratings', 'movie.mov_ratting=rating_id');
+        $this->db->where('movie_id', $id);
+        $query = $this->db->get();
         return $query->row_array();
     } //end of get movie
     //Get Cinema Function
@@ -219,4 +224,17 @@ class Public_model extends CI_Model
 
         return $this->db->insert('comment', $data);
     }
+
+    //get comment  function
+    public function get_comments($movie_id)
+    {
+        $this->db->select('*');
+        $this->db->from('comment');
+        $this->db->join('movie', 'comment.mov_id=movie_id');
+        $this->db->join('customer', 'comment.customer_id=customer_id');
+        $this->db->where('mov_id', $movie_id);
+        $this->db->order_by('created_at', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    } //end of get_comments
 }
