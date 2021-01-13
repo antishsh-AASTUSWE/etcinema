@@ -237,4 +237,16 @@ class Public_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     } //end of get_comments
+
+    //count coment function
+    public function count_comment($id)
+    {
+
+        $this->db->select('*');
+        $this->db->from('comment');
+        $this->db->where('mov_id', $id);
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
 }

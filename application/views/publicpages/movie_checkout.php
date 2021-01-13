@@ -137,6 +137,7 @@
 
 
                 </div>
+                <?php //if(T$this->session->userdata('logged')) ?>
                 <?php echo form_open("publicpages/movie_book") ?>
 
                 <?php if (isset($row)) {

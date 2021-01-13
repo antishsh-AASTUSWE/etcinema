@@ -74,6 +74,7 @@ class Publicpages extends CI_Controller
 		}
 		$data['movie_detail'] = $this->public_model->get_movie($id);
 		$data['comment'] = $this->public_model->get_comments($id);
+		$data['count'] = $this->public_model->count_comment($id);
 
 		if (empty($data['movie_detail'])) {
 			show_404();

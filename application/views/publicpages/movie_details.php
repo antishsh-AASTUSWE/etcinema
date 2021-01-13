@@ -173,7 +173,7 @@
                                 summery
                             </li>
                             <li>
-                                user review <span>147</span>
+                                user review <span><?= $count; ?></span>
                             </li>
                         </ul>
                         <div class="tab-area">
@@ -211,7 +211,9 @@
                                     </form>
                                 </div>
                                 <div class="movie-review-item">
+                                    
                                     <?php foreach ($comment as $c) : ?>
+                                        
                                         <div class="author">
 
                                             <div class="thumb">
