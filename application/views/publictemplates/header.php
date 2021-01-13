@@ -88,7 +88,7 @@
                             <a href="<?php echo base_url() ?>login/customer_logout">Logout</a>
                         </li>
                         <li>
-                            <p class="cast">Welcome <?= $this->session->userdata('username'); ?></p>
+                            <p class="subtitle">Welcome <?= $this->session->userdata('username'); ?></p>
                         </li>
                     <?php else : ?>
                         <li class="header-button pr-0">

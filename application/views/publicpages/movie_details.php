@@ -122,46 +122,45 @@
                     <div class="offer-body">
                         <div class="offer-item">
                             <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/sidebar/offer01.png" alt="sidebar">
+                                <img src="<?php echo base_url() ?>publicassets/images/payment/cbe_tn.jpg" alt="payment">
                             </div>
                             <div class="content">
                                 <h6>
-                                    <a href="#0">Amazon Pay Cashback Offer</a>
+                                    <a href="#0">CBE BIRR</a>
                                 </h6>
-                                <p>Win Cashback Upto Rs 300*</p>
                             </div>
                         </div>
                         <div class="offer-item">
                             <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/sidebar/offer02.png" alt="sidebar">
+                                <img src="<?php echo base_url() ?>publicassets/images/payment/hellocash_tn.jpg" alt="payment">
                             </div>
                             <div class="content">
                                 <h6>
-                                    <a href="#0">PayPal Offer</a>
+                                    <a href="#0">HELLO CASH</a>
                                 </h6>
-                                <p>Transact first time with Paypal and
-                                    get 100% cashback up to Rs. 500</p>
                             </div>
                         </div>
                         <div class="offer-item">
                             <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/sidebar/offer03.png" alt="sidebar">
+                                <img src="<?php echo base_url() ?>publicassets/images/payment/amole_tn.jpg" alt="payment">
                             </div>
                             <div class="content">
                                 <h6>
-                                    <a href="#0">HDFC Bank Offer</a>
+                                    <a href="#0">AMOLE</a>
                                 </h6>
-                                <p>Get 15% discount up to INR 100*
-                                    and INR 50* off on F&B T&C apply</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="widget-1 widget-banner">
-                    <div class="widget-1-body">
-                        <a href="#0">
-                            <img src="<?php echo base_url() ?>publicassets/images/sidebar/banner/banner01.jpg" alt="banner">
-                        </a>
+                        <div class="offer-item">
+                            <div class="thumb">
+                            <img src="<?php echo base_url() ?>publicassets/images/payment/m-birr_tn.jpg" alt="payment">
+                            </div>
+                            <div class="content">
+                                <h6>
+                                    <a href="#0">M-BIRR</a>
+                                </h6>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -211,9 +210,9 @@
                                     </form>
                                 </div>
                                 <div class="movie-review-item">
-                                    
+
                                     <?php foreach ($comment as $c) : ?>
-                                        
+
                                         <div class="author">
 
                                             <div class="thumb">
@@ -252,7 +251,7 @@
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
-                                
+
                                 <div class="load-more text-center">
                                     <a href="#0" class="custom-button transparent">load more</a>
                                 </div>

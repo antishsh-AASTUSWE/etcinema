@@ -19,7 +19,7 @@
     <div class="container">
         <div class="page-title-area">
             <div class="item md-order-1">
-                <a href="movie-ticket-plan.html" class="custom-button back-button">
+                <a href="<?php echo base_url(); ?>publicpages/movie_seat_plan/<?= $showtime['movie_id'] ?>" class="custom-button back-button">
                     <i class="flaticon-double-right-arrows-angles"></i>back
                 </a>
             </div>
@@ -46,7 +46,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-
+                <div class="checkout-widget d-flex flex-wrap align-items-center justify-cotent-between">
+                    <div class="title-area">
+                        <h5 class="title">Already a Etcinema Member?</h5>
+                        <p>Sign in to earn points and make booking easier!</p>
+                    </div>
+                    <a href="" class="sign-in-area">
+                        <i class="fas fa-user"></i><span>Sign in</span>
+                    </a>
+                </div>
                 <div class="checkout-widget checkout-contact">
                     <h5 class="title">Promo Code </h5>
                     <form class="checkout-contact-form">
@@ -64,25 +72,25 @@
                         <li id="test1" onclick="myFunction(this.id)">
                             <a href="#0">
                                 <img src="<?php echo base_url() ?>publicassets/images/payment/cbe.png" alt="payment">
-                                <span>Debit Card</span>
+                                <span>CBE BIRR</span>
                             </a>
                         </li>
                         <li id="test2" onclick="myFunction(this.id)">
                             <a href="#0">
                                 <img src="<?php echo base_url() ?>publicassets/images/payment/hellocash.jpg" alt="payment">
-                                <span>Debit Card</span>
+                                <span>HALLOCASH</span>
                             </a>
                         </li>
                         <li id="test3" onclick="myFunction(this.id)">
                             <a href="#0">
                                 <img src="<?php echo base_url() ?>publicassets/images/payment/amole.jpg" alt="payment">
-                                <span>Debit Card</span>
+                                <span>AMOLE</span>
                             </a>
                         </li>
                         <li id="test4" onclick="myFunction(this.id)">
                             <a href="#0">
                                 <img src="<?php echo base_url() ?>publicassets/images/payment/m-birr.jpg" alt="payment">
-                                <span>Debit Card</span>
+                                <span>M-BIRR</span>
                             </a>
                         </li>
                     </ul>
@@ -117,14 +125,15 @@
 
                                 for ($i = 1; $i < $row['row']; $i++) {
                                     for ($j = 1; $j < $row['col']; $j++) {
-                                    
-                                    if (isset($_POST["seat" . $i.''.$j])) {
-                                        $seat_price = count(($_POST)) ?>
 
-                                        <span><?= 'seat' . $i.''.$j ?></span>
+                                        if (isset($_POST["seat" . $i . '' . $j])) {
+                                            $seat_price = count(($_POST)) ?>
+
+                                            <span><?= 'seat' . $i . '' . $j ?></span>
 
                                 <?php }
-                             }   } ?>
+                                    }
+                                } ?>
                             </div>
                         </li>
                         <li>
@@ -137,7 +146,7 @@
 
 
                 </div>
-                <?php //if(T$this->session->userdata('logged')) ?>
+
                 <?php echo form_open("publicpages/movie_book") ?>
 
                 <?php if (isset($row)) {
@@ -147,30 +156,39 @@
 
                 for ($i = 1; $i < $row['row']; $i++) {
                     for ($j = 1; $j < $row['col']; $j++) {
-                    if (isset($_POST["seat" . $i.''.$j])) {
+                        if (isset($_POST["seat" . $i . '' . $j])) {
                 ?>
-                
-                        <input type="text" hidden name="<?= "seat" . $i.''.$j ?>" value="<?= $i.''.$j ?>">
-                
-                <input type="text" hidden name="show_id" value="<?= $showtime['show_id'] ?>">
-                <input type="text" hidden name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
-                <input type="text" hidden name="seats" value="<?= ($seat_price - 1) ?>">
-                <input type="text" hidden name="price" value="<?= ($seat_price - 1) * (int)$showtime['price'] ?>">
-                
+
+                            <input type="text" hidden name="<?= "seat" . $i . '' . $j ?>" value="<?= $i . '' . $j ?>">
+
+                            <input type="text" hidden name="show_id" value="<?= $showtime['show_id'] ?>">
+                            <input type="text" hidden name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
+                            <input type="text" hidden name="seats" value="<?= ($seat_price - 1) ?>">
+                            <input type="text" hidden name="price" value="<?= ($seat_price - 1) * (int)$showtime['price'] ?>">
+
 
 
                 <?php }
-                }} ?>
-
-                
-                
+                    }
+                } ?>
 
 
-                <div class="proceed-area  text-center">
-                    <h6 class="subtitle"><span>Amount Payable</span><span>$222</span></h6>
-                    <input type="submit" class="custom-button" value="proceed">
 
-                </div>
+
+                <?php if ($this->session->userdata('logged_in') === TRUE) : ?>
+                    <div class="proceed-area  text-center">
+                        <h6 class="subtitle"><span>Amount Payable</span><span>$222</span></h6>
+                        <input type="submit" class="custom-button" value="proceed">
+
+                    </div>
+                <?php else : ?>
+                    <div class="proceed-area  text-center">
+
+
+                        <a class="custom-button" href="<?php echo base_url(); ?>login/customer_signin">Please Login</a>
+                    </div>
+
+                <?php endif; ?>
                 <form>
             </div>
 
