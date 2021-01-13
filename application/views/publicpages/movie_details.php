@@ -14,7 +14,7 @@
                     <a href="#0"><?php echo $movie_detail['mov_language']; ?></a>
 
                 </div>
-                <a href="#0" class="button"><?php echo $movie_detail['mov_gener']; ?></a>
+                <a href="#0" class="button"><?php echo $movie_detail['gener']; ?></a>
                 <div class="social-and-duration">
                     <div class="duration-area">
                         <div class="item">
@@ -122,46 +122,45 @@
                     <div class="offer-body">
                         <div class="offer-item">
                             <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/sidebar/offer01.png" alt="sidebar">
+                                <img src="<?php echo base_url() ?>publicassets/images/payment/cbe_tn.jpg" alt="payment">
                             </div>
                             <div class="content">
                                 <h6>
-                                    <a href="#0">Amazon Pay Cashback Offer</a>
+                                    <a href="#0">CBE BIRR</a>
                                 </h6>
-                                <p>Win Cashback Upto Rs 300*</p>
                             </div>
                         </div>
                         <div class="offer-item">
                             <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/sidebar/offer02.png" alt="sidebar">
+                                <img src="<?php echo base_url() ?>publicassets/images/payment/hellocash_tn.jpg" alt="payment">
                             </div>
                             <div class="content">
                                 <h6>
-                                    <a href="#0">PayPal Offer</a>
+                                    <a href="#0">HELLO CASH</a>
                                 </h6>
-                                <p>Transact first time with Paypal and
-                                    get 100% cashback up to Rs. 500</p>
                             </div>
                         </div>
                         <div class="offer-item">
                             <div class="thumb">
-                                <img src="<?php echo base_url() ?>publicassets/images/sidebar/offer03.png" alt="sidebar">
+                                <img src="<?php echo base_url() ?>publicassets/images/payment/amole_tn.jpg" alt="payment">
                             </div>
                             <div class="content">
                                 <h6>
-                                    <a href="#0">HDFC Bank Offer</a>
+                                    <a href="#0">AMOLE</a>
                                 </h6>
-                                <p>Get 15% discount up to INR 100*
-                                    and INR 50* off on F&B T&C apply</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="widget-1 widget-banner">
-                    <div class="widget-1-body">
-                        <a href="#0">
-                            <img src="<?php echo base_url() ?>publicassets/images/sidebar/banner/banner01.jpg" alt="banner">
-                        </a>
+                        <div class="offer-item">
+                            <div class="thumb">
+                            <img src="<?php echo base_url() ?>publicassets/images/payment/m-birr_tn.jpg" alt="payment">
+                            </div>
+                            <div class="content">
+                                <h6>
+                                    <a href="#0">M-BIRR</a>
+                                </h6>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,7 +172,7 @@
                                 summery
                             </li>
                             <li>
-                                user review <span>147</span>
+                                user review <span><?= $count; ?></span>
                             </li>
                         </ul>
                         <div class="tab-area">
@@ -212,149 +211,47 @@
                                 </div>
                                 <div class="movie-review-item">
 
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="<?php echo base_url() ?>publicassets/images/cast/cast02.jpg" alt="cast">
-                                            </a>
+                                    <?php foreach ($comment as $c) : ?>
+
+                                        <div class="author">
+
+                                            <div class="thumb">
+                                                <a href="#0">
+                                                    <img src="<?php echo base_url() ?>publicassets/images/cast/cast02.jpg" alt="cast">
+                                                </a>
+                                            </div>
+                                            <div class="movie-review-info">
+                                                <span class="reply-date"><?= $c['created_at']; ?></span>
+                                                <h6 class="subtitle"><a href="#0"><?= $c['username']; ?></a></h6>
+                                                <span><i class="fas fa-check"></i> verified review</span>
+                                            </div>
                                         </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">minkuk seo</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
+                                        <div class="movie-review-content">
+                                            <div class="review">
+                                                <i class="flaticon-favorite-heart-button"></i>
+                                                <i class="flaticon-favorite-heart-button"></i>
+                                                <i class="flaticon-favorite-heart-button"></i>
+                                                <i class="flaticon-favorite-heart-button"></i>
+                                                <i class="flaticon-favorite-heart-button"></i>
+                                            </div>
+                                            <h6 class="cont-title"><?= $c['title']; ?></h6>
+                                            <p><?= $c['body']; ?></p>
+                                            <div class="review-meta">
+                                                <a href="#0">
+                                                    <i class="flaticon-hand"></i><span>8</span>
+                                                </a>
+                                                <a href="#0" class="dislike">
+                                                    <i class="flaticon-dont-like-symbol"></i><span>0</span>
+                                                </a>
+                                                <a href="#0">
+                                                    Report Abuse
+                                                </a>
+                                            </div>
+
                                         </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <?php endforeach; ?>
                                 </div>
-                                <div class="movie-review-item">
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="<?php echo base_url() ?>publicassets/images/cast/cast04.jpg" alt="cast">
-                                            </a>
-                                        </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">rudra rai</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
-                                        </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="movie-review-item">
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="<?php echo base_url() ?>publicassets/images/cast/cast01.jpg" alt="cast">
-                                            </a>
-                                        </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">rafuj</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
-                                        </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="movie-review-item">
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="<?php echo base_url() ?>publicassets/images/cast/cast03.jpg" alt="cast">
-                                            </a>
-                                        </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">bela bose</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
-                                        </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="load-more text-center">
                                     <a href="#0" class="custom-button transparent">load more</a>
                                 </div>

@@ -73,6 +73,9 @@ class Publicpages extends CI_Controller
 			show_404();
 		}
 		$data['movie_detail'] = $this->public_model->get_movie($id);
+		$data['comment'] = $this->public_model->get_comments($id);
+		$data['count'] = $this->public_model->count_comment($id);
+
 		if (empty($data['movie_detail'])) {
 			show_404();
 		}
@@ -206,6 +209,8 @@ class Publicpages extends CI_Controller
 			redirect('publicpages/movie_details/' . $movie_id);
 		}
 	} //end of create_comment
+
+
 
 	public function test($id)
 	{
