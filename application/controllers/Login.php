@@ -168,6 +168,7 @@ class Login extends CI_Controller
 					'user_id' => $data['cust_id'],
 					'email' => $email,
 					'username' => $data['username'],
+					'customer' => 'yes',
 					'logged_in' => TRUE
 				);
 

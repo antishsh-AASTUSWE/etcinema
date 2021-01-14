@@ -89,7 +89,10 @@
                             <a href="<?php echo base_url() ?>login/customer_logout">Logout</a>
                         </li>
                         <li>
-                            <p class="subtitle">Welcome <?= $this->session->userdata('username'); ?></p>
+                            <p class="subtitle"></p>
+                        </li>
+                        <li>
+                        <a href="<?php echo base_url() ?>profile">Welcome <?= $this->session->userdata('username'); ?></a>
                         </li>
                         
                     <?php else : ?>
