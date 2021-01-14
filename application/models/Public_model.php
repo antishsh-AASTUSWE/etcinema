@@ -107,34 +107,34 @@ class Public_model extends CI_Model
     } //end of get showtime 
     public function now_showing()
     {
-        
-            //$this->db->select('*');
-            $this->db->select('DISTINCT(mov_id),movie_id,mov_poster,mov_name');
-            //$this->db->distinct('mov_id');
-            $this->db->from('showtime');
-            $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
-            $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
-            $this->db->where('show_date >=',date('y-m-d') );
-            $query = $this->db->get();
-            return $query->result_array();
-        
+
+        //$this->db->select('*');
+        $this->db->select('DISTINCT(mov_id),movie_id,mov_poster,mov_name');
+        //$this->db->distinct('mov_id');
+        $this->db->from('showtime');
+        $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+        $this->db->where('show_date >=', date('y-m-d'));
+        $query = $this->db->get();
+        return $query->result_array();
     } //end of get showtime 
     public function trending($id = false)
     {
-        
-        $query = $this->db->query("SELECT showtime.mov_id,mov_name,movie_id,mov_poster
+
+        $query = $this->db->query(
+            "SELECT showtime.mov_id,mov_name,movie_id,mov_poster
         ,mov_name,SUM(booking_info.price) as gross 
         FROM booking_info
         join showtime ON showtime.show_id=booking_info.show_id
         join movie ON movie.movie_id=showtime.mov_id
          
         GROUP BY mov_id ORDER by gross DESC"
-      
+
         );
         return $query->result_array();
 
 
-           /*  //$this->db->select('*');
+        /*  //$this->db->select('*');
             $this->db->select('DISTINCT(mov_id),movie_id,mov_poster,mov_name');
             //$this->db->distinct('mov_id');
             $this->db->from('showtime');
@@ -142,7 +142,6 @@ class Public_model extends CI_Model
             $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
             $query = $this->db->get();
             return $query->result_array(); */
-       
     } //end of get showtime 
     public function cooming_soon()
     {
@@ -151,7 +150,7 @@ class Public_model extends CI_Model
         $this->db->from('movie');
         //$this->db->join('movie', 'movie.movie_id=showtime.mov_id');
         //$this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
-        $this->db->where('mov_realse_date >',date('y-m-d') );
+        $this->db->where('mov_realse_date >', date('y-m-d'));
         $query = $this->db->get();
         return $query->result_array();
     } //end of get showtime 
@@ -259,8 +258,8 @@ class Public_model extends CI_Model
         );
 
         $this->db->insert('booking_info', $data);
-        //return $this->db->insert('seat_booked', $data);
 
+        return $this->db->insert_id();
     }
 
     //create comment functions
@@ -283,7 +282,7 @@ class Public_model extends CI_Model
         $this->db->from('comment');
         $this->db->join('movie', 'comment.mov_id=movie.movie_id');
         $this->db->join('customer', 'comment.customer_id=customer.cust_id');
-        
+
         /* $this->db->join('movie', 'comment.mov_id=movie_id');
         $this->db->join('customer', 'comment.customer_id=customer_id'); */
         $this->db->where('mov_id', $movie_id);
@@ -312,18 +311,50 @@ class Public_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
-    public function booking_sms($booking_id)
+    public function booking_sms($id)
     {
+
         $this->db->select('*');
         $this->db->from('booking_info');
-        //$this->db->join('movie', 'movie.movie_id=showtime.mov_id');
-        $this->db->join('user', 'user.user_id=booking_info.user_id');
+        $this->db->join('showtime', 'showtime.mov_id=booking_info.show_id');
+        $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        $this->db->join('customer', 'customer.cust_id=booking_info.user_id');
         $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
-        $this->db->where('booking_id',$booking_id);
-        $this->db->limit(1); 
+        $this->db->where('booking_id', $id);
+        //$this->db->limit(1); 
         $query = $this->db->get();
-        return $query->row_array();
-        //$query = $this->db->get_where('booking_info', array('user_id' => $this->session->userdata('user_id')));
-   //return 
+        $row = $query->row();
+
+        if (isset($row)) {
+            echo $row->price;
+            //echo $row->bank_name;
+
+           /*  $content = "
+Dear " . $this->session->userdata('username') . "
+
+Thank you for booking with Etcinema
+
+Please make Payment to the Bank account below to reserve your seat .
+
+Best Regards,
+Yeshewas Gatawbza
+
+
+PAYMENT DETAIL
+
+Amount: " . $row->price . " Birr
+-----
+" . $row->bank_name . "
+" . $row->account_name . "
+" . $row->account_number . "
+-----
+Aftre making payment please Use this link to confirm your payment :
+https://yegara.com/pay?d=14058.YES
+
+        ";
+            return $content; */
+           
+        }
+        
     }
 }
