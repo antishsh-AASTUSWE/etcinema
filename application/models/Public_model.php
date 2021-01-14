@@ -105,6 +105,56 @@ class Public_model extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     } //end of get showtime 
+    public function now_showing()
+    {
+        
+            //$this->db->select('*');
+            $this->db->select('DISTINCT(mov_id),movie_id,mov_poster,mov_name');
+            //$this->db->distinct('mov_id');
+            $this->db->from('showtime');
+            $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+            $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+            $this->db->where('show_date >=',date('y-m-d') );
+            $query = $this->db->get();
+            return $query->result_array();
+        
+    } //end of get showtime 
+    public function trending($id = false)
+    {
+        
+        $query = $this->db->query("SELECT showtime.mov_id,mov_name,movie_id,mov_poster
+        ,mov_name,SUM(booking_info.price) as gross 
+        FROM booking_info
+        join showtime ON showtime.show_id=booking_info.show_id
+        join movie ON movie.movie_id=showtime.mov_id
+         
+        GROUP BY mov_id ORDER by gross DESC"
+      
+        );
+        return $query->result_array();
+
+
+           /*  //$this->db->select('*');
+            $this->db->select('DISTINCT(mov_id),movie_id,mov_poster,mov_name');
+            //$this->db->distinct('mov_id');
+            $this->db->from('showtime');
+            $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+            $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+            $query = $this->db->get();
+            return $query->result_array(); */
+       
+    } //end of get showtime 
+    public function cooming_soon()
+    {
+        $this->db->select('movie_id,mov_poster,mov_name,mov_realse_date');
+        //$this->db->distinct('mov_id');
+        $this->db->from('movie');
+        //$this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        //$this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+        $this->db->where('mov_realse_date >',date('y-m-d') );
+        $query = $this->db->get();
+        return $query->result_array();
+    } //end of get showtime 
     public function search_movie()
     {
         $data = array(
@@ -152,7 +202,7 @@ class Public_model extends CI_Model
     public function booking_send()
     {
 
-        $query = $this->db->get_where('bookinf_info', array('user_id' => $this->session->userdata('user_id')));
+        $query = $this->db->get_where('booking_info', array('user_id' => $this->session->userdata('user_id')));
 
         foreach ($query->result() as $row) {
             $booking_id = $row->booking_id;
@@ -204,6 +254,7 @@ class Public_model extends CI_Model
             'user_id' => $this->input->post('user_id'),
             'price' => $this->input->post('price'),
             'show_id' => $this->input->post('show_id'),
+            'paid_bank' => $this->input->post('bank')
 
         );
 
@@ -251,5 +302,28 @@ class Public_model extends CI_Model
         $query = $this->db->get();
 
         return $query->num_rows();
+    }
+    public function get_bank()
+    {
+
+        $this->db->select('*');
+        $this->db->from('bank');
+        //$this->db->where('mov_id', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function booking_sms($booking_id)
+    {
+        $this->db->select('*');
+        $this->db->from('booking_info');
+        //$this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        $this->db->join('user', 'user.user_id=booking_info.user_id');
+        $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
+        $this->db->where('booking_id',$booking_id);
+        $this->db->limit(1); 
+        $query = $this->db->get();
+        return $query->row_array();
+        //$query = $this->db->get_where('booking_info', array('user_id' => $this->session->userdata('user_id')));
+   //return 
     }
 }

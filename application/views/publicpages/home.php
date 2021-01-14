@@ -60,7 +60,22 @@
                             </select>
                         </div>
                         <div class="form-group large">
-                            <input type="text" name="search" placeholder="Search fo Movies">
+                            <input type="text" list="movies" name="search" placeholder="Search fo Movies">            
+                               <datalist id="movies" >
+
+                               <?php 
+                               if(isset($movie)){
+                                   foreach ($movie as $m) : ?>
+
+                                <option ><?= $m['mov_name']; ?></option>
+
+                                <?php endforeach; }else?>
+                                </datalist>
+                                <div class="text-danger">
+                        <?php echo form_error('search'); ?>
+                    </div>
+                  
+                            
                             <button type="submit"><i class="fas fa-search"></i></button>
                         </div>
                         
@@ -76,42 +91,36 @@
 <!-- ==========Ticket-Search========== -->
 
 <!-- ==========Movie-Section========== -->
+
 <section class="movie-section padding-top padding-bottom">
     <div class="container">
         <div class="tab">
             <div class="section-header-2">
                 <div class="left">
-                    <h2 class="title">movies</h2>
+                    <h2 class="title">Now showing</h2>
                     <p>Be sure not to miss these Movies today.</p>
                 </div>
-                <ul class="tab-menu">
-                    <li class="active">
-                        now showing
-                    </li>
-                    <li>
-                        coming soon
-                    </li>
-                    <li>
-                        exclusive
-                    </li>
-                </ul>
+                
             </div>
 
             <div class="tab-area mb-30-none">
                 <div class="tab-item active">
                     <div class="owl-carousel owl-theme tab-slider">
-                        <?php foreach ($movie as $m) : ?>
+                    
+                        <?php if(isset($nowshowing)){
+                        
+                        foreach ($nowshowing as $n) : ?>
 
                             <div class="item">
                                 <div class="movie-grid">
                                     <div class="movie-thumb c-thumb">
-                                        <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $m['movie_id'] ?>">
-                                            <img src="<?php echo base_url() ?>assets/poster/<?= $m['mov_poster']; ?>" alt="movie">
+                                        <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $n['movie_id'] ?>">
+                                            <img src="<?php echo base_url() ?>assets/poster/<?= $n['mov_poster']; ?>" alt="movie">
                                         </a>
                                     </div>
                                     <div class="movie-content bg-one">
                                         <h5 class="title m-0">
-                                            <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $m['movie_id'] ?>"><?= $m['mov_name']; ?></a>
+                                            <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $n['movie_id'] ?>"><?= $n['mov_name']; ?></a>
                                         </h5>
                                         <ul class="movie-rating-percent">
                                             <li>
@@ -130,7 +139,11 @@
                                     </div>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
+                        <?php endforeach; 
+                        } else {
+                            echo 'No data Found!';
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -141,296 +154,134 @@
 <!-- ==========Movie-Section========== -->
 
 <!-- ==========Event-Section========== -->
-<!-- <section class="event-section padding-top padding-bottom bg-four">
+<section class="movie-section padding-top padding-bottom">
     <div class="container">
         <div class="tab">
             <div class="section-header-2">
                 <div class="left">
-                    <h2 class="title">events</h2>
-                    <p>Be sure not to miss these Event today.</p>
+                    <h2 class="title">comming soon</h2>
+                    <p>this movies cooming soon to our cinemas soon.</p>
                 </div>
-                <ul class="tab-menu">
-                    <li class="active">
-                        now showing
-                    </li>
-                    <li>
-                        coming soon
-                    </li>
-                    <li>
-                        exclusive
-                    </li>
-                </ul>
+                
             </div>
             <div class="tab-area mb-30-none">
                 <div class="tab-item active">
                     <div class="owl-carousel owl-theme tab-slider">
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event01.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
+                        
+                        <?php if(isset($commingsoon)){
+                            foreach ($commingsoon as $c) : ?>
+
+<div class="item">
+    <div class="movie-grid">
+        <div class="movie-thumb c-thumb">
+            <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $c['movie_id'] ?>">
+                <img src="<?php echo base_url() ?>assets/poster/<?= $c['mov_poster']; ?>" alt="movie">
+            </a>
+            <div class="event-date">
+                                        <h6 class="date-title">
+                                        <?php
+                                                    $date = $c['mov_realse_date'];;
+                                                    echo date('j', strtotime($date)); //July, 2017
+                                                    ?>
+                                        </h6>
+                                        <span><?php $date = $c['mov_realse_date'];;
+                                                    echo date('M', strtotime($date)); //July, 2017
+                                                    ?></span>
                                     </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">Digital Economy Conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event02.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">web design conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event03.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">digital thinkers meetup</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event04.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">world digital conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        </div>
+        <div class="movie-content bg-one">
+            <h5 class="title m-0">
+                <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $c['movie_id'] ?>"><?= $c['mov_name']; ?></a>
+            </h5>
+            <ul class="movie-rating-percent">
+                <li>
+                    <div class="thumb">
+                        <img src="<?php echo base_url() ?>publicassets/images/movie/tomato.png" alt="movie">
                     </div>
-                </div>
-                <div class="tab-item">
-                    <div class="owl-carousel owl-theme tab-slider">
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event01.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">Digital Economy Conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event02.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">web design conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event03.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">digital thinkers meetup</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event04.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">world digital conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <span class="content">88%</span>
+                </li>
+                <li>
+                    <div class="thumb">
+                        <img src="<?php echo base_url() ?>publicassets/images/movie/cake.png" alt="movie">
                     </div>
-                </div>
-                <div class="tab-item">
-                    <div class="owl-carousel owl-theme tab-slider">
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event01.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">Digital Economy Conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event02.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">web design conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event03.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">digital thinkers meetup</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="<?php echo base_url() ?>publicassets/images/event/event04.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">world digital conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <span class="content">88%</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<?php endforeach; 
+} else {
+    echo 'No data Found!';
+}?>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- ==========Event-Section========== -->
+<section class="movie-section padding-top padding-bottom">
+    <div class="container">
+        <div class="tab">
+            <div class="section-header-2">
+                <div class="left">
+                    <h2 class="title">Trending</h2>
+                    <p>This movies are top wached movies.</p>
+                </div>
+                
+            </div>
+            <div class="tab-area mb-30-none">
+                <div class="tab-item active">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        
+                        <?php if(isset($trending)){
+                        foreach ($trending as $c) : ?>
+
+<div class="item">
+    <div class="movie-grid">
+        <div class="movie-thumb c-thumb">
+            <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $c['movie_id'] ?>">
+                <img src="<?php echo base_url() ?>assets/poster/<?= $c['mov_poster']; ?>" alt="movie">
+            </a>
+            <div class="event-date">
+                                        <h6 class="date-title"><?= $c['gross']; ?></h6>
+                                        <span>birr</span>
+                                    </div>
+        </div>
+        <div class="movie-content bg-one">
+            <h5 class="title m-0">
+                <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $c['movie_id'] ?>"><?= $c['mov_name']; ?></a>
+            </h5>
+            <ul class="movie-rating-percent">
+                <li>
+                    <div class="thumb">
+                        <img src="<?php echo base_url() ?>publicassets/images/movie/tomato.png" alt="movie">
+                    </div>
+                    <span class="content">88%</span>
+                </li>
+                <li>
+                    <div class="thumb">
+                        <img src="<?php echo base_url() ?>publicassets/images/movie/cake.png" alt="movie">
+                    </div>
+                    <span class="content">88%</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<?php endforeach; 
+} else {
+    echo 'No data Found!';
+}?>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Event-Section==========!-->
 
 <!-- ==========Sports-Section========== -->
 <!-- <section class="sports-section padding-top padding-bottom">

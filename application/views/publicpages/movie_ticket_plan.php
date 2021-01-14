@@ -71,6 +71,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-9 mb-5 mb-lg-0">
+            <?php if(!empty($showtime_detail)){?>
                 <ul class="seat-plan-wrapper bg-five">
                     <?php foreach ($showtime_detail as $shd) : ?>
                         <li>
@@ -83,6 +84,7 @@
                                 <div class="location-icon">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
+                                <?= $shd['show_date']; ?>
                             </div>
 
                             <div class="movie-schedule">
@@ -91,10 +93,14 @@
                                 </div>
                             </div>
                             
+                            
                         </li>
                     <?php endforeach; ?>
                     
                 </ul>
+                <?php } else {
+                    echo '<h4>No Showtime Found!</h4>';
+                }?>
 
             </div>
             <div class="col-lg-3 col-md-6 col-sm-10">

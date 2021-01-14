@@ -42,6 +42,7 @@
 <!-- ==========Page-Title========== -->
 
 <!-- ==========Movie-Section========== -->
+<?php echo form_open("publicpages/movie_book") ?>
 <div class="movie-facility padding-bottom padding-top">
     <div class="container">
         <div class="row">
@@ -69,25 +70,25 @@
                 <div class="checkout-widget checkout-card mb-0">
                     <h5 class="title">Payment Option </h5>
                     <ul class="payment-option">
-                        <li id="test1" onclick="myFunction(this.id)">
+                        <li>
                             <a href="#0">
                                 <img src="<?php echo base_url() ?>publicassets/images/payment/cbe.png" alt="payment">
                                 <span>CBE BIRR</span>
                             </a>
                         </li>
-                        <li id="test2" onclick="myFunction(this.id)">
+                        <li>
                             <a href="#0">
                                 <img src="<?php echo base_url() ?>publicassets/images/payment/hellocash.jpg" alt="payment">
                                 <span>HALLOCASH</span>
                             </a>
                         </li>
-                        <li id="test3" onclick="myFunction(this.id)">
+                        <li>
                             <a href="#0">
                                 <img src="<?php echo base_url() ?>publicassets/images/payment/amole.jpg" alt="payment">
                                 <span>AMOLE</span>
                             </a>
                         </li>
-                        <li id="test4" onclick="myFunction(this.id)">
+                        <li>
                             <a href="#0">
                                 <img src="<?php echo base_url() ?>publicassets/images/payment/m-birr.jpg" alt="payment">
                                 <span>M-BIRR</span>
@@ -140,40 +141,49 @@
                             <h6 class="subtitle mb-0"><span>Tickets Price</span><span><?= ($seat_price - 1) * (int)$showtime['price'] ?></span></h6>
                         </li>
                     </ul>
-
-
-
-
-
+                    <ul class="side-shape">
+                            <li>
+<select class="form-select bg-secondary text-white" aria-label="Default select example" name="bank">
+  <option selected disabled>Please choose Payment Method</option>
+  <?php if(isset($bank)){
+      foreach($bank as $b){?>
+  <option value="<?= $b['bank_id']?>"><?= $b['bank_name']?></option>
+  
+  <?php } }?>
+</select> 
+                            </li>
+                            
+                        </ul>
                 </div>
+              
+                
 
-                <?php echo form_open("publicpages/movie_book") ?>
+<?php if (isset($row)) {
+    $t = 0;
+    $t = $row['col'] * $row['row'];
+}
 
-                <?php if (isset($row)) {
-                    $t = 0;
-                    $t = $row['col'] * $row['row'];
-                }
+for ($i = 1; $i < $row['row']; $i++) {
+    for ($j = 1; $j < $row['col']; $j++) {
+        if (isset($_POST["seat" . $i . '' . $j])) {
+?>
 
-                for ($i = 1; $i < $row['row']; $i++) {
-                    for ($j = 1; $j < $row['col']; $j++) {
-                        if (isset($_POST["seat" . $i . '' . $j])) {
-                ?>
+            <input type="text" hidden name="<?= "seat" . $i . '' . $j ?>" value="<?= $i . '' . $j ?>">
 
-                            <input type="text" hidden name="<?= "seat" . $i . '' . $j ?>" value="<?= $i . '' . $j ?>">
-
-                            <input type="text" hidden name="show_id" value="<?= $showtime['show_id'] ?>">
-                            <input type="text" hidden name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
-                            <input type="text" hidden name="seats" value="<?= ($seat_price - 1) ?>">
-                            <input type="text" hidden name="price" value="<?= ($seat_price - 1) * (int)$showtime['price'] ?>">
-
-
-
-                <?php }
-                    }
-                } ?>
+            <input type="text" hidden name="show_id" value="<?= $showtime['show_id'] ?>">
+            <input type="text" hidden name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
+            <input type="text" hidden name="seats" value="<?= ($seat_price - 1) ?>">
+            <input type="text" hidden name="price" value="<?= ($seat_price - 1) * (int)$showtime['price'] ?>">
 
 
 
+<?php }
+    }
+} ?>
+              
+
+              
+              
 
                 <?php if ($this->session->userdata('logged_in') === TRUE) : ?>
                     <div class="proceed-area  text-center">
@@ -189,18 +199,11 @@
                     </div>
 
                 <?php endif; ?>
-                <form>
+                
             </div>
 
         </div>
     </div>
 </div>
+</form>
 <!-- ==========Movie-Section========== -->
-<script>
-    function myFunction(id) {
-
-
-        document.getElementById(id).className = "active";
-
-    }
-</script>

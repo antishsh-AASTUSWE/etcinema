@@ -46,11 +46,11 @@
             <div class="screen-thumb">
                 <img src="<?php echo base_url() ?>publicassets/images/movie/screen-thumb.png" alt="movie">
             </div>
-            <h5 class="subtitle">silver plus</h5>
+            <h5 class="subtitle">seats</h5>
             <div class="screen-wrapper">
                 <ul class="seat-area">
                     <li class="seat-line">
-                        <span>G</span>
+                        <span></span>
                         <ul class="seat--area">
                             <li class="front-seat">
                                 <ul>
@@ -110,7 +110,7 @@
                         <span>G</span>
                     </li>
                     <li class="seat-line">
-                        <span>f</span>
+                        <span></span>
                         <ul class="seat--area">
                             <li class="front-seat">
                                 <ul>

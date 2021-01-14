@@ -12,6 +12,9 @@ class Publicpages extends CI_Controller
 			show_404();
 		}
 		$data['title'] = 'home';
+		$data['nowshowing'] = $this->public_model->now_showing();
+		$data['commingsoon'] = $this->public_model->cooming_soon();
+		$data['trending'] = $this->public_model->trending();
 		$data['movie'] = $this->public_model->get_showtime();
 		//$data['movie'] = $this->public_model->get_movie();
 		$data['cinema'] = $this->public_model->get_cinema();
@@ -57,6 +60,7 @@ class Publicpages extends CI_Controller
 			$data['seat'] = $this->input->post('seat');
 			$data['showtime'] = $this->public_model->get_showtime($id);
 			$data['row'] = $this->public_model->get_seatRow();
+			$data['bank'] = $this->public_model->get_bank();
 			$this->load->view('publictemplates/header');
 			$this->load->view('publicpages/movie_checkout', $data);
 			$this->load->view('publictemplates/footer');
@@ -186,10 +190,13 @@ class Publicpages extends CI_Controller
 	public function movie_book()
 	{
 
-
+		
+		
 		$this->public_model->reserve_seat();
-		$this->public_model->book();
-		$this->index();
+		
+		$booking_id=$this->public_model->book();
+		$this->public_model->booking_sms($booking_id);
+		//$this->index();
 	}
 
 	//create comment function
