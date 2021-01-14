@@ -30,7 +30,8 @@
                         <h2 class="title">get in touch</h2>
                         <p>We’d love to talk about how we can work together. Send us a message below and we’ll respond as soon as possible.</p>
                     </div>
-                    <form class="contact-form" id="contact_form_submit">
+                    <?php echo form_open('email/send'); ?>
+                    <div class="contact-form" id="contact_form_submit">
                         <div class="form-group">
                             <label for="name">Name <span>*</span></label>
                             <input type="text" placeholder="Enter Your Full Name" name="name" id="name" required>
@@ -50,6 +51,7 @@
                         <div class="form-group">
                             <input type="submit" value="Send Message">
                         </div>
+                    </div>
                     </form>
                 </div>
                 <div class="col-md-5 col-lg-6">
