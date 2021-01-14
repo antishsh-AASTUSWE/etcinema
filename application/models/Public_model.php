@@ -313,48 +313,48 @@ class Public_model extends CI_Model
     }
     public function booking_sms($id)
     {
-
+        //echo $id;
         $this->db->select('*');
         $this->db->from('booking_info');
-        $this->db->join('showtime', 'showtime.mov_id=booking_info.show_id');
+        $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
         $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
         $this->db->join('customer', 'customer.cust_id=booking_info.user_id');
         $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
         $this->db->where('booking_id', $id);
-        //$this->db->limit(1); 
+        $this->db->limit(1);
         $query = $this->db->get();
         $row = $query->row();
 
         if (isset($row)) {
-            echo $row->price;
+            //echo $row->price;
             //echo $row->bank_name;
 
-           /*  $content = "
-Dear " . $this->session->userdata('username') . "
+            $content = "
+                Dear " . $this->session->userdata('username') . "
 
-Thank you for booking with Etcinema
+                Thank you for booking with Etcinema
 
-Please make Payment to the Bank account below to reserve your seat .
+                Please make Payment to the Bank account below to reserve your seat .
 
-Best Regards,
-Yeshewas Gatawbza
+                Best Regards,
+                Yeshewas Gatawbza
 
 
-PAYMENT DETAIL
+                PAYMENT DETAIL
 
-Amount: " . $row->price . " Birr
------
-" . $row->bank_name . "
-" . $row->account_name . "
-" . $row->account_number . "
------
-Aftre making payment please Use this link to confirm your payment :
-https://yegara.com/pay?d=14058.YES
+                Amount: " . $row->price . " Birr
+                -----
+                " . $row->bank_name . "
+                " . $row->account_name . "
+                " . $row->account_number . "
+                -----
+                Aftre making payment please Use this link to confirm your payment :
+                https://yegara.com/pay?d=14058.YES
 
-        ";
-            return $content; */
-           
+                        ";
+            return $content;
+        } else {
+            echo 'no set';
         }
-        
     }
 }

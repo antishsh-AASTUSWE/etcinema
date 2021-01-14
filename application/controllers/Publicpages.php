@@ -196,9 +196,9 @@ class Publicpages extends CI_Controller
 		
 		$booking_id=$this->public_model->book();
 		//echo $booking_id;
-		$this->public_model->booking_sms($booking_id);
+		$content = $this->public_model->booking_sms($booking_id);
 		
-		//$this->send($content);
+		$this->send($content);
 	}
 	public function send($content)
 	{
