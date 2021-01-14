@@ -199,7 +199,7 @@ for ($i = 1; $i < $row['row']; $i++) {
                     </div>
 
                 <?php endif; ?>
-                
+                </form>
             </div>
 
         </div>
