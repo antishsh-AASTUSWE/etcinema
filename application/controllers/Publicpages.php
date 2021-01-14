@@ -190,38 +190,37 @@ class Publicpages extends CI_Controller
 	public function movie_book()
 	{
 
-		
-		
+
+
 		$this->public_model->reserve_seat();
-		
-		$booking_id=$this->public_model->book();
+
+		$booking_id = $this->public_model->book();
 		//echo $booking_id;
 		$content = $this->public_model->booking_sms($booking_id);
-		
+
 		$this->send($content);
 	}
 	public function send($content)
 	{
 		$this->load->config('email');
-        $this->load->library('email');
-        
-        $from = $this->config->item('smtp_user');
-        $to = $this->session->userdata('email');
-        $subject = 'test';
-        $message = $content;
-		$this->email->clear();
-        $this->email->set_newline("\r\n");
-        $this->email->from($from);
-        $this->email->to($to);
-        $this->email->subject($subject);
-        $this->email->message($message);
+		$this->load->library('email');
 
-        if ($this->email->send()) {
-            echo 'Your Email has successfully been sent.';
-        } else {
-            show_error($this->email->print_debugger());
-        }
-		
+		$from = $this->config->item('smtp_user');
+		$to = $this->session->userdata('email');
+		$subject = 'test';
+		$message = $content;
+		$this->email->clear();
+		$this->email->set_newline("\r\n");
+		$this->email->from($from);
+		$this->email->to($to);
+		$this->email->subject($subject);
+		$this->email->message($message);
+
+		if ($this->email->send()) {
+			echo 'Your Email has successfully been sent.';
+		} else {
+			show_error($this->email->print_debugger());
+		}
 	}
 	//create comment function
 	public function create_comment($movie_id)

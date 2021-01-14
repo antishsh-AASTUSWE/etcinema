@@ -14,7 +14,7 @@
                     <?php endif; ?>
                     <div class="form-group">
                         <label for="email2">Email<span>*</span></label>
-                        <input type="text" name="email" placeholder="Enter Your Email" id="email2">
+                        <input type="email" name="email" placeholder="Enter Your Email" id="email2">
                         <div class="text-danger">
                             <?php echo form_error('email'); ?>
                         </div>

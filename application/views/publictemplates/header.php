@@ -77,19 +77,21 @@
                                                                                 } ?>>contact</a>
                     </li>
 
-                    <li>
-                        <a href="<?php echo base_url() ?>login/change_password" <?php if ($this->uri->segment(2) === 'change_password') {
-                                                                                    echo 'class="active"';
-                                                                                } ?>>Change pasword</a>
-                    </li>
+
 
                     <?php if ($this->session->userdata('logged_in') == true) : ?>
+                        <li>
+                            <a href="<?php echo base_url() ?>login/change_password" <?php if ($this->uri->segment(2) === 'change_password') {
+                                                                                        echo 'class="active"';
+                                                                                    } ?>>Change pasword</a>
+                        </li>
                         <li class="header-button pr-0">
                             <a href="<?php echo base_url() ?>login/customer_logout">Logout</a>
                         </li>
                         <li>
                             <p class="subtitle">Welcome <?= $this->session->userdata('username'); ?></p>
                         </li>
+                        
                     <?php else : ?>
                         <li class="header-button pr-0">
                             <a href="<?php echo base_url() ?>login/customer_signin">Sign In</a>
