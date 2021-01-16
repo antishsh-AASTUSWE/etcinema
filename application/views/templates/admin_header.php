@@ -37,6 +37,31 @@
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foopicker.js"></script>
 
 
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  
+  function drawChart() {
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Element');
+      data.addColumn('number', 'Percentage');
+      $x= 'Nitrogen';
+      data.addRows([
+       
+        [$x, 0.21],
+        ['Oxygen', 0.78],
+        ['Other', 0.01]
+      ]);
+
+      // Instantiate and draw the chart.
+      var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+      chart.draw(data, null);
+    }
+</script>
+
 </head>
 <?php if ($this->session->userdata('role') == 'admin') {
   echo '<body class="bg-theme bg-theme1"> ';

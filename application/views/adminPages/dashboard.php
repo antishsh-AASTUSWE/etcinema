@@ -119,7 +119,7 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-container-2">
-                            <canvas id="chart2"></canvas>
+                            <div id="myPieChart"></div>
                         </div>
                     </div>
                     <div class="table-responsive">
