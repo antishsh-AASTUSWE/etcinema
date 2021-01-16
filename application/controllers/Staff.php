@@ -27,9 +27,9 @@ class Staff extends CI_Controller
         $data['nextMovies'] = $this->staff_model->nextMovies();
         $data['newCustomer'] = $this->staff_model->newCustomer();
           
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('staffpages/dashboard',$data);
-        $this->load->view('templates/footer',$data);
+        $this->load->view('templates/admin_footer',$data);
     }
     public function movies()
     {
@@ -44,18 +44,18 @@ class Staff extends CI_Controller
 			
 			$data['movie'] = $this->staff_model->search_movie();
 			
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('staffpages/movies',$data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
 			}
 			
 	   else{
 			
 			$data['movie'] = $this->staff_model->get_movie();
 			
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('staffpages/movies',$data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
 	   }
         
     }
@@ -88,9 +88,9 @@ class Staff extends CI_Controller
             $data['gener'] = $this->staff_model->get_gener();
             $data['rating'] = $this->staff_model->get_rating();
 
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/admin_header', $data);
             $this->load->view('staffpages/add_movie', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/admin_footer', $data);
         } else {
 
             $config['upload_path'] = './assets/poster';
@@ -103,9 +103,9 @@ class Staff extends CI_Controller
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());
                 //$post_image = 'noimage.jpg';
-                $this->load->view('templates/header');
+                $this->load->view('templates/admin_header');
                 $this->load->view('staffpages/add_movie', $error);
-                $this->load->view('templates/footer');
+                $this->load->view('templates/admin_footer');
             } else {
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
@@ -130,9 +130,9 @@ class Staff extends CI_Controller
         $data['gener'] = $this->staff_model->get_gener();
         $data['rating'] = $this->staff_model->get_rating();
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('staffpages/edit_movie', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
     public function update_movie($id)
     {
@@ -169,9 +169,9 @@ class Staff extends CI_Controller
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());
                 
-                $this->load->view('templates/header');
+                $this->load->view('templates/admin_header');
                 $this->load->view('staffpages/edit_movie', $error);
-                $this->load->view('templates/footer');
+                $this->load->view('templates/admin_footer');
             } else {
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
@@ -205,9 +205,9 @@ class Staff extends CI_Controller
             $data['cinema'] =$this->admin_model->get_cinema();
 		    $data['movie'] =$this->admin_model->get_movie();
 			
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('staffpages/showtime',$data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
 			}
 			
 	   else{
@@ -216,9 +216,9 @@ class Staff extends CI_Controller
             $data['cinema'] =$this->admin_model->get_cinema();
 		    $data['movie'] =$this->admin_model->get_movie();
 			
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('staffpages/showtime',$data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
 	   }
         
     }
@@ -259,9 +259,9 @@ class Staff extends CI_Controller
         $data['cinema'] =$this->admin_model->get_cinema();
         $data['movie'] =$this->admin_model->get_movie();
         
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('staffpages/edit_showtime', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
     public function update_showtime($id)
     {
@@ -307,18 +307,18 @@ class Staff extends CI_Controller
 			
             $data['customer'] = $this->staff_model->search_customer();
             
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('staffpages/customer',$data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
 			}
 			
 	   else{
 			
             $data['customer'] = $this->staff_model->get_customer();
            
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('staffpages/customer',$data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
 	   }
         
     }
@@ -340,9 +340,9 @@ class Staff extends CI_Controller
 
         if ($this->form_validation->run() === FALSE) {
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('staffpages/add_customer');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             
@@ -362,9 +362,9 @@ class Staff extends CI_Controller
             show_404();
         }
         
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('staffpages/edit_customer', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
     public function update_customer($id)
     {
@@ -447,9 +447,9 @@ class Staff extends CI_Controller
             show_404();
         }
          
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('staffpages/advert');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
     public function seat()
     {
@@ -462,9 +462,9 @@ class Staff extends CI_Controller
         }
         
        
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('staffpages/seat');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
     public function addSeat(){
         

@@ -18,9 +18,9 @@ class Login extends CI_Controller
 
 
 		if ($this->form_validation->run() === false) {
-			$this->load->view('logintemplates/header');
+			$this->load->view('logintemplates/admin_login_header');
 			$this->load->view('loginpage/login');
-			$this->load->view('logintemplates/footer');
+			$this->load->view('logintemplates/admin_login_footer');
 		} else {
 
 			//get username and password
@@ -127,11 +127,11 @@ class Login extends CI_Controller
 		if (!$this->session->userdata('access_token')) {
 			$login_button = $google_client->createAuthUrl();
 			$data['login'] = $login_button;
-			$this->load->view('logintemplates/publicheader');
+			$this->load->view('logintemplates/public_login_header');
 			$this->load->view('publicpages/sign_in', $data);
 			$this->load->view('logintemplates/public_login_footer');
 		}
-		$this->load->view('logintemplates/publicheader');
+		$this->load->view('logintemplates/public_login_header');
 		$this->load->view('publicpages/sign_in');
 		$this->load->view('logintemplates/public_login_footer');
 	}  */ //end of google sign_in
@@ -149,7 +149,7 @@ class Login extends CI_Controller
 
 
 		if ($this->form_validation->run() === false) {
-			$this->load->view('logintemplates/publicheader');
+			$this->load->view('logintemplates/public_login_header');
 			$this->load->view('publicpages/sign_in');
 			$this->load->view('logintemplates/public_login_footer');
 		} else {
@@ -211,7 +211,7 @@ class Login extends CI_Controller
 
 
 		if ($this->form_validation->run() === false) {
-			$this->load->view('logintemplates/publicheader');
+			$this->load->view('logintemplates/public_login_header');
 			$this->load->view('publicpages/sign_up');
 			$this->load->view('logintemplates/public_login_footer');
 		} else {
@@ -238,7 +238,7 @@ class Login extends CI_Controller
 		$this->form_validation->set_rules('new_password', 'New password', 'required');
 		$this->form_validation->set_rules('password2', 'Confirm password', 'matches[new_password]');
 		if ($this->form_validation->run() === false) {
-			$this->load->view('logintemplates/publicheader');
+			$this->load->view('logintemplates/public_login_header');
 			$this->load->view('publicpages/change_password');
 			$this->load->view('logintemplates/public_login_footer');
 		} else {

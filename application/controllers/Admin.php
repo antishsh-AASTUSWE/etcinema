@@ -28,9 +28,9 @@ class Admin extends CI_Controller
         $data['totalRevenue'] = $this->admin_model->totalRevenue();
         $data['countCustomer'] = $this->admin_model->countCustomer();
         $data['countUser'] = $this->admin_model->countUser();
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('adminpages/dashboard', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     } //end of index 
 
 
@@ -49,16 +49,16 @@ class Admin extends CI_Controller
 
             $data['rating'] = $this->admin_model->search_rating();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/rating', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $data['rating'] = $this->admin_model->get_rating();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/rating', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     } //end of rating
     //add rating function
@@ -73,9 +73,9 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() === FALSE) {
             $data['rating'] = $this->admin_model->get_rating();
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/rating', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $this->admin_model->add_rating();
@@ -99,9 +99,9 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Edit rating';
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('adminpages/edit_rating', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     } //end of eddit rating
 
     //update rating function
@@ -153,16 +153,16 @@ class Admin extends CI_Controller
 
             $data['movie'] = $this->admin_model->search_movie();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/movies', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $data['movie'] = $this->admin_model->get_movie();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/movies', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     }
 
@@ -195,9 +195,9 @@ class Admin extends CI_Controller
             $data['gener'] = $this->admin_model->get_gener();
             $data['rating'] = $this->admin_model->get_rating();
 
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/admin_header', $data);
             $this->load->view('adminpages/add_movie', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/admin_footer', $data);
         } else {
 
             $config['upload_path'] = './assets/poster/';
@@ -210,9 +210,9 @@ class Admin extends CI_Controller
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());
                 //$post_image = 'noimage.jpg';
-                $this->load->view('templates/header');
+                $this->load->view('templates/admin_header');
                 $this->load->view('adminpages/add_movie', $error);
-                $this->load->view('templates/footer');
+                $this->load->view('templates/admin_footer');
             } else {
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
@@ -253,9 +253,9 @@ class Admin extends CI_Controller
         $data['gener'] = $this->admin_model->get_gener();
         $data['rating'] = $this->admin_model->get_rating();
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('adminpages/edit_movie', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
     public function update_movie($id)
     {
@@ -292,9 +292,9 @@ class Admin extends CI_Controller
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/admin_header');
                 $this->load->view('adminpages/edit_movie', $error);
-                $this->load->view('templates/footer');
+                $this->load->view('templates/admin_footer');
             } else {
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
@@ -341,16 +341,16 @@ class Admin extends CI_Controller
 
             $cinema = $this->admin_model->search_cinema();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/cinema', ['cinema' => $cinema]);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $cinema = $this->admin_model->get_cinema();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/cinema', ['cinema' => $cinema]);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     } //end of cinemas
     //add cinema function
@@ -365,9 +365,9 @@ class Admin extends CI_Controller
             /* $query = $this->db->get("cinema");
 			$data['cinema'] = $query->result(); */
             $data['cinema']    = $this->admin_model->get_cinema();
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/cinema', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $this->admin_model->add_cinema();
@@ -390,9 +390,9 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Edit Cinema';
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('adminpages/edit_cinema', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     } //end of edit cinema
 
     //update cinema function
@@ -442,16 +442,16 @@ class Admin extends CI_Controller
 
             $data['gener'] = $this->admin_model->search_gener();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/gener', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $gener = $this->admin_model->get_gener();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/gener', ['gener' => $gener]);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     } //end of geners
 
@@ -467,9 +467,9 @@ class Admin extends CI_Controller
         if ($this->form_validation->run() === FALSE) {
 
             $data['gener']    = $this->admin_model->get_gener();
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/gener', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $this->admin_model->add_gener();
@@ -492,9 +492,9 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Edit Gener';
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('adminpages/edit_gener', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     } //end of edit gener
 
     //pdate gener function
@@ -547,9 +547,9 @@ class Admin extends CI_Controller
             $data['cinema'] = $this->admin_model->get_cinema();
             $data['movie'] = $this->admin_model->get_movie();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/showtime', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $data['rating'] = $this->admin_model->get_rating();
@@ -557,9 +557,9 @@ class Admin extends CI_Controller
             $data['cinema'] = $this->admin_model->get_cinema();
             $data['movie'] = $this->admin_model->get_movie();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/showtime', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     }
     public function add_showtime()
@@ -599,9 +599,9 @@ class Admin extends CI_Controller
         $data['cinema'] = $this->admin_model->get_cinema();
         $data['movie'] = $this->admin_model->get_movie();
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('adminpages/edit_showtime', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
     public function update_showtime($id)
     {
@@ -649,16 +649,16 @@ class Admin extends CI_Controller
 
             $data['user'] = $this->admin_model->search_users();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/users', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $data['user'] = $this->admin_model->get_user();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/users', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     } //end of users
     //add user function
@@ -676,9 +676,9 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('status', 'Status', 'required');
 
         if ($this->form_validation->run() === false) {
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/add_user');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
             $enc_password = md5($this->input->post('password'));
             $this->admin_model->register($enc_password);
@@ -702,9 +702,9 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Edit User';
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('adminpages/edit_user', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     } //end of edit gener
 
     //pdate gener function
@@ -786,16 +786,16 @@ class Admin extends CI_Controller
 
             $data['booking'] = $this->admin_model->search_booking();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/booking', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $data['booking'] = $this->admin_model->get_booking();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/booking', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     }
     public function customer()
@@ -811,17 +811,17 @@ class Admin extends CI_Controller
 
             $data['customer'] = $this->admin_model->search_customer();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/customer', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
             $data['booking'] = $this->admin_model->get_booking();
             $data['customer'] = $this->admin_model->get_customer();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/customer', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     }
     public function add_customer()
@@ -842,9 +842,9 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() === FALSE) {
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/add_customer');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
 
 
@@ -864,9 +864,9 @@ class Admin extends CI_Controller
             show_404();
         }
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/admin_header', $data);
         $this->load->view('adminpages/edit_customer', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
     public function update_customer($id)
     {
@@ -945,9 +945,9 @@ class Admin extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('adminpages/report');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
 
     public function showtime_report()
@@ -963,16 +963,16 @@ class Admin extends CI_Controller
             $this->load->model('admin_model');
             $data['showtime'] = $this->admin_model->search_showtime();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/showtime_report', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
             $this->load->model('admin_model');
             $data['showtime'] = $this->admin_model->get_showtime();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/showtime_report', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     }
     public function showtime_pdfdetails()
@@ -999,9 +999,9 @@ class Admin extends CI_Controller
         $this->load->model('admin_model');
         $data['daily'] = $this->admin_model->daily_showtime();
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('adminpages/showtime_report', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
 
     public function daily_showtime_pdfdetails()
@@ -1028,9 +1028,9 @@ class Admin extends CI_Controller
         $this->load->model('admin_model');
         $data['weekly'] = $this->admin_model->weekly_showtime();
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('adminpages/showtime_report', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
 
     public function weekly_showtime_pdfdetails()
@@ -1057,9 +1057,9 @@ class Admin extends CI_Controller
         $this->load->model('admin_model');
         $data['monthly'] = $this->admin_model->monthly_showtime();
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('adminpages/showtime_report', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
 
     public function monthly_showtime_pdfdetails()
@@ -1090,9 +1090,9 @@ class Admin extends CI_Controller
         }
         $data['chart_data'] = json_encode($data);
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('adminpages/bar_chart', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
     public function revenu_report()
     {
@@ -1107,16 +1107,16 @@ class Admin extends CI_Controller
             $this->load->model('admin_model');
             $data['showtime'] = $this->admin_model->search_showtime();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/revenu_report', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         } else {
            // $this->load->model('admin_model');
            // $data['showtime'] = $this->admin_model->get_showtime();
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/admin_header');
             $this->load->view('adminpages/revenu_report');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin_footer');
         }
     }
     public function box_office()
@@ -1132,9 +1132,9 @@ class Admin extends CI_Controller
         $this->load->model('admin_model');
         $data['box_office'] = $this->admin_model->box_office();
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('adminpages/revenu_report', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
 
     public function fetch_box_office_pdfdetails()
