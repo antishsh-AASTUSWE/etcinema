@@ -217,7 +217,8 @@ class Publicpages extends CI_Controller
 		$this->email->message($message);
 
 		if ($this->email->send()) {
-			echo 'Your Email has successfully been sent.';
+			$this->booking_confirm();
+			//echo 'Your Email has successfully been sent.';
 		} else {
 			show_error($this->email->print_debugger());
 		}
@@ -260,4 +261,10 @@ class Publicpages extends CI_Controller
 			$this->movie();
 		}
 	}
+	public function booking_confirm(){
+		$this->load->view('publictemplates/header');
+			$this->load->view('publicpages/booking_confirm');
+			$this->load->view('publictemplates/footer');
+	}
 }
+ 
