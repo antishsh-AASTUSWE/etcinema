@@ -19,8 +19,8 @@ class Profile extends CI_Controller
             show_404();
         }
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/admin_header');
         $this->load->view('profilepage/profile');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin_footer');
     }
 }

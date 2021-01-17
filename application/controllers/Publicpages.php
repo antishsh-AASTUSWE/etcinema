@@ -18,9 +18,9 @@ class Publicpages extends CI_Controller
 		$data['movie'] = $this->public_model->get_showtime();
 		//$data['movie'] = $this->public_model->get_movie();
 		$data['cinema'] = $this->public_model->get_cinema();
-		$this->load->view('publictemplates/header', $data);
+		$this->load->view('templates/public_header', $data);
 		$this->load->view('publicpages/home', $data);
-		$this->load->view('publictemplates/footer');
+		$this->load->view('templates/public_footer');
 	} //end of index
 
 	//about function
@@ -31,9 +31,9 @@ class Publicpages extends CI_Controller
 			show_404();
 		}
 		$data['title'] = 'about';
-		$this->load->view('publictemplates/header', $data);
+		$this->load->view('templates/public_header', $data);
 		$this->load->view('publicpages/about');
-		$this->load->view('publictemplates/footer');
+		$this->load->view('templates/public_footer');
 	} //end of about
 
 	//contact function
@@ -44,9 +44,9 @@ class Publicpages extends CI_Controller
 			show_404();
 		}
 		$data['title'] = 'contact';
-		$this->load->view('publictemplates/header', $data);
+		$this->load->view('templates/public_header', $data);
 		$this->load->view('publicpages/contact');
-		$this->load->view('publictemplates/footer');
+		$this->load->view('templates/public_footer');
 	} //end of contact
 
 	//movie checkout function
@@ -61,9 +61,9 @@ class Publicpages extends CI_Controller
 			$data['showtime'] = $this->public_model->get_showtime($id);
 			$data['row'] = $this->public_model->get_seatRow();
 			$data['bank'] = $this->public_model->get_bank();
-			$this->load->view('publictemplates/header');
+			$this->load->view('templates/public_header');
 			$this->load->view('publicpages/movie_checkout', $data);
-			$this->load->view('publictemplates/footer');
+			$this->load->view('templates/public_footer');
 		} else {
 			show_404();
 		}
@@ -84,9 +84,9 @@ class Publicpages extends CI_Controller
 			show_404();
 		}
 
-		$this->load->view('publictemplates/header');
+		$this->load->view('templates/public_header');
 		$this->load->view('publicpages/movie_details', $data);
-		$this->load->view('publictemplates/footer');
+		$this->load->view('templates/public_footer');
 	} //end of movie detailes
 
 	//movie function
@@ -114,9 +114,9 @@ class Publicpages extends CI_Controller
 		$data['cinema'] = $this->public_model->get_cinema();
 		$data['movie'] = $this->public_model->get_movie(false, $config['per_page'], $offset);
 		$data['gener'] = $this->public_model->get_gener();
-		$this->load->view('publictemplates/header', $data);
+		$this->load->view('templates/public_header', $data);
 		$this->load->view('publicpages/movie', $data);
-		$this->load->view('publictemplates/footer');
+		$this->load->view('templates/public_footer');
 	} //end of movie
 
 	//movie seat plan function
@@ -130,9 +130,9 @@ class Publicpages extends CI_Controller
 		$data['seat'] = $this->public_model->get_seat($id);
 		$data['seatrow'] = $this->public_model->get_seatRow();
 
-		$this->load->view('publictemplates/header');
+		$this->load->view('templates/public_header');
 		$this->load->view('publicpages/seat', $data);
-		$this->load->view('publictemplates/footer');
+		$this->load->view('templates/public_footer');
 	} //end of movie seat plan function
 
 	//movie ticket plan function
@@ -151,9 +151,9 @@ class Publicpages extends CI_Controller
 		if (empty($data['movie_detail'])) {
 			show_404();
 		}
-		$this->load->view('publictemplates/header');
+		$this->load->view('templates/public_header');
 		$this->load->view('publicpages/movie_ticket_plan', $data);
-		$this->load->view('publictemplates/footer');
+		$this->load->view('templates/public_footer');
 	} //end of movie ticket plan
 	public function search_movie($offset = 0)
 	{
@@ -182,9 +182,9 @@ class Publicpages extends CI_Controller
 			$data['gener'] = $this->public_model->get_gener();
 			//$data['movie'] = $this->public_model->search_movie();
 			$data['cinema'] = $this->public_model->get_cinema();
-			$this->load->view('publictemplates/header', $data);
+			$this->load->view('templates/public_header', $data);
 			$this->load->view('publicpages/movie', $data);
-			$this->load->view('publictemplates/footer');
+			$this->load->view('templates/public_footer');
 		}
 	}
 	public function movie_book()
@@ -232,9 +232,9 @@ class Publicpages extends CI_Controller
 
 		if ($this->form_validation->run() === FALSE) {
 			$data['movie_detail'] = $this->public_model->get_movie($movie_id);
-			$this->load->view('publictemplates/header');
+			$this->load->view('templates/public_header');
 			$this->load->view('publicpages/movie_details', $data);
-			$this->load->view('publictemplates/footer');
+			$this->load->view('templates/public_footer');
 		} else {
 			$this->public_model->create_comment($movie_id);
 			redirect('publicpages/movie_details/' . $movie_id);
