@@ -357,4 +357,56 @@ class Public_model extends CI_Model
             echo 'no set';
         }
     }
+    public function check_payment($price)
+    {
+        $data = array(
+            'transaction_no' => $this->input->post('transaction_no'),
+            'depositer_name' => $this->input->post('depositer_name'),
+            //'payment_date' => $this->input->post('payment_date')
+        );
+     $price1=$price.'.00Br.';
+
+
+        $query = $this->db->query("select *from messagein
+        where
+        MessageText regexp '(^|[[:space:]])" . $data['transaction_no'] . "([[:space:]]|$)' AND
+         MessageFrom=+251942205164 AND status='' 
+         AND MessageText regexp '(^|[[:space:]])" . $price1. "([[:space:]]|$)'
+         ");
+     
+        if (empty($query->row_array())) {
+
+            //echo 'empty';
+           return false;
+        } else {
+            $query = $this->db->query("UPDATE `messagein` SET `status`='paid' 
+            WHERE MessageText regexp '(^|[[:space:]])" . $data['transaction_no'] . "([[:space:]]|$)' AND
+            MessageFrom=+251942205164 AND status=''
+            AND MessageText regexp '(^|[[:space:]])" . $price1. "([[:space:]]|$)'
+            ;");
+           
+            //echo 'paid';
+            return true;
+        }
+    } //end of checkusername exist
+    public function confirm_payment($id)
+    {
+        $this->db->set('status', 'Paid');
+        $this->db->where('booking_id', $id);
+        $this->db->where('status', '');
+        return $query=$this->db->update('booking_info');
+        //$query = $this->db->get_where('bank_transaction', array('transaction_no' => $data['transaction_no']));
+
+        
+    } //end of checkusername exist
+    public function get_booking($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('booking_info');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('booking_info', array('booking_id' => $id));
+        return $query->row_array();
+    } //end of gett cinema
+
 }

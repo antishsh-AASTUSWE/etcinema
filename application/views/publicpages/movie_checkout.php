@@ -173,7 +173,7 @@ for ($i = 1; $i < $row['row']; $i++) {
             <input type="text" hidden name="show_id" value="<?= $showtime['show_id'] ?>">
             <input type="text" hidden name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
             <input type="text" hidden name="seats" value="<?= ($seat_price - 1) ?>">
-            <input type="text" hidden name="price" value="<?= ($seat_price - 1) * (int)$showtime['price'] ?>">
+            <input type="text" hidden name="price" value="<?= (($seat_price - 1) * (int)$showtime['price']) ?>">
 
 
 
@@ -187,7 +187,7 @@ for ($i = 1; $i < $row['row']; $i++) {
 
                 <?php if ($this->session->userdata('logged_in') === TRUE) : ?>
                     <div class="proceed-area  text-center">
-                        <h6 class="subtitle"><span>Amount Payable</span><span>$222</span></h6>
+                        <!-- <h6 class="subtitle"><span>Amount Payable</span><span>$222</span></h6> -->
                         <input type="submit" class="custom-button" value="proceed">
 
                     </div>
