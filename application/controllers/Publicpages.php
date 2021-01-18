@@ -262,9 +262,45 @@ class Publicpages extends CI_Controller
 		}
 	}
 	public function booking_confirm(){
-		$this->load->view('publictemplates/header');
-			$this->load->view('publicpages/booking_confirm');
-			$this->load->view('publictemplates/footer');
+			$this->load->view('templates/public_header');
+			$this->load->view('publicpages/paymnt_form');
+			$this->load->view('templates/public_footer');
+	}
+	public function payment($id)
+	{
+	
+			$this->form_validation->set_rules('transaction_no', 'transaction number', 'required');
+			$this->form_validation->set_rules('depositer_name', 'depositer name', 'required');
+			$this->form_validation->set_rules('payment_date', 'payment date', 'required');
+		
+		if ($this->form_validation->run() === FALSE) {
+			$data['movie'] = $this->public_model->get_booking($id);
+			//$data['id']=25;
+			$this->load->view('templates/public_header');
+			$this->load->view('publicpages/paymnt_form',$data);
+			$this->load->view('templates/public_footer');
+		} else {
+			//$this->public_model->check_payment();
+			$row = $this->public_model->get_booking($id);
+			if (isset($row)) {
+				
+				$price = $row['price'];
+			}
+			//echo $price;
+			if ($this->public_model->check_payment($price)) {
+
+				if ($this->public_model->confirm_payment($id)) {
+
+					echo 'booking confirmed';
+				}else{
+					echo 'stn went wrong';
+				}
+				//return true;
+			} else {
+				echo 'pease try agin invalid payment info';
+				//return false;
+			}
+		}
 	}
 }
  
