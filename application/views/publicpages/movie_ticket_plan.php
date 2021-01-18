@@ -1,16 +1,4 @@
-<!-- ==========Window-Warning-Section========== -->
-<section class="window-warning inActive">
-    <div class="lay"></div>
-    <div class="warning-item">
-        <h6 class="subtitle">Welcome! </h6>
-        <h4 class="title">Select Your Seats</h4>
-        <div class="thumb">
-            <img src="<?php echo base_url() ?>publicassets/images/movie/seat-plan.png" alt="movie">
-        </div>
-        <a href="<?php echo base_url(); ?>publicpages/movie_seat_plan" class="custom-button seatPlanButton">Seat Plans<i class="fas fa-angle-right"></i></a>
-    </div>
-</section>
-<!-- ==========Window-Warning-Section========== -->
+
 
 <!-- ==========Banner-Section========== -->
 <section class="details-banner hero-area bg_img" data-background="<?php echo base_url() ?>assets/poster/<?= $movie_detail['mov_poster']; ?>">
@@ -89,7 +77,7 @@
 
                             <div class="movie-schedule">
                                 <div class="item">
-                                <a href="<?php echo base_url(); ?>publicpages/movie_seat_plan/<?= $shd['show_id'] ?>" class="name"> <?= $shd['show_time']; ?></a>
+                                <a href="<?php echo base_url(); ?>movie_seat_plan/<?= $shd['show_id'] ?>" class="name"> <?= $shd['show_time']; ?></a>
                                 </div>
                             </div>
                             

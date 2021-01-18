@@ -19,7 +19,7 @@
     <div class="container">
         <div class="page-title-area">
             <div class="item md-order-1">
-                <a href="<?php echo base_url(); ?>publicpages/movie_seat_plan/<?= $showtime['movie_id'] ?>" class="custom-button back-button">
+                <a href="<?php echo base_url(); ?>movie_seat_plan/<?= $showtime['movie_id'] ?>" class="custom-button back-button">
                     <i class="flaticon-double-right-arrows-angles"></i>back
                 </a>
             </div>

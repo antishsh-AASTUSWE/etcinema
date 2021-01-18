@@ -190,8 +190,6 @@ class Publicpages extends CI_Controller
 	public function movie_book()
 	{
 
-
-
 		$this->public_model->reserve_seat();
 
 		$booking_id = $this->public_model->book();
@@ -262,6 +260,7 @@ class Publicpages extends CI_Controller
 		}
 	}
 	public function booking_confirm(){
+		
 			$this->load->view('templates/public_header');
 			$this->load->view('publicpages/paymnt_form');
 			$this->load->view('templates/public_footer');

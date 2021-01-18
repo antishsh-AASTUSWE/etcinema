@@ -19,7 +19,7 @@
         <div class="footer-top">
             <div class="logo">
                 <a href="index-1.html">
-                    <img src="<?php echo base_url() ?>publicassets/images/footer/logo.png" alt="footer">
+                    <img src="<?php echo base_url() ?>publicassets/images/footer/footer-logo.png" alt="footer">
                 </a>
             </div>
             <ul class="social-icons">

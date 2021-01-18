@@ -93,7 +93,7 @@
                     <p><a href="#0">Rate It</a></p>
                 </div>
             </div>
-            <a href="<?php echo base_url(); ?>publicpages/movie_ticket_plan/<?= $movie_detail['movie_id'] ?>" class="custom-button">book tickets</a>
+            <a href="<?php echo base_url(); ?>movie_ticket_plan/<?= $movie_detail['movie_id'] ?>" class="custom-button">book tickets</a>
         </div>
     </div>
 </section>
@@ -187,7 +187,7 @@
                                     <div class="header">
                                         <h5 class="sub-title">Add Comment</h5>
                                     </div>
-                                    <?php echo form_open('publicpages/create_comment/' . $movie_detail['movie_id']); ?>
+                                    <?php echo form_open('create_comment/' . $movie_detail['movie_id']); ?>
                                     <div class="contact-form" id="contact_form_submit">
                                         <div class="form-group">
                                             <label for="subject">Title <span>*</span></label>

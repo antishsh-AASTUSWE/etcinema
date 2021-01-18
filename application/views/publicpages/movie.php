@@ -161,13 +161,13 @@
 
                                         <div class="movie-grid">
                                             <div class="movie-thumb c-thumb">
-                                                <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $m['movie_id'] ?>">
+                                                <a href="<?php echo base_url(); ?>movie_details/<?= $m['movie_id'] ?>">
                                                     <img src="<?php echo base_url() ?>assets/poster/<?= $m['mov_poster']; ?>" alt="movie">
                                                 </a>
                                             </div>
                                             <div class="movie-content bg-one">
                                                 <h5 class="title m-0">
-                                                    <a href="<?php echo base_url(); ?>publicpages/movie_details/<?= $m['movie_id'] ?>"><?= $m['mov_name']; ?></a>
+                                                    <a href="<?php echo base_url(); ?>movie_details/<?= $m['movie_id'] ?>"><?= $m['mov_name']; ?></a>
                                                 </h5>
                                                 <ul class="movie-rating-percent">
                                                     <li>

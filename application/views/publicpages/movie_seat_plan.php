@@ -19,7 +19,7 @@
     <div class="container">
         <div class="page-title-area">
             <div class="item md-order-1">
-                <a href="<?php echo base_url(); ?>publicpages/movie_ticket_plan/<?= $showtime['movie_id'] ?>" class="custom-button back-button">
+                <a href="<?php echo base_url(); ?>movie_ticket_plan/<?= $showtime['movie_id'] ?>" class="custom-button back-button">
                     <i class="flaticon-double-right-arrows-angles"></i>back
                 </a>
 
@@ -381,7 +381,7 @@
         </div>
 <?php echo validation_errors(); ?>
 
-<?php echo form_open("publicpages/movie_checkout/{$showtime['show_id']}")?>
+<?php echo form_open("/movie_checkout/{$showtime['show_id']}")?>
    
         <div class="proceed-book bg_img" data-background="<?php echo base_url() ?>publicassets/images/movie/movie-bg-proceed.jpg">
             <div class="proceed-to-book">

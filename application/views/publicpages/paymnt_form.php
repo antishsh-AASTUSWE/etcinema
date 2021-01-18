@@ -4,14 +4,13 @@
         <div class="padding-top padding-bottom">
             <div class="account-area">
                 <div class="section-header-3">
-                <?php if(isset($movie)){
-
-                ?>
-                    <span class="cate"><?php echo $movie['booking_id']?></span>
+                    <?php if (isset($movie)) { ?>
+                        <span class="cate"><?php echo $movie['booking_id'] ?></span>
                     <?php } ?>
+
                     <h2 class="title">Confirm Payment</h2>
                 </div>
-                <?php echo form_open("publicpages/payment/{$movie['booking_id']}")?>
+                <?php echo form_open("payment/{$movie['booking_id']}") ?>
                 <div class="account-form">
                     <div class="form-group">
                         <label for="firstname">Depositer Name<span>*</span></label>
@@ -34,15 +33,16 @@
                             <?php echo form_error('payment_date'); ?>
                         </div>
                     </div>
-                    
-                   
+
+
                     <div class="form-group text-center">
                         <input type="submit" value="Confirm Payment">
                     </div>
                 </div>
                 </form>
-                
-                
+
+
+
             </div>
         </div>
     </div>

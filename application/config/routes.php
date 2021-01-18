@@ -51,6 +51,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 //$route['admin/add_cinema'] = 'admin/add_cinema';
+$route['movie'] = 'publicpages/movie';
+$route['movie'] = 'publicpages/movie';
+$route['movie'] = 'publicpages/movie';
+
+$route['payment/(:num)'] = 'publicpages/payment/$1';
+$route['movie_details/(:num)'] = 'publicpages/movie_details/$1';
+$route['movie_ticket_plan/(:num)'] = 'publicpages/movie_ticket_plan/$1';
+$route['create_comment/(:num)'] = 'publicpages/create_comment/$1';
+$route['movie_seat_plan/(:num)'] = 'publicpages/movie_seat_plan/$1';
+$route['movie_checkout/(:num)'] = 'publicpages/movie_checkout/$1';
+
+
+$route['change_password'] = 'login/change_password';
+$route['customer_logout'] = 'login/customer_logout';
+$route['customer_signup'] = 'login/customer_signup';
+$route['customer_signin'] = 'login/customer_signin';
+
+$route['movie_book'] = 'publicpages/movie_book';
+$route['home'] = 'publicpages';
+$route['movie'] = 'publicpages/movie';
+$route['about'] = 'publicpages/about';
+$route['contact'] = 'publicpages/contact';
 $route['default_controller'] = 'publicpages';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

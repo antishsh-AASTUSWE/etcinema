@@ -56,23 +56,23 @@
                 </div>
                 <ul class="menu">
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages" <?php if ($this->uri->segment(2) === null) {
+                        <a href="<?php echo base_url() ?>home" <?php if ($this->uri->segment(1) === 'home') {
                                                                             echo 'class="active"';
                                                                         } ?>>Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/movie" <?php if ($this->uri->segment(2) === 'movie') {
+                        <a href="<?php echo base_url() ?>movie" <?php if ($this->uri->segment(1) === 'movie') {
                                                                                 echo 'class="active"';
                                                                             } ?>>movies</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/about" <?php if ($this->uri->segment(2) === 'about') {
+                        <a href="<?php echo base_url() ?>about" <?php if ($this->uri->segment(1) === 'about') {
                                                                                 echo 'class="active"';
                                                                             } ?>>About Us</a>
                     </li>
 
                     <li>
-                        <a href="<?php echo base_url() ?>publicpages/contact" <?php if ($this->uri->segment(2) === 'contact') {
+                        <a href="<?php echo base_url() ?>contact" <?php if ($this->uri->segment(1) === 'contact') {
                                                                                     echo 'class="active"';
                                                                                 } ?>>contact</a>
                     </li>
@@ -81,12 +81,12 @@
 
                     <?php if ($this->session->userdata('logged_in') == true) : ?>
                         <li>
-                            <a href="<?php echo base_url() ?>login/change_password" <?php if ($this->uri->segment(2) === 'change_password') {
+                            <a href="<?php echo base_url() ?>change_password" <?php if ($this->uri->segment(2) === 'change_password') {
                                                                                         echo 'class="active"';
                                                                                     } ?>>Change pasword</a>
                         </li>
                         <li class="header-button pr-0">
-                            <a href="<?php echo base_url() ?>login/customer_logout">Logout</a>
+                            <a href="<?php echo base_url() ?>customer_logout">Logout</a>
                         </li>
                         <li>
                             <p class="subtitle"></p>
@@ -97,10 +97,10 @@
                         
                     <?php else : ?>
                         <li class="header-button pr-0">
-                            <a href="<?php echo base_url() ?>login/customer_signin">Sign In</a>
+                            <a href="<?php echo base_url() ?>customer_signin">Sign In</a>
                         </li>
                         <li class="header-button pr-0">
-                            <a href="<?php echo base_url() ?>login/customer_signup">join us</a>
+                            <a href="<?php echo base_url() ?>customer_signup">join us</a>
                         </li>
                     <?Php endif; ?>
 
