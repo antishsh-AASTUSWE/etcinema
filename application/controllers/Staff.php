@@ -7,7 +7,7 @@ class Staff extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('logged_in') !== TRUE) {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
     }
 
@@ -15,7 +15,7 @@ class Staff extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/dashboard.php')) {
             // Whoops, we don't have a page for that!
@@ -34,7 +34,7 @@ class Staff extends CI_Controller
     public function movies()
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/movies.php')) {
             // Whoops, we don't have a page for that!
@@ -63,7 +63,7 @@ class Staff extends CI_Controller
     {
 
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
 
         $this->form_validation->set_rules('title', 'title', 'required');
@@ -112,14 +112,14 @@ class Staff extends CI_Controller
             }
             
             $this->staff_model->add_movie($post_image);
-            redirect('staff/movies');
+            redirect('staff_movies');
         } 
     } 
 
     public function edit_movie($id)
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         
         $data['records'] = $this->staff_model->getMovieRecord($id);
@@ -138,7 +138,7 @@ class Staff extends CI_Controller
     {
 
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
 
         $this->form_validation->set_rules('title', 'title', 'required');
@@ -178,22 +178,22 @@ class Staff extends CI_Controller
             }
             
             $this->staff_model->update_movie($post_image,$id);
-            redirect('staff/movies');
+            redirect('staff_movies');
         }
     } 
     public function delete_movie($id)
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         
         $this->staff_model->deleteMovie($id);
-        redirect('staff/movies');
+        redirect('staff_movies');
     }
     public function showtime()
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/showtime.php')) {
             // Whoops, we don't have a page for that!
@@ -225,7 +225,7 @@ class Staff extends CI_Controller
     public function add_showtime()
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         $this->form_validation->set_rules('movie', 'movie', 'required');
         $this->form_validation->set_rules('cinema', 'cinema', 'required');
@@ -242,13 +242,13 @@ class Staff extends CI_Controller
 
             
             $this->staff_model->add_showtime();
-            redirect('staff/showtime');
+            redirect('staff_showtime');
         }
     } 
     public function edit_showtime($id)
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         
         $data['records'] = $this->staff_model->getShowRecord($id);
@@ -267,7 +267,7 @@ class Staff extends CI_Controller
     {
 
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         $this->form_validation->set_rules('movie', 'movie', 'required');
         $this->form_validation->set_rules('cinema', 'cinema', 'required');
@@ -282,22 +282,22 @@ class Staff extends CI_Controller
             
             
             $this->staff_model->update_showtime($id);
-            redirect('staff/showtime');
+            redirect('staff_showtime');
         }
     } 
     public function delete_showtime($id)
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         
         $this->staff_model->deleteShowtime($id);
-        redirect('staff/showtime');
+        redirect('staff_showtime');
     }
     public function customer()
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/customer.php')) {
             // Whoops, we don't have a page for that!
@@ -325,7 +325,7 @@ class Staff extends CI_Controller
     public function add_customer()
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
     $this->form_validation->set_rules('fname', 'First Name', 'required');
     $this->form_validation->set_rules('lname', 'Last Name', 'required');
@@ -347,13 +347,13 @@ class Staff extends CI_Controller
 
             
             $this->staff_model->add_customer();
-            redirect('staff/customer');
+            redirect('staff_customer');
         }
     } 
     public function edit_customer($id)
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         
         $data['records'] = $this->staff_model->getCustomerRecord($id);
@@ -370,7 +370,7 @@ class Staff extends CI_Controller
     {
 
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         $this->form_validation->set_rules('fname', 'First Name', 'required');
     $this->form_validation->set_rules('lname', 'Last Name', 'required');
@@ -388,17 +388,17 @@ class Staff extends CI_Controller
             
             
             $this->staff_model->update_customer($id);
-            redirect('staff/customer');
+            redirect('staff_customer');
         }
     } 
     public function delete_customer($id)
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         
         $this->staff_model->deleteCustomer($id);
-        redirect('staff/customer');
+        redirect('staff_customer');
     }
     public function check_Password($password)
 	{
@@ -440,7 +440,7 @@ class Staff extends CI_Controller
     public function advert()
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/advert.php')) {
             // Whoops, we don't have a page for that!
@@ -454,7 +454,7 @@ class Staff extends CI_Controller
     public function seat()
     {
         if ($this->session->userdata('role') !== 'staff') {
-            redirect('login/authenticate_login');
+            redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/seat.php')) {
             // Whoops, we don't have a page for that!
@@ -471,7 +471,7 @@ class Staff extends CI_Controller
        
             
             $this->staff_model->addSeat();
-            redirect('staff/seat');
+            redirect('staff_seat');
       
       
     }

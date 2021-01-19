@@ -3,7 +3,7 @@
             <div class="card-body"> 
               <h5 class="card-title">Add Customer</h5>
 
-<?php echo form_open('admin/add_customer')?>
+<?php echo form_open('add_customer')?>
 
 <form>
 <div class="form-group">

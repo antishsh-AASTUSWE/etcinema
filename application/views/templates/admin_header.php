@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Etcinema Admin</title>
+  <title>Ethcinema Admin</title>
   <!-- loader-->
   <!-- <link href="<?php echo base_url() ?>assets/css/pace.min.css" rel="stylesheet"/>
   <script src="<?php echo base_url() ?>assets/js/pace.min.js"></script> -->
@@ -81,7 +81,7 @@
     <!--admin templet-->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
-        <a href="<?php echo base_url() ?>admin/index">
+        <a href="<?php echo base_url() ?>admin_dashboard">
           <img src="<?php echo base_url() ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
           <h5 class="logo-text">Etcinema Admin</h5>
         </a>
@@ -89,58 +89,58 @@
       <ul class="sidebar-menu do-nicescrol">
         <li class="sidebar-header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url() ?>admin/index">
+          <a href="<?php echo base_url() ?>admin_dashboard">
             <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>admin/showtime">
+          <a href="<?php echo base_url() ?>admin_showtime">
             <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>admin/movies">
+          <a href="<?php echo base_url() ?>admin_movies">
             <i class="zmdi zmdi-play-circle"></i> <span>Movies</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>admin/cinemas">
+          <a href="<?php echo base_url() ?>admin_cinemas">
             <i class="zmdi zmdi zmdi-home"></i> <span>Cinema</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>admin/Ratings">
+          <a href="<?php echo base_url() ?>admin_Ratings">
             <i class="zmdi zmdi-sort-amount-asc"></i> <span>Ratings</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>admin/geners">
+          <a href="<?php echo base_url() ?>admin_geners">
             <i class="zmdi zmdi-grid"></i> <span>Geners</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>admin/users">
+          <a href="<?php echo base_url() ?>admin_users">
             <i class="zmdi zmdi-account-box"></i> <span>Users</span>
           </a>
         </li>
         <li>
-          <a href="<?php echo base_url() ?>admin/customer">
+          <a href="<?php echo base_url() ?>admin_customer">
             <i class="zmdi zmdi zmdi-account"></i> <span>Customer</span>
           </a>
         </li>
         <li>
-          <a href="<?php echo base_url() ?>admin/bookings">
+          <a href="<?php echo base_url() ?>admin_bookings">
             <i class="zmdi zmdi-assignment"></i></i> <span>Bookings</span>
           </a>
         </li>
         <li>
-          <a href="<?php echo base_url() ?>admin/reports">
+          <a href="<?php echo base_url() ?>admin_reports">
             <i class="zmdi zmdi-file-text"></i></i> <span>Reports</span>
           </a>
         </li>
@@ -153,7 +153,7 @@
     <!--staff templet-->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
-        <a href="<?php echo base_url() ?>staff/index">
+        <a href="<?php echo base_url() ?>staff_dashboard">
           <img src="<?php echo base_url() ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
           <h5 class="logo-text">Etcinema Admin</h5>
         </a>
@@ -161,37 +161,37 @@
       <ul class="sidebar-menu do-nicescrol">
         <li class="sidebar-header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url() ?>staff/index">
+          <a href="<?php echo base_url() ?>staff_dashboard">
             <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/showtime">
+          <a href="<?php echo base_url() ?>staff_showtime">
             <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/movies">
+          <a href="<?php echo base_url() ?>staff_movies">
             <i class="zmdi zmdi-movie"></i> <span>Movies</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/customer">
+          <a href="<?php echo base_url() ?>staff_Customer">
             <i class="zmdi zmdi zmdi-account"></i> <span>Customer</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/seat">
+          <a href="<?php echo base_url() ?>staff_seat">
             <i class="zmdi zmdi-seat"></i> <span>Seat</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/advert">
+          <a href="<?php echo base_url() ?>staff_advert">
             <i class="zmdi zmdi-notifications-active"></i> <span>Advert</span>
           </a>
         </li>
@@ -214,37 +214,37 @@
       <ul class="sidebar-menu do-nicescrol">
         <li class="sidebar-header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url() ?>staff/index">
+          <a href="<?php echo base_url() ?>staff_dashboard">
             <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/showtime">
+          <a href="<?php echo base_url() ?>staff_showtime">
             <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/movies">
+          <a href="<?php echo base_url() ?>staff_movies">
             <i class="zmdi zmdi-movie"></i> <span>Movies</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/customer">
-            <i class="zmdi zmdi zmdi-account"></i> <span>Customer</span>
+          <a href="<?php echo base_url() ?>staff_Customer">
+            <i class="zmdi zmdi zmdi-account"></i> <span>staff_Customer</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/seat">
+          <a href="<?php echo base_url() ?>staff_seat">
             <i class="zmdi zmdi-seat"></i> <span>Seat</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff/advert">
+          <a href="<?php echo base_url() ?>staff_advert">
             <i class="zmdi zmdi-notifications-active"></i> <span>Advert</span>
           </a>
         </li>

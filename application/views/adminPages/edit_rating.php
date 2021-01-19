@@ -2,7 +2,7 @@
   <div class="card-body">
     <h5 class="card-title">Add Rating</h5>
     <?php echo validation_errors(); ?>
-    <?php echo form_open('admin/update_rating') ?>
+    <?php echo form_open('update_rating') ?>
 
     <div class="form-group">
     <input type="hidden" name="rating_id" value="<?php echo $items['rating_id']; ?>">
@@ -22,7 +22,7 @@
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Update Rating</button>
-        <a href="<?php echo base_url(); ?>admin/ratings" class="btn btn-light btn-round px-5">Cancel</a>
+        <a href="<?php echo base_url(); ?>admin_ratings" class="btn btn-light btn-round px-5">Cancel</a>
       </div>
       </form>
 

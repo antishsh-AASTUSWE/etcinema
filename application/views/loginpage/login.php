@@ -8,7 +8,7 @@
 					<img src="<?php echo base_url() ?>assets/images/logo-icon.png" alt="logo icon">
 				</div>
 				<div class="card-title text-uppercase text-center py-3">Sign In</div>
-				<?php echo form_open('login/authenticate_login'); ?>
+				<?php echo form_open('authenticate_login'); ?>
 				<div class="container">
 					<?php if ($this->session->flashdata('login_failed')) : ?>
 						<?php echo '<p class"text-danger">' . $this->session->flashdata('login_failed') . '</p>'; ?>

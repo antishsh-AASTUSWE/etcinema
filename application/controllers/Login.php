@@ -46,24 +46,24 @@ class Login extends CI_Controller
 				$this->session->set_userdata($sesdata);
 
 				if ($sesdata['role'] === 'admin') {
-					redirect('admin');
+					redirect('admin_dashboard');
 				} elseif ($sesdata['role'] === 'staff') {
-					redirect('staff');
+					redirect('staff_dashboard');
 				} elseif ($sesdata['role'] === 'manager') {
-					redirect('manager');
+					redirect('manager_dashboard');
 				} else {
-					redirect('login/authenticate_login');
+					redirect('authenticate_login');
 				}
 
 				//set massege
 				$this->session->set_flashdata('user_logedin', 'you are now loged in');
 
-				redirect('admin');
+				redirect('admin_dashboard');
 			} else {
 				//set massege
 				$this->session->set_flashdata('login_failed', 'Incorrect username or pasword:');
 
-				redirect('login/authenticate_login');
+				redirect('authenticate_login');
 			}
 		}
 	}
@@ -72,7 +72,7 @@ class Login extends CI_Controller
 	{
 		$this->session->sess_destroy();
 
-		redirect('login/authenticate_login');
+		redirect('authenticate_login');
 	}
 
 	//google signin function
@@ -177,12 +177,12 @@ class Login extends CI_Controller
 				//set massege
 				$this->session->set_flashdata('user_logedin', 'you are now loged in');
 
-				redirect('publicpages');
+				redirect('home');
 			} else {
 				//set massege
 				$this->session->set_flashdata('login_failed', 'Incorrect username or pasword:');
 
-				redirect('login/customer_signin');
+				redirect('customer_signin');
 			}
 		}
 	} //end of customer sign_in
@@ -192,7 +192,7 @@ class Login extends CI_Controller
 	{
 
 		$this->session->sess_destroy();
-		redirect('publicpages');
+		redirect('home');
 	}
 	//user register function
 	public function customer_signup()
@@ -220,20 +220,20 @@ class Login extends CI_Controller
 
 			$this->session->set_flashdata('user_registerd', 'User is registerd and can login');
 
-			redirect('publicpages/');
+			redirect('home');
 		}
 	} //end of  user register
 
 	public function change_password()
 	{
 		if (!$this->session->userdata('logged_in') == true) {
-			redirect('login/customer_signin');
+			redirect('customer_signin');
 		}
 		if (!file_exists(APPPATH . 'views/publicpages/change_password.php')) {
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-		
+
 		$this->form_validation->set_rules('old_password', 'Old Password', 'required');
 		$this->form_validation->set_rules('new_password', 'New password', 'required');
 		$this->form_validation->set_rules('password2', 'Confirm password', 'matches[new_password]');
@@ -249,14 +249,14 @@ class Login extends CI_Controller
 				if ($result > 0) {
 					$this->session->set_flashdata('sucess_msg', 'User  Password Changed');
 					$this->customer_logout();
-					redirect('login/change_signin');
+					redirect('change_signin');
 				} else {
 					$this->session->set_flashdata('error_msg', 'User  Password Not changed');
-					redirect('login/change_password');
+					redirect('change_password');
 				}
 			} else {
 				$this->session->set_flashdata('message', 'User Old Password Not Match');
-				redirect('login/change_password');
+				redirect('change_password');
 			}
 
 			//update password
