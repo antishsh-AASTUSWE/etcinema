@@ -153,6 +153,16 @@ $route['home'] = 'publicpages';
 $route['movie'] = 'publicpages/movie';
 $route['about'] = 'publicpages/about';
 $route['contact'] = 'publicpages/contact';
+
+
+$route['user_booking'] = 'profile/user_booking';
+$route['user_dashboard'] = 'profile/index';
+$route['user_profile'] = 'profile/user_profile';
+$route['get_active_ticket'] = 'profile/get_active_ticket';
+$route['cancel_ticket/(:num)'] = 'profile/cancel_ticket/$1';
+
+
+
 $route['default_controller'] = 'publicpages';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

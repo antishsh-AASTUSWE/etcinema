@@ -511,13 +511,13 @@ class admin_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('booking_info');
-        $this->db->join('user', 'user.user_id=booking_info.user_id');
+        $this->db->join('customer', 'customer.cust_id=booking_info.user_id');
         $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
         $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
         $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
         $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
         //$this->db->join('seat', 'seat.seat_id=booking_info.seat_id');
-        $this->db->order_by('booking_id', 'ASC');
+        //$this->db->order_by('booking_id', 'ASC');
         $query = $this->db->get();
 
         return $query->result_array();

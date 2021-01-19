@@ -43,7 +43,7 @@ class Login extends CI_Controller
 				);
 
 				//crate sassion
-				$this->session->set_tempdata($sesdata, NULL, 5);
+				$this->session->set_tempdata($sesdata, NULL, 3000);
 
 				if ($sesdata['role'] === 'admin') {
 					redirect('admin_dashboard');
@@ -173,7 +173,7 @@ class Login extends CI_Controller
 				);
 
 				//crate sassion
-				$this->session->set_tempdata($sesdata, NULL, 5);
+				$this->session->set_tempdata($sesdata, NULL, 3000);
 				//$this->session->mark_as_temp('logged_in', 1);
 				//set massege
 				$this->session->set_flashdata('user_logedin', 'you are now loged in');
