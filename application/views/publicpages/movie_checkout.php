@@ -42,7 +42,7 @@
 <!-- ==========Page-Title========== -->
 
 <!-- ==========Movie-Section========== -->
-<?php echo form_open("publicpages/movie_book") ?>
+<?php echo form_open("movie_book") ?>
 <div class="movie-facility padding-bottom padding-top">
     <div class="container">
         <div class="row">
