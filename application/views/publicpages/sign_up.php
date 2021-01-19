@@ -7,53 +7,53 @@
                     <span class="cate">welcome</span>
                     <h2 class="title">to Etcinema </h2>
                 </div>
-                <?php echo form_open('login/customer_signup'); ?>
+                <?php echo form_open('customer_signup'); ?>
                 <div class="account-form">
                     <div class="form-group">
                         <label for="firstname">First Name<span>*</span></label>
-                        <input type="text" name="first_name" placeholder="Enter Your First Name" id="firstname">
+                        <input type="text" name="first_name" value="<?php echo set_value('first_name'); ?>" placeholder="Enter Your First Name" id="firstname">
                         <div class="text-danger">
                             <?php echo form_error('first_name'); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email1">Last Name<span>*</span></label>
-                        <input type="text" name="last_name" placeholder="Enter Your Last Name" id="lastname">
+                        <input type="text" name="last_name" value="<?php echo set_value('last_name'); ?>" placeholder="Enter Your Last Name" id="lastname">
                         <div class="text-danger">
                             <?php echo form_error('last_name'); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="username">User Name<span>*</span></label>
-                        <input type="text" name="username" placeholder="Enter Your Username" id="username">
+                        <input type="text" name="username" value="<?php echo set_value('username'); ?>" placeholder="Enter Your Username" id="username">
                         <div class="text-danger">
                             <?php echo form_error('username'); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email1">Email<span>*</span></label>
-                        <input type="text" name="email" placeholder="Enter Your Email" id="email1">
+                        <input type="text" name="email" value="<?php echo set_value('email'); ?>" placeholder="Enter Your Email" id="email1">
                         <div class="text-danger">
                             <?php echo form_error('email'); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email1">Phone<span>*</span></label>
-                        <input type="text" name="phone" placeholder="Enter Your Phone" id="phone">
+                        <input type="text" name="phone" value="<?php echo set_value('phone'); ?>" placeholder="Enter Your Phone" id="phone">
                         <div class="text-danger">
                             <?php echo form_error('phone'); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="pass1">Password<span>*</span></label>
-                        <input type="password" name="password" placeholder="Password" id="pass1">
+                        <input type="password" name="password" value="<?php echo set_value('password'); ?>" placeholder="Password" id="pass1">
                         <div class="text-danger">
                             <?php echo form_error('password'); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="pass2">Confirm Password<span>*</span></label>
-                        <input type="password" name="password2" placeholder="Password" id="pass2">
+                        <input type="password" name="password2" value="<?php echo set_value('password2'); ?>" placeholder="Password" id="pass2">
                         <div class="text-danger">
                             <?php echo form_error('password2'); ?>
                         </div>

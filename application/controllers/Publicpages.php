@@ -209,7 +209,7 @@ class Publicpages extends CI_Controller
 		$this->load->library('email');
 
 		$from = $this->config->item('smtp_user');
-		$to = $this->session->userdata('email');
+		$to = $this->session->tempdata('email');
 		$subject = 'test';
 		$message = $content;
 		$this->email->clear();
@@ -220,6 +220,7 @@ class Publicpages extends CI_Controller
 		$this->email->message($message);
 
 		if ($this->email->send()) {
+			
 			$this->booking_confirm();
 			//echo 'Your Email has successfully been sent.';
 		} else {
@@ -246,31 +247,13 @@ class Publicpages extends CI_Controller
 
 
 
-	public function test($id)
-	{
-		$row = $this->public_model->get_seatRow();
-		if (isset($row)) {
-			$t = 0;
-			$t = $row['col'] * $row['row'];
-		}
-
-		for ($i = 11; $i < $t; $i++) {
-			$this->form_validation->set_rules('seat' . $i, 'seat' . $i, 'required');
-		}
-		if ($this->form_validation->run() === FALSE) {
-			echo validation_errors();
-		} else {
-
-			$this->movie();
-		}
-	}
 	public function booking_confirm(){
 		
 			$this->load->view('templates/public_header');
 			$this->load->view('publicpages/booking_confirm');
 			$this->load->view('templates/public_footer');
 	}
-	public function payment($id)
+	public function payment($id )
 	{
 	
 			$this->form_validation->set_rules('transaction_no', 'transaction number', 'required');
@@ -279,7 +262,7 @@ class Publicpages extends CI_Controller
 		
 		if ($this->form_validation->run() === FALSE) {
 			$data['movie'] = $this->public_model->get_booking($id);
-			//$data['id']=25;
+			$data['id']=25;
 			$this->load->view('templates/public_header');
 			$this->load->view('publicpages/paymnt_form',$data);
 			$this->load->view('templates/public_footer');

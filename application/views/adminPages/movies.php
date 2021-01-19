@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="col-lg-6">
       <div class="form-group">
-        <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-plus"></i> <a href="<?php echo base_url() ?>admin/add_movie">Add Movie</a></button>
+        <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-plus"></i> <a href="<?php echo base_url() ?>add_movie">Add Movie</a></button>
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@
             <th scope="col">running time</th>
             <th scope="col">realse date</th>
             <th scope="col">language</th>
-            
+
             <th scope="col">Edit/Delete</th>
 
           </tr>
@@ -39,8 +39,8 @@
               <td><?= $m['mov_running_time']; ?></td>
               <td><?= $m['mov_realse_date']; ?></td>
               <td><?= $m['mov_language']; ?></td>
-              
-              <td><a href="<?php echo base_url(); ?>admin/edit_movie/<?= $m['movie_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_movie/<?= $m['movie_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
+
+              <td><a href="<?php echo base_url(); ?>admin_edit_movie/<?= $m['movie_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin_delete_movie/<?= $m['movie_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
 
             </tr>
           <?php endforeach; ?>

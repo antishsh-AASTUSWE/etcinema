@@ -8,7 +8,7 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('logged_in') !== TRUE) {
+        if ($this->session->tempdata('logged_in') !== TRUE) {
             redirect('login/authenticate_login');
         }
     }

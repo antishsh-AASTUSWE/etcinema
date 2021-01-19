@@ -79,7 +79,7 @@
 
 
 
-                    <?php if ($this->session->userdata('logged_in') == true) : ?>
+                    <?php if ($this->session->tempdata('logged_in') == true) : ?>
                         <li>
                             <a href="<?php echo base_url() ?>change_password" <?php if ($this->uri->segment(2) === 'change_password') {
                                                                                         echo 'class="active"';
@@ -92,7 +92,7 @@
                             <p class="subtitle"></p>
                         </li>
                         <li>
-                        <a href="<?php echo base_url() ?>profile">Welcome <?= $this->session->userdata('username'); ?></a>
+                        <a href="<?php echo base_url() ?>profile">Welcome <?= $this->session->tempdata('username'); ?></a>
                         </li>
                         
                     <?php else : ?>

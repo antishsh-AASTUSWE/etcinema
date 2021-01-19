@@ -50,11 +50,95 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-//$route['admin/add_cinema'] = 'admin/add_cinema';
-$route['movie'] = 'publicpages/movie';
-$route['movie'] = 'publicpages/movie';
-$route['movie'] = 'publicpages/movie';
 
+//admin routes
+
+$route['admin_delete_cinema/(:num)'] = 'admin/delete_cinema/$1';
+$route['admin_edit_cinema/(:num)'] = 'admin/edit_cinema/$1';
+$route['admin_delete_user/(:num)'] = 'admin/delete_user/$1';
+$route['admin_edit_user/(:num)'] = 'admin/edit_user/$1';
+$route['admin_delete_gener/(:num)'] = 'admin/delete_gener/$1';
+$route['admin_delete_gener/(:num)'] = 'admin/delete_gener/$1';
+$route['admin_edit_gener/(:num)'] = 'admin/edit_gener/$1';
+$route['admin_update_showtime/(:num)'] = 'admin/update_showtime/$1';
+$route['admin_update_movie/(:num)'] = 'admin/update_movie/$1';
+$route['admin_update_customer/(:num)'] = 'admin/update_customer/$1';
+$route['admin_delete_customer/(:num)'] = 'admin/delete_customer/$1';
+$route['admin_edit_customer/(:num)'] = 'admin/edit_customer/$1';
+$route['admin_edit_movie/(:num)'] = 'admin/edit_movie/$1';
+$route['admin_delete_movie/(:num)'] = 'admin/delete_movie/$1';
+$route['admin_edit_customer/(:num)'] = 'admin/edit_customer/$1';
+$route['admin_edit_showtime/(:num)'] = 'admin/edit_showtime/$1';
+$route['admin_delete_showtime/(:num)'] = 'admin/delete_showtime/$1';
+
+$route['monthly_showtime_pdfdetails'] = 'admin/monthly_showtime_pdfdetails';
+$route['weekly_showtime_pdfdetails'] = 'admin/weekly_showtime_pdfdetails';
+$route['daily_showtime_pdfdetails'] = 'admin/daily_showtime_pdfdetails';
+$route['movie_report'] = 'admin/movie_report';
+$route['revenu_report'] = 'admin/revenu_report';
+$route['showtime_report'] = 'admin/showtime_report';
+$route['cinema_revenu'] = 'admin/cinema_revenu';
+$route['movie_revenu'] = 'admin/movie_revenu';
+$route['box_office'] = 'admin/box_office';
+$route['showtime_pdfdetails'] = 'admin/showtime_pdfdetails';
+$route['update_user'] = 'admin/update_user';
+$route['update_rating'] = 'admin/update_rating';
+$route['update_gener'] = 'admin/update_gener';
+$route['update_cinema'] = 'admin/update_cinema';
+$route['add_showtime'] = 'admin/add_showtime';
+$route['add_rating'] = 'admin/add_rating';
+$route['add_gener'] = 'admin/add_gener';
+$route['add_cinema'] = 'admin/add_cinema';
+$route['register'] = 'admin/register';
+$route['add_movie'] = 'admin/add_movie';
+$route['add_customer'] = 'admin/add_customer';
+$route['admin_reports'] = 'admin/reports';
+$route['admin_bookings'] = 'admin/bookings';
+$route['admin_customer'] = 'admin/customer';
+$route['admin_users'] = 'admin/users';
+$route['admin_geners'] = 'admin/geners';
+$route['admin_Ratings'] = 'admin/Ratings';
+$route['admin_cinemas'] = 'admin/cinemas';
+$route['admin_movies'] = 'admin/movies';
+$route['admin_showtime'] = 'admin/showtime';
+$route['admin_dashboard'] = 'admin';
+
+//admin login routes
+$route['authenticate_login'] = 'login/authenticate_login';
+
+//staff route
+$route['staff_edit_showtime/(:num)'] = 'staff/edit_showtime/$1';
+$route['staff_delete_showtime/(:num)'] = 'staff/delete_showtime/$1';
+$route['staff_delete_movie/(:num)'] = 'staff/delete_movie/$1';
+$route['staff_edit_movie/(:num)'] = 'staff/edit_movie/$1';
+$route['staff_update_showtime/(:num)'] = 'staff/update_showtime/$1';
+$route['staff_update_movie/(:num)'] = 'staff/update_movie/$1';
+$route['staff_update_customer/(:num)'] = 'staff/update_customer/$1';
+$route['staff_delete_customer/(:num)'] = 'staff/delete_customer/$1';
+$route['staff_edit_customer/(:num)'] = 'staff/edit_customer/$1';
+
+$route['staff_add_showtime'] = 'staff/add_showtime';
+$route['staff_addSeat'] = 'staff/addSeat';
+$route['staff_add_customer'] = 'staff/add_customer';
+$route['staff_add_customer'] = 'staff/add_customer';
+$route['staff_add_customer'] = 'staff/add_customer';
+$route['staff_add_customer'] = 'staff/add_customer';
+$route['staff_add_movie'] = 'staff/add_movie';
+$route['staff_add_customer'] = 'staff/add_customer';
+$route['staff_dashboard'] = 'staff';
+$route['staff_showtime'] = 'staff/showtime';
+$route['staff_movies'] = 'staff/movies';
+$route['staff_Customer'] = 'staff/customer';
+$route['staff_seat'] = 'staff/seat';
+$route['staff_advert'] = 'staff/advert';
+
+//customer login routes
+$route['change_password'] = 'login/change_password';
+$route['customer_logout'] = 'login/customer_logout';
+$route['customer_signup'] = 'login/customer_signup';
+$route['customer_signin'] = 'login/customer_signin';
+
+//public page routes
 $route['payment/(:num)'] = 'publicpages/payment/$1';
 $route['movie_details/(:num)'] = 'publicpages/movie_details/$1';
 $route['movie_ticket_plan/(:num)'] = 'publicpages/movie_ticket_plan/$1';
@@ -63,11 +147,7 @@ $route['movie_seat_plan/(:num)'] = 'publicpages/movie_seat_plan/$1';
 $route['movie_checkout/(:num)'] = 'publicpages/movie_checkout/$1';
 
 
-$route['change_password'] = 'login/change_password';
-$route['customer_logout'] = 'login/customer_logout';
-$route['customer_signup'] = 'login/customer_signup';
-$route['customer_signin'] = 'login/customer_signin';
-
+$route['change_password'] = 'publicpages/change_password';
 $route['movie_book'] = 'publicpages/movie_book';
 $route['home'] = 'publicpages';
 $route['movie'] = 'publicpages/movie';

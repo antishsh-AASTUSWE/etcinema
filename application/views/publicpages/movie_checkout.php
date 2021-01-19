@@ -42,7 +42,7 @@
 <!-- ==========Page-Title========== -->
 
 <!-- ==========Movie-Section========== -->
-<?php echo form_open("publicpages/movie_book") ?>
+<?php echo form_open("movie_book") ?>
 <div class="movie-facility padding-bottom padding-top">
     <div class="container">
         <div class="row">
@@ -171,7 +171,7 @@ for ($i = 1; $i < $row['row']; $i++) {
             <input type="text" hidden name="<?= "seat" . $i . '' . $j ?>" value="<?= $i . '' . $j ?>">
 
             <input type="text" hidden name="show_id" value="<?= $showtime['show_id'] ?>">
-            <input type="text" hidden name="user_id" value="<?php echo $this->session->userdata('user_id'); ?>">
+            <input type="text" hidden name="user_id" value="<?php echo $this->session->tempdata('user_id'); ?>">
             <input type="text" hidden name="seats" value="<?= ($seat_price - 1) ?>">
             <input type="text" hidden name="price" value="<?= (($seat_price - 1) * (int)$showtime['price']) ?>">
 
@@ -185,7 +185,7 @@ for ($i = 1; $i < $row['row']; $i++) {
               
               
 
-                <?php if ($this->session->userdata('logged_in') === TRUE) : ?>
+                <?php if ($this->session->tempdata('logged_in') === TRUE) : ?>
                     <div class="proceed-area  text-center">
                         <!-- <h6 class="subtitle"><span>Amount Payable</span><span>$222</span></h6> -->
                         <input type="submit" class="custom-button" value="proceed">

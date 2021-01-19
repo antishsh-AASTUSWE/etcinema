@@ -5,7 +5,7 @@
 
     <h5 class="card-title">Edit user</h5>
     <?php echo validation_errors(); ?>
-    <?php echo form_open('admin/update_user') ?>
+    <?php echo form_open('update_user') ?>
 <form>
    
     <div class="form-group">
@@ -70,7 +70,7 @@
       <div class="col-lg-6">
         <div class="form-group">
           <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Edit Gener</button>
-          <a href="<?php echo base_url(); ?>admin/geners" class="btn btn-light btn-round px-5">Cancel</a>
+          <a href="<?php echo base_url(); ?>admin_geners" class="btn btn-light btn-round px-5">Cancel</a>
         </div>
       </div>
     </div>

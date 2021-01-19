@@ -2,7 +2,7 @@
     <div class="card-body">
         <h5 class="card-title">Add User</h5>
 
-        <?php echo form_open('admin/register') ?>
+        <?php echo form_open('register') ?>
         <form>
             <div class="form-group">
                 <label for="formGroupExampleInput">Name</label>

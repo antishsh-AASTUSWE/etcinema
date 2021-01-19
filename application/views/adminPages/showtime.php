@@ -3,7 +3,7 @@
 
     <h5 class="card-title">Add Showtime</h5>
 
-    <?php echo form_open('admin/add_showtime') ?>
+    <?php echo form_open('add_showtime') ?>
 
     <form>
       <table class="table table-sm">
@@ -120,8 +120,7 @@
                 <td><?= $s['cinema_name']; ?></td>
                 <td><?= $s['show_date']; ?></td>
                 <td><?= $s['show_time']; ?></td>
-                <td><a href="<?php echo base_url(); ?>admin/edit_showtime/<?= $s['show_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_showtime/<?= $s['show_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
-
+                <td><a href="<?php echo base_url(); ?>admin_edit_showtime/<?= $s['show_id'] ?>" class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin_delete_showtime/<?= $s['show_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
               </tr>
             <?php endforeach; ?>
           </tbody>

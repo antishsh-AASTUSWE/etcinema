@@ -6,13 +6,13 @@
 
           <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-plus">
 
-          </i> <a href="<?php echo base_url() ?>admin/showtime_report">Print Showtime</a></button>
+          </i> <a href="<?php echo base_url() ?>showtime_report">Print Showtime</a></button>
         </div>
         <div class="form-group">
 
           <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-plus">
 
-          </i> <a href="<?php echo base_url() ?>admin/revenu_report">Revenu Report</a></button>
+          </i> <a href="<?php echo base_url() ?>revenu_report">Revenu Report</a></button>
         </div>
 
         

@@ -43,27 +43,27 @@ class Login extends CI_Controller
 				);
 
 				//crate sassion
-				$this->session->set_userdata($sesdata);
+				$this->session->set_tempdata($sesdata, NULL, 5);
 
 				if ($sesdata['role'] === 'admin') {
-					redirect('admin');
+					redirect('admin_dashboard');
 				} elseif ($sesdata['role'] === 'staff') {
-					redirect('staff');
+					redirect('staff_dashboard');
 				} elseif ($sesdata['role'] === 'manager') {
-					redirect('manager');
+					redirect('manager_dashboard');
 				} else {
-					redirect('login/authenticate_login');
+					redirect('authenticate_login');
 				}
 
 				//set massege
 				$this->session->set_flashdata('user_logedin', 'you are now loged in');
 
-				redirect('admin');
+				redirect('admin_dashboard');
 			} else {
 				//set massege
 				$this->session->set_flashdata('login_failed', 'Incorrect username or pasword:');
 
-				redirect('login/authenticate_login');
+				redirect('authenticate_login');
 			}
 		}
 	}
@@ -72,7 +72,7 @@ class Login extends CI_Controller
 	{
 		$this->session->sess_destroy();
 
-		redirect('login/authenticate_login');
+		redirect('authenticate_login');
 	}
 
 	//google signin function
@@ -95,7 +95,7 @@ class Login extends CI_Controller
 			$token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
 			if (!isset($token["error"])) {
 				$google_client->setAccessToken($token['access_token']);
-				$this->session->userdata('access_token', $token['access_token']);
+				$this->session->tempdata('access_token', $token['access_token']);
 				$google_service = new Google_Service_Oauth2($google_client);
 				$data = $google_service->userinfo->get();
 				$current_datetime = date('Y-m-d H:i:s');
@@ -121,10 +121,10 @@ class Login extends CI_Controller
 					);
 					$this->login_model->insert_user_data($user_data);
 				}
-				$this->session->userdata('user_data', $user_data);
+				$this->session->tempdata('user_data', $user_data);
 			}
 		}
-		if (!$this->session->userdata('access_token')) {
+		if (!$this->session->tempdata('access_token')) {
 			$login_button = $google_client->createAuthUrl();
 			$data['login'] = $login_button;
 			$this->load->view('logintemplates/public_login_header');
@@ -173,16 +173,17 @@ class Login extends CI_Controller
 				);
 
 				//crate sassion
-				$this->session->set_userdata($sesdata);
+				$this->session->set_tempdata($sesdata, NULL, 5);
+				//$this->session->mark_as_temp('logged_in', 1);
 				//set massege
 				$this->session->set_flashdata('user_logedin', 'you are now loged in');
 
-				redirect('publicpages');
+				redirect('home');
 			} else {
 				//set massege
 				$this->session->set_flashdata('login_failed', 'Incorrect username or pasword:');
 
-				redirect('login/customer_signin');
+				redirect('customer_signin');
 			}
 		}
 	} //end of customer sign_in
@@ -192,7 +193,7 @@ class Login extends CI_Controller
 	{
 
 		$this->session->sess_destroy();
-		redirect('publicpages');
+		redirect('home');
 	}
 	//user register function
 	public function customer_signup()
@@ -201,13 +202,13 @@ class Login extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-		$this->form_validation->set_rules('first_name', 'First Name', 'required');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
-		$this->form_validation->set_rules('username', 'Username', 'required|callback_check_username_exists');
-		$this->form_validation->set_rules('password', 'password', 'required');
-		$this->form_validation->set_rules('password2', 'Confirm password', 'matches[password]');
-		$this->form_validation->set_rules('phone', 'Phone', 'required');
+		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|alpha');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|alpha');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_check_email_exists');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|callback_check_username_exists');
+		$this->form_validation->set_rules('password', 'password', 'trim|required|min_length[8]');
+		$this->form_validation->set_rules('password2', 'Confirm password', 'trim|required|min_length[8]|matches[password]');
+		$this->form_validation->set_rules('phone', 'Phone', 'trim|required|numeric|min_length[10]|is_unique[customer.phone]');
 
 
 		if ($this->form_validation->run() === false) {
@@ -220,20 +221,20 @@ class Login extends CI_Controller
 
 			$this->session->set_flashdata('user_registerd', 'User is registerd and can login');
 
-			redirect('publicpages/');
+			redirect('home');
 		}
 	} //end of  user register
 
 	public function change_password()
 	{
-		if (!$this->session->userdata('logged_in') == true) {
-			redirect('login/customer_signin');
+		if (!$this->session->tempdata('logged_in') == true) {
+			redirect('customer_signin');
 		}
 		if (!file_exists(APPPATH . 'views/publicpages/change_password.php')) {
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
-		
+
 		$this->form_validation->set_rules('old_password', 'Old Password', 'required');
 		$this->form_validation->set_rules('new_password', 'New password', 'required');
 		$this->form_validation->set_rules('password2', 'Confirm password', 'matches[new_password]');
@@ -243,20 +244,20 @@ class Login extends CI_Controller
 			$this->load->view('logintemplates/public_login_footer');
 		} else {
 			//check old password2
-			$result = $this->login_model->check_old_password($this->session->userdata('email'), md5($this->input->post('old_password')));
+			$result = $this->login_model->check_old_password($this->session->tempdata('email'), md5($this->input->post('old_password')));
 			if ($result > 0 and $result === TRUE) {
-				$result = $this->login_model->update_user_data($this->session->userdata('email'));
+				$result = $this->login_model->update_user_data($this->session->tempdata('email'));
 				if ($result > 0) {
 					$this->session->set_flashdata('sucess_msg', 'User  Password Changed');
 					$this->customer_logout();
-					redirect('login/change_signin');
+					redirect('change_signin');
 				} else {
 					$this->session->set_flashdata('error_msg', 'User  Password Not changed');
-					redirect('login/change_password');
+					redirect('change_password');
 				}
 			} else {
 				$this->session->set_flashdata('message', 'User Old Password Not Match');
-				redirect('login/change_password');
+				redirect('change_password');
 			}
 
 			//update password

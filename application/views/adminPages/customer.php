@@ -5,7 +5,7 @@
         <div class="form-group">
           <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-plus">
 
-          </i> <a href="<?php echo base_url() ?>admin/add_customer">Add New Customer</a></button>
+          </i> <a href="<?php echo base_url() ?>add_customer">Add New Customer</a></button>
         </div>
       </div>
   </div>
@@ -41,8 +41,8 @@
               <td><?= $c['joined_date']; ?></td>
              
                
-              <td><a href="<?php echo base_url(); ?>admin/edit_customer/<?= $c['cust_id'] ?>"
-               class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin/delete_customer/<?= $c['cust_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
+              <td><a href="<?php echo base_url(); ?>admin_edit_customer/<?= $c['cust_id'] ?>"
+               class="btn btn-light btn-round px-5">edit</a><a href="<?php echo base_url(); ?>admin_delete_customer/<?= $c['cust_id'] ?>" class="btn btn-light btn-round px-5 ml-1">Delete</a></td>
 
             </tr>
           <?php endforeach; ?>

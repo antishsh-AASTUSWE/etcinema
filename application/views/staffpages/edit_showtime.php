@@ -5,7 +5,7 @@
 
     <h5 class="card-title">Edit Showtime</h5>
     
-    <?php echo form_open("staff/update_showtime/{$r['show_id']}")?>
+    <?php echo form_open("staff_update_showtime/{$r['show_id']}")?>
 
     
     <div class="form-group">
@@ -66,7 +66,7 @@
       <div class="col-lg-6">
         <div class="form-group">
           <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Edit Showtime</button>
-          <a href="<?php echo base_url(); ?>staff/showtime" class="btn btn-light btn-round px-5">Cancel</a>
+          <a href="<?php echo base_url(); ?>staff_showtime" class="btn btn-light btn-round px-5">Cancel</a>
         </div>
       </div>
     </div>
