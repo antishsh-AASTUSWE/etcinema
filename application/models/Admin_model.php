@@ -507,11 +507,47 @@ class admin_model extends CI_Model
                 
           return $query->result_array();
     }
+    public function count_cbe()
+    {
+        $this->db->select('*');
+        $this->db->from('booking_info');
+        $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
+        $this->db->where('bank_name', 'cbe birr');
+        $query = $this->db->get();
+        return  $query->num_rows();  
+    }
+    public function count_amole()
+    {
+        $this->db->select('*');
+        $this->db->from('booking_info');
+        $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
+        $this->db->where('bank_name', 'Amole Walet');
+        $query = $this->db->get();
+        return  $query->num_rows();  
+    }
+    public function count_mbirr()
+    {
+        $this->db->select('*');
+        $this->db->from('booking_info');
+        $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
+        $this->db->where('bank_name', 'M-Birr');
+        $query = $this->db->get();
+        return  $query->num_rows();  
+    }
+    public function count_helo()
+    {
+        $this->db->select('*');
+        $this->db->from('booking_info');
+        $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
+        $this->db->where('bank_name', 'Hello Cash');
+        $query = $this->db->get();
+        return  $query->num_rows();  
+    }
     public function get_booking()
     {
         $this->db->select('*');
         $this->db->from('booking_info');
-        $this->db->join('user', 'user.user_id=booking_info.user_id');
+        $this->db->join('customer', 'customer.cust_id=booking_info.user_id');
         $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
         $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
         $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');

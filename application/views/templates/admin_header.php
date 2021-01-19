@@ -37,7 +37,7 @@
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foopicker.js"></script>
 
   <script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
-
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <?php if ($this->session->tempdata('role') == 'admin') {
   echo '<body class="bg-theme bg-theme1"> ';

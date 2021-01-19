@@ -15,7 +15,7 @@
 <footer class="footer">
     <div class="container">
         <div class="text-center">
-        &copy;<?php echo date("Y"); ?>
+            &copy;<?php echo date("Y"); ?>
         </div>
     </div>
 </footer>

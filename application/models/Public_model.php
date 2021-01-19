@@ -236,7 +236,7 @@ class Public_model extends CI_Model
                     $data = array(
                         'seat' => $this->input->post("seat" . $i . '' . $j),
                         'show_id' => $this->input->post('show_id'),
-                        'booking_id'=>$booking_id
+                        'booking_id' => $booking_id
                     );
 
                     $this->db->insert('seat_booked', $data);
@@ -327,7 +327,7 @@ class Public_model extends CI_Model
         $row = $query->row();
 
         if (isset($row)) {
-            
+
             $content = "
                 Dear " . $this->session->userdata('username') . "
 
@@ -348,7 +348,7 @@ class Public_model extends CI_Model
                 " . $row->account_number . "
                 -----
                 Aftre making payment please Use this link to confirm your payment :
-                http://localhost/etcinema/payment/".$id."
+                http://localhost/etcinema/payment/" . $id . "
 
                         ";
             return $content;
@@ -361,27 +361,27 @@ class Public_model extends CI_Model
             'depositer_name' => $this->input->post('depositer_name'),
             //'payment_date' => $this->input->post('payment_date')
         );
-     $price1=$price.'.00Br.';
+        $price1 = $price . '.00Br.';
 
 
         $query = $this->db->query("select *from messagein
         where
         MessageText regexp '(^|[[:space:]])" . $data['transaction_no'] . "([[:space:]]|$)' AND
          MessageFrom=+251942205164 AND status='' 
-         AND MessageText regexp '(^|[[:space:]])" . $price1. "([[:space:]]|$)'
+         AND MessageText regexp '(^|[[:space:]])" . $price1 . "([[:space:]]|$)'
          ");
-     
+
         if (empty($query->row_array())) {
 
             //echo 'empty';
-           return false;
+            return false;
         } else {
             $query = $this->db->query("UPDATE `messagein` SET `status`='paid' 
             WHERE MessageText regexp '(^|[[:space:]])" . $data['transaction_no'] . "([[:space:]]|$)' AND
             MessageFrom=+251942205164 AND status=''
-            AND MessageText regexp '(^|[[:space:]])" . $price1. "([[:space:]]|$)'
+            AND MessageText regexp '(^|[[:space:]])" . $price1 . "([[:space:]]|$)'
             ;");
-           
+
             //echo 'paid';
             return true;
         }
@@ -391,10 +391,10 @@ class Public_model extends CI_Model
         $this->db->set('status', 'Paid');
         $this->db->where('booking_id', $id);
         $this->db->where('status', '');
-        return $query=$this->db->update('booking_info');
+        return $query = $this->db->update('booking_info');
         //$query = $this->db->get_where('bank_transaction', array('transaction_no' => $data['transaction_no']));
 
-        
+
     } //end of checkusername exist
     public function get_booking($id = false)
     {
@@ -437,7 +437,7 @@ class Public_model extends CI_Model
             ';
         }
         foreach ($data2->result() as $row) {
-        $output .= '
+            $output .= '
         <tr>
                 <td width="75%">
                     <p><b>Your Seat No are  : </b>' . $row->seat . '</p>
