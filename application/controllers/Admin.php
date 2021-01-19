@@ -28,6 +28,7 @@ class Admin extends CI_Controller
         $data['totalRevenue'] = $this->admin_model->totalRevenue();
         $data['countCustomer'] = $this->admin_model->countCustomer();
         $data['countUser'] = $this->admin_model->countUser();
+        $data['booking'] = $this->admin_model->get_booking();
         $this->load->view('templates/admin_header');
         $this->load->view('adminpages/dashboard', $data);
         $this->load->view('templates/admin_footer');
@@ -980,6 +981,7 @@ class Admin extends CI_Controller
 
         $date = date('y-m-d');
         //$showtime_id = $this->uri->segment(3);
+        
         $html_content = '<h3 align="center">Showtime</h3>';
         $html_content .= $this->admin_model->fetch_showtime_details();
         $this->pdf->loadHtml($html_content);
@@ -1072,28 +1074,7 @@ class Admin extends CI_Controller
         $this->pdf->render();
         $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
     }
-    public function bar_chart()
-    {
-
-        $query =  $this->db->query("SELECT COUNT(user_id) as count,
-        MONTHNAME(created_at) as month_name FROM user
-        WHERE YEAR(created_at) = '" . date('Y') . "'
-
-        GROUP BY YEAR(created_at),MONTH(created_at)");
-
-        $record = $query->result();
-        $data = [];
-
-        foreach ($record as $row) {
-            $data['label'][] = $row->month_name;
-            $data['data'][] = (int) $row->count;
-        }
-        $data['chart_data'] = json_encode($data);
-
-        $this->load->view('templates/admin_header');
-        $this->load->view('adminpages/bar_chart', $data);
-        $this->load->view('templates/admin_footer');
-    }
+   
     public function revenu_report()
     {
         if ($this->session->userdata('role') !== 'admin') {

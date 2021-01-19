@@ -153,181 +153,46 @@
         </div>
         <!--End Row-->
 
-        <div class="row">
-            <div class="col-12 col-lg-12">
-                <div class="card">
-                    <div class="card-header">Recent Order Tables
-
-                    </div>
-                    <div class="table-responsive">
-                        
-<?php if(isset($booking)){ ?>
-
- 
-      <table class="table table-striped" id="mydatatable">
-        <thead>
-          <tr>
-      <th scope="col">ID</th>
-      <th scope="col">User name</th>
-      <th scope="col">Movie</th>
-      <th scope="col">Date</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Date of Birth</th>
-      <th scope="col">Joined Date</th>
-      <th scope="col">Edit/Delete</th>
-     
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($booking as $b) : ?>
-            <tr>
-              <td><?= $b['cust_id']; ?></td>
-              <td><?= $b['first_name']; ?></td>
-              <td><?= $b['last_name']; ?></td>
-              <td><?= $b['email']; ?></td>
-              <td><?= $b['phone_no']; ?></td>
-              <td><?= $b['DBO']; ?></td>
-              <td><?= $b['joined_date']; ?></td>
-             
-               
-              <td><a href="<?php echo base_url(); ?>admin/bookingView/<?= $b['cust_id'] ?>"
-               class="btn btn-light btn-round px-5">View</a>
-               <a href="<?php echo base_url(); ?>admin/PDF/<?= $b['cust_id'] ?>"
-                class="btn btn-light btn-round px-5 ml-1">view in PDF</a></td>
-
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-   
-          <?php }else { ?>
-              <div class="card">
-              <div class="card-body">
-             NO Data found!
-              </div>
-          </div>
-        <?php  }?>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!--End Row-->
 
         <!--End Dashboard Content-->
-        <script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
-<script src="<?php echo base_url() ?>assets/plugins/Chart.js/Chart.min.js"></script>
+       
+        
 
-        <script>
-            $(function() {
-    "use strict";
-
-     // chart 1 
-     var cData = JSON.parse(`<?php echo $chart_data; ?>`);
-      //var ctx = $("#bar-chart");
- 
-      //bar chart data
-      
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  
+  function drawChart() {
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Element');
+      data.addColumn('number', 'Percentage');
+      $x= 'Nitrogen';
+      data.addRows([ 
+        
+               <?php 
+        if(isset($booking)){
+            foreach($booking as $b){
                 
-		  var ctx = document.getElementById('chart1').getContext('2d');
-		
-			var myChart = new Chart(ctx, {
-				type: 'line',
-				data: {
-					labels:  cData.label,
-					datasets: [{
-						label: 'new Visitor',
-                        data: cData.data,
-						backgroundColor: '#fff',
-						borderColor: "transparent",
-						pointRadius :"0",
-						borderWidth: 3
-					}, {
-						label: 'Old Visitor',
-						data: [7, 5, 14, 7, 12, 6, 10, 6, 11, 5],
-						backgroundColor: "rgba(255, 255, 255, 0.25)",
-						borderColor: "transparent",
-						pointRadius :"0",
-						borderWidth: 1
-					}]
-				},
-			options: {
-				maintainAspectRatio: false,
-				legend: {
-				  display: false,
-				  labels: {
-					fontColor: '#ddd',  
-					boxWidth:40
-				  }
-				},
-				tooltips: {
-				  displayColors:false
-				},	
-			  scales: {
-				  xAxes: [{
-					ticks: {
-						beginAtZero:true,
-						fontColor: '#ddd'
-					},
-					gridLines: {
-					  display: true ,
-					  color: "rgba(221, 221, 221, 0.08)"
-					},
-				  }],
-				   yAxes: [{
-					ticks: {
-						beginAtZero:true,
-						fontColor: '#ddd'
-					},
-					gridLines: {
-					  display: true ,
-					  color: "rgba(221, 221, 221, 0.08)"
-					},
-				  }]
-				 }
-
-			 }
-			});  
-		
-		
-    // chart 2
-
-		var ctx = document.getElementById("chart2").getContext('2d');
-			var myChart = new Chart(ctx, {
-				type: 'doughnut',
-				data: {
-					labels: ["f", "Affiliate", "E-mail", "Other"],
-					datasets: [{
-						backgroundColor: [
-							"#ffffff",
-							"rgba(255, 255, 255, 0.70)",
-							"rgba(255, 255, 255, 0.50)",
-							"rgba(255, 255, 255, 0.20)"
-						],
-						data: [5856, 2602, 1802, 1105],
-						borderWidth: [0, 0, 0, 0]
-					}]
-				},
-			options: {
-				maintainAspectRatio: false,
-			   legend: {
-				 position :"bottom",	
-				 display: false,
-				    labels: {
-					  fontColor: '#ddd',  
-					  boxWidth:15
-				   }
-				}
-				,
-				tooltips: {
-				  displayColors:false
-				}
-			   }
-			});
-		
-
-		
-		
-   });	 
-   
-        </script>
+                echo"['".$b['bank_name']."',".$b['paid_bank']."],";
+            }
+        }
+        ?>
+        
+      ]);
+      var options = {
+       // title: 'Population of Largest U.S. Cities',
+        chartArea: {width: '100%'},
+        isStacked: true,
+        
+        backgroundColor: {
+        fill:'transparent'     
+        }}
+      // Instantiate and draw the chart.
+      var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+      chart.draw(data, options);
+    }
+</script>

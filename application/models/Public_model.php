@@ -221,7 +221,7 @@ class Public_model extends CI_Model
         );
         return $this->db->insert('messageout', $data);
     }
-    public function reserve_seat()
+    public function reserve_seat($booking_id)
     {
         $row = $this->public_model->get_seatRow();
         if (isset($row)) {
@@ -236,6 +236,7 @@ class Public_model extends CI_Model
                     $data = array(
                         'seat' => $this->input->post("seat" . $i . '' . $j),
                         'show_id' => $this->input->post('show_id'),
+                        'booking_id'=>$booking_id
                     );
 
                     $this->db->insert('seat_booked', $data);
@@ -326,9 +327,7 @@ class Public_model extends CI_Model
         $row = $query->row();
 
         if (isset($row)) {
-            //echo $row->price;
-            //echo $row->bank_name;
-
+            
             $content = "
                 Dear " . $this->session->userdata('username') . "
 
@@ -349,12 +348,10 @@ class Public_model extends CI_Model
                 " . $row->account_number . "
                 -----
                 Aftre making payment please Use this link to confirm your payment :
-                https://yegara.com/pay?d=14058.YES
+                http://localhost/etcinema/payment/".$id."
 
                         ";
             return $content;
-        } else {
-            echo 'no set';
         }
     }
     public function check_payment($price)
@@ -408,5 +405,49 @@ class Public_model extends CI_Model
         $query = $this->db->get_where('booking_info', array('booking_id' => $id));
         return $query->row_array();
     } //end of gett cinema
+    function print_ticket($booking_id)
+    {
+        $this->db->where('booking_id', $booking_id);
+        $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
+        $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+        $this->db->join('customer', 'customer.cust_id=booking_info.user_id');
+        $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
+        $data = $this->db->get('booking_info');
 
+        $this->db->select('*');
+        $this->db->where('booking_id', $booking_id);
+        $data2 = $this->db->get('seat_booked');
+
+
+        $output = '<table width="100%" cellspacing="5" cellpadding="5">';
+        foreach ($data->result() as $row) {
+            $output .= '
+            <tr>
+		<td width="25%"><img src="' . base_url() . 'assets/poster/' . $row->mov_poster . '" /></td>
+				<td width="75%">
+                    <p><b>Your ticket No  : </b>' . $row->booking_id . '</p>
+                    <p><b>Movie : </b>' . $row->mov_name . '</p>
+					<p><b>Cinema : </b>' . $row->cinema_name . '</p>
+					<p><b>Date : </b>' . $row->show_date . '</p>
+					<p><b>Time : </b>' . $row->show_time . '</p>
+
+				</td>
+			</tr>
+            ';
+        }
+        foreach ($data2->result() as $row) {
+        $output .= '
+        <tr>
+                <td width="75%">
+                    <p><b>Your Seat No are  : </b>' . $row->seat . '</p>
+                    
+
+				</td>
+		</tr>
+        ';
+        }
+        $output .= '</table>';
+        return $output;
+    }
 }

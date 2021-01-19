@@ -3,7 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Publicpages extends CI_Controller
 {
-
+    public function __construct()
+    {
+		parent::__construct();
+        $this->load->library('pdf');
+    }
 
 	public function index()
 	{
@@ -190,9 +194,10 @@ class Publicpages extends CI_Controller
 	public function movie_book()
 	{
 
-		$this->public_model->reserve_seat();
+		
 
 		$booking_id = $this->public_model->book();
+		$this->public_model->reserve_seat($booking_id);
 		//echo $booking_id;
 		$content = $this->public_model->booking_sms($booking_id);
 
@@ -262,7 +267,7 @@ class Publicpages extends CI_Controller
 	public function booking_confirm(){
 		
 			$this->load->view('templates/public_header');
-			$this->load->view('publicpages/paymnt_form');
+			$this->load->view('publicpages/booking_confirm');
 			$this->load->view('templates/public_footer');
 	}
 	public function payment($id)
@@ -289,8 +294,8 @@ class Publicpages extends CI_Controller
 			if ($this->public_model->check_payment($price)) {
 
 				if ($this->public_model->confirm_payment($id)) {
-
-					echo 'booking confirmed';
+				$this->print_ticket($id);
+					//echo 'booking confirmed';
 				}else{
 					echo 'stn went wrong';
 				}
@@ -300,6 +305,15 @@ class Publicpages extends CI_Controller
 				//return false;
 			}
 		}
+	}
+	public function print_ticket($booking_id){
+
+		$date = date('y-m-d');
+		$html_content = '<h3 align="center">Ethcinema Ticket</h3>';
+        $html_content .= $this->public_model->print_ticket($booking_id);
+        $this->pdf->loadHtml($html_content);
+        $this->pdf->render();
+        $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
 	}
 }
  
