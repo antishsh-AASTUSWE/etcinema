@@ -101,12 +101,12 @@
     <div class="col-12 col-lg-4 col-xl-4">
         <div class="card">
             <div class="card-header">Whole sales
-               
+
             </div>
             <div class="card-body">
                 <div class="chart-container-2">
-                    <div id="donutchart" ></div>
-                    
+                    <div id="donutchart"></div>
+
                 </div>
             </div>
             <div class="table-responsive">
@@ -167,10 +167,15 @@
         var options = {
             //title: 'My Daily Activities',
             //pieHole: 0.4,
+            chartArea: {
+                width: '100%',
+                height: '100%'
+            },
+          
             is3D: true,
-             backgroundColor: {
+            backgroundColor: {
                 fill: 'transparent'
-             }
+            }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
