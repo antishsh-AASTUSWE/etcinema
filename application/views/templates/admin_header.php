@@ -39,18 +39,20 @@
 
 
   <script src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-  google.charts.load('current', {packages: ['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
-  
-  function drawChart() {
+  <script>
+    google.charts.load('current', {
+      packages: ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
       // Define the chart to be drawn.
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Element');
       data.addColumn('number', 'Percentage');
-      $x= 'Nitrogen';
+      $x = 'Nitrogen';
       data.addRows([
-       
+
         [$x, 0.21],
         ['Oxygen', 0.78],
         ['Other', 0.01]
@@ -60,23 +62,23 @@
       var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
       chart.draw(data, null);
     }
-</script>
+  </script>
 
 </head>
-<?php if ($this->session->userdata('role') == 'admin') {
+<?php if ($this->session->tempdata('role') == 'admin') {
   echo '<body class="bg-theme bg-theme1"> ';
-} elseif ($this->session->userdata('role') == 'staff') {
+} elseif ($this->session->tempdata('role') == 'staff') {
   echo '<body class="bg-theme bg-theme2"> ';
-} elseif ($this->session->userdata('role') == 'manager') {
+} elseif ($this->session->tempdata('role') == 'manager') {
   echo '<body class="bg-theme bg-theme3"> ';
-} elseif ($this->session->userdata('customer') == 'yes') {
+} elseif ($this->session->tempdata('customer') == 'yes') {
   echo '<body class="bg-theme bg-theme5"> ';
 }; ?>
 
 
 <!-- Start wrapper-->
 <div id="wrapper">
-  <?php if ($this->session->userdata('role') == 'admin') {
+  <?php if ($this->session->tempdata('role') == 'admin') {
   ?>
     <!--admin templet-->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
@@ -149,7 +151,7 @@
 
     </div>
   <?php
-  } elseif ($this->session->userdata('role') == 'staff') { ?>
+  } elseif ($this->session->tempdata('role') == 'staff') { ?>
     <!--staff templet-->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
@@ -195,14 +197,11 @@
             <i class="zmdi zmdi-notifications-active"></i> <span>Advert</span>
           </a>
         </li>
-
-
-
       </ul>
 
     </div>
-    <?php
-  } elseif ($this->session->userdata('customer') == 'yes') { ?>
+  <?php
+  } elseif ($this->session->tempdata('customer') == 'yes') { ?>
     <!--staff templet-->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
@@ -255,8 +254,8 @@
 
     </div>
   <?php } ?>
-  
-  
+
+
   <!--Start sidebar-wrapper-->
 
   <!--End sidebar-wrapper-->
@@ -306,8 +305,8 @@
                 <div class="media">
                   <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
                   <div class="media-body">
-                    <h6 class="mt-2 user-title"><?php echo $this->session->userdata('username'); ?></h6>
-                    <p class="user-subtitle"><?php echo $this->session->userdata('email'); ?></p>
+                    <h6 class="mt-2 user-title"><?php echo $this->session->tempdata('username'); ?></h6>
+                    <p class="user-subtitle"><?php echo $this->session->tempdata('email'); ?></p>
                   </div>
                 </div>
               </a>

@@ -7,7 +7,7 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('logged_in') !== TRUE) {
+        if ($this->session->tempdata('logged_in') !== TRUE) {
             redirect('authenticate_login');
         }
         $this->load->library('pdf');
@@ -15,7 +15,7 @@ class Admin extends CI_Controller
     //index function
     public function index()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/dashboard.php')) {
@@ -37,7 +37,7 @@ class Admin extends CI_Controller
     //rating function
     public function ratings()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -64,7 +64,7 @@ class Admin extends CI_Controller
     //add rating function
     public function add_rating()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -87,7 +87,7 @@ class Admin extends CI_Controller
     public function edit_rating($id)
     {
 
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -107,7 +107,7 @@ class Admin extends CI_Controller
     //update rating function
     public function update_rating()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->admin_model->update_rating();
@@ -117,7 +117,7 @@ class Admin extends CI_Controller
     //delete rating function
     public function delete_rating($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->admin_model->delete_rating($id);
@@ -127,7 +127,7 @@ class Admin extends CI_Controller
     //check rating exist function
     public function check_rating_exists($rating)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_message('check_rating_exists', 'The rating you are tryng to add is alredy inserted');
@@ -142,7 +142,7 @@ class Admin extends CI_Controller
 
     public function movies()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/movies.php')) {
@@ -170,7 +170,7 @@ class Admin extends CI_Controller
     public function add_movie()
     {
 
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -241,7 +241,7 @@ class Admin extends CI_Controller
 
     public function edit_movie($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -260,7 +260,7 @@ class Admin extends CI_Controller
     public function update_movie($id)
     {
 
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -306,7 +306,7 @@ class Admin extends CI_Controller
     }
     public function delete_movie($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -315,7 +315,7 @@ class Admin extends CI_Controller
     }
     public function check_movie_exists($title)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_message('check_movie_exists', 'The movie you are tryng to add is alredy inserted');
@@ -330,7 +330,7 @@ class Admin extends CI_Controller
     //cinemas function
     public function cinemas()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/cinema.php')) {
@@ -357,7 +357,7 @@ class Admin extends CI_Controller
 
     public function add_cinema()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('cinema_name', 'Cinema Name', 'required|callback_check_cinema_exists');
@@ -378,7 +378,7 @@ class Admin extends CI_Controller
     //edit cinema
     public function edit_cinema($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -398,7 +398,7 @@ class Admin extends CI_Controller
     //update cinema function
     public function update_cinema()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->admin_model->update_cinema();
@@ -407,7 +407,7 @@ class Admin extends CI_Controller
     //delete cinema function
     public function delete_cinema($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->admin_model->delete_cinema($id);
@@ -416,7 +416,7 @@ class Admin extends CI_Controller
     //check cinema name existst
     public function check_cinema_exists($cinema)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_message('check_cinema_exists', 'The cinema you are tryng to add is alredy inserted');
@@ -431,7 +431,7 @@ class Admin extends CI_Controller
     //geners function
     public function geners()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/gener.php')) {
@@ -458,7 +458,7 @@ class Admin extends CI_Controller
     //add gener function
     public function add_gener()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -480,7 +480,7 @@ class Admin extends CI_Controller
     //edit Gener function
     public function edit_gener($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -500,7 +500,7 @@ class Admin extends CI_Controller
     //pdate gener function
     public function update_gener()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->admin_model->update_gener();
@@ -509,7 +509,7 @@ class Admin extends CI_Controller
     //delete gener function
     public function delete_gener($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->admin_model->delete_gener($id);
@@ -518,7 +518,7 @@ class Admin extends CI_Controller
     //check gener existes function
     public function check_gener_exists($gener)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_message('check_gener_exists', 'The gener you are tryng to add is alredy inserted');
@@ -533,7 +533,7 @@ class Admin extends CI_Controller
     //showtime function
     public function showtime()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/showtime.php')) {
@@ -564,7 +564,7 @@ class Admin extends CI_Controller
     }
     public function add_showtime()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('movie', 'movie', 'required');
@@ -587,7 +587,7 @@ class Admin extends CI_Controller
     }
     public function edit_showtime($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -606,7 +606,7 @@ class Admin extends CI_Controller
     public function update_showtime($id)
     {
 
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('movie', 'movie', 'required');
@@ -627,7 +627,7 @@ class Admin extends CI_Controller
     }
     public function delete_showtime($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -638,7 +638,7 @@ class Admin extends CI_Controller
     //users function
     public function users()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/users.php')) {
@@ -664,7 +664,7 @@ class Admin extends CI_Controller
     //add user function
     public function Register()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('name', 'Name', 'required');
@@ -690,7 +690,7 @@ class Admin extends CI_Controller
     } //end of add user
     public function edit_user($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -710,7 +710,7 @@ class Admin extends CI_Controller
     //pdate gener function
     public function update_user()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('password', 'password', 'required|callback_check_password_exists');
@@ -724,7 +724,7 @@ class Admin extends CI_Controller
     }
     public function delete_user($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -733,7 +733,7 @@ class Admin extends CI_Controller
     }
     public function check_password_exists($password)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $enc_password = md5($password);
@@ -748,7 +748,7 @@ class Admin extends CI_Controller
     //check user name existes
     public function check_username_exists($username)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_message('check_username_exists', 'That user name is taken. please choose a different one');
@@ -762,7 +762,7 @@ class Admin extends CI_Controller
     //check user name existes
     public function check_email_exists($email)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_message('check_email_exists', 'That email is taken. please use a different one');
@@ -775,7 +775,7 @@ class Admin extends CI_Controller
 
     public function bookings()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/booking.php')) {
@@ -800,7 +800,7 @@ class Admin extends CI_Controller
     }
     public function customer()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/customer.php')) {
@@ -826,7 +826,7 @@ class Admin extends CI_Controller
     }
     public function add_customer()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('fname', 'First Name', 'required');
@@ -854,7 +854,7 @@ class Admin extends CI_Controller
     }
     public function edit_customer($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -871,7 +871,7 @@ class Admin extends CI_Controller
     public function update_customer($id)
     {
 
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('fname', 'First Name', 'required');
@@ -895,7 +895,7 @@ class Admin extends CI_Controller
     }
     public function delete_customer($id)
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
 
@@ -938,7 +938,7 @@ class Admin extends CI_Controller
     }
     public function reports()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/report.php')) {
@@ -952,7 +952,7 @@ class Admin extends CI_Controller
 
     public function showtime_report()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/showtime_report.php')) {
@@ -988,7 +988,7 @@ class Admin extends CI_Controller
     }
     public function daily_showtime()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/showtime_report.php')) {
@@ -1017,7 +1017,7 @@ class Admin extends CI_Controller
 
     public function weekly_showtime()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/showtime_report.php')) {
@@ -1046,7 +1046,7 @@ class Admin extends CI_Controller
 
     public function monthly_showtime()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/showtime_report.php')) {
@@ -1096,7 +1096,7 @@ class Admin extends CI_Controller
     }
     public function revenu_report()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/revenu_report.php')) {
@@ -1121,7 +1121,7 @@ class Admin extends CI_Controller
     }
     public function box_office()
     {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/adminpages/revenu_report.php')) {

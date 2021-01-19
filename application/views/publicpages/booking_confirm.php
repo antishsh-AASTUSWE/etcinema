@@ -2,7 +2,7 @@
     <div class="container">
         
         <h3 class="title">PAYMENT DETAIL SENT TO
-            <?= $this->session->userdata('email'); ?></h3>
+            <?= $this->session->tempdata('email'); ?></h3>
         <p>
             የባንክ ቁጥራችንን እና ክፍያዎን የሚያረጋግጡበት ሊንክ 0942205164 ላይ እና ኢሜል ላይ ተልኳል ፣
             ክፍያውን በመረጡት ባንክ በኩል ከፈፀሙ በኋላ መልዕክቱ ላይ ያለውን ሊንክ በመጠቀም የደረሰኝ ቁጥሮን ያስገቡ፣</p>

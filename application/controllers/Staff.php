@@ -6,7 +6,7 @@ class Staff extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('logged_in') !== TRUE) {
+        if ($this->session->tempdata('logged_in') !== TRUE) {
             redirect('authenticate_login');
         }
     }
@@ -14,7 +14,7 @@ class Staff extends CI_Controller
     
     public function index()
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/dashboard.php')) {
@@ -33,7 +33,7 @@ class Staff extends CI_Controller
     }
     public function movies()
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/movies.php')) {
@@ -62,7 +62,7 @@ class Staff extends CI_Controller
     public function add_movie()
     {
 
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
 
@@ -118,7 +118,7 @@ class Staff extends CI_Controller
 
     public function edit_movie($id)
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         
@@ -137,7 +137,7 @@ class Staff extends CI_Controller
     public function update_movie($id)
     {
 
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
 
@@ -183,7 +183,7 @@ class Staff extends CI_Controller
     } 
     public function delete_movie($id)
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         
@@ -192,7 +192,7 @@ class Staff extends CI_Controller
     }
     public function showtime()
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/showtime.php')) {
@@ -224,7 +224,7 @@ class Staff extends CI_Controller
     }
     public function add_showtime()
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('movie', 'movie', 'required');
@@ -247,7 +247,7 @@ class Staff extends CI_Controller
     } 
     public function edit_showtime($id)
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         
@@ -266,7 +266,7 @@ class Staff extends CI_Controller
     public function update_showtime($id)
     {
 
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('movie', 'movie', 'required');
@@ -287,7 +287,7 @@ class Staff extends CI_Controller
     } 
     public function delete_showtime($id)
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         
@@ -296,7 +296,7 @@ class Staff extends CI_Controller
     }
     public function customer()
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/customer.php')) {
@@ -324,7 +324,7 @@ class Staff extends CI_Controller
     }
     public function add_customer()
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
     $this->form_validation->set_rules('fname', 'First Name', 'required');
@@ -352,7 +352,7 @@ class Staff extends CI_Controller
     } 
     public function edit_customer($id)
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         
@@ -369,7 +369,7 @@ class Staff extends CI_Controller
     public function update_customer($id)
     {
 
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('fname', 'First Name', 'required');
@@ -393,7 +393,7 @@ class Staff extends CI_Controller
     } 
     public function delete_customer($id)
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         
@@ -439,7 +439,7 @@ class Staff extends CI_Controller
     }
     public function advert()
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/advert.php')) {
@@ -453,7 +453,7 @@ class Staff extends CI_Controller
     }
     public function seat()
     {
-        if ($this->session->userdata('role') !== 'staff') {
+        if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
         if (!file_exists(APPPATH . 'views/staffpages/seat.php')) {

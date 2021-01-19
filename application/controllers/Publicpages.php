@@ -204,7 +204,7 @@ class Publicpages extends CI_Controller
 		$this->load->library('email');
 
 		$from = $this->config->item('smtp_user');
-		$to = $this->session->userdata('email');
+		$to = $this->session->tempdata('email');
 		$subject = 'test';
 		$message = $content;
 		$this->email->clear();
