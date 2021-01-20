@@ -202,8 +202,8 @@ class Staff extends CI_Controller
         if(isset($_POST['Search'])){
 			
             $data['showtime'] = $this->staff_model->search_showtime();
-            $data['cinema'] =$this->admin_model->get_cinema();
-		    $data['movie'] =$this->admin_model->get_movie();
+            $data['cinema'] =$this->staff_model->get_cinema();
+		    $data['movie'] =$this->staff_model->get_movie();
 			
             $this->load->view('templates/admin_header');
             $this->load->view('staffpages/showtime',$data);
@@ -213,8 +213,8 @@ class Staff extends CI_Controller
 	   else{
 			
             $data['showtime'] = $this->staff_model->get_showtime();
-            $data['cinema'] =$this->admin_model->get_cinema();
-		    $data['movie'] =$this->admin_model->get_movie();
+            $data['cinema'] =$this->staff_model->get_cinema();
+		    $data['movie'] =$this->staff_model->get_movie();
 			
             $this->load->view('templates/admin_header');
             $this->load->view('staffpages/showtime',$data);
@@ -256,8 +256,8 @@ class Staff extends CI_Controller
         if (empty($data['records'])) {
             show_404();
         }
-        $data['cinema'] =$this->admin_model->get_cinema();
-        $data['movie'] =$this->admin_model->get_movie();
+        $data['cinema'] =$this->staff_model->get_cinema();
+        $data['movie'] =$this->staff_model->get_movie();
         
         $this->load->view('templates/admin_header', $data);
         $this->load->view('staffpages/edit_showtime', $data);
@@ -547,4 +547,309 @@ class Staff extends CI_Controller
             redirect('staff_profile');
         }
     } 
+    public function cinemas()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/staffpages/cinema.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        if (isset($_POST['Search'])) {
+
+            $cinema = $this->staff_model->search_cinema();
+
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/cinema', ['cinema' => $cinema]);
+            $this->load->view('templates/admin_footer');
+        } else {
+
+            $cinema = $this->staff_model->get_cinema();
+
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/cinema', ['cinema' => $cinema]);
+            $this->load->view('templates/admin_footer');
+        }
+    } //end of cinemas
+    //add cinema function
+
+    public function add_cinema()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->form_validation->set_rules('cinema_name', 'Cinema Name', 'required|callback_check_cinema_exists');
+        if ($this->form_validation->run() === FALSE) {
+            /* $query = $this->db->get("cinema");
+			$data['cinema'] = $query->result(); */
+            $data['cinema']    = $this->staff_model->get_cinema();
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/cinema', $data);
+            $this->load->view('templates/admin_footer');
+        } else {
+
+            $this->staff_model->add_cinema();
+            redirect('staff_cinemas');
+        }
+    } //end of add cinema
+
+    //edit cinema
+    public function edit_cinema($id)
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+
+        $data['items'] = $this->staff_model->get_cinema($id);
+
+        if (empty($data['items'])) {
+            show_404();
+        }
+
+        $data['title'] = 'Edit Cinema';
+
+        $this->load->view('templates/admin_header', $data);
+        $this->load->view('staffpages/edit_cinema', $data);
+        $this->load->view('templates/admin_footer');
+    } //end of edit cinema
+
+    //update cinema function
+    public function update_cinema()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->staff_model->update_cinema();
+        redirect('staff_cinemas');
+    }
+    //delete cinema function
+    public function delete_cinema($id)
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->staff_model->delete_cinema($id);
+        redirect('staff_cinemas');
+    } //end of delete cinema
+    //check cinema name existst
+    public function check_cinema_exists($cinema)
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->form_validation->set_message('check_cinema_exists', 'The cinema you are tryng to add is alredy inserted');
+
+        if ($this->staff_model->check_cinema_exists($cinema)) {
+            return true;
+        } else {
+            return false;
+        }
+    } //end of check cinema exists
+
+    //geners function
+    public function geners()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/staffpages/gener.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        if (isset($_POST['Search'])) {
+
+            $data['gener'] = $this->staff_model->search_gener();
+
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/gener', $data);
+            $this->load->view('templates/admin_footer');
+        } else {
+
+            $gener = $this->staff_model->get_gener();
+
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/gener', ['gener' => $gener]);
+            $this->load->view('templates/admin_footer');
+        }
+    } //end of geners
+
+    //add gener function
+    public function add_gener()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+
+        $this->form_validation->set_rules('gener', 'Gener Name', 'required|callback_check_gener_exists');
+
+        if ($this->form_validation->run() === FALSE) {
+
+            $data['gener']    = $this->staff_model->get_gener();
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/gener', $data);
+            $this->load->view('templates/admin_footer');
+        } else {
+
+            $this->staff_model->add_gener();
+            redirect('staff_geners');
+        }
+    } //end of add gener
+
+    //edit Gener function
+    public function edit_gener($id)
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+
+        $data['items'] = $this->staff_model->get_gener($id);
+
+        if (empty($data['items'])) {
+            show_404();
+        }
+
+        $data['title'] = 'Edit Gener';
+
+        $this->load->view('templates/admin_header', $data);
+        $this->load->view('staffpages/edit_gener', $data);
+        $this->load->view('templates/admin_footer');
+    } //end of edit gener
+
+    //pdate gener function
+    public function update_gener()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->staff_model->update_gener();
+        redirect('staff_geners');
+    }
+    //delete gener function
+    public function delete_gener($id)
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->staff_model->delete_gener($id);
+        redirect('staff_geners');
+    } //end of delete cinema
+    //check gener existes function
+    public function check_gener_exists($gener)
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->form_validation->set_message('check_gener_exists', 'The gener you are tryng to add is alredy inserted');
+
+        if ($this->staff_model->check_gener_exists($gener)) {
+            return true;
+        } else {
+            return false;
+        }
+    } //end of check gener exists 
+    public function ratings()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+
+        if (!file_exists(APPPATH . 'views/staffpages/rating.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        if (isset($_POST['Search'])) {
+
+            $data['rating'] = $this->staff_model->search_rating();
+
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/rating', $data);
+            $this->load->view('templates/admin_footer');
+        } else {
+
+            $data['rating'] = $this->staff_model->get_rating();
+
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/rating', $data);
+            $this->load->view('templates/admin_footer');
+        }
+    } //end of rating
+    //add rating function
+    public function add_rating()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+
+        $this->form_validation->set_rules('rating', 'rating', 'required|callback_check_rating_exists');
+        $this->form_validation->set_rules('description', 'description', 'required');
+
+        if ($this->form_validation->run() === FALSE) {
+            $data['rating'] = $this->staff_model->get_rating();
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/rating', $data);
+            $this->load->view('templates/admin_footer');
+        } else {
+
+            $this->staff_model->add_rating();
+            redirect('staff_ratings');
+        }
+    } //end of add rating
+
+    //edit ratting function
+    public function edit_rating($id)
+    {
+
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+
+        $data['items'] = $this->staff_model->get_rating($id);
+
+        if (empty($data['items'])) {
+            show_404();
+        }
+
+        $data['title'] = 'Edit rating';
+
+        $this->load->view('templates/admin_header', $data);
+        $this->load->view('staffpages/edit_rating', $data);
+        $this->load->view('templates/admin_footer');
+    } //end of eddit rating
+
+    //update rating function
+    public function update_rating()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->staff_model->update_rating();
+        redirect('staff_ratings');
+    } //end of update rating
+
+    //delete rating function
+    public function delete_rating($id)
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->staff_model->delete_rating($id);
+        redirect('staff_ratings');
+    }
+
+    //check rating exist function
+    public function check_rating_exists($rating)
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->form_validation->set_message('check_rating_exists', 'The rating you are tryng to add is alredy inserted');
+
+        if ($this->staff_model->check_rating_exists($rating)) {
+            return true;
+        } else {
+            return false;
+        }
+    } //end of check rating exists function
+
 }
