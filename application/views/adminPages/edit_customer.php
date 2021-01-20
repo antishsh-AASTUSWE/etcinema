@@ -29,15 +29,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Birth Date</label>
-                        <input type="date" class="form-control form-control-rounded" id="formGroupExampleInput" value="<?php echo $r['DBO']; ?>" name="date_of_birth" placeholder="birth date">
+                        <label for="formGroupExampleInput">User Name</label>
+                        <input type="text" class="form-control form-control-rounded" id="formGroupExampleInput" value="<?php echo $r['username']; ?>" name="username" placeholder="User Name">
                         <div class="text-danger">
                             <?php echo form_error('date_of_birth'); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="formGroupExampleInput">Phone number</label>
-                        <input type="text" class="form-control form-control-rounded" id="formGroupExampleInput" value="<?php echo $r['phone_no']; ?>" name="phone" placeholder="Phone Number">
+                        <input type="text" class="form-control form-control-rounded" id="formGroupExampleInput" value="<?php echo $r['phone']; ?>" name="phone" placeholder="Phone Number">
                         <div class="text-danger">
                             <?php echo form_error('phone'); ?>
                         </div>

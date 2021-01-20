@@ -879,14 +879,14 @@ class Admin extends CI_Controller
         if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('fname', 'First Name', 'required');
-        $this->form_validation->set_rules('lname', 'Last Name', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('phone', 'Phone Number', 'required');
-        $this->form_validation->set_rules('date_of_birth', 'Date of Birth', 'required');
-        $this->form_validation->set_rules('password', 'Old pasword', 'required|callback_check_Password');
-        $this->form_validation->set_rules('new_password', 'New pasword', 'required');
-        $this->form_validation->set_rules('password2', 'confirm pasword', 'required|matches[new_password]');
+        $this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[customer.email]');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric');
+        $this->form_validation->set_rules('username', 'User Name', 'trim|required|is_unique[customer.username]');
+        $this->form_validation->set_rules('password', 'Old pasword', 'trim|required|callback_check_Password');
+        $this->form_validation->set_rules('new_password', 'New pasword', 'trim|required|min_length[8]');
+        $this->form_validation->set_rules('password2', 'confirm pasword', 'trim|required|matches[new_password]');
 
         if ($this->form_validation->run() === FALSE) {
             $this->edit_customer($id);

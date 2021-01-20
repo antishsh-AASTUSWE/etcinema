@@ -589,7 +589,7 @@ class admin_model extends CI_Model
 
         );
 
-        $data['password'] = sha1($this->input->post('new_password'));
+        $data['password'] = md5($this->input->post('new_password'));
 
         return $this->db->where('cust_id', $id)->update('customer', $data);
     }
