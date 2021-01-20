@@ -74,12 +74,19 @@ $route['admin_delete_showtime/(:num)'] = 'admin/delete_showtime/$1';
 $route['monthly_showtime_pdfdetails'] = 'admin/monthly_showtime_pdfdetails';
 $route['weekly_showtime_pdfdetails'] = 'admin/weekly_showtime_pdfdetails';
 $route['daily_showtime_pdfdetails'] = 'admin/daily_showtime_pdfdetails';
+$route['monthly_revenu_pdfdetails'] = 'admin/monthly_revenu_pdfdetails';
+$route['weekly_revenu_pdfdetails'] = 'admin/weekly_revenu_pdfdetails';
+
+
 $route['movie_report'] = 'admin/movie_report';
 $route['revenu_report'] = 'admin/revenu_report';
 $route['showtime_report'] = 'admin/showtime_report';
 $route['cinema_revenu'] = 'admin/cinema_revenu';
 $route['movie_revenu'] = 'admin/movie_revenu';
 $route['box_office'] = 'admin/box_office';
+$route['weekly_revenu'] = 'admin/weekly_revenu';
+$route['monthly_revenu'] = 'admin/monthly_revenu';
+$route['fetch_box_office_pdfdetails'] = 'admin/fetch_box_office_pdfdetails';
 $route['showtime_pdfdetails'] = 'admin/showtime_pdfdetails';
 $route['update_user'] = 'admin/update_user';
 $route['update_rating'] = 'admin/update_rating';

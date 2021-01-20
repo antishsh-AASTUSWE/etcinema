@@ -15,32 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <?php echo form_open_multipart('movie_report'); ?>
-                <div class="form-group">
-                    <input type="text" name="movie" list="cars" placeholder="Type Movie name or Select" class="form-control form-control-rounded" />
-                    <datalist id="cars">
-                        <option>Volvo</option>
-                        <option>Saab</option>
-                        <option>Mercedes</option>
-                        <option>Audi</option>
-                    </datalist>
-                    <div class="text-danger">
-                        <?php echo form_error('movie'); ?>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Select Date</label>
-                    <input type="date" class="form-control form-control-rounded" name="date">
-                    <div class="text-danger">
-                        <?php echo form_error('date'); ?>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-light btn-round px-4 float-right"><i class="icon-lock"></i> Go</button>
-                </div>
-                </form>
-            </div>
+           
             <div class="table-responsive">
                 <table class="table align-items-center">
                     <tbody>
@@ -49,9 +24,22 @@
                             <label for="exampleInputEmail1"></label>
                             <div class="d-flex justify-content-center">
                                 <a href="<?php echo base_url() ?>box_office" class="btn btn-light btn-round px-4 float-right">
-                                    <i class="icon-lock"></i>Box Office</a>
+                                    <i class="icon-lock"></i>Tranding</a>
 
                             </div>
+                            <label for="exampleInputEmail1"></label>
+                            <div class="d-flex justify-content-center">
+                                <a href="<?php echo base_url() ?>weekly_revenu" class="btn btn-light btn-round px-4 float-right">
+                                    <i class="icon-lock"></i>This week Revenu</a>
+
+                            </div>
+                            <label for="exampleInputEmail1"></label>
+                            <div class="d-flex justify-content-center">
+                                <a href="<?php echo base_url() ?>monthly_revenu" class="btn btn-light btn-round px-4 float-right">
+                                    <i class="icon-lock"></i>This month</a>
+
+                            </div>
+
                             <label for="exampleInputEmail1"></label>
                         </tr>
 
@@ -69,55 +57,58 @@
             <div class="card-body">
 
 
-                <?php if (isset($movie_revenu)) { ?>
+                <?php if (isset($weekly_revenu)) { ?>
+                    <h4>Weekly Revenu</h4>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
 
                                     <th scope="col">Movie</th>
-                                    <th scope="col">Revenu</th>
-                                    <th scope="col">date</th>
+                                    <th scope="col">gross</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <?php foreach ($movie_revenu as $m) : ?>
+                                <?php foreach ($weekly_revenu as $m) : ?>
                                     <tr>
                                         <td><?= $m['mov_name']; ?></td>
-                                        <td><?= $m['revenu']; ?></td>
-                                        <td><?= $m['show_date']; ?></td>
+                                        <td><?= $m['gross']; ?></td>
+                                        
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <a href="<?php echo base_url(); ?>showtime_pdfdetails" class="btn btn-light btn-round px-5 ml-1">View in PDF</a>
+                        <a href="<?php echo base_url(); ?>weekly_revenu_pdfdetails" class="btn btn-light btn-round px-5 ml-1">View in PDF</a>
                     </div>
-                <?php } else if (isset($cinema_revenu)) { ?>
+                <?php } else if (isset($monthly_revenu)) { ?>
+                    <h4>Monthly revenu</h4>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
 
-                                    <th scope="col">Cinema</th>
-                                    <th scope="col">Revenu</th>
-                                    <th scope="col">date</th>
+                                    <th scope="col">movie</th>
+                                    <th scope="col">gross</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <?php foreach ($cinema_revenu as $c) : ?>
+                                <?php foreach ($monthly_revenu as $c) : ?>
                                     <tr>
                                         <td><?= $c['mov_name']; ?></td>
-                                        <td><?= $c['revenu']; ?></td>
-                                        <td><?= $c['show_date']; ?></td>
+                                        <td><?= $c['gross']; ?></td>
+                                        
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <a href="<?php echo base_url(); ?>showtime_pdfdetails" class="btn btn-light btn-round px-5 ml-1">View in PDF</a>
+                        <a href="<?php echo base_url(); ?>monthly_revenu_pdfdetails" class="btn btn-light btn-round px-5 ml-1">View in PDF</a>
                     </div>
                 <?php } else if (isset($box_office)) { ?>
+                    <h4>Tranding Movies</h4>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -141,22 +132,13 @@
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <a href="<?php echo base_url(); ?>showtime_pdfdetails" class="btn btn-light btn-round px-5 ml-1">View in PDF</a>
-                    </div>
+                        </div>
                 <?php } else {
                     echo 'No Data Found!';
                 } ?>
             </div>
 
-            <div class="row m-0 row-group text-center border-top border-light-3">
-                <div class="col-12 col-lg">
-                    <div class="p-3">
-                        <h5 class="mb-0">45.87M</h5>
-                        <small class="mb-0">Overall Visitor <span> <i class="fa fa-arrow-up"></i> 2.43%</span></small>
-                    </div>
-                </div>
-
-            </div>
+            
 
         </div>
     </div>

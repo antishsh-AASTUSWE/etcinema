@@ -1127,7 +1127,61 @@ class Admin extends CI_Controller
         $date = date('y-m-d');
         //$showtime_id = $this->uri->segment(3);
         $html_content = '<h3 align="center">Weekly Showtime</h3>';
-        $html_content .= $this->admin_model->fetch_box_office_details();
+        $html_content .= $this->admin_model->box_office_details();
+        $this->pdf->loadHtml($html_content);
+        $this->pdf->render();
+        $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
+    }
+    public function weekly_revenu()
+    {
+        if ($this->session->tempdata('role') !== 'admin') {
+            redirect('authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/adminpages/revenu_report.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        } 
+
+        $this->load->model('admin_model');
+        $data['weekly_revenu'] = $this->admin_model->weekly_revenu();
+
+        $this->load->view('templates/admin_header');
+        $this->load->view('adminpages/revenu_report', $data);
+        $this->load->view('templates/admin_footer');
+    }
+    public function monthly_revenu()
+    {
+        if ($this->session->tempdata('role') !== 'admin') {
+            redirect('authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/adminpages/revenu_report.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        } 
+
+        $this->load->model('admin_model');
+        $data['monthly_revenu'] = $this->admin_model->monthly_revenu();
+
+        $this->load->view('templates/admin_header');
+        $this->load->view('adminpages/revenu_report', $data);
+        $this->load->view('templates/admin_footer');
+    }
+    public function monthly_revenu_pdfdetails()
+    {
+        $date = date('y-m-d');
+        //$showtime_id = $this->uri->segment(3);
+        $html_content = '<h3 align="center">monthly Revenu</h3>';
+        $html_content .= $this->admin_model->fetch_monthly_revenu_details();
+        $this->pdf->loadHtml($html_content);
+        $this->pdf->render();
+        $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
+    }
+    public function weekly_revenu_pdfdetails()
+    {
+        $date = date('y-m-d');
+        //$showtime_id = $this->uri->segment(3);
+        $html_content = '<h3 align="center">weekly Revenu</h3>';
+        $html_content .= $this->admin_model->fetch_weekly_revenu_details();
         $this->pdf->loadHtml($html_content);
         $this->pdf->render();
         $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));

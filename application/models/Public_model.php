@@ -315,7 +315,7 @@ class Public_model extends CI_Model
     public function booking_sms($id)
     {
         //echo $id;
-        $this->db->select('*');
+        $this->db->select('booking_info.price as booking_price,bank_name,account_name,account_number');
         $this->db->from('booking_info');
         $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
         $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
@@ -341,7 +341,7 @@ class Public_model extends CI_Model
 
                 PAYMENT DETAIL
 
-                Amount: " . $row->price . " Birr
+                Amount: " . $row->booking_price . " Birr
                 -----
                 " . $row->bank_name . "
                 " . $row->account_name . "

@@ -261,7 +261,7 @@
             <?php if ($this->session->tempdata('role') == 'admin' || $this->session->tempdata('role') == 'staff' ) {
 ?>
             <li class="dropdown-divider"></li>
-            <li class="dropdown-item"><a href="<?php echo base_url(); ?>logout"> <i class="icon-power mr-2"></i> Logout</a></li>
+            <li class="dropdown-item"><a href="<?php echo base_url(); ?>authenticate_login"> <i class="icon-power mr-2"></i> Logout</a></li>
          <?php }else{?>
 <li class="dropdown-divider"></li>
 <li class="dropdown-item"><a href="<?php echo base_url(); ?>customer_logout"> <i class="icon-power mr-2"></i> Logout</a></li>
