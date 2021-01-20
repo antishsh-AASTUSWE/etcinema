@@ -138,6 +138,12 @@ $route['staff_movies'] = 'staff/movies';
 $route['staff_Customer'] = 'staff/customer';
 $route['staff_seat'] = 'staff/seat';
 $route['staff_advert'] = 'staff/advert';
+$route['staff_profile'] = 'staff/staff_profile';
+$route['update_staf_profile'] = 'staff/update_staf_profile';
+$route['change_staff_pass'] = 'staff/change_staff_pass';
+
+
+
 
 //customer login routes
 $route['change_password'] = 'login/change_password';
