@@ -162,6 +162,7 @@ class admin_model extends CI_Model
         $this->db->from('showtime');
         $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
         $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+        $this->db->order_by('show_time', 'ASC');
         $query = $this->db->get();
 
         return $query->result_array();
@@ -241,6 +242,7 @@ class admin_model extends CI_Model
         $this->db->from('movie');
         $this->db->join('geners', 'movie.mov_gener=geners.gener_id');
         $this->db->join('ratings', 'movie.mov_ratting=ratings.rating_id');
+        $this->db->order_by('mov_realse_date', 'DESC');
         $query = $this->db->get();
 
         return $query->result_array();
@@ -585,7 +587,7 @@ class admin_model extends CI_Model
             'last_name' => $this->input->post('lname'),
             'email' => $this->input->post('email'),
             'phone_no' => $this->input->post('phone'),
-            'DBO' => $this->input->post('date_of_birth'),
+            'username' => $this->input->post('username'),
 
         );
 

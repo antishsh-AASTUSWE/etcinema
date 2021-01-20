@@ -28,6 +28,7 @@ class Staff_model extends CI_Model
         $this->db->from('movie');
         $this->db->join('geners','movie.mov_gener=geners.gener_id');
         $this->db->join('ratings','movie.mov_ratting=ratings.rating_id');
+        $this->db->order_by('mov_realse_date', 'DESC');
         $query = $this->db->get();
         
         return $query->result_array();
@@ -130,6 +131,7 @@ public function deleteMovie($id){
         $this->db->from('showtime');
         $this->db->join('movie','movie.movie_id=showtime.mov_id');
         $this->db->join('cinema','cinema.cinema_id=showtime.cinema_id');
+        $this->db->order_by('show_time', 'DESC');
         $query = $this->db->get();
         
         return $query->result_array();
@@ -190,7 +192,7 @@ public function deleteMovie($id){
         $this->db->like('cust_id', $data['Search'])
         ->or_like('first_name', $data['Search'])
         ->or_like('last_name',  $data['Search'])
-        ->or_like('DBO',  $data['Search'])
+        ->or_like('username',  $data['Search'])
         ->or_like('phone_no',  $data['Search'])
         ->or_like('Email',  $data['Search']);
         $this->db->order_by('cust_id', 'ASC');
@@ -223,7 +225,7 @@ public function add_customer()
         'last_name'=>$this->input->post('lname'),             
         'email'=>$this->input->post('email'),
         'phone_no'=>$this->input->post('phone'),
-        'DBO'=>$this->input->post('date_of_birth'),
+        'username'=>$this->input->post('username'),
                    
   );
   
@@ -240,7 +242,7 @@ public function update_customer($id)
         'last_name'=>$this->input->post('lname'),             
         'email'=>$this->input->post('email'),
         'phone_no'=>$this->input->post('phone'),
-        'DBO'=>$this->input->post('date_of_birth'),
+        'username'=>$this->input->post('username'),
                    
   );
   

@@ -66,17 +66,16 @@ class Staff extends CI_Controller
             redirect('authenticate_login');
         }
 
-        $this->form_validation->set_rules('title', 'title', 'required');
-
-        $this->form_validation->set_rules('rating_id', 'rating id', 'required');
-        $this->form_validation->set_rules('trailor', 'trailor', 'required');
-        $this->form_validation->set_rules('gener_id', 'gener id', 'required');
-        $this->form_validation->set_rules('plot', 'plot', 'required');
-        $this->form_validation->set_rules('runningtime', 'runningtime', 'required');
-        $this->form_validation->set_rules('realsedate', 'realsedate', 'required');
-        $this->form_validation->set_rules('language', 'language', 'required');
-        $this->form_validation->set_rules('staring', 'staring', 'required');
-        $this->form_validation->set_rules('subtitle', 'subtitle', 'required');
+        $this->form_validation->set_rules('title', 'title', 'trim|required');
+        $this->form_validation->set_rules('rating_id', 'rating id', 'trim|required');
+        $this->form_validation->set_rules('trailor', 'trailor', 'trim|required');
+        $this->form_validation->set_rules('gener_id', 'gener id', 'trim|required');
+        $this->form_validation->set_rules('plot', 'plot', 'trim|required');
+        $this->form_validation->set_rules('runningtime', 'runningtime', 'trim|required');
+        $this->form_validation->set_rules('realsedate', 'realsedate', 'trim|required');
+        $this->form_validation->set_rules('language', 'language', 'trim|required');
+        $this->form_validation->set_rules('staring', 'staring', 'trim|required');
+        $this->form_validation->set_rules('subtitle', 'subtitle', 'trim|required');
         if (empty($_FILES['userfile']['name']))
         {
           $this->form_validation->set_rules('userfile', 'Poster', 'required');
@@ -141,17 +140,16 @@ class Staff extends CI_Controller
             redirect('authenticate_login');
         }
 
-        $this->form_validation->set_rules('title', 'title', 'required');
-
-        $this->form_validation->set_rules('rating_id', 'rating id', 'required');
-        $this->form_validation->set_rules('trailor', 'trailor', 'required');
-        $this->form_validation->set_rules('gener_id', 'gener id', 'required');
-        $this->form_validation->set_rules('plot', 'plot', 'required');
-        $this->form_validation->set_rules('runningtime', 'running time', 'required');
-        $this->form_validation->set_rules('realsedate', 'realse date', 'required');
-        $this->form_validation->set_rules('language', 'language', 'required');
-        $this->form_validation->set_rules('staring', 'staring', 'required');
-        $this->form_validation->set_rules('subtitle', 'subtitle', 'required');
+        $this->form_validation->set_rules('title', 'title', 'trim|required');
+        $this->form_validation->set_rules('rating_id', 'rating id', 'trim|required');
+        $this->form_validation->set_rules('trailor', 'trailor', 'trim|required');
+        $this->form_validation->set_rules('gener_id', 'gener id', 'trim|required');
+        $this->form_validation->set_rules('plot', 'plot', 'trim|required');
+        $this->form_validation->set_rules('runningtime', 'running time', 'trim|required');
+        $this->form_validation->set_rules('realsedate', 'realse date', 'trim|required');
+        $this->form_validation->set_rules('language', 'language', 'trim|required');
+        $this->form_validation->set_rules('staring', 'staring', 'trim|required');
+        $this->form_validation->set_rules('subtitle', 'subtitle', 'trim|required');
 
 
 
@@ -227,11 +225,11 @@ class Staff extends CI_Controller
         if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('movie', 'movie', 'required');
-        $this->form_validation->set_rules('cinema', 'cinema', 'required');
-        $this->form_validation->set_rules('date', 'date','required');
-        $this->form_validation->set_rules('time', 'time','required');
-        $this->form_validation->set_rules('price', 'price','required');
+        $this->form_validation->set_rules('movie', 'movie', 'trim|required');
+        $this->form_validation->set_rules('cinema', 'cinema', 'trim|required');
+        $this->form_validation->set_rules('date', 'date','trim|required');
+        $this->form_validation->set_rules('time', 'time','trim|required');
+        $this->form_validation->set_rules('price', 'price','trim|required');
         
 
 
@@ -269,11 +267,11 @@ class Staff extends CI_Controller
         if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('movie', 'movie', 'required');
-        $this->form_validation->set_rules('cinema', 'cinema', 'required');
-        $this->form_validation->set_rules('date', 'date','required');
-        $this->form_validation->set_rules('time', 'time','required');
-        $this->form_validation->set_rules('price', 'price','required');
+        $this->form_validation->set_rules('movie', 'movie', 'trim|required');
+        $this->form_validation->set_rules('cinema', 'cinema', 'trim|required');
+        $this->form_validation->set_rules('date', 'date','trim|required');
+        $this->form_validation->set_rules('time', 'time','trim|required');
+        $this->form_validation->set_rules('price', 'price','trim|required');
         
         if ($this->form_validation->run() === FALSE) {
             $this->edit_showtime($id);
@@ -327,13 +325,13 @@ class Staff extends CI_Controller
         if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
-    $this->form_validation->set_rules('fname', 'First Name', 'required');
-    $this->form_validation->set_rules('lname', 'Last Name', 'required');
-	$this->form_validation->set_rules('email', 'Email','required|callback_check_email');
-	$this->form_validation->set_rules('phone', 'Phone Number','required|callback_check_phone');
-	$this->form_validation->set_rules('date_of_birth', 'Date of Birth','required');
-	$this->form_validation->set_rules('password', 'pasword','required');
-	$this->form_validation->set_rules('password2', 'confirm pasword','required|matches[password]');
+    $this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha');
+    $this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha');
+	$this->form_validation->set_rules('email', 'Email','trim|required|valid_email|callback_check_email');
+	$this->form_validation->set_rules('phone', 'Phone Number','trim|required|numeric|min_length[10]|callback_check_phone');
+	$this->form_validation->set_rules('username', 'User Name','trim|required');
+	$this->form_validation->set_rules('password', 'pasword','trim|required|min_length[8]');
+	$this->form_validation->set_rules('password2', 'confirm pasword','trim|required|min_length[8]|matches[password]');
 
         
 
@@ -372,14 +370,14 @@ class Staff extends CI_Controller
         if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('fname', 'First Name', 'required');
-    $this->form_validation->set_rules('lname', 'Last Name', 'required');
-	$this->form_validation->set_rules('email', 'Email','required');
-	$this->form_validation->set_rules('phone', 'Phone Number','required');
-	$this->form_validation->set_rules('date_of_birth', 'Date of Birth','required');
-	$this->form_validation->set_rules('password', 'Old pasword','required|callback_check_Password');
-	$this->form_validation->set_rules('new_password', 'New pasword','required');
-	$this->form_validation->set_rules('password2', 'confirm pasword','required|matches[new_password]');
+        $this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha');
+    $this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha');
+	$this->form_validation->set_rules('email', 'Email','trim|required|valid_email');
+	$this->form_validation->set_rules('phone', 'Phone Number','trim|required|numeric|min_length[10]');
+	$this->form_validation->set_rules('username', 'User Name','trim|required');
+	$this->form_validation->set_rules('password', 'Old pasword','trim|required|min_length[8]|callback_check_Password');
+	$this->form_validation->set_rules('new_password', 'New pasword','trim|required|min_length[8]');
+	$this->form_validation->set_rules('password2', 'confirm pasword','trim|required|min_length[8]|matches[new_password]');
         
         if ($this->form_validation->run() === FALSE) {
             $this->edit_customer($id);
@@ -490,11 +488,11 @@ class Staff extends CI_Controller
             redirect('authenticate_login');
         }
        
-        $this->form_validation->set_rules('name', 'First Name', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('phone', 'Phone Number', 'required');
-        $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('password', 'pasword', 'required|callback_check_Password');
+        $this->form_validation->set_rules('name', 'First Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique(user.email)');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric|min_length[10]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required');
+        $this->form_validation->set_rules('password', 'pasword', 'trim|required|min_length[8]|callback_check_Password');
         
         if ($this->form_validation->run() === FALSE) {
             $this->staff_profile();
@@ -528,9 +526,9 @@ class Staff extends CI_Controller
         }
        
         
-    $this->form_validation->set_rules('password', 'Old pasword','required|callback_check_Password');
-	$this->form_validation->set_rules('new_password', 'New pasword','required');
-	$this->form_validation->set_rules('password2', 'confirm pasword','required|matches[new_password]');
+    $this->form_validation->set_rules('password', 'Old pasword','trim|required|min_length[8]|callback_check_Password');
+	$this->form_validation->set_rules('new_password', 'New pasword','trim|required|min_length[8]');
+	$this->form_validation->set_rules('password2', 'confirm pasword','trim|required|min_length[8]|matches[new_password]');
 
         
         if ($this->form_validation->run() === FALSE) {
@@ -681,7 +679,7 @@ class Staff extends CI_Controller
             redirect('authenticate_login');
         }
 
-        $this->form_validation->set_rules('gener', 'Gener Name', 'required|callback_check_gener_exists');
+        $this->form_validation->set_rules('gener', 'Gener Name', 'trim|required|callback_check_gener_exists');
 
         if ($this->form_validation->run() === FALSE) {
 
@@ -781,8 +779,8 @@ class Staff extends CI_Controller
             redirect('authenticate_login');
         }
 
-        $this->form_validation->set_rules('rating', 'rating', 'required|callback_check_rating_exists');
-        $this->form_validation->set_rules('description', 'description', 'required');
+        $this->form_validation->set_rules('rating', 'rating', 'trim|required|callback_check_rating_exists');
+        $this->form_validation->set_rules('description', 'description', 'trim|required|alpha');
 
         if ($this->form_validation->run() === FALSE) {
             $data['rating'] = $this->staff_model->get_rating();
