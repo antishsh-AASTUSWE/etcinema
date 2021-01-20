@@ -181,47 +181,31 @@
       <div class="brand-logo">
         <a href="<?php echo base_url() ?>staff/index">
           <img src="<?php echo base_url() ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-          <h5 class="logo-text">Etcinema Admin</h5>
+          <h5 class="logo-text">Ethcinema User</h5>
         </a>
       </div>
       <ul class="sidebar-menu do-nicescrol">
         <li class="sidebar-header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url() ?>staff_dashboard">
+          <a href="<?php echo base_url() ?>user_dashboard">
             <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff_showtime">
-            <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
+          <a href="<?php echo base_url() ?>user_booking">
+            <i class="zmdi zmdi-account-calendar"></i> <span>My Bookings</span>
           </a>
         </li>
 
         <li>
-          <a href="<?php echo base_url() ?>staff_movies">
-            <i class="zmdi zmdi-movie"></i> <span>Movies</span>
+          <a href="<?php echo base_url() ?>user_profile">
+            <i class="zmdi zmdi zmdi-account"></i> <span>Profile</span>
           </a>
         </li>
 
-        <li>
-          <a href="<?php echo base_url() ?>staff_Customer">
-            <i class="zmdi zmdi zmdi-account"></i> <span>staff_Customer</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() ?>staff_seat">
-            <i class="zmdi zmdi-seat"></i> <span>Seat</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() ?>staff_advert">
-            <i class="zmdi zmdi-notifications-active"></i> <span>Advert</span>
-          </a>
-        </li>
-
+       
+        
 
 
       </ul>

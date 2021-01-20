@@ -553,7 +553,7 @@ class admin_model extends CI_Model
         $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
         $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
         //$this->db->join('seat', 'seat.seat_id=booking_info.seat_id');
-        $this->db->order_by('booking_id', 'ASC');
+        //$this->db->order_by('booking_id', 'ASC');
         $query = $this->db->get();
 
         return $query->result_array();
