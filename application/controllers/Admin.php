@@ -73,8 +73,8 @@ class Admin extends CI_Controller
             redirect('authenticate_login');
         }
 
-        $this->form_validation->set_rules('rating', 'rating', 'required|callback_check_rating_exists');
-        $this->form_validation->set_rules('description', 'description', 'required');
+        $this->form_validation->set_rules('rating', 'rating', 'trim|required|alpha|callback_check_rating_exists');
+        $this->form_validation->set_rules('description', 'description', 'trim|required|alpha');
 
         if ($this->form_validation->run() === FALSE) {
             $data['rating'] = $this->admin_model->get_rating();
