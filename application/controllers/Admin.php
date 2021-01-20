@@ -73,7 +73,7 @@ class Admin extends CI_Controller
             redirect('authenticate_login');
         }
 
-        $this->form_validation->set_rules('rating', 'rating', 'trim|required|alpha|callback_check_rating_exists');
+        $this->form_validation->set_rules('rating', 'rating', 'trim|required|callback_check_rating_exists');
         $this->form_validation->set_rules('description', 'description', 'trim|required|alpha');
 
         if ($this->form_validation->run() === FALSE) {
@@ -179,19 +179,19 @@ class Admin extends CI_Controller
             redirect('authenticate_login');
         }
 
-        $this->form_validation->set_rules('title', 'Title', 'required|callback_check_movie_exists');
+        $this->form_validation->set_rules('title', 'Title', 'trim|required|callback_check_movie_exists');
 
-        $this->form_validation->set_rules('rating_id', 'rating id', 'required');
-        $this->form_validation->set_rules('trailor', 'trailor', 'required');
-        $this->form_validation->set_rules('gener_id', 'gener id', 'required');
-        $this->form_validation->set_rules('plot', 'plot', 'required');
-        $this->form_validation->set_rules('runningtime', 'runningtime', 'required');
-        $this->form_validation->set_rules('realsedate', 'realsedate', 'required');
-        $this->form_validation->set_rules('language', 'language', 'required');
-        $this->form_validation->set_rules('staring', 'staring', 'required');
-        $this->form_validation->set_rules('mov_synopsis', 'SYNOPSIS', 'required');
+        $this->form_validation->set_rules('rating_id', 'rating id', 'trim|required');
+        $this->form_validation->set_rules('trailor', 'trailor', 'trim|required');
+        $this->form_validation->set_rules('gener_id', 'gener id', 'trim|required');
+        $this->form_validation->set_rules('plot', 'plot', 'trim|required');
+        $this->form_validation->set_rules('runningtime', 'runningtime', 'trim|required');
+        $this->form_validation->set_rules('realsedate', 'realsedate', 'trim|required');
+        $this->form_validation->set_rules('language', 'language', 'trim|required');
+        $this->form_validation->set_rules('staring', 'staring', 'trim|required');
+        $this->form_validation->set_rules('mov_synopsis', 'SYNOPSIS', 'trim|required');
         if (empty($_FILES['userfile']['name'])) {
-            $this->form_validation->set_rules('userfile', 'Poster', 'required');
+            $this->form_validation->set_rules('userfile', 'Poster', 'trim|required');
         }
 
 
@@ -269,17 +269,17 @@ class Admin extends CI_Controller
             redirect('authenticate_login');
         }
 
-        $this->form_validation->set_rules('title', 'title', 'required');
+        $this->form_validation->set_rules('title', 'title', 'trim|required');
 
-        $this->form_validation->set_rules('rating_id', 'rating id', 'required');
-        $this->form_validation->set_rules('trailor', 'trailor', 'required');
-        $this->form_validation->set_rules('gener_id', 'gener id', 'required');
-        $this->form_validation->set_rules('plot', 'plot', 'required');
-        $this->form_validation->set_rules('runningtime', 'running time', 'required');
-        $this->form_validation->set_rules('realsedate', 'realse date', 'required');
-        $this->form_validation->set_rules('language', 'language', 'required');
-        $this->form_validation->set_rules('staring', 'staring', 'required');
-        $this->form_validation->set_rules('mov_synopsis', 'Synopsis', 'required');
+        $this->form_validation->set_rules('rating_id', 'rating id', 'trim|required');
+        $this->form_validation->set_rules('trailor', 'trailor', 'trim|required');
+        $this->form_validation->set_rules('gener_id', 'gener id', 'trim|required');
+        $this->form_validation->set_rules('plot', 'plot', 'trim|required');
+        $this->form_validation->set_rules('runningtime', 'running time', 'trim|required');
+        $this->form_validation->set_rules('realsedate', 'realse date', 'trim|required');
+        $this->form_validation->set_rules('language', 'language', 'trim|required');
+        $this->form_validation->set_rules('staring', 'staring', 'trim|required');
+        $this->form_validation->set_rules('mov_synopsis', 'Synopsis', 'trim|required');
 
 
 
@@ -365,7 +365,7 @@ class Admin extends CI_Controller
         if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('cinema_name', 'Cinema Name', 'required|callback_check_cinema_exists');
+        $this->form_validation->set_rules('cinema_name', 'Cinema Name', 'trim|required|callback_check_cinema_exists');
         if ($this->form_validation->run() === FALSE) {
             /* $query = $this->db->get("cinema");
 			$data['cinema'] = $query->result(); */
@@ -467,7 +467,7 @@ class Admin extends CI_Controller
             redirect('authenticate_login');
         }
 
-        $this->form_validation->set_rules('gener', 'Gener Name', 'required|callback_check_gener_exists');
+        $this->form_validation->set_rules('gener', 'Gener Name', 'trim|required|callback_check_gener_exists');
 
         if ($this->form_validation->run() === FALSE) {
 
@@ -572,11 +572,11 @@ class Admin extends CI_Controller
         if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('movie', 'movie', 'required');
-        $this->form_validation->set_rules('cinema', 'cinema', 'required');
-        $this->form_validation->set_rules('date', 'date', 'required');
-        $this->form_validation->set_rules('time', 'time', 'required');
-        $this->form_validation->set_rules('price', 'price', 'required');
+        $this->form_validation->set_rules('movie', 'movie', 'trim|required');
+        $this->form_validation->set_rules('cinema', 'cinema', 'trim|required');
+        $this->form_validation->set_rules('date', 'date', 'trim|required');
+        $this->form_validation->set_rules('time', 'time', 'trim|required');
+        $this->form_validation->set_rules('price', 'price', 'trim|required');
 
 
 
@@ -614,11 +614,11 @@ class Admin extends CI_Controller
         if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('movie', 'movie', 'required');
-        $this->form_validation->set_rules('cinema', 'cinema', 'required');
-        $this->form_validation->set_rules('date', 'date', 'required');
-        $this->form_validation->set_rules('time', 'time', 'required');
-        $this->form_validation->set_rules('price', 'price', 'required');
+        $this->form_validation->set_rules('movie', 'movie', 'trim|required');
+        $this->form_validation->set_rules('cinema', 'cinema', 'trim|required');
+        $this->form_validation->set_rules('date', 'date', 'trim|required');
+        $this->form_validation->set_rules('time', 'time', 'trim|required');
+        $this->form_validation->set_rules('price', 'price', 'trim|required');
 
         if ($this->form_validation->run() === FALSE) {
             $this->edit_showtime($id);
@@ -672,13 +672,13 @@ class Admin extends CI_Controller
         if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
-        $this->form_validation->set_rules('username', 'Username', 'required|callback_check_username_exists');
-        $this->form_validation->set_rules('password', 'password', 'required');
-        $this->form_validation->set_rules('password2', 'Confirm password', 'matches[password]');
-        $this->form_validation->set_rules('role', 'Role', 'required');
-        $this->form_validation->set_rules('status', 'Status', 'required');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_check_email_exists');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|callback_check_username_exists');
+        $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[8]');
+        $this->form_validation->set_rules('password2', 'Confirm password', 'trim|required|min_length[8]|matches[password]');
+        $this->form_validation->set_rules('role', 'Role', 'trim|required');
+        $this->form_validation->set_rules('status', 'Status', 'trim|required');
 
         if ($this->form_validation->run() === false) {
             $this->load->view('templates/admin_header');
@@ -718,8 +718,8 @@ class Admin extends CI_Controller
         if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('password', 'password', 'required|callback_check_password_exists');
-        $this->form_validation->set_rules('password2', 'Confirm password', 'matches[password]');
+        $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[8]|callback_check_password_exists');
+        $this->form_validation->set_rules('password2', 'Confirm password', 'trim|required|min_length[8]|matches[password]');
         if ($this->form_validation->run() === false) {
             $this->edit_user($this->input->post('id'));
         } else {
@@ -834,13 +834,13 @@ class Admin extends CI_Controller
         if ($this->session->tempdata('role') !== 'admin') {
             redirect('authenticate_login');
         }
-        $this->form_validation->set_rules('fname', 'First Name', 'required');
-        $this->form_validation->set_rules('lname', 'Last Name', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|callback_check_email');
-        $this->form_validation->set_rules('phone', 'Phone Number', 'required|callback_check_phone');
-        $this->form_validation->set_rules('date_of_birth', 'Date of Birth', 'required');
-        $this->form_validation->set_rules('password', 'pasword', 'required');
-        $this->form_validation->set_rules('password2', 'confirm pasword', 'required|matches[password]');
+        $this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_check_email');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric|min_length[10]|callback_check_phone');
+        $this->form_validation->set_rules('username', 'User Name', 'trim|required|is_unique(customer.username)');
+        $this->form_validation->set_rules('password', 'pasword', 'trim|required|min_length[8]');
+        $this->form_validation->set_rules('password2', 'confirm pasword', 'trim|required|min_length[8]|matches[password]');
 
 
 
@@ -884,9 +884,9 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[customer.email]');
         $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric');
         $this->form_validation->set_rules('username', 'User Name', 'trim|required|is_unique[customer.username]');
-        $this->form_validation->set_rules('password', 'Old pasword', 'trim|required|callback_check_Password');
+        $this->form_validation->set_rules('password', 'Old pasword', 'trim|required|min_length[8]|callback_check_Password');
         $this->form_validation->set_rules('new_password', 'New pasword', 'trim|required|min_length[8]');
-        $this->form_validation->set_rules('password2', 'confirm pasword', 'trim|required|matches[new_password]');
+        $this->form_validation->set_rules('password2', 'confirm pasword', 'trim|required|min_length[8]|matches[new_password]');
 
         if ($this->form_validation->run() === FALSE) {
             $this->edit_customer($id);
@@ -911,7 +911,7 @@ class Admin extends CI_Controller
     {
         $this->form_validation->set_message('check_Password', 'the password is incorect please try agin');
 
-        $password = sha1($this->input->post('password'));
+        $password = md5($this->input->post('password'));
 
         if ($this->admin_model->check_Password($password)) {
             return true;

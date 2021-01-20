@@ -144,8 +144,8 @@ class Login extends CI_Controller
 			show_404();
 		}
 
-		$this->form_validation->set_rules('email', 'Email', 'required');
-		$this->form_validation->set_rules('password', 'password', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'password', 'trim|required|min_length[8]');
 
 
 		if ($this->form_validation->run() === false) {
@@ -235,9 +235,9 @@ class Login extends CI_Controller
 			show_404();
 		}
 
-		$this->form_validation->set_rules('old_password', 'Old Password', 'required');
-		$this->form_validation->set_rules('new_password', 'New password', 'required');
-		$this->form_validation->set_rules('password2', 'Confirm password', 'matches[new_password]');
+		$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|min_length[8]');
+		$this->form_validation->set_rules('new_password', 'New password', 'trim|required|min_length[8]');
+		$this->form_validation->set_rules('password2', 'Confirm password', 'trim|required|min_length[8]|matches[new_password]');
 		if ($this->form_validation->run() === false) {
 			$this->load->view('logintemplates/public_login_header');
 			$this->load->view('profilepage/change_password');

@@ -231,8 +231,8 @@ class Publicpages extends CI_Controller
 	public function create_comment($movie_id)
 	{
 
-		$this->form_validation->set_rules('title', 'Title', 'required');
-		$this->form_validation->set_rules('message', 'Message', 'required');
+		$this->form_validation->set_rules('title', 'Title', 'trim|required|alpha');
+		$this->form_validation->set_rules('message', 'Message', 'trim|required|alpha');
 
 		if ($this->form_validation->run() === FALSE) {
 			$data['movie_detail'] = $this->public_model->get_movie($movie_id);
@@ -256,9 +256,9 @@ class Publicpages extends CI_Controller
 	public function payment($id )
 	{
 	
-			$this->form_validation->set_rules('transaction_no', 'transaction number', 'required');
-			$this->form_validation->set_rules('depositer_name', 'depositer name', 'required');
-			$this->form_validation->set_rules('payment_date', 'payment date', 'required');
+			$this->form_validation->set_rules('transaction_no', 'transaction number', 'trim|required');
+			$this->form_validation->set_rules('depositer_name', 'depositer name', 'trim|required');
+			$this->form_validation->set_rules('payment_date', 'payment date', 'trim|required');
 		
 		if ($this->form_validation->run() === FALSE) {
 			$data['movie'] = $this->public_model->get_booking($id);

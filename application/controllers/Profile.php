@@ -91,12 +91,12 @@ $this->user_booking();
             redirect('customer_signin');
         }
        
-        $this->form_validation->set_rules('fname', 'First Name', 'required');
-        $this->form_validation->set_rules('lname', 'Last Name', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('phone', 'Phone Number', 'required');
-        $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('password', 'pasword', 'required|callback_check_Password');
+        $this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|numeric|min_length[10]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique');
+        $this->form_validation->set_rules('password', 'pasword', 'trim|required|min_length[8]|callback_check_Password');
         
         if ($this->form_validation->run() === FALSE) {
             $this->user_profile();
