@@ -10,7 +10,7 @@
     <title>Etcinema Admin -</title>
 
     <!--favicon-->
-    <link rel="icon" href="<?php echo base_url() ?>assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo base_url() ?>assets/images/logo-icon.png" type="image/x-icon">
     <!-- Bootstrap core CSS-->
     <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- animate CSS-->

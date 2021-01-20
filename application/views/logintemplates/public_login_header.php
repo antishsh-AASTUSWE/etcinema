@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>publicassets/css/nice-select.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>publicassets/css/main.css">
 
-    <link rel="shortcut icon" href="<?php echo base_url() ?>publicassets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo base_url() ?>publicassets/images/logo/logo.png" type="image/x-icon">
 
     <title>Etcinema - Online Ticket Booking Website HTML Template</title>
 

@@ -12,7 +12,7 @@
   <!-- <link href="<?php echo base_url() ?>assets/css/pace.min.css" rel="stylesheet"/>
   <script src="<?php echo base_url() ?>assets/js/pace.min.js"></script> -->
   <!--favicon-->
-  <link rel="icon" href="<?php echo base_url() ?>assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="<?php echo base_url() ?>assets/images/logo-icon.png" type="image/x-icon">
   <!-- Vector CSS -->
   <link href="<?php echo base_url() ?>assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
   <!-- simplebar CSS-->
@@ -29,13 +29,9 @@
   <!-- Custom Style-->
   <link href="<?php echo base_url() ?>assets/css/app-style.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/dataTables/dataTables.css" />
-
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/seat.css" />
-
-
-
+  
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foopicker.js"></script>
-
   <script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
@@ -226,8 +222,8 @@
           </a>
         </li>
 
-       
-        
+
+
 
 
       </ul>
@@ -249,20 +245,20 @@
             <i class="icon-menu menu-icon"></i>
           </a>
         </li>
-        <?php if ($this->session->tempdata('role') == 'admin' || $this->session->tempdata('role') == 'staff' ) {
-?>
-<li class="nav-item">
-          <form class="search-bar" method="POST">
-            <input type="text" class="form-control" name="Search" placeholder="Enter keywords">
-            <a href="javascript:void();"><i class="icon-magnifier"></i></a>
-          </form>
-        </li>
-<?php }?>
-        
+        <?php if ($this->session->tempdata('role') == 'admin' || $this->session->tempdata('role') == 'staff') {
+        ?>
+          <li class="nav-item">
+            <form class="search-bar" method="POST">
+              <input type="text" class="form-control" name="Search" placeholder="Enter keywords">
+              <a href="javascript:void();"><i class="icon-magnifier"></i></a>
+            </form>
+          </li>
+        <?php } ?>
+
       </ul>
 
       <ul class="navbar-nav align-items-center right-nav-link">
-        
+
         <li class="nav-item">
           <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
             <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
@@ -279,15 +275,15 @@
                 </div>
               </a>
             </li>
-            <?php if ($this->session->tempdata('role') == 'admin' || $this->session->tempdata('role') == 'staff' ) {
-?>
-            <li class="dropdown-divider"></li>
-            <li class="dropdown-item"><a href="<?php echo base_url(); ?>authenticate_login"> <i class="icon-power mr-2"></i> Logout</a></li>
-         <?php }else{?>
-<li class="dropdown-divider"></li>
-<li class="dropdown-item"><a href="<?php echo base_url(); ?>customer_logout"> <i class="icon-power mr-2"></i> Logout</a></li>
+            <?php if ($this->session->tempdata('role') == 'admin' || $this->session->tempdata('role') == 'staff') {
+            ?>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><a href="<?php echo base_url(); ?>logout"> <i class="icon-power mr-2"></i> Logout</a></li>
+            <?php } else { ?>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><a href="<?php echo base_url(); ?>customer_logout"> <i class="icon-power mr-2"></i> Logout</a></li>
 
-      <?php   }?>
+            <?php   } ?>
           </ul>
         </li>
       </ul>

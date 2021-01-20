@@ -126,7 +126,7 @@ $route['admin_dashboard'] = 'admin';
 
 //admin login routes
 $route['authenticate_login'] = 'login/authenticate_login';
-
+$route['logout'] = 'login/logout';
 //staff route
 $route['staff_edit_showtime/(:num)'] = 'staff/edit_showtime/$1';
 $route['staff_delete_showtime/(:num)'] = 'staff/delete_showtime/$1';
