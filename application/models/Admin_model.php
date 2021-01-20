@@ -858,14 +858,7 @@ class admin_model extends CI_Model
         return json_encode($data);
     }
     public function box_office(){
-    /*     $query = $this->db->query("SELECT *,SUM(booking_info.price) as gross
-        FROM booking_info 
-        join showtime ON showtime.show_id=booking_info.show_id
-        join movie ON movie.movie_id=showtime.mov_id
-        
-        ORDER BY `gross` DESC "
-      
-        ); */
+   
         $query = $this->db->query("SELECT showtime.mov_id,mov_name, SUM(booking_info.price) as gross 
         FROM booking_info
         join showtime ON showtime.show_id=booking_info.show_id
@@ -875,51 +868,98 @@ class admin_model extends CI_Model
       
         );
 
-       /*  SELECT mov_id SUM(price) 
-FROM showtime
-GROUP BY mov_id; 
+     
+        return $query->result_array();
+    }
+    public function weekly_revenu()
+    {
+        $query = $this->db->query("SELECT showtime.mov_id,mov_name, SUM(booking_info.price) as gross 
+        FROM booking_info
+        join showtime ON showtime.show_id=booking_info.show_id
+        join movie ON movie.movie_id=showtime.mov_id
+        WHERE YEARWEEK(booked_date) = YEARWEEK(NOW()) 
+        GROUP BY mov_id ORDER by gross DESC"
+      
+        );
 
-SELECT show_id, mov_id, SUM(price) 
-FROM showtime
-GROUP BY mov_id;
-*/
+        
+
+
+        return $query->result_array();
+    }
+    public function monthly_revenu()
+    {
+        $query = $this->db->query("SELECT showtime.mov_id,mov_name, SUM(booking_info.price) as gross 
+        FROM booking_info
+        join showtime ON showtime.show_id=booking_info.show_id
+        join movie ON movie.movie_id=showtime.mov_id
+        WHERE MONTH(booked_date) = MONTH(NOW())
+        GROUP BY mov_id ORDER by gross DESC"
+      
+        );
         
         return $query->result_array();
     }
-    function box_office_details()
-	{
-        $data = $this->db->query("SELECT *
-        FROM showtime 
+    function fetch_monthly_revenu_details()
+    {
+        $data = $this->db->query("SELECT showtime.mov_id,mov_name, SUM(booking_info.price) as gross 
+        FROM booking_info
+        join showtime ON showtime.show_id=booking_info.show_id
         join movie ON movie.movie_id=showtime.mov_id
-        join cinema ON cinema.cinema_id=showtime.cinema_id
-        WHERE YEARWEEK(show_date) = YEARWEEK(NOW()) ORDER BY `show_date` DESC ");
+        WHERE MONTH(booked_date) = MONTH(NOW())
+        GROUP BY mov_id ORDER by gross DESC"
+      
+        );
 
-        
-        
-		$output = '<table width="100%" cellspacing="5" cellpadding="5">';
-		foreach($data->result() as $row)
-		{
-			$output .= '
+        $output = '<table width="100%" cellspacing="5" cellpadding="5">';
+        foreach ($data->result() as $row) {
+            $output .= '
             <tr>
-		<td width="25%"><img src="'.base_url().'assets/poster/'.$row->mov_poster.'" /></td>
+		<td width="25%"><img src="' . base_url() . 'assets/poster/' . $row->mov_poster . '" /></td>
 				<td width="75%">
-					<p><b>Movie : </b>'.$row->mov_name.'</p>
-					<p><b>Cinema : </b>'.$row->cinema_name.'</p>
-					<p><b>Date : </b>'.$row->show_date.'</p>
-					<p><b>Time : </b>'.$row->show_time.'</p>
+					<p><b>Movie : </b>' . $row->mov_name . '</p>
+					<p><b>Date : </b>' . $row->gross . '</p>
 
 				</td>
 			</tr>
             ';
-            	
-
-		}
-		$output .= '
+        }
+        $output .= '
 		<tr>
-			<td colspan="2" align="center"><a href="'.base_url().'admin/showtime_report" class="btn btn-primary">Back</a></td>
 		</tr>
 		';
-		$output .= '</table>';
-		return $output;
+        $output .= '</table>';
+        return $output;
+    }
+    function fetch_monthly_weekly_details()
+    {
+        $data = $this->db->query("SELECT showtime.mov_id,mov_name, SUM(booking_info.price) as gross 
+        FROM booking_info
+        join showtime ON showtime.show_id=booking_info.show_id
+        join movie ON movie.movie_id=showtime.mov_id
+        WHERE YEARWEEK(booked_date) = YEARWEEK(NOW()) 
+        GROUP BY mov_id ORDER by gross DESC"
+      
+        );
+
+        $output = '<table width="100%" cellspacing="5" cellpadding="5">';
+        foreach ($data->result() as $row) {
+            $output .= '
+            <tr>
+		<td width="25%"><img src="' . base_url() . 'assets/poster/' . $row->mov_poster . '" /></td>
+				<td width="75%">
+					<p><b>Movie : </b>' . $row->mov_name . '</p>
+					<p><b>Date : </b>' . $row->gross . '</p>
+
+				</td>
+			</tr>
+            ';
+        }
+        $output .= '
+		<tr>
+		</tr>
+		';
+        $output .= '</table>';
+        return $output;
     }
 }

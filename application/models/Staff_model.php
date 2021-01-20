@@ -188,7 +188,7 @@ public function get_gener(){
      
  }
  public function search_customer(){
-    $data= array(
+    $data= array( 
         'Search'=>$this->input->post('Search'));
 
         $this->db->select('*');
@@ -359,14 +359,49 @@ public function check_Password($password)
         
         $data= array(
             'col'=>$this->input->post('col'), 
-            'row'=>$this->input->post('row'),             
-                                 
+            'row'=>$this->input->post('row'),                                     
       );
-      return $this->db->insert('seat', $data);
+      $data2= array( 
+        'cinema'=>$this->input->post('cinema'));
+      return $this->db->where('cinema_id',$data2['cinema'])->update('cinema', $data);
        
+    } 
+    public function get_profile()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+       
+        $this->db->where('user_id', $this->session->tempdata('user_id'));
+        $query = $this->db->get();
+
+
+        return $query->result_array();
+    }
+    public function update_profile()
+    {
+
+        $data = array(
+            'name' => $this->input->post('name'),
+            'email' => $this->input->post('email'),
+            'phone' => $this->input->post('phone'),
+            'username' => $this->input->post('username'),
+
+        );
+
+        
+        return $this->db->where('user_id', $this->session->tempdata('user_id'))->update('user', $data);
+    }
+    public function change_password()
+    {
+
+        $data = array(
+            'password' => md5($this->input->post('password')),
+        );
+ 
+        return $this->db->where('user_id', $this->session->tempdata('user_id'))->update('user', $data);
     }
     
-		
+    
     
 }
 

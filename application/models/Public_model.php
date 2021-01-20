@@ -24,7 +24,7 @@ class Public_model extends CI_Model
             $query = $this->db->get("movie");
             return $query->result_array();
         }
-        $this->db->select('*');
+        $this->db->select('*'); 
         $this->db->from('movie');
         $this->db->join('geners', 'movie.mov_gener=gener_id');
         $this->db->join('ratings', 'movie.mov_ratting=rating_id');
@@ -191,10 +191,10 @@ class Public_model extends CI_Model
     public function get_seatRow($id = false)
     {
         if ($id === false) {
-            $query =  $this->db->get('seat');
+            $query =  $this->db->get('cinema');
             return $query->row_array();
         }
-        $query = $this->db->get_where('seat', array('seat_id' => $id));
+        $query = $this->db->get_where('cinema', array('cinema_id' => $id));
         return $query->row_array();
     } //end og get ratting
 
@@ -315,7 +315,7 @@ class Public_model extends CI_Model
     public function booking_sms($id)
     {
         //echo $id;
-        $this->db->select('*');
+        $this->db->select('booking_info.price as booking_price,bank_name,account_name,account_number');
         $this->db->from('booking_info');
         $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
         $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
@@ -341,7 +341,7 @@ class Public_model extends CI_Model
 
                 PAYMENT DETAIL
 
-                Amount: " . $row->price . " Birr
+                Amount: " . $row->booking_price . " Birr
                 -----
                 " . $row->bank_name . "
                 " . $row->account_name . "

@@ -168,6 +168,11 @@
             <i class="zmdi zmdi-notifications-active"></i> <span>Advert</span>
           </a>
         </li>
+        <li>
+          <a href="<?php echo base_url() ?>staff_profile">
+          <i class="zmdi zmdi zmdi-account"></i> <span>Profile</span>
+          </a>
+        </li>
       </ul>
 
     </div>

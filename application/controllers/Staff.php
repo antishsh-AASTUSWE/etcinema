@@ -249,7 +249,7 @@ class Staff extends CI_Controller
     {
         if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
-        }
+        } 
         
         $data['records'] = $this->staff_model->getShowRecord($id);
 
@@ -461,19 +461,90 @@ class Staff extends CI_Controller
             show_404();
         }
         
-       
+       $data['cinema']=$this->staff_model->get_cinema();
         $this->load->view('templates/admin_header');
-        $this->load->view('staffpages/seat');
+        $this->load->view('staffpages/seat',$data);
         $this->load->view('templates/admin_footer');
     }
     public function addSeat(){
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        $this->form_validation->set_rules('cinema', 'cinema','required');
         
-       
+        if ($this->form_validation->run() === FALSE) {
+            $this->seat();
+        } else {
+
             
             $this->staff_model->addSeat();
+
             redirect('staff_seat');
       
+        }  
       
     }
-    
+    public function update_staf_profile()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+       
+        $this->form_validation->set_rules('name', 'First Name', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'pasword', 'required|callback_check_Password');
+        
+        if ($this->form_validation->run() === FALSE) {
+            $this->staff_profile();
+        } else {
+
+
+
+            $this->staff_model->update_profile();
+            redirect('staff_profile');
+        }
+    }
+    public function staff_profile()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+        if (!file_exists(APPPATH . 'views/staffpages/user_profile.php')) {
+            // Whoops, we don't have a page for that!
+            show_404();
+        }
+        //$data['profile'] = $this->profile_model->get_profile();
+        $data['edit_profile'] = $this->staff_model->get_profile();
+        $this->load->view('templates/admin_header');
+        $this->load->view('staffpages/user_profile',$data);
+        $this->load->view('templates/admin_footer');
+    }
+    public function change_staff_pass()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
+       
+        
+    $this->form_validation->set_rules('password', 'Old pasword','required|callback_check_Password');
+	$this->form_validation->set_rules('new_password', 'New pasword','required');
+	$this->form_validation->set_rules('password2', 'confirm pasword','required|matches[new_password]');
+
+        
+        if ($this->form_validation->run() === FALSE) {
+        $data['password']='';
+        $this->load->view('templates/admin_header');
+        $this->load->view('staffpages/user_profile',$data);
+        $this->load->view('templates/admin_footer');
+
+        } else {
+
+
+
+            $this->staff_model->change_password();
+            redirect('staff_profile');
+        }
+    } 
 }
