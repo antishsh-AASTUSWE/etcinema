@@ -158,6 +158,8 @@ $route['contact'] = 'publicpages/contact';
 $route['user_booking'] = 'profile/user_booking';
 $route['user_dashboard'] = 'profile/index';
 $route['user_profile'] = 'profile/user_profile';
+//$route['delete_profile'] = 'profile/delete_profile';
+$route['update_profile'] = 'profile/update_profile';
 $route['get_active_ticket'] = 'profile/get_active_ticket';
 $route['cancel_ticket/(:num)'] = 'profile/cancel_ticket/$1';
 

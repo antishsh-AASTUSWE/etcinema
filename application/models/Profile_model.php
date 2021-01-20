@@ -97,4 +97,39 @@ class Profile_model extends CI_Model
 
         return $query->result_array();
     }
+    public function update_profile()
+    {
+
+        $data = array(
+            'first_name' => $this->input->post('fname'),
+            'last_name' => $this->input->post('lname'),
+            'email' => $this->input->post('email'),
+            'phone' => $this->input->post('phone'),
+            'username' => $this->input->post('username'),
+
+        );
+
+        $data['password'] = md5($this->input->post('new_password'));
+
+        return $this->db->where('cust_id', $this->session->tempdata('user_id'))->update('customer', $data);
+    }
+    public function delete_profile()
+    {
+
+        $this->db->where('cust_id', $this->session->tempdata('user_id'));
+        $this->db->delete('customer');
+        return true;
+    }
+
+    public function check_Password($password)
+    {
+        $query = $this->db->get_where('customer', array('password' => $password));
+
+        if (empty($query->row_array())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
