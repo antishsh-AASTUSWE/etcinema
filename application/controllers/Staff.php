@@ -249,7 +249,7 @@ class Staff extends CI_Controller
     {
         if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
-        }
+        } 
         
         $data['records'] = $this->staff_model->getShowRecord($id);
 
@@ -461,18 +461,27 @@ class Staff extends CI_Controller
             show_404();
         }
         
-       
+       $data['cinema']=$this->staff_model->get_cinema();
         $this->load->view('templates/admin_header');
-        $this->load->view('staffpages/seat');
+        $this->load->view('staffpages/seat',$data);
         $this->load->view('templates/admin_footer');
     }
     public function addSeat(){
         
-       
+        $this->form_validation->set_rules('cinema', 'cinema','required');
+        
+        if ($this->form_validation->run() === FALSE) {
+            $this->seat();
+        } else {
+
             
             $this->staff_model->addSeat();
+
             redirect('staff_seat');
       
+        }
+            
+            
       
     }
     

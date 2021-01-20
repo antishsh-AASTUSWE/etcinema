@@ -188,7 +188,7 @@ public function get_gener(){
      
  }
  public function search_customer(){
-    $data= array(
+    $data= array( 
         'Search'=>$this->input->post('Search'));
 
         $this->db->select('*');
@@ -359,10 +359,11 @@ public function check_Password($password)
         
         $data= array(
             'col'=>$this->input->post('col'), 
-            'row'=>$this->input->post('row'),             
-                                 
+            'row'=>$this->input->post('row'),                                     
       );
-      return $this->db->insert('seat', $data);
+      $data2= array( 
+        'cinema'=>$this->input->post('cinema'));
+      return $this->db->where('cinema_id',$data2['cinema'])->update('cinema', $data);
        
     }
     

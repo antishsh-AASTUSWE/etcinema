@@ -24,7 +24,7 @@ class Public_model extends CI_Model
             $query = $this->db->get("movie");
             return $query->result_array();
         }
-        $this->db->select('*');
+        $this->db->select('*'); 
         $this->db->from('movie');
         $this->db->join('geners', 'movie.mov_gener=gener_id');
         $this->db->join('ratings', 'movie.mov_ratting=rating_id');
@@ -191,10 +191,10 @@ class Public_model extends CI_Model
     public function get_seatRow($id = false)
     {
         if ($id === false) {
-            $query =  $this->db->get('seat');
+            $query =  $this->db->get('cinema');
             return $query->row_array();
         }
-        $query = $this->db->get_where('seat', array('seat_id' => $id));
+        $query = $this->db->get_where('cinema', array('cinema_id' => $id));
         return $query->row_array();
     } //end og get ratting
 

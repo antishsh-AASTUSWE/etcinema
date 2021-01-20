@@ -1,10 +1,27 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Add Seat Layout</h5>
-
-
-        <?php echo form_open('staff_addSeat') ?>
+    <?php echo form_open('staff_addSeat') ?>
         <form method="post" action="">
+        <h5 class="card-title">Add Seat Layout</h5>
+        <div class="form-group">
+      <label for="input-6">Select Cinema</label>
+      <select class="form-control form-control-rounded" name="cinema" id="input-6">
+
+        <option disabled selected value>Please Choose Cinema</option>
+        <?php
+        if(isset($cinema)){
+           
+        foreach ($cinema as $g) {
+          echo "<option value='$g[cinema_id]'>$g[cinema_name] </option>";
+        }}
+        ?>
+      </select>
+      <div class="text-danger">
+        <?php echo form_error('cinema'); ?>
+      </div>
+    </div>
+
+
             <div class="form-group">
                 <label for="formGroupExampleInput">Seat Row</label>
                 <input type="text" class="form-control form-control-rounded" id="formGroupExampleInput" name="row" placeholder="Seat Row">
@@ -19,7 +36,7 @@
                     <?php echo form_error('col'); ?>
                 </div>
             </div>
-
+ 
 
 
             <div class="col-lg-6">
