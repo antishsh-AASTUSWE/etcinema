@@ -28,7 +28,11 @@ class Admin extends CI_Controller
         $data['totalRevenue'] = $this->admin_model->totalRevenue();
         $data['countCustomer'] = $this->admin_model->countCustomer();
         $data['countUser'] = $this->admin_model->countUser();
-        $data['booking'] = $this->admin_model->get_booking();
+        $data['cbe'] = $this->admin_model->count_cbe();
+        $data['amole'] = $this->admin_model->count_amole();
+        $data['mbirr'] = $this->admin_model->count_mbirr();
+        $data['helo'] = $this->admin_model->count_helo();
+        
         $this->load->view('templates/admin_header');
         $this->load->view('adminpages/dashboard', $data);
         $this->load->view('templates/admin_footer');
