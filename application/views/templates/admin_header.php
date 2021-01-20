@@ -162,7 +162,23 @@
             <i class="zmdi zmdi-seat"></i> <span>Seat</span>
           </a>
         </li>
+        <li>
+          <a href="<?php echo base_url() ?>staff_cinemas">
+            <i class="zmdi zmdi zmdi-home"></i> <span>Cinema</span>
+          </a>
+        </li>
 
+        <li>
+          <a href="<?php echo base_url() ?>staff_Ratings">
+            <i class="zmdi zmdi-sort-amount-asc"></i> <span>Ratings</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="<?php echo base_url() ?>staff_geners">
+            <i class="zmdi zmdi-grid"></i> <span>Geners</span>
+          </a>
+        </li>
         <li>
           <a href="<?php echo base_url() ?>staff_advert">
             <i class="zmdi zmdi-notifications-active"></i> <span>Advert</span>

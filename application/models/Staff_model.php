@@ -76,21 +76,15 @@ public function deleteMovie($id){
             return false;
         }
     } //end of check cinema
-public function get_gener(){
 
-        $this->db->select('*');
-        $this->db->from('geners');
-        $query = $this->db->get();
-        
-        return $query->result_array();
-    }
-    public function get_rating(){
-
-        $this->db->select('*');
-        $this->db->from('ratings');
-        $query = $this->db->get();
-        
-        return $query->result_array();
+    public function get_rating($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('ratings');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('ratings', array('rating_id' => $id));
+        return $query->row_array();
     }
     public function update_movie($post_image,$id)
     {
@@ -304,14 +298,7 @@ public function check_Password($password)
         }
     }
     
-    public function get_cinema(){
-
-        $this->db->select('*');
-        $this->db->from('cinema');
-        $query = $this->db->get();
-        
-        return $query->result_array();
-    }
+ 
     public function countMovie(){
 
         $this->db->select('*');
@@ -401,7 +388,195 @@ public function check_Password($password)
         return $this->db->where('user_id', $this->session->tempdata('user_id'))->update('user', $data);
     }
     
+    public function search_rating()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('rating_id', $data['Search'])
+            ->or_like('rating', $data['Search'])
+            ->or_like('description',  $data['Search'])
+            ->get('ratings');
+
+        return $query->result_array();
+    } //end of search rating
+
+
+    public function add_rating()
+    {
+
+        $data = array(
+            'rating' => $this->input->post('rating'),
+            'description' => $this->input->post('description')
+        );
+        return $this->db->insert('ratings', $data);
+    } //end of add rating
+
+    //update rating function
+    public function update_rating()
+    {
+        $data = array(
+
+            'rating' => $this->input->post('rating'),
+            'description' => $this->input->post('description')
+        );
+        $this->db->where('rating_id', $this->input->post('rating_id'));
+        return $this->db->update('ratings', $data);
+    } //end of update cinema
+
+    //delete rating function
+    public function delete_rating($id)
+    {
+        $this->db->where('rating_id', $id);
+        $this->db->delete('ratings');
+        return true;
+    }
+    //check reting exists function
+    public function check_rating_exists($rating)
+    {
+        $query = $this->db->get_where('ratings', array('rating' => $rating));
+
+        if (empty($query->row_array())) {
+            return true;
+        } else {
+            return false;
+        }
+    } //end of check rating exists
+
+
+    //search cinema function
+    public function search_cinema()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('cinema_id', $data['Search'])
+            ->or_like('cinema_name', $data['Search'])
+            ->get('cinema');
+
+        return $query->result_array();
+    } //end of search cinema
+
+    //GET cinema function
+    public function get_cinema($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('cinema');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('cinema', array('cinema_id' => $id));
+        return $query->row_array();
+    } //end of gett cinema
+
+    //add cinema function
+    public function add_cinema()
+    {
+        $data = array(
+            'cinema_name' => $this->input->post('cinema_name')
+
+        );
+
+        return $this->db->insert('cinema', $data);
+    } //end of add cinema
+
+    //update cinema function
+    public function update_cinema()
+    {
+        $data = array(
+
+            'cinema_name' => $this->input->post('cinema_name')
+        );
+        $this->db->where('cinema_id', $this->input->post('id'));
+        return $this->db->update('cinema', $data);
+    } //end of update cinema
+
+    //delete cinema
+    public function delete_cinema($id)
+    {
+        $this->db->where('cinema_id', $id);
+        $this->db->delete('cinema');
+        return true;
+    } //end of delete cinema
+
+    //check cinema exist function
+
+    public function check_cinema_exists($cinema)
+    {
+        $query = $this->db->get_where('cinema', array('cinema_name' => $cinema));
+
+        if (empty($query->row_array())) {
+            return true;
+        } else {
+            return false;
+        }
+    } //end of check cinema
+
     
-    
+
+    public function search_gener()
+    {
+        $data = array(
+            'Search' => $this->input->post('Search')
+        );
+
+        $query = $this->db->like('gener_id', $data['Search'])
+            ->or_like('gener', $data['Search'])
+            ->get('geners');
+
+        return $query->result_array();
+    } //end of search user
+
+    public function get_gener($id = false)
+    {
+        if ($id === false) {
+            $query =  $this->db->get('geners');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('geners', array('gener_id' => $id));
+        return $query->row_array();
+    } //end of gett gener
+
+    public function add_gener()
+    {
+        $data = array(
+            'gener' => $this->input->post('gener')
+
+        );
+
+        return $this->db->insert('geners', $data);
+    } //end of add gener
+
+    //update gener function
+    public function update_gener()
+    {
+        $data = array(
+            'gener' => $this->input->post('gener')
+        );
+        $this->db->where('gener_id', $this->input->post('gener_id'));
+        return $this->db->update('geners', $data);
+    } //end of update gener
+
+    //delete gener
+    public function delete_gener($id)
+    {
+        $this->db->where('gener_id', $id);
+        $this->db->delete('geners');
+        return true;
+    } //end of delete gener
+    //check gener existes function
+    public function check_gener_exists($gener)
+    {
+        $query = $this->db->get_where('geners', array('gener' => $gener));
+
+        if (empty($query->row_array())) {
+            return true;
+        } else {
+            return false;
+        }
+    } //end of check gener exists
+
+
 }
 
