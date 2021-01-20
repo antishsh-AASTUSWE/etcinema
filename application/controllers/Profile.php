@@ -8,11 +8,15 @@ class Profile extends CI_Controller
     {
         parent::__construct();
         if ($this->session->tempdata('logged_in') !== TRUE) {
-            redirect('login/authenticate_login');
+            redirect('customer_signin');
         }
     }
     public function index()
     {
+        if ($this->session->tempdata('customer') !== 'yes') {
+            redirect('customer_signin');
+        }
+
         if (!file_exists(APPPATH . 'views/profilepage/dashboard.php')) {
             // Whoops, we don't have a page for that!
             show_404();
@@ -26,6 +30,9 @@ class Profile extends CI_Controller
     }
     public function user_profile()
     {
+        if ($this->session->tempdata('customer') !== 'yes') {
+            redirect('customer_signin');
+        }
         if (!file_exists(APPPATH . 'views/profilepage/user_profile.php')) {
             // Whoops, we don't have a page for that!
             show_404();
@@ -38,6 +45,9 @@ class Profile extends CI_Controller
     }
     public function user_booking()
     {
+        if ($this->session->tempdata('customer') !== 'yes') {
+            redirect('customer_signin');
+        }
         if (!file_exists(APPPATH . 'views/profilepage/booking.php')) {
             // Whoops, we don't have a page for that!
             show_404();
@@ -49,6 +59,9 @@ class Profile extends CI_Controller
     }
     public function get_active_ticket()
     {
+        if ($this->session->tempdata('customer') !== 'yes') {
+            redirect('customer_signin');
+        }
         if (!file_exists(APPPATH . 'views/profilepage/booking.php')) {
             // Whoops, we don't have a page for that!
             show_404();
@@ -60,6 +73,9 @@ class Profile extends CI_Controller
     }
     public function cancel_ticket($id)
     {
+        if ($this->session->tempdata('customer') !== 'yes') {
+            redirect('customer_signin');
+        }
         
         if($this->profile_model->cancel_ticket($id)){
 $this->user_booking();
@@ -71,17 +87,17 @@ $this->user_booking();
     }
     public function update_profile()
     {
-
+        if ($this->session->tempdata('customer') !== 'yes') {
+            redirect('customer_signin');
+        }
        
         $this->form_validation->set_rules('fname', 'First Name', 'required');
         $this->form_validation->set_rules('lname', 'Last Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('phone', 'Phone Number', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('old_password', 'Old pasword', 'required|callback_check_Password');
-        $this->form_validation->set_rules('new_password', 'New pasword', 'required');
-        $this->form_validation->set_rules('password2', 'confirm pasword', 'required|matches[new_password]');
-
+        $this->form_validation->set_rules('password', 'pasword', 'required|callback_check_Password');
+        
         if ($this->form_validation->run() === FALSE) {
             $this->user_profile();
         } else {
@@ -94,18 +110,23 @@ $this->user_booking();
     }
     public function delete_profile()
     {
-        
+        if ($this->session->tempdata('customer') !== 'yes') {
+            redirect('customer_signin');
+        }
 
         $this->profile_model->delete_profile();
         redirect('user_profile');
     }
-    public function check_Password($old_password)
+    public function check_Password($password)
     {
+        if ($this->session->tempdata('customer') !== 'yes') {
+            redirect('customer_signin');
+        }
         $this->form_validation->set_message('check_Password', 'the password is incorect please try agin');
 
-        $old_password = md5($this->input->post('password'));
+        $password = md5($this->input->post('password'));
 
-        if ($this->profile_model->check_Password($old_password)) {
+        if ($this->profile_model->check_Password($password)) {
             return true;
         } else {
             return false;

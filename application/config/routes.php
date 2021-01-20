@@ -147,7 +147,7 @@ $route['movie_seat_plan/(:num)'] = 'publicpages/movie_seat_plan/$1';
 $route['movie_checkout/(:num)'] = 'publicpages/movie_checkout/$1';
 
 
-$route['change_password'] = 'publicpages/change_password';
+//$route['change_password'] = 'publicpages/change_password';
 $route['movie_book'] = 'publicpages/movie_book';
 $route['home'] = 'publicpages';
 $route['movie'] = 'publicpages/movie';

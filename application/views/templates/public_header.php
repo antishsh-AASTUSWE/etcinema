@@ -80,11 +80,7 @@
 
 
                     <?php if ($this->session->tempdata('logged_in') == true) : ?>
-                        <li>
-                            <a href="<?php echo base_url() ?>change_password" <?php if ($this->uri->segment(2) === 'change_password') {
-                                                                                        echo 'class="active"';
-                                                                                    } ?>>Change pasword</a>
-                        </li>
+                       
                         <li class="header-button pr-0">
                             <a href="<?php echo base_url() ?>customer_logout">Logout</a>
                         </li>

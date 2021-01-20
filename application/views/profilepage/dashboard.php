@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <?Php if(isset($canceled)){
                              ?>
-                            <h5 class="text-white mb-0"><?php echo $canceled.' Birr'?><span class="float-right">
+                            <h5 class="text-white mb-0"><?php echo $canceled?><span class="float-right">
                             <i class="fa fa-file-o fa-2x" aria-hidden="true"></i></span></h5>
                             <?php }?>
                             <div class="progress my-3" style="height:3px;">

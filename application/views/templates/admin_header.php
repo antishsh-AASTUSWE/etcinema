@@ -50,6 +50,7 @@
 }; ?>
 
 
+
 <!-- Start wrapper-->
 <div id="wrapper">
   <?php if ($this->session->tempdata('role') == 'admin') {
@@ -179,7 +180,7 @@
     <!--staff templet-->
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
       <div class="brand-logo">
-        <a href="<?php echo base_url() ?>staff/index">
+        <a href="<?php echo base_url() ?>user_dashboard">
           <img src="<?php echo base_url() ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
           <h5 class="logo-text">Ethcinema User</h5>
         </a>
@@ -227,32 +228,20 @@
             <i class="icon-menu menu-icon"></i>
           </a>
         </li>
-        <li class="nav-item">
+        <?php if ($this->session->tempdata('role') == 'admin' || $this->session->tempdata('role') == 'staff' ) {
+?>
+<li class="nav-item">
           <form class="search-bar" method="POST">
             <input type="text" class="form-control" name="Search" placeholder="Enter keywords">
             <a href="javascript:void();"><i class="icon-magnifier"></i></a>
           </form>
         </li>
+<?php }?>
+        
       </ul>
 
       <ul class="navbar-nav align-items-center right-nav-link">
-        <li class="nav-item dropdown-lg">
-          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-            <i class="fa fa-envelope-open-o"></i></a>
-        </li>
-        <li class="nav-item dropdown-lg">
-          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-            <i class="fa fa-bell-o"></i></a>
-        </li>
-        <li class="nav-item language">
-          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
-            <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
-            <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
-            <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
-          </ul>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
             <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
@@ -269,14 +258,15 @@
                 </div>
               </a>
             </li>
+            <?php if ($this->session->tempdata('role') == 'admin' || $this->session->tempdata('role') == 'staff' ) {
+?>
             <li class="dropdown-divider"></li>
-            <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
-            <li class="dropdown-divider"></li>
-            <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
-            <li class="dropdown-divider"></li>
-            <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
-            <li class="dropdown-divider"></li>
-            <li class="dropdown-item"><a href="<?php echo base_url(); ?>login/logout"> <i class="icon-power mr-2"></i> Logout</a></li>
+            <li class="dropdown-item"><a href="<?php echo base_url(); ?>logout"> <i class="icon-power mr-2"></i> Logout</a></li>
+         <?php }else{?>
+<li class="dropdown-divider"></li>
+<li class="dropdown-item"><a href="<?php echo base_url(); ?>customer_logout"> <i class="icon-power mr-2"></i> Logout</a></li>
+
+      <?php   }?>
           </ul>
         </li>
       </ul>

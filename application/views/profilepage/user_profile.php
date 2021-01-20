@@ -8,10 +8,10 @@
                             
                                                   
                             <label for="exampleInputEmail1"></label>
-                           <!--  <div class="d-flex justify-content-center">
-                                <a href="<?php echo base_url() ?>delete_profile" class="btn btn-light btn-round px-4 float-right">
-                                    <i class="icon-lock"></i>Delete My Account</a>
-                            </div> -->
+                           <div class="d-flex justify-content-center">
+                                <a href="<?php echo base_url() ?>change_password" class="btn btn-light btn-round px-4 float-right">
+                                    <i class="icon-lock"></i>Change Password</a>
+                            </div> 
                             <label for="exampleInputEmail1"></label>
             </div>
 
@@ -65,27 +65,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="formGroupExampleInput">Old Password</label>
-                    <input type="password" class="form-control form-control-rounded" id="formGroupExampleInput" name="old_password" placeholder="Password">
+                    <label for="formGroupExampleInput">Password</label>
+                    <input type="password" class="form-control form-control-rounded" id="formGroupExampleInput" name="password" placeholder="Password">
                     <div class="text-danger">
-                        <?php echo form_error('old_password'); ?>
+                        <?php echo form_error('password'); ?>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="formGroupExampleInput">New Password</label>
-                    <input type="password" class="form-control form-control-rounded" id="formGroupExampleInput" name="new_password" placeholder="New Password">
-                    <div class="text-danger">
-                        <?php echo form_error('new_password'); ?>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Confirm Password</label>
-                    <input type="password" class="form-control form-control-rounded" id="formGroupExampleInput" name="password2" placeholder="COnfirm New Password">
-                    <div class="text-danger">
-                        <?php echo form_error('password2'); ?>
-                    </div>
-                </div>
+                
 
                 <div class="col-lg-6">
                     <div class="form-group">

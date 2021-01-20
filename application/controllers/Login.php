@@ -230,7 +230,7 @@ class Login extends CI_Controller
 		if (!$this->session->tempdata('logged_in') == true) {
 			redirect('customer_signin');
 		}
-		if (!file_exists(APPPATH . 'views/publicpages/change_password.php')) {
+		if (!file_exists(APPPATH . 'views/profilepage/change_password.php')) {
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
@@ -240,7 +240,7 @@ class Login extends CI_Controller
 		$this->form_validation->set_rules('password2', 'Confirm password', 'matches[new_password]');
 		if ($this->form_validation->run() === false) {
 			$this->load->view('logintemplates/public_login_header');
-			$this->load->view('publicpages/change_password');
+			$this->load->view('profilepage/change_password');
 			$this->load->view('logintemplates/public_login_footer');
 		} else {
 			//check old password2

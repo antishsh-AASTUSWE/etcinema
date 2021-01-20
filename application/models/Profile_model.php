@@ -109,8 +109,7 @@ class Profile_model extends CI_Model
 
         );
 
-        $data['password'] = md5($this->input->post('new_password'));
-
+        
         return $this->db->where('cust_id', $this->session->tempdata('user_id'))->update('customer', $data);
     }
     public function delete_profile()
