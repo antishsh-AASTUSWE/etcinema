@@ -105,20 +105,10 @@
         <div class="row justify-content-center flex-wrap-reverse mb--50">
             <div class="col-lg-3 col-sm-10 col-md-6 mb-50">
                 <div class="widget-1 widget-tags">
-                    <ul>
-                        <li>
-                            <a href="#0">2D</a>
-                        </li>
-                        <li>
-                            <a href="#0">imax 2D</a>
-                        </li>
-                        <li>
-                            <a href="#0">4DX</a>
-                        </li>
-                    </ul>
+                    
                 </div>
                 <div class="widget-1 widget-offer">
-                    <h3 class="title">Applicable offer</h3>
+                    <h3 class="title">Payment Options</h3>
                     <div class="offer-body">
                         <div class="offer-item">
                             <div class="thumb">

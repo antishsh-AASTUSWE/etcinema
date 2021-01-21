@@ -61,7 +61,7 @@
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Subtitle</label>
-          <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_subtitle']; ?>" name="subtitle">
+          <input type="text" class="form-control form-control-rounded" value="<?php echo $r['mov_synopsis']; ?>" name="subtitle">
           <div class="text-danger">
             <?php echo form_error('subtitle'); ?>
           </div>

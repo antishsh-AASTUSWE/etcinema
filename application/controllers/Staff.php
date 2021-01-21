@@ -345,7 +345,7 @@ class Staff extends CI_Controller
 
             
             $this->staff_model->add_customer();
-            redirect('staff_customer');
+            redirect('staff_Customer');
         }
     } 
     public function edit_customer($id)
@@ -386,7 +386,7 @@ class Staff extends CI_Controller
             
             
             $this->staff_model->update_customer($id);
-            redirect('staff_customer');
+            redirect('staff_Customer');
         }
     } 
     public function delete_customer($id)
@@ -396,13 +396,13 @@ class Staff extends CI_Controller
         }
         
         $this->staff_model->deleteCustomer($id);
-        redirect('staff_customer');
+        redirect('staff_Customer');
     }
     public function check_Password($password)
 	{
 		$this->form_validation->set_message('check_Password', 'the password is incorect please try agin');
 
-		$password= sha1($this->input->post('password'));
+		$password= md5($this->input->post('password'));
         
 		if($this->staff_model->check_Password($password))
 		{
@@ -469,6 +469,8 @@ class Staff extends CI_Controller
             redirect('authenticate_login');
         }
         $this->form_validation->set_rules('cinema', 'cinema','required');
+        $this->form_validation->set_rules('col', 'colomen','required');
+        $this->form_validation->set_rules('row', 'row','required');
         
         if ($this->form_validation->run() === FALSE) {
             $this->seat();
@@ -790,7 +792,7 @@ class Staff extends CI_Controller
         } else {
 
             $this->staff_model->add_rating();
-            redirect('staff_ratings');
+            redirect('staff_Ratings');
         }
     } //end of add rating
 
@@ -822,7 +824,7 @@ class Staff extends CI_Controller
             redirect('authenticate_login');
         }
         $this->staff_model->update_rating();
-        redirect('staff_ratings');
+        redirect('staff_Ratings');
     } //end of update rating
 
     //delete rating function
@@ -832,7 +834,7 @@ class Staff extends CI_Controller
             redirect('authenticate_login');
         }
         $this->staff_model->delete_rating($id);
-        redirect('staff_ratings');
+        redirect('staff_Ratings');
     }
 
     //check rating exist function

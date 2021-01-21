@@ -22,7 +22,7 @@
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Update Rating</button>
-        <a href="<?php echo base_url(); ?>admin_ratings" class="btn btn-light btn-round px-5">Cancel</a>
+        <a href="<?php echo base_url(); ?>staff_Ratings" class="btn btn-light btn-round px-5">Cancel</a>
       </div>
       </form>
 

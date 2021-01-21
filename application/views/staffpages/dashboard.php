@@ -5,7 +5,7 @@
         <div class="card mt-3">
             <div class="card-content">
                 <div class="row row-group m-0">
-                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="col-12 col-lg-6 col-xl-6 border-light">
                         <div class="card-body">
                             <?Php if(isset($countMovie)){
                              ?>
@@ -18,7 +18,7 @@
                             <p class="mb-0 text-white small-font">Movies Showing Today</p>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="col-12 col-lg-6 col-xl-6 border-light">
                         <div class="card-body">
                         <?Php if(isset($countCustomer)){
                              ?>
@@ -26,31 +26,13 @@
                             <i class="fa fa-user-o fa-2x" aria-hidden="true"></i></span></h5>
                             <?php }?>
                             <div class="progress my-3" style="height:3px;">
-                                <div class="progress-bar" style="width:55%"></div>
+                                <div class="progress-bar" style="width:100%"></div>
                             </div>
                             <p class="mb-0 text-white small-font">Users Registerd today</p>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 col-xl-3 border-light">
-                        <div class="card-body">
-                            <h5 class="text-white mb-0">6200 <span class="float-right">
-                            <i class="zmdi zmdi-seat zmdi-hc-2x"></i></span></h5>
-                            <div class="progress my-3" style="height:3px;">
-                                <div class="progress-bar" style="width:55%"></div>
-                            </div>
-                            <p class="mb-0 text-white small-font">Available Seats </p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 col-xl-3 border-light">
-                        <div class="card-body">
-                            <h5 class="text-white mb-0">5630 <span class="float-right">
-                            <i class="zmdi zmdi-seat zmdi-hc-2x"></i></span></h5>
-                            <div class="progress my-3" style="height:3px;">
-                                <div class="progress-bar" style="width:55%"></div>
-                            </div>
-                            <p class="mb-0 text-white small-font">Reserved Seats</p>
-                        </div>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </div>

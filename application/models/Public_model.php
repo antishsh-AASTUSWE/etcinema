@@ -414,41 +414,33 @@ class Public_model extends CI_Model
         $this->db->join('customer', 'customer.cust_id=booking_info.user_id');
         $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
         $data = $this->db->get('booking_info');
+        //$query = $this->db->get();
+        $row = $data->row();
 
         $this->db->select('*');
         $this->db->where('booking_id', $booking_id);
         $data2 = $this->db->get('seat_booked');
+        if (isset($row)) {
 
+            $content = "
+                Dear " . $row->username . "
 
-        $output = '<table width="100%" cellspacing="5" cellpadding="5">';
-        foreach ($data->result() as $row) {
-            $output .= '
-            <tr>
-		<td width="25%"><img src="' . base_url() . 'assets/poster/' . $row->mov_poster . '" /></td>
-				<td width="75%">
-                    <p><b>Your ticket No  : </b>' . $row->booking_id . '</p>
-                    <p><b>Movie : </b>' . $row->mov_name . '</p>
-					<p><b>Cinema : </b>' . $row->cinema_name . '</p>
-					<p><b>Date : </b>' . $row->show_date . '</p>
-					<p><b>Time : </b>' . $row->show_time . '</p>
+                Thank you for booking with Etcinema
 
-				</td>
-			</tr>
-            ';
+                Your Ticket number is:".$row->booking_id."
+                Movie:".$row->mov_name."
+                Cinema:".$row->cinema_name."
+                Date:".$row->show_date."
+                Time:".$row->show_time."
+                
+                        ";
+            foreach ($data2->result() as $row) {
+$content .="Your Seat No are:".$row->seat." ";
+            }
+            return $content;
         }
-        foreach ($data2->result() as $row) {
-            $output .= '
-        <tr>
-                <td width="75%">
-                    <p><b>Your Seat No are  : </b>' . $row->seat . '</p>
-                    
 
-				</td>
-		</tr>
-        ';
-        }
-        $output .= '</table>';
-        return $output;
+        
     }
     public function email_subscription()
     {

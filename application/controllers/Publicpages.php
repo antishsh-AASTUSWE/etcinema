@@ -217,7 +217,7 @@ class Publicpages extends CI_Controller
 
 		$from = $this->config->item('smtp_user');
 		$to = $this->session->tempdata('email');
-		$subject = 'test';
+		$subject = 'Etcinema';
 		$message = $content;
 		$this->email->clear();
 		$this->email->set_newline("\r\n");
@@ -302,13 +302,11 @@ class Publicpages extends CI_Controller
 		}
 	}
 	public function print_ticket($booking_id){
-
-		$date = date('y-m-d');
-		$html_content = '<h3 align="center">Ethcinema Ticket</h3>';
-        $html_content .= $this->public_model->print_ticket($booking_id);
-        $this->pdf->loadHtml($html_content);
-        $this->pdf->render();
-        $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
+		$content=$this->public_model->print_ticket($booking_id);
+		//echo $content;
+		$this->send($content);
+        
+     
 	}
 	public function email_subscription(){
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|callback_check_email_exists');

@@ -14,7 +14,6 @@ class Staff_model extends CI_Model
             ->or_like('mov_realse_date',  $data['Search'])
             ->or_like('mov_language',  $data['Search'])
             ->or_like('mov_starring',  $data['Search'])
-            ->or_like('mov_subtitle',  $data['Search'])
             ->or_like('mov_ratting',  $data['Search'])
             ->join('geners','movie.mov_gener=geners.gener_id')
             ->join('ratings','movie.mov_ratting=ratings.rating_id')
@@ -49,7 +48,7 @@ class Staff_model extends CI_Model
             'mov_language' => $this->input->post('language'),
 
             'mov_starring' => $this->input->post('staring'),
-            'mov_subtitle' => $this->input->post('subtitle')
+            'mov_synopsis' => $this->input->post('subtitle')
         );
 
 
@@ -102,7 +101,7 @@ public function deleteMovie($id){
             'mov_language' => $this->input->post('language'),
 
             'mov_starring' => $this->input->post('staring'),
-            'mov_subtitle' => $this->input->post('subtitle')
+            'mov_synopsis' => $this->input->post('subtitle')
         );
 
         return $this->db->where('movie_id',$id)->update('movie', $data);
@@ -193,7 +192,7 @@ public function deleteMovie($id){
         ->or_like('first_name', $data['Search'])
         ->or_like('last_name',  $data['Search'])
         ->or_like('username',  $data['Search'])
-        ->or_like('phone_no',  $data['Search'])
+        ->or_like('phone',  $data['Search'])
         ->or_like('Email',  $data['Search']);
         $this->db->order_by('cust_id', 'ASC');
         $query = $this->db->get();
@@ -224,12 +223,12 @@ public function add_customer()
         'first_name'=>$this->input->post('fname'), 
         'last_name'=>$this->input->post('lname'),             
         'email'=>$this->input->post('email'),
-        'phone_no'=>$this->input->post('phone'),
+        'phone'=>$this->input->post('phone'),
         'username'=>$this->input->post('username'),
                    
   );
   
-  $data['password'] = sha1($this->input->post('password'));
+  $data['password'] = md5($this->input->post('password'));
 
 
     return $this->db->insert('customer', $data);
@@ -241,12 +240,12 @@ public function update_customer($id)
         'first_name'=>$this->input->post('fname'), 
         'last_name'=>$this->input->post('lname'),             
         'email'=>$this->input->post('email'),
-        'phone_no'=>$this->input->post('phone'),
+        'phone'=>$this->input->post('phone'),
         'username'=>$this->input->post('username'),
                    
   );
   
-  $data['password'] = sha1($this->input->post('new_password'));
+  $data['password'] = md5($this->input->post('new_password'));
 
     return $this->db->where('cust_id',$id)->update('customer', $data);
     
@@ -288,7 +287,7 @@ public function check_Password($password)
     }
     public function check_phone($phone)
     {
-        $query = $this->db->get_where('customer', array('phone_no' => $phone));
+        $query = $this->db->get_where('customer', array('phone' => $phone));
 
         if(empty($query->row_array()))
         {

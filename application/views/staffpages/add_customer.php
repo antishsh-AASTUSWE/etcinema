@@ -27,10 +27,10 @@
                      </div>
                  </div>
                  <div class="form-group">
-                     <label for="formGroupExampleInput">Birth Date</label>
-                     <input type="date" class="form-control form-control-rounded" id="formGroupExampleInput" name="date_of_birth" placeholder="birth date">
+                     <label for="formGroupExampleInput">Username</label>
+                     <input type="text" class="form-control form-control-rounded" id="formGroupExampleInput" name="username" placeholder="username">
                      <div class="text-danger">
-                         <?php echo form_error('date_of_birth'); ?>
+                         <?php echo form_error('username'); ?>
                      </div>
                  </div>
                  <div class="form-group">
@@ -59,7 +59,7 @@
                  <div class="col-lg-6">
                      <div class="form-group">
                          <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Add Customer</button>
-                         <a href="<?php echo base_url(); ?>staff_customer" class="btn btn-light btn-round px-5">Cancel</a>
+                         <a href="<?php echo base_url(); ?>staff_Customer" class="btn btn-light btn-round px-5">Cancel</a>
                      </div>
                  </div>
              </form>

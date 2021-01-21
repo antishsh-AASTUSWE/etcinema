@@ -67,7 +67,7 @@
           </a>
         </li>
 
-        <li>
+        <!-- <li>
           <a href="<?php echo base_url() ?>admin_showtime">
             <i class="zmdi zmdi-account-calendar"></i> <span>Showtime</span>
           </a>
@@ -95,7 +95,7 @@
           <a href="<?php echo base_url() ?>admin_geners">
             <i class="zmdi zmdi-grid"></i> <span>Geners</span>
           </a>
-        </li>
+        </li> -->
 
         <li>
           <a href="<?php echo base_url() ?>admin_users">
@@ -128,7 +128,7 @@
       <div class="brand-logo">
         <a href="<?php echo base_url() ?>staff_dashboard">
           <img src="<?php echo base_url() ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-          <h5 class="logo-text">Etcinema Admin</h5>
+          <h5 class="logo-text">Etcinema Staff</h5>
         </a>
       </div>
       <ul class="sidebar-menu do-nicescrol">

@@ -31,15 +31,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Birth Date</label>
-                        <input type="date" class="form-control form-control-rounded" id="formGroupExampleInput" value="<?php echo $r['DBO']; ?>" name="date_of_birth" placeholder="birth date">
+                        <label for="formGroupExampleInput">Username</label>
+                        <input type="text" class="form-control form-control-rounded" id="formGroupExampleInput" value="<?php echo $r['username']; ?>" name="date_of_birth" placeholder="birth date">
                         <div class="text-danger">
-                            <?php echo form_error('date_of_birth'); ?>
+                            <?php echo form_error('username'); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="formGroupExampleInput">Phone number</label>
-                        <input type="text" class="form-control form-control-rounded" id="formGroupExampleInput" value="<?php echo $r['phone_no']; ?>" name="phone" placeholder="Phone Number">
+                        <input type="text" class="form-control form-control-rounded" id="formGroupExampleInput" value="<?php echo $r['phone']; ?>" name="phone" placeholder="Phone Number">
                         <div class="text-danger">
                             <?php echo form_error('phone'); ?>
                         </div>
@@ -70,7 +70,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <button type="submit" class="btn btn-light btn-round px-5"><i class="icon-lock"></i> Update Customer</button>
-                            <a href="<?php echo base_url(); ?>staff_customer" class="btn btn-light btn-round px-5">Cancel</a>
+                            <a href="<?php echo base_url(); ?>staff_Customer" class="btn btn-light btn-round px-5">Cancel</a>
                         </div>
                     </div>
                 </form>
