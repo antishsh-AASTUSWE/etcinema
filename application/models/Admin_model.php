@@ -904,7 +904,7 @@ class admin_model extends CI_Model
     }
     function fetch_monthly_revenu_details()
     {
-        $data = $this->db->query("SELECT showtime.mov_id,mov_name, SUM(booking_info.price) as gross 
+        $data = $this->db->query("SELECT showtime.mov_id,mov_name,mov_poster, SUM(booking_info.price) as gross 
         FROM booking_info
         join showtime ON showtime.show_id=booking_info.show_id
         join movie ON movie.movie_id=showtime.mov_id
@@ -920,22 +920,22 @@ class admin_model extends CI_Model
 		<td width="25%"><img src="' . base_url() . 'assets/poster/' . $row->mov_poster . '" /></td>
 				<td width="75%">
 					<p><b>Movie : </b>' . $row->mov_name . '</p>
-					<p><b>Date : </b>' . $row->gross . '</p>
+					<p><b>gross : </b>' . $row->gross . '</p>
 
 				</td>
 			</tr>
             ';
         }
         $output .= '
-		<tr>
-		</tr>
+        <tr>
+        </tr>
 		';
         $output .= '</table>';
         return $output;
     }
-    function fetch_monthly_weekly_details()
+    function fetch_weekly_revenu_details()
     {
-        $data = $this->db->query("SELECT showtime.mov_id,mov_name, SUM(booking_info.price) as gross 
+        $data = $this->db->query("SELECT showtime.mov_id,mov_name,mov_poster, SUM(booking_info.price) as gross 
         FROM booking_info
         join showtime ON showtime.show_id=booking_info.show_id
         join movie ON movie.movie_id=showtime.mov_id

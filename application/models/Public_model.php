@@ -450,4 +450,25 @@ class Public_model extends CI_Model
         $output .= '</table>';
         return $output;
     }
+    public function email_subscription()
+    {
+
+        $data = array(
+            'email' =>  $this->input->post('email'),
+             );
+
+        $this->db->insert('email_subscribers', $data);
+
+        return $this->db->insert_id();
+    }
+    public function check_email_exists($email)
+    {
+        $query = $this->db->get_where('email_subscribers', array('email' => $email));
+
+        if (empty($query->row_array())) {
+            return true;
+        } else {
+            return false;
+        }
+    } 
 }

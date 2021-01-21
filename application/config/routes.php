@@ -175,11 +175,12 @@ $route['movie_checkout/(:num)'] = 'publicpages/movie_checkout/$1';
 
 
 //$route['change_password'] = 'publicpages/change_password';
-$route['movie_book'] = 'publicpages/movie_book';
+$route['movie_book/(:num)'] = 'publicpages/movie_book/$1';
 $route['home'] = 'publicpages';
 $route['movie'] = 'publicpages/movie';
 $route['about'] = 'publicpages/about';
 $route['contact'] = 'publicpages/contact';
+$route['subscribe'] = 'publicpages/email_subscription';
 
 
 $route['user_booking'] = 'profile/user_booking';

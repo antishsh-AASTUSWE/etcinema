@@ -42,7 +42,8 @@
 <!-- ==========Page-Title========== -->
 
 <!-- ==========Movie-Section========== -->
-<?php echo form_open("movie_book") ?>
+
+<?php echo form_open("movie_book/{$showtime['show_id']}") ?>
 <div class="movie-facility padding-bottom padding-top">
     <div class="container">
         <div class="row">
@@ -143,7 +144,7 @@
                     </ul>
                     <ul class="side-shape">
                             <li>
-<select class="form-select bg-secondary text-white" aria-label="Default select example" name="bank">
+<select class="form-select bg-secondary text-white" aria-label="Default select example" value="<?php echo set_value('bank'); ?>" name="bank">
   <option selected disabled>Please choose Payment Method</option>
   <?php if(isset($bank)){
       foreach($bank as $b){?>
@@ -151,6 +152,9 @@
   
   <?php } }?>
 </select> 
+<div class="text-danger">
+                            <?php echo form_error('bank'); ?>
+                        </div>
                             </li>
                             
                         </ul>
@@ -170,7 +174,7 @@ for ($i = 1; $i < $row['row']; $i++) {
 
             <input type="text" hidden name="<?= "seat" . $i . '' . $j ?>" value="<?= $i . '' . $j ?>">
 
-            <input type="text" hidden name="show_id" value="<?= $showtime['show_id'] ?>">
+            <input type="text" hidden name="show_id"  value="<?= $showtime['show_id'] ?>">
             <input type="text" hidden name="user_id" value="<?php echo $this->session->tempdata('user_id'); ?>">
             <input type="text" hidden name="seats" value="<?= ($seat_price - 1) ?>">
             <input type="text" hidden name="price" value="<?= (($seat_price - 1) * (int)$showtime['price']) ?>">

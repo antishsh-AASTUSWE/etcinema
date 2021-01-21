@@ -6,10 +6,14 @@
                 <div class="newslater-wrapper">
                     <h5 class="cate">subscribe to Etcinema </h5>
                     <h3 class="title">to get exclusive benifits</h3>
-                    <form class="newslater-form">
-                        <input type="text" placeholder="Your Email Address">
+                    
+                    <form action="subscribe" method="POST" class="newslater-form">
+                        <input type="text" name="email" placeholder="Your Email Address">
                         <button type="submit">subscribe</button>
                     </form>
+                    <div class="text-danger">
+                            <?php echo form_error('email'); ?>
+                        </div>
                     <p>We respect your privacy, so we never share your info</p>
                 </div>
             </div>

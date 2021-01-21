@@ -1170,11 +1170,13 @@ class Admin extends CI_Controller
     {
         $date = date('y-m-d');
         //$showtime_id = $this->uri->segment(3);
-        $html_content = '<h3 align="center">monthly Revenu</h3>';
+        $html_content = '<h3 align="center">Weekly Showtime</h3>';
         $html_content .= $this->admin_model->fetch_monthly_revenu_details();
         $this->pdf->loadHtml($html_content);
         $this->pdf->render();
         $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
+        
+        
     }
     public function weekly_revenu_pdfdetails()
     {

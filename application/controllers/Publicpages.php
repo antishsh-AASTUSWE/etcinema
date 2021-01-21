@@ -191,17 +191,24 @@ class Publicpages extends CI_Controller
 			$this->load->view('templates/public_footer');
 		}
 	}
-	public function movie_book()
+	public function movie_book($id)
 	{
+		$this->form_validation->set_rules('bank', 'bank', 'required');
+		//$this->form_validation->set_rules('message', 'Message', 'trim|required|alpha');
 
+		if ($this->form_validation->run() === FALSE) {
+		$this->movie_checkout($id);
+		}else{
+			$booking_id = $this->public_model->book();
+			$this->public_model->reserve_seat($booking_id);
+			//echo $booking_id;
+			$content = $this->public_model->booking_sms($booking_id);
+	
+			$this->send($content);
+		}
 		
 
-		$booking_id = $this->public_model->book();
-		$this->public_model->reserve_seat($booking_id);
-		//echo $booking_id;
-		$content = $this->public_model->booking_sms($booking_id);
-
-		$this->send($content);
+		
 	}
 	public function send($content)
 	{
@@ -257,12 +264,12 @@ class Publicpages extends CI_Controller
 	{
 	
 			$this->form_validation->set_rules('transaction_no', 'transaction number', 'trim|required');
-			$this->form_validation->set_rules('depositer_name', 'depositer name', 'trim|required');
-			$this->form_validation->set_rules('payment_date', 'payment date', 'trim|required');
+			//$this->form_validation->set_rules('depositer_name', 'depositer name', 'trim|required');
+			//$this->form_validation->set_rules('payment_date', 'payment date', 'trim|required');
 		
 		if ($this->form_validation->run() === FALSE) {
 			$data['movie'] = $this->public_model->get_booking($id);
-			$data['id']=25;
+			//$data['id']=25;
 			$this->load->view('templates/public_header');
 			$this->load->view('publicpages/paymnt_form',$data);
 			$this->load->view('templates/public_footer');
@@ -280,11 +287,16 @@ class Publicpages extends CI_Controller
 				$this->print_ticket($id);
 					//echo 'booking confirmed';
 				}else{
-					echo 'stn went wrong';
+					show_404();
 				}
 				//return true;
 			} else {
-				echo 'pease try agin invalid payment info';
+			$data['movie'] = $this->public_model->get_booking($id);
+			$data['error']='INVALID PAYMENT INFO';
+			$this->load->view('templates/public_header');
+			$this->load->view('publicpages/paymnt_form',$data);
+			$this->load->view('templates/public_footer');
+				
 				//return false;
 			}
 		}
@@ -298,5 +310,29 @@ class Publicpages extends CI_Controller
         $this->pdf->render();
         $this->pdf->stream("" . $date . ".pdf", array("Attachment" => 0));
 	}
+	public function email_subscription(){
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|callback_check_email_exists');
+		
+		if ($this->form_validation->run() === FALSE) {
+			
+			$this->load->view('templates/public_header');
+			$this->load->view('publicpages/about');
+			$this->load->view('templates/public_footer');
+		} else {
+			$this->public_model->email_subscription();
+			$this->index();
+		}
+	}
+	public function check_email_exists($email)
+    {
+       
+        $this->form_validation->set_message('check_email_exists', 'That email is taken. please use a different one');
+        if ($this->public_model->check_email_exists($email)) {
+            return true;
+        } else {
+            return false;
+        }
+    } //end of check username exists
+
 }
  
