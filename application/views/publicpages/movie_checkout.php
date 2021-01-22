@@ -189,7 +189,7 @@ for ($i = 1; $i < $row['row']; $i++) {
               
               
 
-                <?php if ($this->session->tempdata('logged_in') === TRUE) : ?>
+                <?php if ($this->session->tempdata('cust_logged_in') === TRUE) : ?>
                     <div class="proceed-area  text-center">
                         <!-- <h6 class="subtitle"><span>Amount Payable</span><span>$222</span></h6> -->
                         <input type="submit" class="custom-button" value="proceed">

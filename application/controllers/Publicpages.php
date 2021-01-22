@@ -227,8 +227,8 @@ class Publicpages extends CI_Controller
 		$this->email->message($message);
 
 		if ($this->email->send()) {
-			
-			$this->booking_confirm();
+			$data['paymnt']='';
+			$this->booking_confirm($data);
 			//echo 'Your Email has successfully been sent.';
 		} else {
 			show_error($this->email->print_debugger());
@@ -254,10 +254,10 @@ class Publicpages extends CI_Controller
 
 
 
-	public function booking_confirm(){
+	public function booking_confirm($data){
 		
 			$this->load->view('templates/public_header');
-			$this->load->view('publicpages/booking_confirm');
+			$this->load->view('publicpages/booking_confirm',$data);
 			$this->load->view('templates/public_footer');
 	}
 	public function payment($id )
@@ -325,8 +325,8 @@ class Publicpages extends CI_Controller
 		$this->email->message($message);
 
 		if ($this->email->send()) {
-			
-			$this->booking_confirm();
+			$data['ticket']='';
+			$this->booking_confirm($data);
 			//echo 'Your Email has successfully been sent.';
 		} else {
 			show_error($this->email->print_debugger());
