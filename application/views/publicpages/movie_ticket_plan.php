@@ -91,15 +91,7 @@
                 }?>
 
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-10">
-                <div class="widget-1 widget-banner">
-                    <div class="widget-1-body">
-                        <a href="#0">
-                            <img src="<?php echo base_url() ?>publicassets/images/sidebar/banner/banner03.jpg" alt="banner">
-                        </a>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
