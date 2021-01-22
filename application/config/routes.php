@@ -125,7 +125,7 @@ $route['admin_Ratings'] = 'admin/Ratings';
 $route['admin_cinemas'] = 'admin/cinemas';
 $route['admin_movies'] = 'admin/movies';
 $route['admin_showtime'] = 'admin/showtime';
-$route['admin_dashboard'] = 'admin';
+$route['admin_dashboard'] = 'admin/index';
 
 //admin login routes
 $route['authenticate_login'] = 'login/authenticate_login';

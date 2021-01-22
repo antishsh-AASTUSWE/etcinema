@@ -79,7 +79,7 @@
 
 
 
-                    <?php if ($this->session->tempdata('logged_in') == true) : ?>
+                    <?php if ($this->session->tempdata('cust_logged_in') == true) : ?>
                        
                         <li class="header-button pr-0">
                             <a href="<?php echo base_url() ?>customer_logout">Logout</a>

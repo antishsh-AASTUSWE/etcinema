@@ -308,6 +308,7 @@ class Publicpages extends CI_Controller
         
      
 	}
+	
 	public function email_subscription($page = 'home'){
 		
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|callback_check_email_exists');
@@ -315,7 +316,7 @@ class Publicpages extends CI_Controller
 		if ($this->form_validation->run() === FALSE) {
 			
 			$this->load->view('templates/public_header');
-			$this->load->view('publicpages/'.$page,);
+			$this->load->view('publicpages/'.$page);
 			$this->load->view('templates/public_footer');
 		} else {
 			$this->public_model->email_subscription();

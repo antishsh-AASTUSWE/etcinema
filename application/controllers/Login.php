@@ -169,7 +169,7 @@ class Login extends CI_Controller
 					'email' => $email,
 					'username' => $data['username'],
 					'customer' => 'yes',
-					'logged_in' => TRUE
+					'cust_logged_in' => TRUE
 				);
 
 				//crate sassion
