@@ -79,41 +79,7 @@
 <section class="movie-section padding-top padding-bottom">
     <div class="container">
         <div class="row flex-wrap-reverse justify-content-center">
-            <div class="col-sm-10 col-md-8 col-lg-3">
-                <div class="widget-1 widget-banner">
-                    <div class="widget-1-body">
-                        <a href="#0">
-                            <img src="<?php echo base_url() ?>publicassets/images/sidebar/banner/banner01.jpg" alt="banner">
-                        </a>
-                    </div>
-                </div>
-
-                
-                <div class="widget-1 widget-check">
-                    <div class="widget-1-body">
-                        <h6 class="subtitle">genre</h6>
-                        <div class="check-area">
-                        <form action="search_movie" method="post">
-                        <?php foreach ($gener as $g) : ?>
-                            
-                            <div class="form-group">
-                                <input type="checkbox" name="genre" id="genre1" onchange="this.form.submit()">
-                                <label for="genre1"><?= $g['gener']; ?></label>
-                            </div>
-                        <?php endforeach; ?>
-                        </form>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="widget-1 widget-banner">
-                    <div class="widget-1-body">
-                        <a href="#0">
-                            <img src="<?php echo base_url() ?>publicassets/images/sidebar/banner/banner02.jpg" alt="banner">
-                        </a>
-                    </div>
-                </div>
-            </div>
+            
             <div class="col-lg-9 mb-50 mb-lg-0">
                 <div class="filter-tab tab">
                     <div class="filter-area">
