@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2021 at 04:28 PM
+-- Generation Time: Jan 22, 2021 at 11:25 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -71,7 +71,34 @@ INSERT INTO `booking_info` (`booking_id`, `show_id`, `user_id`, `seats`, `price`
 (126, 1, 8, 2, '100', '2021-01-19 14:59:08', 'expired', 1),
 (127, 1, 8, 3, '150', '2021-01-19 15:02:08', 'expired', 1),
 (128, 1, 8, 3, '150', '2021-01-19 15:03:08', 'expired', 1),
-(129, 1, 8, 3, '150', '2021-01-19 15:14:46', 'canceled', 3);
+(129, 1, 8, 3, '150', '2021-01-19 15:14:46', 'canceled', 3),
+(130, 1, 8, 2, '100', '2021-01-19 15:53:54', 'canceled', 1),
+(131, 6, 12, 3, '180', '2021-01-20 09:59:08', '', 1),
+(132, 6, 12, 3, '180', '2021-01-20 10:06:34', '', 1),
+(133, 6, 12, 3, '180', '2021-01-20 10:06:54', '', 1),
+(134, 6, 12, 3, '180', '2021-01-20 10:09:10', '', 1),
+(135, 7, 8, 4, '356', '2021-01-20 10:11:35', '', 1),
+(136, 16, 8, 4, '200', '2021-01-20 10:56:15', '', 1),
+(137, 16, 12, 4, '200', '2021-01-21 08:14:41', '', 2),
+(138, 16, 12, 6, '300', '2021-01-21 08:18:56', '', 4),
+(139, 1, 12, 2, '100', '2021-01-21 14:07:08', '', 1),
+(140, 16, 12, 2, '100', '2021-01-21 14:09:40', 'Paid', 1),
+(141, 16, 12, 2, '100', '2021-01-21 14:11:16', 'Paid', 1),
+(142, 16, 12, 2, '100', '2021-01-21 14:13:19', 'Paid', 1),
+(143, 16, 12, 2, '100', '2021-01-21 14:24:57', '', 1),
+(144, 16, 12, 2, '100', '2021-01-21 14:25:30', '', 1),
+(145, 16, 12, 2, '100', '2021-01-21 14:25:54', '', 1),
+(146, 16, 12, 2, '100', '2021-01-21 14:32:01', 'Paid', 1),
+(147, 16, 12, 2, '100', '2021-01-21 15:04:04', '', 1),
+(148, 16, 12, 2, '100', '2021-01-21 15:04:36', '', 1),
+(149, 16, 12, 2, '100', '2021-01-21 15:07:00', '', 3),
+(150, 16, 12, 2, '100', '2021-01-21 15:08:20', '', 1),
+(151, 16, 12, 2, '100', '2021-01-21 15:10:35', 'Paid', 1),
+(152, 16, 12, 2, '100', '2021-01-21 15:13:48', 'Paid', 1),
+(153, 16, 12, 2, '100', '2021-01-21 15:16:01', '', 1),
+(154, 16, 12, 2, '100', '2021-01-21 15:18:18', 'Paid', 1),
+(155, 16, 12, 2, '100', '2021-01-21 15:21:00', '', 1),
+(156, 16, 12, 2, '100', '2021-01-21 15:22:15', 'Paid', 1);
 
 -- --------------------------------------------------------
 
@@ -81,18 +108,20 @@ INSERT INTO `booking_info` (`booking_id`, `show_id`, `user_id`, `seats`, `price`
 
 CREATE TABLE `cinema` (
   `cinema_id` int(11) NOT NULL,
-  `cinema_name` varchar(255) NOT NULL
+  `cinema_name` varchar(255) NOT NULL,
+  `col` int(11) NOT NULL,
+  `row` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cinema`
 --
 
-INSERT INTO `cinema` (`cinema_id`, `cinema_name`) VALUES
-(1, 'Edna Mall'),
-(5, 'Alem'),
-(6, 'Ethiopi'),
-(8, 'Agona');
+INSERT INTO `cinema` (`cinema_id`, `cinema_name`, `col`, `row`) VALUES
+(1, 'Edna Mall', 14, 6),
+(5, 'Alem', 14, 6),
+(6, 'Ethiopia', 14, 6),
+(8, 'Agona', 14, 6);
 
 -- --------------------------------------------------------
 
@@ -141,7 +170,30 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`cust_id`, `first_name`, `last_name`, `username`, `email`, `phone`, `password`, `joined_date`) VALUES
 (8, 'yes', 'gat', 'yes', 'yeshewasg12@gmail.com', '0942205164', '81dc9bdb52d04dc20036dbd8313ed055', '2021-01-12 13:39:45'),
 (9, 'yeshe', 'test', 'yeshewasG', 'yeshewasg@gmail.com', '0912344648', '81dc9bdb52d04dc20036dbd8313ed055', '2021-01-13 14:10:10'),
-(10, 'barnabas', 'mathiw', 'Barni', 'yeshewasg1@gmail.com', '0912104767', '81dc9bdb52d04dc20036dbd8313ed055', '2021-01-14 13:35:41');
+(11, 'yeshewas', 'gatawbza', 'yeshewas', 'yeshewas12@gmail.com', '0942205163', 'd4395a5856617fa4afe8c5cd2eed3912', '2021-01-20 07:29:58'),
+(12, 'yeshewas', 'gatawbza', 'yeshewas12', 'yeshewasg12@gmail.com', '0912344647', '25d55ad283aa400af464c76d713c07ad', '2021-01-21 14:06:24'),
+(13, 'yeshewas', 'gatawbza', 'yeshewasG13', 'yeshewasg15@gmail.com', '0942205169', '25d55ad283aa400af464c76d713c07ad', '2021-01-21 16:29:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_subscribers`
+--
+
+CREATE TABLE `email_subscribers` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `email_subscribers`
+--
+
+INSERT INTO `email_subscribers` (`id`, `email`) VALUES
+(1, 'yeshewasg12@gmail.com'),
+(2, 'yeshewasg13@gmail.com'),
+(3, 'yeshewasg1@gmail.com'),
+(4, 'yeshewasg1f@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -162,8 +214,7 @@ INSERT INTO `geners` (`gener_id`, `gener`) VALUES
 (2, 'Drama'),
 (3, 'Romance'),
 (7, 'Action'),
-(8, 'Comedy'),
-(9, 'Mistry');
+(8, 'Comedy ');
 
 -- --------------------------------------------------------
 
@@ -186,7 +237,7 @@ CREATE TABLE `messagein` (
 
 INSERT INTO `messagein` (`id`, `SendTime`, `MessageFrom`, `MessageTo`, `MessageText`, `status`) VALUES
 (1, '2021-01-18 12:41:57', '+251942205164', '', 'ዉድ ደንበኛ  60.00Br. ለ YESHEWAS GETAWBEZA በቀን 17/01/21 17:49 በደረሰኝ ቁጥር 8AH24X2V48 ልከዋል። አሁን ያሎት ቀሪ ሂሳብ 12.00Br. ነዉ፡፡እናመሰግናለን!', ''),
-(2, '2021-01-18 12:43:17', '+251942205164', '', 'ዉድ ደንበኛ  100.00Br. ለ YESHEWAS GETAWBEZA በቀን 17/01/21 17:49 በደረሰኝ ቁጥር 8AH24X2V48 ልከዋል። አሁን ያሎት ቀሪ ሂሳብ 12.00Br. ነዉ፡፡እናመሰግናለን!', ''),
+(2, '2021-01-18 12:43:17', '+251942205164', '', 'ዉድ ደንበኛ  100.00Br. ለ YESHEWAS GETAWBEZA በቀን 17/01/21 17:49 በደረሰኝ ቁጥር 8AH24X2V48 ልከዋል። አሁን ያሎት ቀሪ ሂሳብ 12.00Br. ነዉ፡፡እናመሰግናለን!', 'paid'),
 (3, '2021-01-19 08:03:46', '251994', '', 'Dear Customer, your prepaid account has been recharged succesfully.your Recharged balance is 50.00 Birr.your  balance is 50.03 Birr.With this balance your account will expire on 18/12/2021.ethio telecom', ''),
 (4, '2021-01-19 08:06:22', '251994', '', 'Dear Customer, your prepaid account has been recharged succesfully.your Recharged balance is 15.00 Birr.your  balance is 130.03 Birr.With this balance your account will expire on 18/12/2021.ethio telecom', ''),
 (5, '2021-01-19 08:30:24', '251994', '', 'Dear customer,0944024604 subscriber transferred 450.00 Birr for you.Your balance is 484.83 Birr now.ethio telecom ', ''),
@@ -195,7 +246,17 @@ INSERT INTO `messagein` (`id`, `SendTime`, `MessageFrom`, `MessageTo`, `MessageT
 (8, '2021-01-19 08:31:50', '994', '', 'Dear Customer, you have successfully sent Gift Weekly Unlimited Premium Internet and SMS plan to be expired after 7 days to 0944024604  Happy Holiday! ethio telecom.', ''),
 (9, '2021-01-19 14:11:18', '+251942205164', '', 'ዉድ ደንበኛ  200.00Br. ለ YESHEWAS GETAWBEZA በቀን 17/01/21 17:49 በደረሰኝ ቁጥር 8AH24X2V48 ልከዋል። አሁን ያሎት ቀሪ ሂሳብ 12.00Br. ነዉ፡፡እናመሰግናለን!', 'paid'),
 (10, '2021-01-19 08:06:38', '251994', '', 'Dear Customer, your prepaid account has been recharged succesfully.your Recharged balance is 15.00 Birr.your  balance is 145.03 Birr.With this balance your account will expire on 18/12/2021.ethio telecom', ''),
-(11, '2021-01-19 08:06:05', '251994', '', 'Dear Customer, your prepaid account has been recharged succesfully.your Recharged balance is 15.00 Birr.your  balance is 115.03 Birr.With this balance your account will expire on 18/12/2021.ethio telecom', '');
+(11, '2021-01-19 08:06:05', '251994', '', 'Dear Customer, your prepaid account has been recharged succesfully.your Recharged balance is 15.00 Birr.your  balance is 115.03 Birr.With this balance your account will expire on 18/12/2021.ethio telecom', ''),
+(12, '2021-01-20 18:26:08', '+251994', '', 'Dear Customer, you have received a call me back request. Please call back to 0921300077.\r\n\r\nYou can dial *999# & use or send gift discounted packages\r\nethio telecom', ''),
+(13, '2021-01-20 16:33:20', '+251915581918', '', '1102877263', ''),
+(14, '2021-01-20 16:34:59', '+251915581918', '', '11491677', ''),
+(15, '2021-01-20 18:49:58', '824', '', 'ያልተሳካ ጥሪ ማሳወቂያ:+251943175508 በ 12.05.2013 ከቀኑ 11:44:57 እስከ ከቀኑ 12:11:03 4   ጊዜ ደውሎሎታል፡፡እባክዎ መልሰው ይደውሉ', ''),
+(16, '2021-01-20 08:56:48', '251994', '', 'Dear customer, You have finished Flexi plan of your Monthly Flexi with holiday gift 1900 unit with free of 260 unit to be expired after 30 days package. Subscribe another package and enjoy discounted tariff. Thank you, ethio telecom.', ''),
+(17, '2021-01-20 10:28:44', 'EPHI', '', 'የኮቪድ-19 ምልክት ሳያሳዩ ነገርግን ቫይረሱ ያለባቸው ሰዎች ስላሉ ራስዎን ከበሽታው ይጠብቁ!\r\n\r\nኢሕጤኢ\r\n', ''),
+(18, '2021-01-21 17:09:09', '+251942205164', '', 'ዉድ ደንበኛ  100.00Br. ለ YESHEWAS GETAWBEZA በቀን 17/01/21 17:49 በደረሰኝ ቁጥር 8AH24X2V48 ልከዋል። አሁን ያሎት ቀሪ ሂሳብ 12.00Br. ነዉ፡፡እናመሰግናለን!', 'paid'),
+(19, '2021-01-21 17:10:54', '+251942205164', '', 'ዉድ ደንበኛ  100.00Br. ለ YESHEWAS GETAWBEZA በቀን 17/01/21 17:49 በደረሰኝ ቁጥር 8AH24X2V48 ልከዋል። አሁን ያሎት ቀሪ ሂሳብ 12.00Br. ነዉ፡፡እናመሰግናለን!', 'paid'),
+(20, '2021-01-21 17:13:07', '+251942205164', '', 'ዉድ ደንበኛ  100.00Br. ለ YESHEWAS GETAWBEZA በቀን 17/01/21 17:49 በደረሰኝ ቁጥር 8AH24X2V48 ልከዋል። አሁን ያሎት ቀሪ ሂሳብ 12.00Br. ነዉ፡፡እናመሰግናለን!', 'paid'),
+(21, '2021-01-21 17:31:32', '+251942205164', '', 'ዉድ ደንበኛ  100.00Br. ለ YESHEWAS GETAWBEZA በቀን 17/01/21 17:49 በደረሰኝ ቁጥር 8AH24X2V48 ልከዋል። አሁን ያሎት ቀሪ ሂሳብ 12.00Br. ነዉ፡፡እናመሰግናለን!', 'paid');
 
 -- --------------------------------------------------------
 
@@ -248,7 +309,8 @@ INSERT INTO `movie` (`movie_id`, `mov_name`, `mov_plot`, `mov_gener`, `mov_ratti
 (13, 'The Most Wanted', 'Test', 7, 2, 'themostwanted.jpg', 'https://www.youtube.com/watch?v=DDB1Bw2sZvU', '02:34', '2020-03-18', 'Anton', 'English', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis vel quis voluptatem aliquid expedita minima aspernatur, sequi eligendi repellat autem in itaque harum mollitia omnis exercitationem odio deleniti tenetur repellendus.\r\nIllo repellat sint blanditiis amet ipsum repellendus. Eligendi dolorum doloremque alias rem ea excepturi, similique adipisci quas sunt nostrum natus ipsam, eius nobis dolorem accusamus fugiat vero cupiditate impedit necessitatibus!\r\nUllam assumenda nam, sapiente excepturi earum esse nobis explicabo, omnis sit recusandae aspernatur culpa quisquam ipsam perspiciatis eum inventore maxime qui, repudiandae corrupti veniam quasi sequi. Nihil a impedit quae!\r\nA tempore quas voluptatem dignissimos id, commodi maxime cupiditate numquam quo explicabo quibusdam aspernatur ea libero itaque, doloribus consectetur nemo veritatis neque sed. Cum error earum quae adipisci nam accusamus.\r\nImpedit quis debitis soluta saepe, quasi rem, nam repellat placeat architecto dolore porro nobis dolores ab commodi perferendis laboriosam voluptatum, natus quo minima eligendi quaerat. Sint amet adipisci doloribus? Blanditiis!'),
 (14, 'Halloween Party', 'Test', 2, 2, 'halloweenparty.jpg', 'https://www.youtube.com/watch?v=IExxpVPQ_ww', '01:45', '2020-06-17', 'George Cloone', 'English', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis vel quis voluptatem aliquid expedita minima aspernatur, sequi eligendi repellat autem in itaque harum mollitia omnis exercitationem odio deleniti tenetur repellendus.\r\nIllo repellat sint blanditiis amet ipsum repellendus. Eligendi dolorum doloremque alias rem ea excepturi, similique adipisci quas sunt nostrum natus ipsam, eius nobis dolorem accusamus fugiat vero cupiditate impedit necessitatibus!\r\nUllam assumenda nam, sapiente excepturi earum esse nobis explicabo, omnis sit recusandae aspernatur culpa quisquam ipsam perspiciatis eum inventore maxime qui, repudiandae corrupti veniam quasi sequi. Nihil a impedit quae!\r\nA tempore quas voluptatem dignissimos id, commodi maxime cupiditate numquam quo explicabo quibusdam aspernatur ea libero itaque, doloribus consectetur nemo veritatis neque sed. Cum error earum quae adipisci nam accusamus.\r\nImpedit quis debitis soluta saepe, quasi rem, nam repellat placeat architecto dolore porro nobis dolores ab commodi perferendis laboriosam voluptatum, natus quo minima eligendi quaerat. Sint amet adipisci doloribus? Blanditiis!'),
 (15, 'Mars', 'Test', 7, 2, 'mars.jpg', 'https://www.youtube.com/watch?v=4tIXHLC24aY', '01:58', '2018-06-19', 'George Cloonee', 'English', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis vel quis voluptatem aliquid expedita minima aspernatur, sequi eligendi repellat autem in itaque harum mollitia omnis exercitationem odio deleniti tenetur repellendus.\r\nIllo repellat sint blanditiis amet ipsum repellendus. Eligendi dolorum doloremque alias rem ea excepturi, similique adipisci quas sunt nostrum natus ipsam, eius nobis dolorem accusamus fugiat vero cupiditate impedit necessitatibus!\r\nUllam assumenda nam, sapiente excepturi earum esse nobis explicabo, omnis sit recusandae aspernatur culpa quisquam ipsam perspiciatis eum inventore maxime qui, repudiandae corrupti veniam quasi sequi. Nihil a impedit quae!\r\nA tempore quas voluptatem dignissimos id, commodi maxime cupiditate numquam quo explicabo quibusdam aspernatur ea libero itaque, doloribus consectetur nemo veritatis neque sed. Cum error earum quae adipisci nam accusamus.\r\nImpedit quis debitis soluta saepe, quasi rem, nam repellat placeat architecto dolore porro nobis dolores ab commodi perferendis laboriosam voluptatum, natus quo minima eligendi quaerat. Sint amet adipisci doloribus? Blanditiis!'),
-(18, 'Wonder woman 1887', 'A young Chinese maiden disguises herself as a male warrior in order to save her father. A live-action feature film based on Disney\'s \'Mulan.\'', 7, 2, 'wonder_woman.jpg', 'test', '2', '2021-01-20', 'Yifei Liu, Donnie Yen, Jet Li', 'engilish', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"');
+(18, 'Wonder woman 1887', 'A young Chinese maiden disguises herself as a male warrior in order to save her father. A live-action feature film based on Disney\'s \'Mulan.\'', 3, 1, '', 'test', '2', '2021-01-20', 'Yifei Liu, Donnie Yen, Jet Li', 'engilish', 'englishh'),
+(19, 'Power book 2', 'A young Chinese maiden disguises herself as a male warrior in order to save her father. A live-action feature film based on Disney\'s \'Mulan.\'', 8, 2, '', 'test', '2', '2021-01-03', 'Yifei Liu, Donnie Yen, Jet Li', 'engilish', 'englishh');
 
 -- --------------------------------------------------------
 
@@ -683,7 +745,69 @@ INSERT INTO `seat_booked` (`id`, `show_id`, `seat`, `reserved_date`, `booking_id
 (391, 1, '510', '2021-01-19 15:03:04', 128),
 (392, 1, '48', '2021-01-19 15:04:19', 129),
 (393, 1, '59', '2021-01-19 15:04:19', 129),
-(394, 1, '510', '2021-01-19 15:04:19', 129);
+(394, 1, '510', '2021-01-19 15:04:19', 129),
+(397, 6, '37', '2021-01-20 09:59:08', 131),
+(398, 6, '47', '2021-01-20 09:59:08', 131),
+(399, 6, '48', '2021-01-20 09:59:08', 131),
+(400, 6, '37', '2021-01-20 10:06:34', 132),
+(401, 6, '47', '2021-01-20 10:06:34', 132),
+(402, 6, '48', '2021-01-20 10:06:34', 132),
+(403, 6, '37', '2021-01-20 10:06:54', 133),
+(404, 6, '47', '2021-01-20 10:06:54', 133),
+(405, 6, '48', '2021-01-20 10:06:54', 133),
+(406, 6, '37', '2021-01-20 10:09:10', 134),
+(407, 6, '47', '2021-01-20 10:09:10', 134),
+(408, 6, '48', '2021-01-20 10:09:11', 134),
+(409, 7, '28', '2021-01-20 10:11:35', 135),
+(410, 7, '38', '2021-01-20 10:11:35', 135),
+(411, 7, '48', '2021-01-20 10:11:35', 135),
+(412, 7, '49', '2021-01-20 10:11:36', 135),
+(413, 16, '25', '2021-01-20 10:56:15', 136),
+(414, 16, '34', '2021-01-20 10:56:15', 136),
+(415, 16, '35', '2021-01-20 10:56:15', 136),
+(416, 16, '44', '2021-01-20 10:56:15', 136),
+(417, 16, '49', '2021-01-21 08:14:41', 137),
+(418, 16, '410', '2021-01-21 08:14:41', 137),
+(419, 16, '59', '2021-01-21 08:14:42', 137),
+(420, 16, '510', '2021-01-21 08:14:42', 137),
+(421, 16, '311', '2021-01-21 08:18:56', 138),
+(422, 16, '312', '2021-01-21 08:18:57', 138),
+(423, 1, '511', '2021-01-21 14:07:08', 139),
+(424, 1, '512', '2021-01-21 14:07:08', 139),
+(425, 16, '511', '2021-01-21 14:08:36', 140),
+(426, 16, '512', '2021-01-21 14:08:36', 140),
+(427, 16, '511', '2021-01-21 14:10:51', 141),
+(428, 16, '512', '2021-01-21 14:10:51', 141),
+(429, 16, '413', '2021-01-21 14:12:56', 142),
+(430, 16, '513', '2021-01-21 14:12:56', 142),
+(431, 16, '411', '2021-01-21 14:24:57', 143),
+(432, 16, '412', '2021-01-21 14:24:57', 143),
+(433, 16, '411', '2021-01-21 14:25:31', 144),
+(434, 16, '412', '2021-01-21 14:25:31', 144),
+(435, 16, '411', '2021-01-21 14:25:54', 145),
+(436, 16, '412', '2021-01-21 14:25:54', 145),
+(437, 16, '411', '2021-01-21 14:30:29', 146),
+(438, 16, '412', '2021-01-21 14:30:29', 146),
+(439, 16, '411', '2021-01-21 15:04:05', 147),
+(440, 16, '412', '2021-01-21 15:04:05', 147),
+(441, 16, '411', '2021-01-21 15:04:36', 148),
+(442, 16, '412', '2021-01-21 15:04:36', 148),
+(443, 16, '411', '2021-01-21 15:07:00', 149),
+(444, 16, '412', '2021-01-21 15:07:00', 149),
+(445, 16, '411', '2021-01-21 15:08:20', 150),
+(446, 16, '412', '2021-01-21 15:08:20', 150),
+(447, 16, '411', '2021-01-21 15:09:52', 151),
+(448, 16, '412', '2021-01-21 15:09:52', 151),
+(449, 16, '413', '2021-01-21 15:13:25', 152),
+(450, 16, '513', '2021-01-21 15:13:25', 152),
+(451, 16, '413', '2021-01-21 15:16:02', 153),
+(452, 16, '513', '2021-01-21 15:16:02', 153),
+(453, 16, '413', '2021-01-21 15:17:49', 154),
+(454, 16, '513', '2021-01-21 15:17:49', 154),
+(455, 16, '413', '2021-01-21 15:21:00', 155),
+(456, 16, '513', '2021-01-21 15:21:00', 155),
+(457, 16, '413', '2021-01-21 15:21:45', 156),
+(458, 16, '513', '2021-01-21 15:21:45', 156);
 
 -- --------------------------------------------------------
 
@@ -721,7 +845,9 @@ INSERT INTO `showtime` (`show_id`, `mov_id`, `cinema_id`, `show_date`, `show_tim
 (15, 12, 1, '2021-01-08', '22:54:00', '50'),
 (16, 8, 5, '2021-01-09', '14:06:00', '50'),
 (18, 15, 8, '2021-01-15', '03:19:00', '50'),
-(19, 11, 5, '2021-01-14', '11:25:00', '50');
+(19, 11, 5, '2021-01-14', '11:25:00', '50'),
+(20, 18, 1, '2021-01-21', '15:17:00', '50'),
+(21, 6, 8, '2021-01-21', '21:37:00', '50');
 
 -- --------------------------------------------------------
 
@@ -750,7 +876,7 @@ INSERT INTO `user` (`user_id`, `name`, `email`, `username`, `password`, `role`, 
 (3, 'anteneh', 'anteneh@gmail.com', 'antish', '1234', 'admin', 'active', '2020-12-22 00:35:34', '0916327415'),
 (5, 'anteneh', 'anteneh@gmail.com', 'antish', '81dc9bdb52d04dc20036dbd8313ed055', 'admin', 'active', '2020-12-22 00:41:56', '0916327415'),
 (6, 'yalfal', 'yalfal@gmail.com', 'yalfal', '962012d09b8170d912f0669f6d7d9d07', 'manager', 'active', '2020-12-24 07:55:24', ''),
-(7, 'barnabas', 'barni@gmail.com', 'barni', '81dc9bdb52d04dc20036dbd8313ed055', 'staff', 'active', '2020-12-24 07:56:02', '0912104767');
+(7, 'barnabas matheo', 'barni@gmail.com', 'barni', '81dc9bdb52d04dc20036dbd8313ed055', 'staff', 'active', '2020-12-24 07:56:02', '0912104767');
 
 --
 -- Indexes for dumped tables
@@ -790,6 +916,12 @@ ALTER TABLE `comment`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`cust_id`);
+
+--
+-- Indexes for table `email_subscribers`
+--
+ALTER TABLE `email_subscribers`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `geners`
@@ -866,13 +998,13 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `booking_info`
 --
 ALTER TABLE `booking_info`
-  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT for table `cinema`
 --
 ALTER TABLE `cinema`
-  MODIFY `cinema_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cinema_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -884,19 +1016,25 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `email_subscribers`
+--
+ALTER TABLE `email_subscribers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `geners`
 --
 ALTER TABLE `geners`
-  MODIFY `gener_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `gener_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `messagein`
 --
 ALTER TABLE `messagein`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `messageout`
@@ -908,13 +1046,13 @@ ALTER TABLE `messageout`
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `seat`
@@ -926,13 +1064,13 @@ ALTER TABLE `seat`
 -- AUTO_INCREMENT for table `seat_booked`
 --
 ALTER TABLE `seat_booked`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=395;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=459;
 
 --
 -- AUTO_INCREMENT for table `showtime`
 --
 ALTER TABLE `showtime`
-  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user`

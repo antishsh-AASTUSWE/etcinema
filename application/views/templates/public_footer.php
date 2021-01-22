@@ -22,7 +22,7 @@
     <div class="container">
         <div class="footer-top">
             <div class="logo">
-                <a href="index-1.html">
+                <a href="home">
                     <img src="<?php echo base_url() ?>publicassets/images/footer/footer-logo.png" alt="footer">
                 </a>
             </div>
