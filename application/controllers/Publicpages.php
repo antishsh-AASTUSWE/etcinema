@@ -217,7 +217,7 @@ class Publicpages extends CI_Controller
 
 		$from = $this->config->item('smtp_user');
 		$to = $this->session->tempdata('email');
-		$subject = 'Etcinema';
+		$subject = 'Payment Info';
 		$message = $content;
 		$this->email->clear();
 		$this->email->set_newline("\r\n");
@@ -304,11 +304,34 @@ class Publicpages extends CI_Controller
 	public function print_ticket($booking_id){
 		$content=$this->public_model->print_ticket($booking_id);
 		//echo $content;
-		$this->send($content);
+		$this->send_ticket($content);
         
      
 	}
-	
+	public function send_ticket($content)
+	{
+		$this->load->config('email');
+		$this->load->library('email');
+
+		$from = $this->config->item('smtp_user');
+		$to = $this->session->tempdata('email');
+		$subject = 'Etcinema Ticket';
+		$message = $content;
+		$this->email->clear();
+		$this->email->set_newline("\r\n");
+		$this->email->from($from);
+		$this->email->to($to);
+		$this->email->subject($subject);
+		$this->email->message($message);
+
+		if ($this->email->send()) {
+			
+			$this->booking_confirm();
+			//echo 'Your Email has successfully been sent.';
+		} else {
+			show_error($this->email->print_debugger());
+		}
+	}
 	public function email_subscription($page = 'home'){
 		
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|callback_check_email_exists');

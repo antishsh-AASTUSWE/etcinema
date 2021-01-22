@@ -189,6 +189,11 @@
           <i class="zmdi zmdi zmdi-account"></i> <span>Profile</span>
           </a>
         </li>
+        <li>
+          <a href="<?php echo base_url() ?>staff_check">
+            <i class="zmdi zmdi-notifications-active"></i> <span>Check Ticket</span>
+          </a>
+        </li>
       </ul>
 
     </div>

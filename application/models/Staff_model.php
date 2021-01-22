@@ -578,6 +578,31 @@ public function check_Password($password)
         }
     } //end of check gener exists
 
+    public function check_ticket()
+    {
+        $data = array(
+            'username' => $this->input->post('username'),
+            'ticket' => $this->input->post('ticket')
+        );
+        $this->db->where('username', $data['username']);
+        $this->db->where('booking_id', $data['ticket']);
+        $this->db->where('status', 'paid');
+        $this->db->join('showtime', 'showtime.show_id=booking_info.show_id');
+        $this->db->join('movie', 'movie.movie_id=showtime.mov_id');
+        $this->db->join('cinema', 'cinema.cinema_id=showtime.cinema_id');
+        $this->db->join('customer', 'customer.cust_id=booking_info.user_id');
+        $this->db->join('bank', 'bank.bank_id=booking_info.paid_bank');
+        $query = $this->db->get('booking_info');
+       // $query = $this->db->get_where('booking_info', array('password' => $data['username'],'password' => $data['username']));
 
+        if(empty($query->row_array()))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 

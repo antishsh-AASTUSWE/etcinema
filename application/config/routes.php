@@ -141,6 +141,7 @@ $route['staff_update_customer/(:num)'] = 'staff/update_customer/$1';
 $route['staff_delete_customer/(:num)'] = 'staff/delete_customer/$1';
 $route['staff_edit_customer/(:num)'] = 'staff/edit_customer/$1';
 
+$route['staff_check'] = 'staff/check_ticket';
 $route['staff_add_showtime'] = 'staff/add_showtime';
 $route['staff_addSeat'] = 'staff/addSeat';
 $route['staff_add_customer'] = 'staff/add_customer';

@@ -851,5 +851,34 @@ class Staff extends CI_Controller
             return false;
         }
     } //end of check rating exists function
+    public function check_ticket()
+    {
+        if ($this->session->tempdata('role') !== 'staff') {
+            redirect('authenticate_login');
+        }
 
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|callback_check_rating_exists');
+        $this->form_validation->set_rules('ticket', 'ticket', 'trim|required');
+
+        if ($this->form_validation->run() === FALSE) {
+            //$data['rating'] = $this->staff_model->get_rating();
+            $this->load->view('templates/admin_header');
+            $this->load->view('staffpages/check_ticket');
+            $this->load->view('templates/admin_footer');
+        } else {
+            if ($this->staff_model->check_ticket()) {
+                $data['pass']='';
+                $this->load->view('templates/admin_header');
+                $this->load->view('staffpages/check_ticket',$data);
+                $this->load->view('templates/admin_footer');
+            } else {
+                $data['error']='';
+                $this->load->view('templates/admin_header');
+                $this->load->view('staffpages/check_ticket',$data);
+                $this->load->view('templates/admin_footer');
+            }
+            
+            //redirect('staff_dashboard');
+        }
+    } //end of add rating
 }
