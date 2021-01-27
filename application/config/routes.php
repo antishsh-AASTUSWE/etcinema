@@ -162,7 +162,7 @@ $route['change_staff_pass'] = 'staff/change_staff_pass';
 
 
 
-
+ 
 //customer login routes
 $route['change_password'] = 'login/change_password';
 $route['customer_logout'] = 'login/customer_logout';
@@ -185,6 +185,7 @@ $route['movie'] = 'publicpages/movie';
 $route['about'] = 'publicpages/about';
 $route['contact'] = 'publicpages/contact';
 $route['subscribe'] = 'publicpages/email_subscription';
+$route['smstest'] = 'publicpages/smstest';
 
 
 $route['user_booking'] = 'profile/user_booking';

@@ -243,6 +243,7 @@ class Publicpages extends CI_Controller
 
 		if ($this->form_validation->run() === FALSE) {
 			$data['movie_detail'] = $this->public_model->get_movie($movie_id);
+			$data['count'] = $this->public_model->count_comment($movie_id);
 			$this->load->view('templates/public_header');
 			$this->load->view('publicpages/movie_details', $data);
 			$this->load->view('templates/public_footer');
@@ -355,7 +356,18 @@ class Publicpages extends CI_Controller
         } else {
             return false;
         }
-    } //end of check username exists
+	} //end of check username exists
+	public function smstest(){
+		
+		$data = array(
+		'MessageFrom' => $_GET['from'],
+		'MessageText' => $_GET['message'],
+		'MessageTo' => $_GET['to']
+	);
+
+	 $this->db->insert('messagein', $data);
+		
+	}
 
 }
  

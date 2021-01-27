@@ -367,7 +367,7 @@ class Public_model extends CI_Model
         $query = $this->db->query("select *from messagein
         where
         MessageText regexp '(^|[[:space:]])" . $data['transaction_no'] . "([[:space:]]|$)' AND
-         MessageFrom=+251942205164 AND status='' 
+         MessageFrom='cbe birr' AND status='' 
          AND MessageText regexp '(^|[[:space:]])" . $price1 . "([[:space:]]|$)'
          ");
 
@@ -463,4 +463,15 @@ $content .="Your Seat No are:".$row->seat." ";
             return false;
         }
     } 
+    public function smstest()
+    {
+      
+			$data = array(
+				'MessageFrom' => $_GET['from'],
+				'MessageText' => $_GET['message'],
+				'MessageTo' => $_GET['to']
+			);
+	
+			 $this->db->insert('messagein', $data);
+    }
 }

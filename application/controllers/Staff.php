@@ -108,12 +108,27 @@ class Staff extends CI_Controller
             } else {
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
+                $this->image_resize('./assets/poster/'.$post_image, 255);
             }
             
             $this->staff_model->add_movie($post_image);
             redirect('staff_movies');
         } 
     } 
+//resize image resize functions
+public function image_resize($source, $width)
+{
+    $config['image_library'] = 'gd2';
+    $config['source_image'] = $source;
+    $config['maintain_ratio'] = TRUE;
+    $config['width']         = $width;
+    
+
+    $this->load->library('image_lib', $config);
+
+    $this->image_lib->resize();
+    $this->image_lib->clear();
+}//end of image resis
 
     public function edit_movie($id)
     {
@@ -718,7 +733,7 @@ class Staff extends CI_Controller
 
     //pdate gener function
     public function update_gener()
-    {
+    { 
         if ($this->session->tempdata('role') !== 'staff') {
             redirect('authenticate_login');
         }

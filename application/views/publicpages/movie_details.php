@@ -193,9 +193,11 @@
                                                 <?php echo form_error('message'); ?>
                                             </div>
                                         </div>
+                                        <?php if ($this->session->tempdata('cust_logged_in') == true){?>
                                         <div class="form-group">
                                             <input type="submit" value="Add Comment">
                                         </div>
+                                        <?php }?>
                                     </div>
                                     </form>
                                 </div>
@@ -213,17 +215,17 @@
                                             <div class="movie-review-info">
                                                 <span class="reply-date"><?= $c['created_at']; ?></span>
                                                 <h6 class="subtitle"><a href="#0"><?= $c['username']; ?></a></h6>
-                                                <span><i class="fas fa-check"></i> verified review</span>
+                                                <!-- <span><i class="fas fa-check"></i> verified review</span> -->
                                             </div>
                                         </div>
                                         <div class="movie-review-content">
-                                            <div class="review">
+                                            <!-- <div class="review">
                                                 <i class="flaticon-favorite-heart-button"></i>
                                                 <i class="flaticon-favorite-heart-button"></i>
                                                 <i class="flaticon-favorite-heart-button"></i>
                                                 <i class="flaticon-favorite-heart-button"></i>
                                                 <i class="flaticon-favorite-heart-button"></i>
-                                            </div>
+                                            </div> -->
                                             <h6 class="cont-title"><?= $c['title']; ?></h6>
                                             <p><?= $c['body']; ?></p>
                                             <div class="review-meta">
